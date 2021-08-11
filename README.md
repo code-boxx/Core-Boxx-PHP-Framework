@@ -22,13 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
----
-## INSTALLATION
----
-1) Edit core/GO.php, change (A2) host and (A4) database settings to your own.
-
 ---
 ## DOCUMENTATION
 ---
-Please visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for more!
+Please visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for the full documentation!

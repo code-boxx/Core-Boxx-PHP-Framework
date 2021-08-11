@@ -4,7 +4,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "
 
 // (B) ENFORCE HTTPS (RECOMMENDED)
 if (API_HTTPS && empty($_SERVER['HTTPS'])) {
-  $_CORE->respond(0, "Please use HTTPS", null, 405);
+  $_CORE->respond(0, "Please use HTTPS");
 }
 
 // (C) AUTO REGENERATE HTACCESS IF NOT FOUND
@@ -50,4 +50,4 @@ if ($valid) {
   $valid = file_exists($api);
 }
 if ($valid) { require $api; }
-else { $_CORE->respond(0, "Invalid request", null, 400); } // Bad request
+else { $_CORE->respond(0, "Invalid request"); } // Bad request
