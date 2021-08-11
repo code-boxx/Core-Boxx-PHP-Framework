@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resumable Upload Demo</title>
+  </head>
+  <body>
+    <!-- (A) UPLOAD FORM -->
+    <!-- (A1) UPLOAD BUTTONS -->
+    <input type="button" id="upbrowse" value="Browse"/>
+    <input type="button" id="upToggle" value="Pause OR Continue"/>
+    <!-- (A2) UPLOAD LIST -->
+    <div id="uplist"></div>
+
+    <!-- (B) JAVASCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flow.js/2.14.1/flow.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+      // (B1) NEW FLOW OBJECT
+      var flow = new Flow({
+        // @TODO - CHANGE TO YOUR OWN!
+        target: "api/upload/recv/",
+        chunkSize: 1024*1024, // 1MB
+        singleFile: true
+      });
+
+      if (flow.support) {
+        // (B2) ASSIGN BROWSE BUTTON
+        flow.assignBrowse(document.getElementById("upbrowse"));
+        // OR DEFINE DROP ZONE
+        // flow.assignDrop(document.getElementById("updrop"));
+
+        // (B3) ON FILE ADDED
+        flow.on("fileAdded", function(file, event){
+          // console.log(file, event);
+          let fileslot = document.createElement("div");
+          fileslot.id = file.uniqueIdentifier;
+          fileslot.innerHTML = `${file.name} (${file.size}) - <strong>0%</strong>`;
+          document.getElementById("uplist").appendChild(fileslot);
+        });
+
+        // (B4) ON FILE SUBMITTED (ADDED TO UPLOAD QUEUE)
+        flow.on("filesSubmitted", function(array, event){
+          // console.log(array, event);
+          flow.upload();
+        });
+
+        // (B5) ON UPLOAD PROGRESS
+        flow.on("fileProgress", function(file, chunk){
+          // console.log(file, chunk);
+          let progress = (chunk.offset + 1) / file.chunks.length * 100;
+          progress = progress.toFixed(2) + "%";
+
+          // QUERYSELECTOR NOT WORKING WITH "-" IN ID...
+          // document.querySelector(`${file.uniqueIdentifier} strong`)
+          let fileslot = document.getElementById(file.uniqueIdentifier);
+          fileslot = fileslot.getElementsByTagName("strong")[0];
+          fileslot.innerHTML = progress;
+        });
+
+        // (B6) ON UPLOAD SUCCESS
+        flow.on("fileSuccess", function(file, message, chunk){
+          // console.log(file, message, chunk);
+          let fileslot = document.getElementById(file.uniqueIdentifier);
+          fileslot = fileslot.getElementsByTagName("strong")[0];
+          fileslot.innerHTML = "DONE";
+        });
+
+        // (B7) ON UPLOAD ERROR
+        flow.on("fileError", function(file, message){
+          // console.log(file, message);
+          let fileslot = document.getElementById(file.uniqueIdentifier);
+          fileslot = fileslot.getElementsByTagName("strong")[0];
+          fileslot.innerHTML = "ERROR";
+        });
+
+        // (B8) PAUSE/CONTINUE UPLOAD
+        document.getElementById("upToggle").addEventListener("click", function(){
+          if (flow.isUploading()) { flow.pause(); }
+          else { flow.resume(); }
+        });
+      }
+    });
+    </script>
+
+    <!-- (C) NOTES -->
+    <div style="font-weight:bold; margin-top:20px;">
+      <p>This module uses Flow JS + Flow PHP server, both are NOT included in this zip file.</p>
+      <p>Flow JS is loaded off the CDN, so download Flow PHP by yourself. The easy way:</p>
+      <ol>
+        <li>Download and install Composer Dependency Manager - https://getcomposer.org/</li>
+        <li>Open command prompt, navigate to your project folder.</li>
+        <li>Run "composer require flowjs/flow-php-server".</li>
+        <li>Done - Composer will download the latest version into the vendor/ folder.</li>
+      </ol>
+      <p>Official Links:</p>
+      <ul>
+        <li>CDN - https://cdnjs.com/libraries/flow.js</li>
+        <li>FlowJS GitHub - https://github.com/flowjs/flow.js/</li>
+        <li>FlowPHP GitHub - https://github.com/flowjs/flow-php-server</li>
+      </ul>
+    </div>
+  </body>
+</html>
