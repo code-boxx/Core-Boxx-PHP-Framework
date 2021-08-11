@@ -1,0 +1,8 @@
+CREATE TABLE `password_reset` (
+  `user_id` int(11) NOT NULL,
+  `reset_hash` varchar(64) NOT NULL,
+  `reset_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`user_id`);
