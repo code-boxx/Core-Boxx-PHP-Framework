@@ -11,6 +11,7 @@ define("PATH_API", PATH_BASE . DIRECTORY_SEPARATOR . "api" . DIRECTORY_SEPARATOR
 
 // (A2) HOST - CHANGE TO YOUR OWN!
 define("HOST_BASE", "http://localhost/");
+define("HOST_BASE_PATH", parse_url(HOST_BASE, PHP_URL_PATH));
 define("HOST_API", "/api/");
 
 // (A3) ENFORCE HTTPS FOR API ENDPOINT
