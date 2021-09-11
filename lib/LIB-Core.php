@@ -67,8 +67,10 @@ class CoreBoxx {
   //  $msg : system message
   //  $data : optional, data append
   //  $more : optional, supplementary data
+  //  $http : optional, HTTP response code (401, 403, 500, etc...)
   //  $exit : stop process, default true
-  function respond ($status, $msg=null, $data=null, $more=null, $exit=true) {
+  function respond ($status, $msg=null, $data=null, $more=null, $http=null, $exit=true) {
+    if ($http!==null) { http_response_code($http); }
     if ($msg === null) {
       if ($status==1) { $msg = "OK"; }
       else { $msg = $this->error; }
@@ -81,9 +83,31 @@ class CoreBoxx {
     ]);
     if ($exit) { exit(); }
   }
+
+  // (G) PAGE CALCULATOR - PAGI-NATOR
+  //  $total : total number of entries
+  //  $now : current page
+  function paginator ($entries, $now=1) {
+    // (G1) TOTAL NUMBER OF PAGES
+    $page = [
+      "entries" => $entries,
+      "total" => ceil($entries / PAGE_PER)
+    ];
+
+    // (G2) CURRENT PAGE
+    $page["now"] = $now > $page["total"] ? $page["total"] : $now ;
+    if ($page["now"]<=0) { $page["now"] = 1; }
+
+    // (G3) LIMIT X,Y
+    $page["x"] = ($page["now"] - 1) * PAGE_PER;
+    $page["y"] = PAGE_PER;
+
+    // (G4) DONE
+    return $page;
+  }
 }
 
-// (G) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
+// (I) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
 class Core {
   function __construct ($core) {
     $this->core = &$core; // Link to core

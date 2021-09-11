@@ -66,9 +66,15 @@ class DB extends Core {
     return $this->stmt->fetch();
   }
 
-  // (J) INSERT OR REPLACE SQL HELPER
+  // (J) FETCH (SINGLE COLUMN)
+  function fetchCol ($sql, $data=null) {
+    $this->query($sql, $data);
+    return $this->stmt->fetchColumn();
+  }
+
+  // (K) INSERT OR REPLACE SQL HELPER
   function insert ($table, $fields, $data, $replace=false) {
-    // (J1) QUICK CHECK
+    // (K1) QUICK CHECK
     $cfields = count($fields);
     $cdata = count($data);
     $segments = $cdata / $cfields;
@@ -77,7 +83,7 @@ class DB extends Core {
       return false;
     }
 
-    // (J2) FORM SQL
+    // (K2) FORM SQL
     $sql = $replace ? "REPLACE" : "INSERT" ;
     $sql .= " INTO `$table` (";
     foreach ($fields as $f) { $sql .= "`$f`,"; }
@@ -85,11 +91,11 @@ class DB extends Core {
     $sql .= str_repeat("(". substr(str_repeat("?,", $cfields), 0, -1) ."),", $segments);
     $sql = substr($sql, 0, -1).";";
 
-    // (J3) RUN QUERY
+    // (K3) RUN QUERY
     return $this->query($sql, $data);
   }
 
-  // (K) UPDATE SQL HELPER
+  // (L) UPDATE SQL HELPER
   function update ($table, $fields, $where, $data) {
     $sql = "UPDATE `$table` SET ";
     foreach ($fields as $f) { $sql .= "`$f`=?,"; }
