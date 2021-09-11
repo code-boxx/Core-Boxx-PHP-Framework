@@ -1,21 +1,20 @@
 <?php
 class Menu extends Core {
   // (A) SAVE MENU
-   function save ($name, $desc, $id=null) {
-    // (A1) ADD MENU
+  function save ($name, $desc, $id=null) {
+    // (A1) DATA SETUP
+    $fields = ["menu_name", "menu_desc"];
+    $data = [$name, $desc];
+
+    // (A2) ADD MENU
     if ($id===null) {
-      return $this->DB->insert("menu",
-        ["menu_name", "menu_desc"],
-        [$name, $desc]
-      );
+      return $this->DB->insert("menu", $fields, $data);
     }
-    // (A2) UPDATE MENU
+
+    // (A3) UPDATE MENU
     else {
-      return $this->DB->update("menu",
-        ["menu_name", "menu_desc"],
-        "`menu_id`=?",
-        [$name, $desc, $id]
-      );
+      $data[] = $id;
+      return $this->DB->update("menu", $fields, "`menu_id`=?", $data);
     }
   }
 
@@ -68,19 +67,44 @@ class Menu extends Core {
     );
   }
 
-  // (E) GET ALL MENUS
-  // @TODO - DO YOUR OWN PAGINATION!
-  function getAll () {
-    return $this->DB->fetchAll("SELECT * FROM `menu`", null, "menu_id");
+  // (E) COUNT ALL MENUS (FOR PAGINATION)
+  function count ($search=null) {
+    $sql = "SELECT COUNT(*) FROM `menu`";
+    $data = null;
+    if ($search != null) {
+      $sql .= " WHERE `menu_name` LIKE ? OR `menu_desc` LIKE ?";
+      $data = ["%".$search."%", "%".$search."%"];
+    }
+    return $this->DB->fetchCol($sql, $data);
   }
 
-  // (F) GET MENU ITEMS
+  // (F) GET ALL OR SEARCH MENUS
+  function getAll ($search=null, $page=1) {
+    // (F1) PAGINATION
+    $entries = $this->count($search);
+    $pgn = $this->core->paginator($entries, $page);
+
+    // (F2) GET MENUS
+    $sql = "SELECT * FROM `menu`";
+    $data = null;
+    if ($search != null) {
+      $sql .= " WHERE `menu_name` LIKE ? OR `menu_desc` LIKE ?";
+      $data = ["%".$search."%", "%".$search."%"];
+    }
+    $sql .= " LIMIT {$pgn['x']}, {$pgn['y']}";
+    return [
+      "data" => $this->DB->fetchAll($sql, $data, "menu_id"),
+      "page" => $pgn
+    ];
+  }
+
+  // (G) GET MENU ITEMS
   function getItems ($id) {
-    // (F1) FLAGS
+    // (G1) FLAGS
     $items = []; // Menu items
     $children = []; // Children & their parent IDs
 
-    // (F2) GET ALL MENU ITEMS
+    // (G2) GET ALL MENU ITEMS
     $this->DB->query("SELECT * FROM `menu_items` WHERE `menu_id`=?", [$id]);
     while ($row = $this->DB->stmt->fetch()) {
       // CHILD MENU ITEM
@@ -117,12 +141,12 @@ class Menu extends Core {
   }
 
   // @TODO -
-  // (G) GENERATE STATIC HTML FILE FOR MENU (AFTER SAVE)
+  // (H) GENERATE STATIC HTML FILE FOR MENU (AFTER SAVE)
   // This is optional but highly recommended.
   // Loading static HTML is faster than the database. I.E. require "menu.html";
   // But you need to complete your own HTML...
   function toHTML ($id) {
-    // (G1) HELPER FUNCTION
+    // (H1) HELPER FUNCTION
     function writer($fh, $menu){
       fwrite($fh, "<ul>");
       foreach ($menu as $i=>$item) {
@@ -133,7 +157,7 @@ class Menu extends Core {
       fwrite($fh, "</ul>");
     }
 
-    // (G2) CREATE HTML FILE
+    // (H2) CREATE HTML FILE
     $fh = fopen("menu-$id.html", "w");
     writer($fh, $this->getItems($id));
     fclose($fh);

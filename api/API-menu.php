@@ -3,9 +3,8 @@
 // As these are "admin functions", you will want to protect these properly
 // I.E. Set a user system in place, allow signed in users to change
 // https://code-boxx.com/core-boxx-users-module/
-// if (!isset($_SESSION['user'])) { exit("NOPE"); }
+// if (!isset($_SESSION["user"])) { exit("NOPE"); }
 
-$_CORE->load("Menu");
 switch ($_REQ) {
   // (A) INVALID REQUEST
   default:
@@ -19,7 +18,7 @@ switch ($_REQ) {
 
   // (C) SAVE MENU ITEMS
   case "saveItems":
-    $_POST['items'] = json_decode($_POST['items']);
+    $_POST["items"] = json_decode($_POST["items"]);
     $_CORE->autoAPI("Menu", "saveItems");
     break;
 
@@ -30,16 +29,17 @@ switch ($_REQ) {
 
   // (E) GET MENU
   case "get":
-    $_CORE->respond(1, null, $_CORE->Menu->get($_POST['id']));
+    $_CORE->respond(1, null, $_CORE->autoCall("Menu", "get"));
     break;
 
   // (F) GET ALL MENUS
   case "getAll":
-    $_CORE->respond(1, null, $_CORE->Menu->getAll());
+    $results = $_CORE->autoCall("Menu", "getAll");
+    $_CORE->respond(1, null, $results["data"], $results["page"]);
     break;
 
   // (G) GET MENU ITEMS
   case "getItems":
-    $_CORE->respond(1, null, $_CORE->Menu->getItems($_POST['id']));
+    $_CORE->respond(1, null, $_CORE->autoCall("Menu", "getItems"));
     break;
 }
