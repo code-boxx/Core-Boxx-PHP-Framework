@@ -1,9 +1,8 @@
 <?php
 // @TODO - PROTECT USER ADMIN FUNCTIONS!
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION["user"])) {
   $_CORE->respond(0, "Please sign in first");
 }
-$_CORE->load("Users");
 switch ($_REQ) {
   // (A) INVALID REQUEST
   default:
@@ -12,27 +11,21 @@ switch ($_REQ) {
 
   // (B) GET USER
   case "get":
-    $_CORE->respond(1, null, $_CORE->Users->get($_POST['id']));
+    $_CORE->respond(1, null, $_CORE->autoCall("Users", "get"));
     break;
 
-  // (C) GET USERS
+  // (C) GET OR SEARCH USERS
   case "getAll":
-    // @TODO - YOU MIGHT WANT TO ADD YOUR OWN PAGINATION
-    $_CORE->respond(1, null, $_CORE->Users->getAll());
+    $users = $_CORE->autoCall("Users", "getAll");
+    $_CORE->respond(1, null, $users["data"], $users["page"]);
     break;
 
-  // (D) SEARCH USERS
-  case "search":
-    // @TODO - YOU MIGHT WANT TO ADD YOUR OWN PAGINATION
-    $_CORE->respond(1, null, $_CORE->Users->search($_POST['search']));
-    break;
-
-  // (E) SAVE USER
+  // (D) SAVE USER
   case "save":
     $_CORE->autoAPI("Users", "save");
     break;
 
-  // (F) DELETE USER
+  // (E) DELETE USER
   case "del":
     $_CORE->autoAPI("Users", "del");
     break;
