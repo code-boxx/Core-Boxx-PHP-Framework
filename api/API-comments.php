@@ -19,7 +19,7 @@ switch ($_REQ) {
 
   // (D) GET COMMENTS
   case "get":
-    // @TODO - YOU MIGHT WANT TO ADD YOUR OWN PAGINATION
-    $_CORE->respond(1, null, $_CORE->Comments->get($_POST['id']));
+    $comments = $_CORE->autoCall("Comments", "get");
+    $_CORE->respond(1, null, $comments["data"], $comments["page"]);
     break;
 }
