@@ -1,8 +1,8 @@
 <?php
-if (isset($_POST['email'])) {
+if (isset($_POST["email"])) {
   require "lib/GO.php";
   $_CORE->load("Forgot");
-  echo $_CORE->Forgot->request($_POST['email'])
+  echo $_CORE->Forgot->request($_POST["email"])
     ? "Reset link sent - Check your email" : $_CORE->error;
 }
 ?>
