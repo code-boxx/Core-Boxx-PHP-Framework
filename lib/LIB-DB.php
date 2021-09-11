@@ -42,11 +42,11 @@ class DB extends Core {
     try {
       $this->stmt = $this->pdo->prepare($sql);
       $this->stmt->execute($data);
+      return true;
     } catch (Exception $ex) {
       $this->error = $ex->getMessage();
       return false;
     }
-    return true;
   }
 
   // (H) FETCH ALL (MULTIPLE ROWS)
@@ -79,7 +79,7 @@ class DB extends Core {
     $cdata = count($data);
     $segments = $cdata / $cfields;
     if (is_float($segments)) {
-      $this->error = "Number of data elememts do not match with number of fields";
+      $this->error = "Number of data elements do not match with number of fields";
       return false;
     }
 
