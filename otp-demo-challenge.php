@@ -5,10 +5,10 @@
   </head>
   <body>
     <?php
-    if (isset($_POST['email'])) {
+    if (isset($_POST["email"])) {
       require "lib/GO.php";
       $_CORE->load("OTP");
-      echo $_CORE->OTP->challenge($_POST['email'], $_POST['otp'])
+      echo $_CORE->OTP->challenge($_POST["email"], $_POST["otp"])
       ? "Challenge OK - Do something" : $_CORE->error;
     } ?>
     <form method="post">

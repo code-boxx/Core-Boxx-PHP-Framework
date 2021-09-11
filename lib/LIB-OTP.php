@@ -35,16 +35,13 @@ class OTP extends Core {
     }
 
     // (B4) SEND OTP VIA EMAIL
-    // @TODO - FORMAT YOUR OWN "NICE EMAIL"
     $this->core->load("Mail");
-    $this->core->Mail->to = $email;
-    $this->core->Mail->subject = "Your OTP";
-    $this->core->Mail->body = "Your OTP is $pass. Enter it at ".HOST_BASE."otp-demo-challenge.php within ".$this->valid." minutes.";
-    if (!$this->core->Mail->send()) {
-      $this->error = "Error sending OTP email";
-      return false;
-    }
-    return true;
+    return $this->core->Mail->send([
+      // @TODO - FORMAT YOUR OWN "NICE EMAIL"
+      "to" => $email,
+      "subject" => "Your OTP",
+      "body" => "Your OTP is $pass. Enter it at ".HOST_BASE."otp-demo-challenge.php within ".$this->valid." minutes."
+    ]);
   }
 
   // (C) CHALLENGE OTP

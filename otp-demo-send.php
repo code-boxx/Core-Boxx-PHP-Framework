@@ -5,10 +5,10 @@
   </head>
   <body>
     <?php
-    if (isset($_POST['email'])) {
+    if (isset($_POST["email"])) {
       require "lib/GO.php";
       $_CORE->load("OTP");
-      echo $_CORE->OTP->generate($_POST['email'])
+      echo $_CORE->OTP->generate($_POST["email"])
       ? "Email send - check email" : $_CORE->error;
     } ?>
     <form method="post">
