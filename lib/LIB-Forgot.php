@@ -1,19 +1,20 @@
 <?php
 class Forgot extends Core {
+  // (A) SETTINGS
   // Request will be valid for N seconds.
   // Also to prevent spam, cannot make another request until expire.
   private $valid = 900; // 15 mins = 900 secs
 
-  // (A) GET PASSWORD RESET REQUEST
+  // (B) GET PASSWORD RESET REQUEST
   function get ($id) {
     return $this->DB->fetch(
       "SELECT * FROM `password_reset` WHERE `user_id`=?", [$id]
     );
   }
 
-  // (B) PASSWORD RESET REQUEST
+  // (C) PASSWORD RESET REQUEST
   function request ($email) {
-    // (B1) CHECK IF VALID USER
+    // (C1) CHECK IF VALID USER
     $this->core->load("Users");
     $user = $this->core->Users->get($email);
     if (!is_array($user)) {
@@ -21,7 +22,7 @@ class Forgot extends Core {
       return false;
     }
 
-    // (B2) CHECK PREVIOUS REQUEST (PREVENT SPAM)
+    // (C2) CHECK PREVIOUS REQUEST (PREVENT SPAM)
     $req = $this->get($user['user_id']);
     if (is_array($req)) {
       $expire = strtotime($req['reset_time']) + $this->valid;
@@ -33,7 +34,7 @@ class Forgot extends Core {
       }
     }
 
-    // (B3) CHECKS OK - CREATE NEW RESET REQUEST
+    // (C3) CHECKS OK - CREATE NEW RESET REQUEST
     $now = strtotime("now");
     $hash = md5($user['user_email'] . $now); // Random hash
     if (!$this->DB->insert("password_reset",
@@ -41,22 +42,19 @@ class Forgot extends Core {
       [$user['user_id'], $hash, date("Y-m-d H:i:s")], true
     )) { return false; }
 
-    // (B4) SEND EMAIL TO USER
-    // @TODO - SET YOUR OWN EMAIL MESSAGE + RESET LINK
+    // (C4) SEND EMAIL TO USER
     $this->core->load("Mail");
-    $this->core->Mail->to = $user['user_email'];
-    $this->core->Mail->subject = "Password Reset";
-    $this->core->Mail->body = "<a href='".HOST_BASE."2-forgot-reset.php?i={$user['user_id']}&h={$hash}'>RESET</a>";
-    if (!$this->core->Mail->send()) {
-      $this->error = "Error sending mail";
-      return false;
-    }
-    return true;
+    return $this->core->Mail->send([
+      // @TODO - SET YOUR OWN EMAIL MESSAGE + RESET LINK
+      "to" => $user['user_email'],
+      "subject" => "Password Reset",
+      "body" => "<a href='".HOST_BASE."2-forgot-reset.php?i={$user['user_id']}&h={$hash}'>RESET</a>"
+    ]);
   }
 
-  // (C) PROCESS PASSWORD RESET
+  // (D) PROCESS PASSWORD RESET
   function reset ($id, $hash) {
-    // (C1) CHECKS
+    // (D1) CHECKS
     // GET REQUEST
     $req = $this->get($id);
     $pass = is_array($req);
@@ -80,7 +78,7 @@ class Forgot extends Core {
       return false;
     }
 
-    // (C2) CHECK PASS - PROCEED RESET
+    // (D2) CHECK PASS - PROCEED RESET
     // RANDOM NEW PASSWORD
     $password = $this->core->random(12);
     // UPDATE USER PASSWORD
@@ -94,16 +92,14 @@ class Forgot extends Core {
       $pass = $this->DB->query("DELETE FROM `password_reset` WHERE `user_id`=?", [$id]);
     }
     // EMAIL TO USER
-    // @TODO - SET YOUR OWN EMAIL MESSAGE
     if ($pass) {
       $this->core->load("Mail");
-      $this->core->Mail->to = $user['user_email'];
-      $this->core->Mail->subject = "Password Reset";
-      $this->core->Mail->body = "$password";
-      if (!$this->core->Mail->send()) {
-        $this->error = "Error sending mail";
-        $pass = false;
-      }
+      $pass = $this->core->Mail->send([
+        // @TODO - SET YOUR OWN EMAIL MESSAGE
+        "to" => $user['user_email'],
+        "subject" => "Password Reset",
+        "body" => "$password"
+      ]);
     }
     // CLOSE
     $this->DB->end($pass);
