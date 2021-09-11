@@ -7,9 +7,7 @@ switch ($_REQ) {
 
   // (B) GET REACTS FOR SPECIFIED ID
   case "get":
-    $_CORE->load("Reacts");
-    $reacts = $_CORE->Reacts->get($_POST['id'], $_POST['uid']);
-    $_CORE->respond(1, null, $reacts);
+    $_CORE->respond(1, null, $_CORE->autoCall("Reacts", "get"));
     break;
 
   // (C) SAVE REACTION
