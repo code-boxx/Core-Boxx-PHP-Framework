@@ -2,21 +2,23 @@
 class Contents extends Core {
   // (A) SAVE CONTENT
   function save ($title, $text, $id=null) {
-    // (A1) ADD NEW
+    // (A1) DATA SETUP
     $now = date("Y-m-d H:i:s");
+    $fields = $id === null
+      ? ["content_title", "content_text", "date_created", "date_modified"]
+      : ["content_title", "content_text", "date_modified"] ;
+    $data = $id === null
+      ? [$title, $text, $now, $now]
+      : [$title, $text, $now, $id] ;
+
+    // (A2) ADD NEW
     if ($id === null) {
-      return $this->DB->insert("contents",
-        ["content_title", "content_text", "date_created", "date_modified"],
-        [$title, $text, $now, $now]
-      );
+      return $this->DB->insert("contents", $fields, $data);
     }
-    // (A2) UPDATE
+
+    // (A3) UPDATE
     else {
-      return $this->DB->update("contents",
-        ["content_title", "content_text", "date_modified"],
-        "`content_id`=?",
-        [$title, $text, $now, $id]
-      );
+      return $this->DB->update("contents", $fields, "`content_id`=?", $data);
     }
   }
 
@@ -34,21 +36,35 @@ class Contents extends Core {
     );
   }
 
-  // (D) GET ALL CONTENTS (MINUS MAIN BODY)
-  // @TODO - DO YOUR OWN PAGINATION!
-  function getAll () {
-    return $this->DB->fetchAll(
-      "SELECT `content_id` ,`content_title`, `date_created`, `date_modified` FROM `contents`",
-      null, "content_id"
-    );
+  // (D) COUNT CONTENT ENTRIES (FOR PAGINATION)
+  function count ($search=null) {
+    $sql = "SELECT COUNT(*) FROM `contents`";
+    $data = null;
+    if ($search != null) {
+      $sql .= " WHERE `content_title` LIKE ? OR `content_text` LIKE ?";
+      $data = ["%$search%", "%$search%"];
+    }
+    return $this->DB->fetchCol($sql, $data);
   }
 
-  // (E) SEARCH CONTENTS
-  function search ($search) {
-    return $this->DB->fetchAll(
-      "SELECT `content_id` ,`content_title`, `date_created`, `date_modified` FROM `contents` WHERE `content_title` LIKE ? OR `content_text` LIKE ?",
-      ["%$search%", "%$search%"], "content_id"
-    );
+  // (E) GET ALL CONTENTS (MINUS MAIN BODY)
+  function getAll ($search=null, $page=1) {
+    // (E1) PAGINATION
+    $entries = $this->count($search);
+    $pgn = $this->core->paginator($entries, $page);
+
+    // (E2) CONTENT ENTRIES
+    $sql = "SELECT `content_id` ,`content_title`, `date_created`, `date_modified` FROM `contents`";
+    $data = null;
+    if ($search != null) {
+      $sql .= " WHERE `content_title` LIKE ? OR `content_text` LIKE ?";
+      $data = ["%$search%", "%$search%"];
+    }
+    $sql .= " LIMIT {$pgn['x']}, {$pgn['y']}";
+    return [
+      "data" => $this->DB->fetchAll($sql, $data, "content_id"),
+      "page" => $pgn
+    ];
   }
 
   // (F) HELPER - SAVE CONTENT TO STATIC FILE

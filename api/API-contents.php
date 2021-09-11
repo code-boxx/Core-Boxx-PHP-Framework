@@ -1,7 +1,6 @@
 <?php
 // @TODO - PROTECT THE FUNCTIONS
 // E.G. CHECK IF USER IS AN ADMIN
-$_CORE->load("Contents");
 switch ($_REQ) {
   // (A) INVALID REQUEST
   default:
@@ -20,16 +19,12 @@ switch ($_REQ) {
 
   // (D) GET CONTENT
   case "get":
-    $_CORE->respond(1, null, $_CORE->Contents->get($_POST['id']));
+    $_CORE->respond(1, null, $_CORE->autoCall("Contents", "get"));
     break;
 
-  // (E) GET ALL CONTENTS
+  // (E) GET ALL OR SEARCH CONTENTS
   case "getAll":
-    $_CORE->respond(1, null, $_CORE->Contents->getAll());
-    break;
-
-  // (F) SEARCH CONTENTS
-  case "search":
-    $_CORE->respond(1, null, $_CORE->Contents->search($_POST['search']));
+    $contents = $_CORE->autoCall("Contents", "getAll");
+    $_CORE->respond(1, null, $contents["data"], $contents["page"]);
     break;
 }
