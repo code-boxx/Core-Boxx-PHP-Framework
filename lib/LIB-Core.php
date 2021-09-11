@@ -22,13 +22,10 @@ class CoreBoxx {
     return isset($this->$module) && is_object($this->$module);
   }
 
-  // (D) AUTOAPI () : AUTO MAP $_POST TO MODULE FUNCTION
-  //  $module : module to load
-  //  $function : function to run
-  //  $mode : POST or GET
-  function autoAPI ($module, $function, $mode="POST") {
+  // (D) AUTOCALL () : AUTO MAP $_POST OR $_GET TO MODULE FUNCTION
+  function autoCall ($module, $function, $mode="POST") {
     // (D1) LOAD MODULE
-    if (!$this->load($module)) { $this->respond(0); }
+    if (!$this->load($module)) { return false; }
 
     // (D2) GET FUNCTION PARAMETERS
     $reflect = new ReflectionMethod($module, $function);
@@ -37,32 +34,41 @@ class CoreBoxx {
     // (D3) EVIL AUTO MAP-AND-RUN
     if ($mode=="POST") { $target =& $_POST; }
     else { $target =& $_GET; }
-    $evil = "\$this->respond(\$this->$module->$function(";
-    if (count($params)==0) { $evil .= "));"; }
+    $evil = "\$results = \$this->$module->$function(";
+    if (count($params)==0) { $evil .= ");"; }
     else {
       foreach ($params as $p) {
         if (!isset($target[$p->name])) { $target[$p->name] = null; }
         $evil .= "\$_" . $mode . "['$p->name'],";
       }
-      $evil = substr($evil, 0, -1) . "));";
+      $evil = substr($evil, 0, -1) . ");";
     }
     eval($evil);
+    return $results;
   }
 
-  // (E) RANDOM () : RANDOM STRING
+  // (E) AUTOAPI () : AUTO MAP $_POST OR $_GET TO MODULE FUNCTION & RESPOND
+  //  $module : module to load
+  //  $function : function to run
+  //  $mode : POST or GET
+  function autoAPI ($module, $function, $mode="POST") {
+    $this->respond($this->autoCall($module, $function, $mode));
+  }
+
+  // (F) RANDOM () : RANDOM STRING
   // CREDITS : https://stackoverflow.com/questions/4356289/php-random-string-generator
   // $length : number of characters to generate
   function random ($length=16) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     $cLength = strlen($characters);
-    $random = '';
+    $random = "";
     for ($i = 0; $i < $length; $i++) {
       $random .= $characters[rand(0, $cLength - 1)];
     }
     return $random;
   }
 
-  // (F) STANDARD JSON RESPONSE
+  // (G) STANDARD JSON RESPONSE
   //  $status : 1 or 0, true or false
   //  $msg : system message
   //  $data : optional, data append
@@ -84,25 +90,25 @@ class CoreBoxx {
     if ($exit) { exit(); }
   }
 
-  // (G) PAGINATION CALCULATOR - PAGI-NATOR
+  // (H) PAGINATION CALCULATOR - PAGI-NATOR
   //  $entries : total number of entries
   //  $now : current page
   function paginator ($entries, $now=1) {
-    // (G1) TOTAL NUMBER OF PAGES
+    // (H1) TOTAL NUMBER OF PAGES
     $page = [
       "entries" => $entries,
       "total" => ceil($entries / PAGE_PER)
     ];
 
-    // (G2) CURRENT PAGE
+    // (H2) CURRENT PAGE
     $page["now"] = $now > $page["total"] ? $page["total"] : $now ;
     if ($page["now"]<=0) { $page["now"] = 1; }
 
-    // (G3) LIMIT X,Y
+    // (H3) LIMIT X,Y
     $page["x"] = ($page["now"] - 1) * PAGE_PER;
     $page["y"] = PAGE_PER;
 
-    // (G4) DONE
+    // (H4) DONE
     return $page;
   }
 }
