@@ -84,8 +84,8 @@ class CoreBoxx {
     if ($exit) { exit(); }
   }
 
-  // (G) PAGE CALCULATOR - PAGI-NATOR
-  //  $total : total number of entries
+  // (G) PAGINATION CALCULATOR - PAGI-NATOR
+  //  $entries : total number of entries
   //  $now : current page
   function paginator ($entries, $now=1) {
     // (G1) TOTAL NUMBER OF PAGES
