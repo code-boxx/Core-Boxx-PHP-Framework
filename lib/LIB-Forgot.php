@@ -17,6 +17,7 @@ class Forgot extends Core {
     // (C1) CHECK IF VALID USER
     $this->core->load("Users");
     $user = $this->core->Users->get($email);
+    if ($user===false) { return false; }
     if (!is_array($user)) {
       $this->error = "$email is not registered.";
       return false;
@@ -24,6 +25,7 @@ class Forgot extends Core {
 
     // (C2) CHECK PREVIOUS REQUEST (PREVENT SPAM)
     $req = $this->get($user['user_id']);
+    if ($req===false) { return false; }
     if (is_array($req)) {
       $expire = strtotime($req['reset_time']) + $this->valid;
       $now = strtotime("now");
@@ -57,6 +59,7 @@ class Forgot extends Core {
     // (D1) CHECKS
     // GET REQUEST
     $req = $this->get($id);
+    if ($req===false) { return false; }
     $pass = is_array($req);
     // CHECK EXPIRE
     if ($pass) {
@@ -70,6 +73,7 @@ class Forgot extends Core {
     if ($pass) {
       $this->core->load("Users");
       $user = $this->core->Users->get($id);
+      if ($user===false) { return false; }
       $pass = is_array($user);
     }
     // CHECK FAIL - INVALID REQUEST

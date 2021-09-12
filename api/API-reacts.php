@@ -7,11 +7,11 @@ switch ($_REQ) {
 
   // (B) GET REACTS FOR SPECIFIED ID
   case "get":
-    $_CORE->respond(1, null, $_CORE->autoCall("Reacts", "get"));
+    $_CORE->autoGETAPI("Reacts", "get");
     break;
 
   // (C) SAVE REACTION
   case "save":
-    $_CORE->autoapi("Reacts", "save");
+    $_CORE->autoAPI("Reacts", "save");
     break;
 }

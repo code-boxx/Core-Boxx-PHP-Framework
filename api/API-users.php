@@ -11,13 +11,12 @@ switch ($_REQ) {
 
   // (B) GET USER
   case "get":
-    $_CORE->respond(1, null, $_CORE->autoCall("Users", "get"));
+    $_CORE->autoGETAPI("Users", "get");
     break;
 
   // (C) GET OR SEARCH USERS
   case "getAll":
-    $users = $_CORE->autoCall("Users", "getAll");
-    $_CORE->respond(1, null, $users["data"], $users["page"]);
+    $_CORE->autoGETAPI("Users", "getAll");
     break;
 
   // (D) SAVE USER

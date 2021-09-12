@@ -1,5 +1,5 @@
 CREATE TABLE `contents` (
-  `content_id` int(11) NOT NULL,
+  `content_id` bigint(20) NOT NULL,
   `content_title` varchar(255) NOT NULL,
   `content_text` text NOT NULL,
   `date_created` datetime NOT NULL,
@@ -14,4 +14,4 @@ ALTER TABLE `contents`
   ADD KEY `date_modified` (`date_modified`);
 
 ALTER TABLE `contents`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `content_id` bigint(20) NOT NULL AUTO_INCREMENT;

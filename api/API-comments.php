@@ -19,7 +19,6 @@ switch ($_REQ) {
 
   // (D) GET COMMENTS
   case "get":
-    $comments = $_CORE->autoCall("Comments", "get");
-    $_CORE->respond(1, null, $comments["data"], $comments["page"]);
+    $_CORE->autoGETAPI("Comments", "get");
     break;
 }

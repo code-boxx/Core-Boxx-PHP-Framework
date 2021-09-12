@@ -6,13 +6,10 @@ class Menu extends Core {
     $fields = ["menu_name", "menu_desc"];
     $data = [$name, $desc];
 
-    // (A2) ADD MENU
+    // (A2) ADD/UPDATE MENU
     if ($id===null) {
       return $this->DB->insert("menu", $fields, $data);
-    }
-
-    // (A3) UPDATE MENU
-    else {
+    } else {
       $data[] = $id;
       return $this->DB->update("menu", $fields, "`menu_id`=?", $data);
     }
@@ -82,6 +79,7 @@ class Menu extends Core {
   function getAll ($search=null, $page=1) {
     // (F1) PAGINATION
     $entries = $this->count($search);
+    if ($entries===false) { return false; }
     $pgn = $this->core->paginator($entries, $page);
 
     // (F2) GET MENUS
@@ -91,11 +89,12 @@ class Menu extends Core {
       $sql .= " WHERE `menu_name` LIKE ? OR `menu_desc` LIKE ?";
       $data = ["%".$search."%", "%".$search."%"];
     }
-    $sql .= " LIMIT {$pgn['x']}, {$pgn['y']}";
-    return [
-      "data" => $this->DB->fetchAll($sql, $data, "menu_id"),
-      "page" => $pgn
-    ];
+    $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
+    $menus = $this->DB->fetchAll($sql, $data, "menu_id");
+    if ($menus===false) { return false; }
+
+    // (F3) RESULTS
+    return ["data" => $menus, "page" => $pgn ];
   }
 
   // (G) GET MENU ITEMS
@@ -105,7 +104,9 @@ class Menu extends Core {
     $children = []; // Children & their parent IDs
 
     // (G2) GET ALL MENU ITEMS
-    $this->DB->query("SELECT * FROM `menu_items` WHERE `menu_id`=?", [$id]);
+    if (!$this->DB->query(
+      "SELECT * FROM `menu_items` WHERE `menu_id`=?", [$id]
+    )) { return false; }
     while ($row = $this->DB->stmt->fetch()) {
       // CHILD MENU ITEM
       if (isset($row['parent_id'])) {

@@ -5,18 +5,8 @@ class DB extends Core {
   public $stmt = null; // SQL statement
 
   // (B) CONSTRUCTOR - CONNECT TO DATABASE
-  function __construct () {
-    $this->connect();
-  }
-
-  // (C) DESTRUCTOR - CLOSE DATABASE CONNECTION
-  function __destruct () {
-    if ($this->stmt!==null) { $this->stmt = null; }
-    if ($this->pdo!==null) { $this->pdo = null; }
-  }
-
-  // (D) CONNECT TO DATABASE
-  function connect () {
+  function __construct ($core) {
+    parent::__construct($core);
     $this->pdo = new PDO(
       "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=".DB_CHARSET,
       DB_USER, DB_PASSWORD, [
@@ -26,18 +16,27 @@ class DB extends Core {
     );
   }
 
-  // (E) AUTO-COMMIT OFF
+  // (C) DESTRUCTOR - CLOSE DATABASE CONNECTION
+  function __destruct () {
+    if ($this->stmt!==null) { $this->stmt = null; }
+    if ($this->pdo!==null) { $this->pdo = null; }
+  }
+
+  // (D) AUTO-COMMIT OFF
   function start () {
     $this->pdo->beginTransaction();
   }
 
-  // (F) COMMIT OR ROLLBACK?
+  // (E) COMMIT OR ROLLBACK?
+  //  $pass : commit or rollback?
   function end ($pass=true) {
     if ($pass) { $this->pdo->commit(); }
     else { $this->pdo->rollBack(); }
   }
 
-  // (G) EXECUTE SQL QUERY
+  // (F) EXECUTE SQL QUERY
+  //  $sql : SQL query
+  //  $data : array of parameters for query
   function query ($sql, $data=null) {
     try {
       $this->stmt = $this->pdo->prepare($sql);
@@ -49,32 +48,48 @@ class DB extends Core {
     }
   }
 
-  // (H) FETCH ALL (MULTIPLE ROWS)
+  // (G) FETCH ALL (MULTIPLE ROWS)
+  //  $sql : SQL query
+  //  $data : array of parameters for query
+  //  $key : optional, use this field as the array key
+  //  * returns null if no results, false on error
   function fetchAll ($sql, $data=null, $key=null) {
-    $this->query($sql, $data);
-    if ($key === null) { return $this->stmt->fetchAll(); }
+    if (!$this->query($sql, $data)) { return false; }
+    if ($key === null) { $results = $this->stmt->fetchAll(); }
     else {
-      $data = [];
-      while ($row = $this->stmt->fetch()) { $data[$row[$key]] = $row; }
-      return $data;
+      $results = [];
+      while ($row = $this->stmt->fetch()) { $results[$row[$key]] = $row; }
     }
+    return count($results)>0 ? $results : null ;
   }
 
-  // (I) FETCH (SINGLE ROW)
+  // (H) FETCH (SINGLE ROW)
+  //  $sql : SQL query
+  //  $data : array of parameters for query
+  //  * returns null if no results, false on error
   function fetch ($sql, $data=null) {
-    $this->query($sql, $data);
-    return $this->stmt->fetch();
+    if (!$this->query($sql, $data)) { return false; }
+    $result = $this->stmt->fetch();
+    return $result==false ? null : $result ;
   }
 
-  // (J) FETCH (SINGLE COLUMN)
+  // (I) FETCH (SINGLE COLUMN)
+  //  $sql : SQL query
+  //  $data : array of parameters for query
+  //  * returns null if no results, false on error
   function fetchCol ($sql, $data=null) {
-    $this->query($sql, $data);
-    return $this->stmt->fetchColumn();
+    if (!$this->query($sql, $data)) { return false; }
+    $result = $this->stmt->fetchColumn();
+    return $result==false ? null : $result ;
   }
 
-  // (K) INSERT OR REPLACE SQL HELPER
+  // (J) INSERT OR REPLACE SQL HELPER
+  //  $table : table to insert into
+  //  $fields : array of fields to insert
+  //  $data : data array to insert
+  //  $replace : replace instead of insert?
   function insert ($table, $fields, $data, $replace=false) {
-    // (K1) QUICK CHECK
+    // (J1) QUICK CHECK
     $cfields = count($fields);
     $cdata = count($data);
     $segments = $cdata / $cfields;
@@ -83,7 +98,7 @@ class DB extends Core {
       return false;
     }
 
-    // (K2) FORM SQL
+    // (J2) FORM SQL
     $sql = $replace ? "REPLACE" : "INSERT" ;
     $sql .= " INTO `$table` (";
     foreach ($fields as $f) { $sql .= "`$f`,"; }
@@ -91,11 +106,15 @@ class DB extends Core {
     $sql .= str_repeat("(". substr(str_repeat("?,", $cfields), 0, -1) ."),", $segments);
     $sql = substr($sql, 0, -1).";";
 
-    // (K3) RUN QUERY
+    // (J3) RUN QUERY
     return $this->query($sql, $data);
   }
 
-  // (L) UPDATE SQL HELPER
+  // (K) UPDATE SQL HELPER
+  //  $table : table to update
+  //  $fields : array of fields to update
+  //  $where : where clause for update SQL
+  //  $data : data array to update
   function update ($table, $fields, $where, $data) {
     $sql = "UPDATE `$table` SET ";
     foreach ($fields as $f) { $sql .= "`$f`=?,"; }

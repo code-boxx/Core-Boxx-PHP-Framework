@@ -19,12 +19,11 @@ switch ($_REQ) {
 
   // (D) GET CONTENT
   case "get":
-    $_CORE->respond(1, null, $_CORE->autoCall("Contents", "get"));
+    $_CORE->autoGETAPI("Contents", "get");
     break;
 
   // (E) GET ALL OR SEARCH CONTENTS
   case "getAll":
-    $contents = $_CORE->autoCall("Contents", "getAll");
-    $_CORE->respond(1, null, $contents["data"], $contents["page"]);
+    $_CORE->autoGETAPI("Contents", "getAll");
     break;
 }

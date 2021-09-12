@@ -11,13 +11,10 @@ class Contents extends Core {
       ? [$title, $text, $now, $now]
       : [$title, $text, $now, $id] ;
 
-    // (A2) ADD NEW
+    // (A2) ADD/UPDATE CONTENT
     if ($id === null) {
       return $this->DB->insert("contents", $fields, $data);
-    }
-
-    // (A3) UPDATE
-    else {
+    } else {
       return $this->DB->update("contents", $fields, "`content_id`=?", $data);
     }
   }
@@ -51,6 +48,7 @@ class Contents extends Core {
   function getAll ($search=null, $page=1) {
     // (E1) PAGINATION
     $entries = $this->count($search);
+    if ($entries===false) { return false; }
     $pgn = $this->core->paginator($entries, $page);
 
     // (E2) CONTENT ENTRIES
@@ -61,10 +59,11 @@ class Contents extends Core {
       $data = ["%$search%", "%$search%"];
     }
     $sql .= " LIMIT {$pgn['x']}, {$pgn['y']}";
-    return [
-      "data" => $this->DB->fetchAll($sql, $data, "content_id"),
-      "page" => $pgn
-    ];
+    $entries = $this->DB->fetchAll($sql, $data, "content_id");
+    if ($entries===false) { return false; }
+
+    // (E3) RESULTS
+    return ["data" => $entries, "page" => $pgn];
   }
 
   // (F) HELPER - SAVE CONTENT TO STATIC FILE

@@ -10,13 +10,10 @@ class Comments extends Core {
     $fields = ["user_id", "id", "message"];
     $data = [$uid, $id, htmlentities($message)];
 
-    // (A2) ADD COMMENT
+    // (A2) ADD/UPDATE COMMENT
     if ($cid===null) {
       return $this->DB->insert("comments", $fields, $data);
-    }
-
-    // (A3) UPDATE COMMENT
-    else {
+    } else {
       $data[] = $cid;
       return $this->DB->update("comments", $fields, "`comment_id`=?", $data);
     }
@@ -39,6 +36,7 @@ class Comments extends Core {
   function get ($id, $page=1) {
     // (D1) PAGINATION
     $entries = $this->count($id);
+    if ($entries===false) { return false; }
     $pgn = $this->core->paginator($entries, $page);
 
     // (D2) GET COMMENTS
@@ -48,21 +46,12 @@ class Comments extends Core {
        JOIN `users` u USING (`user_id`)
        WHERE `id`=?
        ORDER BY `timestamp` DESC
-       LIMIT {$pgn['x']}, {$pgn['y']}",
-      [$id]
+       LIMIT {$pgn["x"]}, {$pgn["y"]}",
+      [$id], "comment_id"
     );
+    if ($entries===false) { return false; }
 
-    return [
-      "data" => $this->DB->fetchAll(
-        "SELECT c.*, u.`user_name`
-         FROM `comments` c
-         JOIN `users` u USING (`user_id`)
-         WHERE c.`id`=?
-         ORDER BY `timestamp` DESC
-         LIMIT {$pgn['x']}, {$pgn['y']}",
-        [$id]
-      ),
-      "page" => $pgn
-    ];
+    // (D3) RESULTS
+    return ["data" => $entries, "page" => $pgn];
   }
 }

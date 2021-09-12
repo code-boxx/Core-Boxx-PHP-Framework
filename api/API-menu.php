@@ -29,17 +29,16 @@ switch ($_REQ) {
 
   // (E) GET MENU
   case "get":
-    $_CORE->respond(1, null, $_CORE->autoCall("Menu", "get"));
+    $_CORE->autoGETAPI("Menu", "get");
     break;
 
   // (F) GET ALL MENUS
   case "getAll":
-    $results = $_CORE->autoCall("Menu", "getAll");
-    $_CORE->respond(1, null, $results["data"], $results["page"]);
+    $_CORE->autoGETAPI("Menu", "getAll");
     break;
 
   // (G) GET MENU ITEMS
   case "getItems":
-    $_CORE->respond(1, null, $_CORE->autoCall("Menu", "getItems"));
+    $_CORE->autoGETAPI("Menu", "getItems");
     break;
 }

@@ -6,7 +6,7 @@ switch ($_REQ) {
     break;
 
   // (B) LOGIN
-  case "login":
+  case "logon": case "login":
     // (B1) ALREADY SIGNED IN
     if (isset($_SESSION["user"])) {
       $_CORE->respond(1, "Already signed in");
@@ -17,7 +17,7 @@ switch ($_REQ) {
     break;
 
   // (C) LOGOFF
-  case "logoff":
+  case "logoff": case "logout":
     // @TODO - ALSO REMEMBER TO CLEAR WHAT YOU DON'T NEED FROM THE SESSION
     unset($_SESSION["user"]);
     $_CORE->respond(1, "OK");
