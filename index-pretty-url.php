@@ -5,14 +5,14 @@ require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "GO.php";
 // (B) GENERATE HTACCESS FILE
 $htaccess = PATH_BASE . ".htaccess";
 if (!file_exists($htaccess)) {
-  file_put_contents($htaccess, implode("\r\n", [
+  if (file_put_contents($htaccess, implode("\r\n", [
     "RewriteEngine On",
     "RewriteBase " . HOST_BASE_PATH,
     "RewriteRule ^index\.php$ - [L]",
     "RewriteCond %{REQUEST_FILENAME} !-f",
     "RewriteCond %{REQUEST_FILENAME} !-d",
     "RewriteRule . " . HOST_BASE_PATH . "index.php [L]"
-  ]));
+  ])) === false) { exit("Failed to create $htaccess"); }
   header("Location: " . $_SERVER['REQUEST_URI']);
   exit();
 }
