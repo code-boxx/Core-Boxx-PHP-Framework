@@ -10,6 +10,7 @@ class OTP extends Core {
     // (B1) CHECK IF USER IS REGISTERED
     $this->core->load("Users");
     $check = $this->core->Users->get($email);
+    if ($check===false) { return false; }
     if (!is_array($check)) {
       $this->error = "$email is not registered";
       return false;
@@ -17,6 +18,7 @@ class OTP extends Core {
 
     // (B2) CHECK IF USER ALREADY HAS EXISTING OTP REQUEST
     $check = $this->DB->fetch("SELECT * FROM `otp` WHERE `user_email`=?", [$email]);
+    if ($check===false) { return false; }
     if (is_array($check)) {
       // @TODO - SET YOUR OWN RULES HERE - ALLOW NEW REQUEST IF EXIPRED?
       // $validTill = strtotime(check["otp_timestamp"]) + ($this->valid * 60);
@@ -50,6 +52,7 @@ class OTP extends Core {
   function challenge ($email, $pass) {
     // (C1) GET THE OTP ENTRY
     $otp = $this->DB->fetch("SELECT * FROM `otp` WHERE `user_email`=?", [$email]);
+    if ($otp===false) { return false; }
     if (!is_array($otp)) {
       $this->error = "The specified OTP request is not found.";
       return false;
