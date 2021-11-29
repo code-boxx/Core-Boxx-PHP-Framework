@@ -1,7 +1,6 @@
 <?php
 // CORE BOXX FIRE STARTER
-// BY DEFAULT - STARTS SESSION + LOAD DATABASE MODULE
-// FEEL FREE TO TWEAK THIS STARTER SCRIPT TO YOUR OWN NEEDS
+// TWEAK THIS STARTER SCRIPT TO YOUR OWN NEEDS
 
 // (A) SETTINGS
 // (A1) AUTOMATIC SYSTEM PATH
@@ -11,8 +10,10 @@ define("PATH_API", PATH_BASE . "api" . DIRECTORY_SEPARATOR);
 
 // (A2) HOST
 define("HOST_BASE", "http://localhost/"); // CHANGE TO YOUR OWN!
+define("HOST_NAME", parse_url(HOST_BASE, PHP_URL_HOST));
 define("HOST_BASE_PATH", parse_url(HOST_BASE, PHP_URL_PATH));
 define("HOST_API", "/api/");
+define("HOST_API_BASE", trim(HOST_BASE, "/") . HOST_API);
 
 // (A3) DATABASE SETTINGS - CHANGE TO YOUR OWN!
 define("DB_HOST", "localhost");
@@ -21,49 +22,52 @@ define("DB_CHARSET", "utf8");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
 
-// (A4) ENFORCE HTTPS FOR API ENDPOINT
-define("API_HTTPS", false);
+// (A4) API ENDPOINT SETTINGS
+define("API_HTTPS", false); // enforce https for api endpoint
+define("API_CORS", false); // no cors, accept host_name only
+// define("API_CORS", true); // any domain + mobile apps
+// define("API_CORS", "site-a.com"); // this domain only
+// define("API_CORS", ["site-a.com", "site-b.com"]); // multiple domains
+define("API_CORS_CREDS", true); // allow credentials, only if api_cors not false
 
 // (A5) PAGINATION
-define("PAGE_PER", 20); // 20 ENTRIES PER PAGE BY DEFAULT
+define("PAGE_PER", 20); // 20 entries per page by default
 
 // (B) CORE START
-// (B1) START SESSION
-session_start();
-
-// (B2) CORE LIBRARY
+// (B1) CORE LIBRARY
 require PATH_LIB . "LIB-Core.php";
 $_CORE = new CoreBoxx();
 
-// (B3) PHP ERROR HANDLING
+// (B2) PHP ERROR HANDLING
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 0);
-// ini_set("log_errors", 0);
-// ini_set("error_log", "error.log");
+// ini_set("log_errors", 1);
+// ini_set("error_log", "PATH/error.log");
 
-// (B4) GLOBAL ERROR HANDLING (CHANGE AS DESIRED)
-// SET ERR_SHOW TO FALSE ON LIVE SYSTEMS!
-// OR CREATE YOUR OWN $_CORE->BOOBOO->OUCH() TO HANDLE ERRORS
-define("ERR_SHOW", true);
+// (B3) GLOBAL ERROR HANDLING
+define("ERR_SHOW", true); // show error details
+// define("ERR_SHOW", false); // hide error details
 function _CORERR ($ex) {
   global $_CORE;
-  // CUSTOM ERROR CONTROL
+  // add your own custom error handler with $_core->booboo->ouch()
   if ($_CORE->loaded("BooBoo")) { $_CORE->BooBoo->ouch($ex); }
 
-  // OR JUST OUTPUT AN ERROR MESSAGE
+  // or this will just output an error message
   else {
     $_CORE->respond(0,
     ERR_SHOW ? $ex->getMessage() : "OPPS! An error has occured.",
     ERR_SHOW ? [
-      "code" => $ex->getCode(),
-      "file" => $ex->getFile(),
-      "line" => $ex->getLine()
-      ] : null
-    );
+    "code" => $ex->getCode(),
+    "file" => $ex->getFile(),
+    "line" => $ex->getLine()
+    ] : null );
   }
 }
 set_exception_handler("_CORERR");
 
+// (B4) START SESSION - IF YOU WANT
+// session_start();
+
 // (B5) DEFAULT MODULES TO LOAD
 $_CORE->load("DB");
-// ADD MORE IF REQUIRED, E.G. $_CORE->load("User");
+// add more if required, e.g. $_core->load("user");
