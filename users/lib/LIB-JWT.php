@@ -41,7 +41,9 @@ class JWT extends Core {
       $valid = $token->iss == JWT_ISSUER &&
                $token->aud == HOST_NAME &&
                $token->nbf <= $now;
-      if ($valid && JWT_EXPIRE!=0) { $valid = $token->exp < $now; }
+      if ($valid && JWT_EXPIRE!=0) {
+        $valid = isset($token->exp) ? ($token->exp < $now) : false;
+      }
     }
 
     // (B4) OK - "REGISTER" USER?
