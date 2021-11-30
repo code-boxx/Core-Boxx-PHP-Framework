@@ -36,7 +36,8 @@ define("PAGE_PER", 20); // 20 entries per page by default
 // ENABLE THESE IF USING JWT IN USER MODULE LOGIN
 define("JWT_SECRET", "YOUR-SECRET-KEY");
 define("JWT_ISSUER", "YOUR-NAME");
-define("JWT_ALGO", "HS256"); */
+define("JWT_ALGO", "HS256");
+define("JWT_EXPIRE", 0); // IN SECONDS, 0 FOR NONE */
 
 // (B) CORE START
 // (B1) CORE LIBRARY
