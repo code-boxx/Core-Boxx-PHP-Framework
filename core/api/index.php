@@ -13,34 +13,34 @@ if (API_HTTPS && empty($_SERVER["HTTPS"])) {
 }
 
 // (D) GET CLIENT ORIGIN
-$origin = $_SERVER["HTTP_ORIGIN"] ??
-          $_SERVER["HTTP_REFERER"] ??
-          $_SERVER["REMOTE_ADDR"] ??
-          "" ;
-$originHost = parse_url($origin, PHP_URL_HOST);
+$_OGN = $_SERVER["HTTP_ORIGIN"] ??
+        $_SERVER["HTTP_REFERER"] ??
+        $_SERVER["REMOTE_ADDR"] ??
+        "" ;
+$_OGN_HOST = parse_url($_OGN, PHP_URL_HOST);
 
 // (E) CORS SUPPORT
 // (E1) FALSE - ONLY CALLS FROM HOST_NAME
-if (API_CORS===false && $originHost!=HOST_NAME) { $access = false; }
+if (API_CORS===false && $_OGN_HOST!=HOST_NAME) { $access = false; }
 
 // (E2) STRING - ALLOW CALLS FROM API_CORS ONLY
-else if (is_string(API_CORS) && $originHost!=API_CORS) { $access = false; }
+else if (is_string(API_CORS) && $_OGN_HOST!=API_CORS) { $access = false; }
 
 // (E3) ARRAY - SPECIFIED DOMAINS IN API_CORS ONLY
-else if (is_array(API_CORS) && !in_array($originHost, API_CORS)) { $access = false; }
+else if (is_array(API_CORS) && !in_array($_OGN_HOST, API_CORS)) { $access = false; }
 
 // (E4) TRUE - ANYTHING GOES
-else { $access = true; $origin = "*"; }
+else { $access = true; $_OGN = "*"; }
 
 // (E5) ACCESS DENIED
 if ($access === false) {
-  $_CORE->respond(0, "Calls from $origin not allowed", null, null, 403);
+  $_CORE->respond(0, "Calls from $_OGN not allowed", null, null, 403);
 }
 
 // (E6) OUTPUT CORS HEADERS IF REQUIRED
-if ($originHost != HOST_NAME) {
-  header("Access-Control-Allow-Origin: $origin");
-  if (API_CORS_CREDS) { header("Access-Control-Allow-Credentials: true"); }
+if ($_OGN_HOST != HOST_NAME) {
+  header("Access-Control-Allow-Origin: $_OGN");
+  header("Access-Control-Allow-Credentials: true");
 }
 
 // (F) AUTO REGENERATE HTACCESS IF NOT FOUND
@@ -73,8 +73,6 @@ $path = explode("/", rtrim($path, "/"));
 
 // (H) MANAGE REQUEST
 // (H1) VALID API REQUEST?
-// $_mod = $path[0] = module code
-// $_req = $path[1] = request
 $valid = count($path)==2;
 if ($valid) { $valid = $path[0]!="index"; }
 if ($valid) {
@@ -85,7 +83,13 @@ if ($valid) {
 
 // (H2) LOAD API HANDLER
 if ($valid) {
-  unset($origin); unset($originHost); unset($access);
-  unset($htaccess); unset($path); unset($valid);
+  // CLEAN UP
+  unset($access); unset($htaccess); unset($path); unset($valid);
+
+  // FLAGS THAT ARE USEFUL IN YOUR API
+  // $_MOD : requested module. e.g. user
+  // $_REQ : requested action. e.g. save
+  // $_OGN : client origin. e.g. https://site.com/
+  // $_OGN_HOST : host name. e.g. site.com
   require PATH_API . "API-$_MOD.php";
 } else { $_CORE->respond(0, "Invalid request", null, null, 400); }

@@ -28,7 +28,6 @@ define("API_CORS", false); // no cors, accept host_name only
 // define("API_CORS", true); // any domain + mobile apps
 // define("API_CORS", "site-a.com"); // this domain only
 // define("API_CORS", ["site-a.com", "site-b.com"]); // multiple domains
-define("API_CORS_CREDS", true); // allow credentials, only if api_cors not false
 
 // (A5) PAGINATION
 define("PAGE_PER", 20); // 20 entries per page by default
