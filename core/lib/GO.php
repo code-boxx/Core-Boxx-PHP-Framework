@@ -33,7 +33,7 @@ define("API_CORS", false); // no cors, accept host_name only
 define("PAGE_PER", 20); // 20 entries per page by default
 
 /* // (A6) JSON WEB TOKEN - CHANGE TO YOUR OWN!
-// ENABLE IF USING JWT FOR USER LOGIN
+// ENABLE THESE IF USING JWT IN USER MODULE LOGIN
 define("JWT_SECRET", "YOUR-SECRET-KEY");
 define("JWT_ISSUER", "YOUR-NAME");
 define("JWT_ALGO", "HS256"); */
