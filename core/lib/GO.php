@@ -32,6 +32,12 @@ define("API_CORS", false); // no cors, accept host_name only
 // (A5) PAGINATION
 define("PAGE_PER", 20); // 20 entries per page by default
 
+/* // (A6) JSON WEB TOKEN - CHANGE TO YOUR OWN!
+// ENABLE IF USING JWT FOR USER LOGIN
+define("JWT_SECRET", "YOUR-SECRET-KEY");
+define("JWT_ISSUER", "YOUR-NAME");
+define("JWT_ALGO", "HS256"); */
+
 // (B) CORE START
 // (B1) CORE LIBRARY
 require PATH_LIB . "LIB-Core.php";
