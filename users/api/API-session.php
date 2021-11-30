@@ -27,5 +27,6 @@ switch ($_REQ) {
   // (F) LOGOUT - JWT COOKIE
   case "outJWT":
     setcookie("jwt", null, -1, "/", HOST_NAME, API_HTTPS);
+    $_CORE->respond(1, "OK");
     break;
 }

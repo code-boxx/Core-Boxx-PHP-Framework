@@ -93,82 +93,39 @@ class Users extends Core {
     return $user;
   }
 
-  // (G) LOGIN - USER SESSION
-  // MAKE SURE SESSION_START() ENABLED IN LIB/GO.PHP!
+  // (G) LOGIN - JWT COOKIE
   //  $email : user email
   //  $password : user password
-  function inSess ($email, $password) {
+  function inJWT ($email, $password) {
     // (G1) ALREADY SIGNED IN
-    if (isset($_SESSION["user"])) { return true; }
+    $this->core->load("JWT");
+    if ($this->core->JWT->verify(false)) { return true; }
 
     // (G2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
-    // (G3) REGISTER USER IN SESSION
-    $_SESSION["user"] = [];
-    foreach ($user as $k=>$v) {
-      if ($k!="user_password") { $_SESSION["user"][$k] = $v; }
-    }
+    // (G3) GENERATE TOKEN
+    $this->core->JWT->create($user);
     return true;
   }
 
-  // (H) LOGIN - JWT COOKIE
+  // (H) LOGIN - USER SESSION
+  // MAKE SURE SESSION_START() ENABLED IN LIB/GO.PHP!
   //  $email : user email
   //  $password : user password
-  function inJWT ($email, $password) {
+  function inSess ($email, $password) {
     // (H1) ALREADY SIGNED IN
-    if ($this->verifyJWT()) { return true; }
+    if (isset($_SESSION["user"])) { return true; }
 
     // (H2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
-    // (H3) GENERATE TOKEN
-    require PATH_LIB . "/jwt/autoload.php";
-    $now = strtotime("now");
-    $token = [
-      "iat" => $now, // ISSUED AT
-      "ndf" => $now, // NOT BEFORE
-      "jti" => base64_encode(random_bytes(16)), // JSON TOKEN ID
-      "iss" => JWT_ISSUER, // ISSUER
-      "aud" => HOST_NAME, // AUDIENCE
-      "data" => []
-    ];
-    if (JWT_EXPIRE > 0) { $token["exp"] = $now + JWT_EXPIRE; }
+    // (H3) REGISTER USER IN SESSION
+    $_SESSION["user"] = [];
     foreach ($user as $k=>$v) {
-      if ($k!="user_password") { $token["data"][$k] = $v; }
-    }
-    $token = Firebase\JWT\JWT::encode($token, JWT_SECRET, JWT_ALGO);
-    setcookie("jwt", $token, 0, "/", HOST_NAME, API_HTTPS);
-    return true;
-  }
-
-  // (I) VERIFY JWT TOKEN
-  function verifyJWT () {
-    // (I1) JWT COOKIE SET?
-    $valid = isset($_COOKIE["jwt"]);
-
-    // (I2) DECODE JWT COOKIE
-    if ($valid) {
-      require PATH_LIB . "/jwt/autoload.php";
-      try { $token = Firebase\JWT\JWT::decode($_COOKIE["jwt"], JWT_SECRET, [JWT_ALGO]); }
-      catch (Exception $e) { $valid = false; }
-    }
-
-    // (I3) EXPIRED? VALID ISSUER? VALID AUDIENCE?
-    if ($valid) {
-      $now = strtotime("now");
-      $valid = $token->iss == JWT_ISSUER &&
-               $token->aud == HOST_NAME &&
-               $token->nbf <= $now;
-      if ($valid && JWT_EXPIRE!=0) { $valid = $token->exp < $now; }
-    }
-
-    // (I4) RESULT
-    if (!$valid) {
-      $this->error = "Invalid or expired token";
-      return false;
+      if ($k!="user_password") { $_SESSION["user"][$k] = $v; }
     }
     return true;
   }

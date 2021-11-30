@@ -3,7 +3,7 @@
 /*if (!isset($_SESSION["user"])) {
   $_CORE->respond(0, "Please sign in first", null, null, 403);
 }
-if (!$_CORE->Users->verifyJWT()) {
+if (!$_CORE->JWT->verify()) {
   $_CORE->respond(0, "Please sign in first", null, null, 403);
 }
 */
