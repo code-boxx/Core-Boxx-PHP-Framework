@@ -12,19 +12,20 @@ define("PATH_API", PATH_BASE . "api" . DIRECTORY_SEPARATOR);
 define("HOST_BASE", "http://localhost/"); // CHANGE TO YOUR OWN!
 define("HOST_NAME", parse_url(HOST_BASE, PHP_URL_HOST));
 define("HOST_BASE_PATH", parse_url(HOST_BASE, PHP_URL_PATH));
-define("HOST_API", "/api/");
-define("HOST_API_BASE", trim(HOST_BASE, "/") . HOST_API);
+define("HOST_API", HOST_BASE_PATH . "api/");
+define("HOST_API_BASE", HOST_BASE . "api/");
 
-// (A3) DATABASE SETTINGS - CHANGE TO YOUR OWN!
+// (A3) DATABASE - CHANGE TO YOUR OWN!
 define("DB_HOST", "localhost");
 define("DB_NAME", "test");
 define("DB_CHARSET", "utf8");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
 
-// (A4) API ENDPOINT SETTINGS
+// (A4) API ENDPOINT
 define("API_HTTPS", false); // enforce https for api endpoint
-define("API_CORS", false); // no cors, accept host_name only
+define("API_CORS", false);
+// define("API_CORS", false); // no cors, accept host_name only
 // define("API_CORS", true); // any domain + mobile apps
 // define("API_CORS", "site-a.com"); // this domain only
 // define("API_CORS", ["site-a.com", "site-b.com"]); // multiple domains
@@ -74,6 +75,6 @@ set_exception_handler("_CORERR");
 // (B4) START SESSION - IF YOU WANT
 // session_start();
 
-// (B5) DEFAULT MODULES TO LOAD
+// (B5) LOAD DEFAULT MODULES
 $_CORE->load("DB");
 // add more if required, e.g. $_core->load("user");
