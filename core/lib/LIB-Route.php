@@ -38,7 +38,8 @@ class Route extends Core {
   }
 
   // (D) RESOLVE URL ROUTE
-  function run () {
+  //  $before : function, use this to tweak the path or do permission check
+  function run ($before=null) {
     // (D1) GET URL PATH
     // HTTP://SITE.COM/ > "/"
     // HTTP://SITE.COM/HELLO/WORLD/ > "HELLO/WORLD/"
@@ -49,13 +50,16 @@ class Route extends Core {
     $_PATH = rtrim($_PATH, "/") . "/"; // current url path
     $loaded = false;
 
-    // (D2) EXACT ROUTES HAVE PRECEDENCE
+    // (D2) PRE-RESOLVE HOOK SEQUENCE
+    if ($before) { $_PATH = $before($_PATH); }
+
+    // (D3) EXACT ROUTES HAVE PRECEDENCE
     if (isset($this->routes[$_PATH])) {
       $loaded = true;
       $this->load($this->routes[$_PATH], $_PATH);
     }
 
-    // (D3) WILDCARD
+    // (D4) WILDCARD
     if (!$loaded && count($this->wild)>0) {
       $pathlen = strlen($_PATH);
       foreach ($this->wild as $p=>$f) {
@@ -71,7 +75,7 @@ class Route extends Core {
       }
     }
 
-    // (D4) WILL AUTO RESOLVE OTHERWISE
+    // (D5) WILL AUTO RESOLVE OTHERWISE
     if (!$loaded) { $this->pathload($_PATH); }
   }
 
