@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Core Boxx Dummy Page</title>
-  </head>
-  <body>
-    Come visit the <a href="https://code-boxx.com/core-boxx-php-rapid-development-framework/">Core Boxx Homepage</a>
-    for a quick tutorial, and more modules that you can use.
-  </body>
-</html>
+<?php
+// (A) LOAD CORE ENGINE
+require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "GO.php";
+$_CORE->load("Route");
+
+// (B) ADD YOUR MANUAL ROUTES
+// $_CORE->Route->add("/", "myhome.php");
+// $_CORE->Route->add("mypage/", "page.php");
+// $_CORE->Route->add("products/*", "myproducts.php");
+
+// (C) AUTO RESOLVE ROUTE
+$_CORE->Route->run();
