@@ -3,6 +3,7 @@ class DB extends Core {
   // (A) PROPERTIES
   public $pdo = null; // pdo object
   public $stmt = null; // sql statement
+  public $lastID = null; // last insert id
 
   // (B) CONSTRUCTOR - CONNECT TO DATABASE
   function __construct ($core) {
@@ -99,6 +100,7 @@ class DB extends Core {
 
     // (J3) RUN QUERY
     $this->query($sql, $data);
+    if (!$replace) { $this->lastID = $this->pdo->lastInsertId(); }
     return true;
   }
 
