@@ -10,3 +10,21 @@ $_CORE->load("Route");
 
 // (C) AUTO RESOLVE ROUTE
 $_CORE->Route->run();
+
+/* (C) URL RESOLVE HOOK - FIRES BEFORE RESOLVING PATH-TO-FILE
+// USE THIS TO DO PERMISSION CHECK OR TWEAK PATH
+$_CORE->Route->run(function ($_PATH) {
+  // EXAMPLE - TO LOGIN PAGE IF NOT SIGNED IN
+  if (!isset($_SESSION["user"]) && $_PATH!="/login") {
+    header("Location: ".HOST_BASE."login");
+    exit();
+  }
+
+  // EXAMPLE - TWEAK PATH BASED ON USER ROLE
+  if ($_PATH=="/products" && $_SESSION["user"]["role"]=="admin") {
+    $_PATH = "/admin/products";
+  }
+
+  return $_PATH;
+});
+*/
