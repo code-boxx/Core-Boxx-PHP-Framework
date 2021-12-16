@@ -6,14 +6,13 @@ class CoreBoxx {
   // (B) MODULES
   // (B1) LOAD MODULE
   //  $module : module to load
-  function load ($module) {
-    if ($this->loaded($module)) { return true; }
+  function load ($module) { if (!$this->loaded($module)) {
     $file = PATH_LIB . "LIB-$module.php";
     if (file_exists($file)) {
       require $file;
       $this->$module = new $module($this);
     } else { throw new Exception("$module module not found!"); }
-  }
+  }}
 
   // (B2) IS MODULE LOADED?
   //  $module : module to check
@@ -28,7 +27,7 @@ class CoreBoxx {
   //  $mode : POST or GET
   function autoCall ($module, $function, $mode="POST") {
     // (C1-1) LOAD MODULE
-    if (!$this->load($module)) { return false; }
+    $this->load($module);
 
     // (C1-2) GET FUNCTION PARAMETERS
     $reflect = new ReflectionMethod($module, $function);
