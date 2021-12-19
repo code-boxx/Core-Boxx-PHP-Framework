@@ -9,6 +9,7 @@ define("HOST_NAME", parse_url(HOST_BASE, PHP_URL_HOST));
 define("HOST_BASE_PATH", parse_url(HOST_BASE, PHP_URL_PATH));
 define("HOST_API", HOST_BASE_PATH . "api/");
 define("HOST_API_BASE", HOST_BASE . "api/");
+define("HOST_ASSETS", HOST_BASE . "assets/");
 
 // (A2) DATABASE - @CHANGE
 define("DB_HOST", "localhost");
