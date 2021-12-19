@@ -1,12 +1,30 @@
 <?php
 class Mail extends Core {
-  // (A) MAIL SEND
+  // (A) SEND HTML MAIL
+  // $mail : array, email to send
+  //  to : email string, or an array of email strings
+  //  cc : email string, or an array of email strings (optional)
+  //  bcc : email string, or an array of email strings (optional)
+  //  subject : subject of email
+  //  body : email body
+  //  attach : file (string) or files (array) to attach (optional)
+  // $single : only applies when $mail["to"] is an array
+  //  true : sends out one email to all the recipients at once
+  //  false : loops through $mail["to"], send one-by-one
   function send ($mail, $single=true) {
     // (A1) CHECKS
-    $this->error = "";
-    if (!isset($mail["to"])) { $this->error = "Mail to is not set"; }
-    if (!isset($mail["subject"])) { $this->error = "Mail subject is not set"; }
-    if (!isset($mail["body"])) { $this->error = "Mail body is not set"; }
+    if (!isset($mail["to"])) {
+      $this->error = "Mail to is not set";
+      return false;
+    }
+    if (!isset($mail["subject"])) {
+      $this->error = "Mail subject is not set";
+      return false;
+    }
+    if (!isset($mail["body"])) {
+      $this->error = "Mail body is not set";
+      return false;
+    }
     if (isset($mail["attach"])) {
       if (!is_array($mail["attach"])) { $mail["attach"] = [$mail["attach"]]; }
       foreach ($mail["attach"] as $f) { if (!file_exists($f)) {
@@ -14,7 +32,6 @@ class Mail extends Core {
         return false;
       }}
     }
-    if ($this->error != "") { return false; }
 
     // (A2) BUILD MAIL HEADERS
     $boundary = isset($mail["attach"]) ? md5(time()) : null ;
