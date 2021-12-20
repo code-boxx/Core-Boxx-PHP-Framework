@@ -4,6 +4,7 @@ class DB extends Core {
   public $pdo = null; // pdo object
   public $stmt = null; // sql statement
   public $lastID = null; // last insert id
+  public $lastRows = 0; // last affected rows
 
   // (B) CONSTRUCTOR - CONNECT TO DATABASE
   function __construct ($core) {
@@ -39,6 +40,8 @@ class DB extends Core {
   function query ($sql, $data=null) {
     $this->stmt = $this->pdo->prepare($sql);
     $this->stmt->execute($data);
+    // @TODO
+    $this->lastRows = $this->stmt->rowCount();
   }
 
   // (G) FETCH ALL (MULTIPLE ROWS)

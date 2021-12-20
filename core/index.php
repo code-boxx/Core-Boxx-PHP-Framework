@@ -1,30 +1,44 @@
 <?php
+/*********** DELETE THIS SECTION AFTER INIT ************/
+echo implode("<br>\r\n", [
+  "Please make sure that you have:",
+  "1) Changed the settings in lib/CORE-config.php to your own",
+  "2) Reload this script to generate .htaccess and api/.htaccess",
+  "3) Open index.php and remove this section",
+  "4) Highly recommended to go through the mini tutorial - <a href='https://code-boxx.com/core-boxx-php-rapid-development-framework/'>Core Boxx</a>"
+]);
+
+require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-go.php";
+$_CORE->load("Route");
+$_CORE->Route->init();
+exit();
+/*********** DELETE THIS SECTION AFTER INIT ************/
+
 // (A) LOAD CORE ENGINE
-require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "GO.php";
+require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-go.php";
 $_CORE->load("Route");
 
-// (B) ADD YOUR MANUAL ROUTES
+// (B) ADD YOUR OWN MANUAL ROUTES IF YOU WANT
 // $_CORE->Route->add("/", "myhome.php");
 // $_CORE->Route->add("mypage/", "page.php");
 // $_CORE->Route->add("products/*", "myproducts.php");
 
-// (C) AUTO RESOLVE ROUTE
-$_CORE->Route->run();
-
-/* (C) URL RESOLVE HOOK - FIRES BEFORE RESOLVING PATH-TO-FILE
-// USE THIS TO DO PERMISSION CHECK OR TWEAK PATH
+/* (C) OR YOUR OWN PATH OVERRIDE
 $_CORE->Route->run(function ($_PATH) {
-  // EXAMPLE - TO LOGIN PAGE IF NOT SIGNED IN
+  // REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
   if (!isset($_SESSION["user"]) && $_PATH!="/login") {
     header("Location: ".HOST_BASE."login");
     exit();
   }
 
-  // EXAMPLE - TWEAK PATH BASED ON USER ROLE
+  // TWEAK PATH BASED ON USER ROLE
   if ($_PATH=="/products" && $_SESSION["user"]["role"]=="admin") {
     $_PATH = "/admin/products";
   }
 
+  // MUST RETURN $_PATH
   return $_PATH;
-});
-*/
+}); */
+
+// (D) AUTO RESOLVE ROUTE
+$_CORE->Route->run();

@@ -122,14 +122,9 @@ class CoreBoxx {
 
   // (E) OTHER CONVENIENCE
   // (E1) GENERATE RANDOM STRING
-  // CREDITS : https://stackoverflow.com/questions/4356289/php-random-string-generator
-  // $length : number of characters to generate
-  function random ($length=16) {
-    $char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $clen = strlen($char);
-    $rnd = "";
-    for ($i=0; $i<$length; $i++) { $rnd .= $char[rand(0, $clen-1)]; }
-    return $rnd;
+  // $length : number of bytes
+  function random ($length=8) {
+    return bin2hex(random_bytes($length));
   }
 
   // (E2) PAGINATION CALCULATOR

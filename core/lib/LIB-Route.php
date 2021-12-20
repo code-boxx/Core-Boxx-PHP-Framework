@@ -92,9 +92,11 @@ class Route extends Core {
   // (F) LOAD TARGET FILE IN THE PAGE/ FOLDER
   //  $_PAGE : exact file name to load
   //  $_PATH : current url path (or whatever you want to pick up in $file)
-  function load ($_PAGE, $_PATH="") {
+  //  $code : optional http response code
+  function load ($_PAGE, $_PATH="", $code=null) {
+    global $_CORE; // all pages can access the core engine
     if (file_exists(PATH_PAGES . $_PAGE)) {
-      global $_CORE; // all pages can access the core engine
+      if ($code) { http_response_code($code); }
       require PATH_PAGES . $_PAGE;
     } else {
       http_response_code(404);
