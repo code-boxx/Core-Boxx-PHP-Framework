@@ -5,7 +5,7 @@
 define("API_MODE", true);
 
 // (B) LOAD CORE
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "GO.php";
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-go.php";
 
 // (C) ENFORCE HTTPS (RECOMMENDED)
 if (API_HTTPS && empty($_SERVER["HTTPS"])) {
