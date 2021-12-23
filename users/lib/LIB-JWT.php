@@ -43,6 +43,7 @@ class JWT extends Core {
     $copt = $this->cookie;
     $copt["expires"] = -1;
     setcookie("jwt", null, $copt);
+    return true;
   }
 
   // (D) VERIFY JWT TOKEN
