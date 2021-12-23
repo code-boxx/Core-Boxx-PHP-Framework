@@ -40,7 +40,6 @@ class DB extends Core {
   function query ($sql, $data=null) {
     $this->stmt = $this->pdo->prepare($sql);
     $this->stmt->execute($data);
-    // @TODO
     $this->lastRows = $this->stmt->rowCount();
   }
 
@@ -66,7 +65,7 @@ class DB extends Core {
   function fetch ($sql, $data=null) {
     $this->query($sql, $data);
     $result = $this->stmt->fetch();
-    return $result==false ? null : $result ;
+    return $result===false ? null : $result ;
   }
 
   // (I) FETCH (SINGLE COLUMN)
@@ -76,7 +75,7 @@ class DB extends Core {
   function fetchCol ($sql, $data=null) {
     $this->query($sql, $data);
     $result = $this->stmt->fetchColumn();
-    return $result==false ? null : $result ;
+    return $result===false ? null : $result ;
   }
 
   // (J) INSERT OR REPLACE SQL HELPER
