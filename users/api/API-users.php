@@ -1,12 +1,8 @@
 <?php
-// @TODO - PROTECT USER ADMIN FUNCTIONS!
-/*if (!isset($_SESSION["user"])) {
+/* @TODO - PROTECT USER ADMIN FUNCTIONS!
+if ($_USER == false) {
   $_CORE->respond(0, "Please sign in first", null, null, 403);
-}
-if (!$_CORE->JWT->verify()) {
-  $_CORE->respond(0, "Please sign in first", null, null, 403);
-}
-*/
+} */
 
 switch ($_REQ) {
   // (A) INVALID REQUEST

@@ -34,58 +34,49 @@ class Users extends Core {
     );
   }
 
-  // (D) COUNT (FOR SEARCH & PAGINATION)
-  //  $search : optional, user name or email
-  function count ($search=null) {
-    $sql = "SELECT COUNT(*) FROM `users`";
-    $data = null;
-    if ($search != null) {
-      $sql .= " WHERE `user_name` LIKE ? OR `user_email` LIKE ?";
-      $data = ["%$search%", "%$search%"];
-    }
-    return $this->DB->fetchCol($sql, $data);
-  }
-
-  // (E) GET ALL OR SEARCH USERS
+  // (D) GET ALL OR SEARCH USERS
   //  $search : optional, user name or email
   //  $page : optional, current page number
-  function getAll ($search=null, $page=1) {
-    // (E1) PAGINATION
-    $entries = $this->count($search);
-    if ($entries===false) { return false; }
-    $pgn = $this->core->paginator($entries, $page);
-
-    // (E2) GET USERS
-    $sql = "SELECT `user_id`, `user_name`, `user_email` FROM `users`";
+  function getAll ($search=null, $page=null) {
+    // (D1) PARITAL USERS SQL + DATA
+    $sql = "FROM `users`";
     $data = null;
     if ($search != null) {
       $sql .= " WHERE `user_name` LIKE ? OR `user_email` LIKE ?";
       $data = ["%$search%", "%$search%"];
     }
-    $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
-    $users = $this->DB->fetchAll($sql, $data, "user_id");
-    if ($users===false) { return false; }
 
-    // (E3) RESULTS
-    return ["data" => $users, "page" => $pgn];
+    // (D2) PAGINATION
+    if ($page != null) {
+      $pgn = $this->core->paginator(
+        $this->DB->fetchCol("SELECT COUNT(*) $sql", $data), $page
+      );
+      $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
+    }
+
+    // (D3) RESULTS
+    $users = $this->DB->fetchAll("SELECT * $sql", $data, "id");
+    return $page != null
+     ? ["data" => $users, "page" => $pgn]
+     : $users ;
   }
 
-  // (F) VERIFY EMAIL & PASSWORD (LOGIN OR SECURITY CHECK)
+  // (E) VERIFY EMAIL & PASSWORD (LOGIN OR SECURITY CHECK)
   // RETURNS USER ARRAY IF VALID, FALSE IF INVALID
   //  $email : user email
   //  $password : user password
   function verify ($email, $password) {
-    // (F1) GET USER
+    // (E1) GET USER
     $user = $this->get($email);
     if ($user===false) { return false; }
     $pass = is_array($user);
 
-    // (F2) PASSWORD CHECK
+    // (E2) PASSWORD CHECK
     if ($pass) {
-      $pass = password_verify($password, $user['user_password']);
+      $pass = password_verify($password, $user["user_password"]);
     }
 
-    // (F3) RESULTS
+    // (E3) RESULTS
     if (!$pass) {
       $this->error = "Invalid user or password.";
       return false;
@@ -93,40 +84,22 @@ class Users extends Core {
     return $user;
   }
 
-  // (G) LOGIN - JWT COOKIE
+  // (F) LOGIN
   //  $email : user email
   //  $password : user password
-  function inJWT ($email, $password) {
-    // (G1) ALREADY SIGNED IN
+  function login ($email, $password) {
+    // (F1) ALREADY SIGNED IN
     $this->core->load("JWT");
     if ($this->core->JWT->verify(false)) { return true; }
 
-    // (G2) VERIFY EMAIL PASSWORD
+    // (F2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
-    // (G3) GENERATE TOKEN
+    // (F3) GENERATE TOKEN + REGISTER USER
     $this->core->JWT->create(["user_id" => $user["user_id"]]);
-    return true;
-  }
-
-  // (H) LOGIN - USER SESSION
-  // MAKE SURE SESSION_START() ENABLED IN LIB/GO.PHP!
-  //  $email : user email
-  //  $password : user password
-  function inSess ($email, $password) {
-    // (H1) ALREADY SIGNED IN
-    if (isset($_SESSION["user"])) { return true; }
-
-    // (H2) VERIFY EMAIL PASSWORD
-    $user = $this->verify($email, $password);
-    if ($user===false) { return false; }
-
-    // (H3) REGISTER USER IN SESSION
-    $_SESSION["user"] = [];
-    foreach ($user as $k=>$v) {
-      if ($k!="user_password") { $_SESSION["user"][$k] = $v; }
-    }
+    unset($user["user_password"]);
+    $this->core->JWT->set($user);
     return true;
   }
 }
