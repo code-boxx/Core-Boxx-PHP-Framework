@@ -13,7 +13,7 @@ set_exception_handler("_CORERR");
 $_CORE->load("DB");
 
 /* @CHANGE - ENABLE THIS SECTION IF USING USER MODULE FOR LOGIN
-$_CORE->load("JWT");
-$_CORE->JWT->verify(); */
+$_CORE->load("Session");
+$_CORE->Session->start(); */
 
 // ADD MORE MODULES AS REQUIRED
