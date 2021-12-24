@@ -14,8 +14,14 @@ code { background:#f9ff9f; }
 <div class="demoB"><?php print_r($_CORE); ?></div>
 
 <div class="demoA">
-  Every page also has <code>$_PATH</code> - The current relevant path
-  (if you want to use for something like /page/123).
+  <code>$_PATH</code> - The current relevant path.
+  You can use this to resolve things like pagination <code>/page/123</code>,
+  or maybe a selected category <code>/products/toys</code>.
 </div>
 <div class="demoB"><?php echo $_PATH; ?></div>
+
+<div class="demoA">
+  <code>$_SESS</code> - Something like the default PHP <code>$_SESSION</code>.
+</div>
+<div class="demoB"><?php print_r($_SESS); ?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

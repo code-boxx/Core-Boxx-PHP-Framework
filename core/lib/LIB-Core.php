@@ -1,7 +1,10 @@
 <?php
 class CoreBoxx {
-  // (A) PROPERTIES
+  // (A) PROPERTIES & CONSTRUCTOR
   public $error = ""; // error message, if any
+  function __construct () {
+    $GLOBALS["_SESS"] = []; // initialize global session variable
+  }
 
   // (B) MODULES
   // (B1) LOAD MODULE

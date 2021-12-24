@@ -94,6 +94,7 @@ class Route extends Core {
   //  $code : optional http response code
   function load ($_PAGE, $_PATH="", $code=null) {
     global $_CORE; // all pages can access the core engine
+    global $_SESS; // also the global session variables
     if (file_exists(PATH_PAGES . $_PAGE)) {
       if ($code) { http_response_code($code); }
       require PATH_PAGES . $_PAGE;
