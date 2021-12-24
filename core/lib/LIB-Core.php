@@ -72,7 +72,10 @@ class CoreBoxx {
   //  $function : function to run
   //  $mode : POST or GET
   function autoAPI ($module, $function, $mode="POST") {
-    $this->respond($this->autoCall($module, $function, $mode));
+    $result = $this->autoCall($module, $function, $mode);
+    $this->respond($result, null, null,
+      $this->DB->lastID!==null ? $this->DB->lastID : null
+    );
   }
 
   // (C3) SAME AS ABOVE, BUT FOR "GET ENTRIES" API FUNCTIONS
