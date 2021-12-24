@@ -90,8 +90,8 @@ class Users extends Core {
   //  $password : user password
   function login ($email, $password) {
     // (F1) ALREADY SIGNED IN
-    global $_USER;
-    if ($_USER!==false) { return true; }
+    global $_SESS;
+    if (isset($_SESS["user"])) { return true; }
 
     // (F2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
@@ -99,19 +99,19 @@ class Users extends Core {
 
     // (F3) SESSION START
     $this->core->load("Session");
-    $this->core->Session->start($user);
+    $this->core->Session->set($user);
     return true;
   }
 
   // (G) LOGOUT
   function logout () {
     // (G1) ALREADY SIGNED OFF
-    global $_USER;
-    if ($_USER===false) { return true; }
+    global $_SESS;
+    if (!isset($_SESS["user"])) { return true; }
 
     // (G2) END SESSION
     $this->core->load("Session");
-    $this->core->Session->end();
+    $this->core->Session->unset();
     return true;
   }
 }
