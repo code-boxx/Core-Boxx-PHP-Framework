@@ -40,7 +40,6 @@ class DB extends Core {
   function query ($sql, $data=null) {
     $this->stmt = $this->pdo->prepare($sql);
     $this->stmt->execute($data);
-    $this->lastRows = $this->stmt->rowCount();
   }
 
   // (G) FETCH ALL (MULTIPLE ROWS)
@@ -83,6 +82,7 @@ class DB extends Core {
   //  $fields : array of fields to insert
   //  $data : data array to insert
   //  $replace : replace instead of insert?
+  // * simply throws exception on sql error, no return results.
   function insert ($table, $fields, $data, $replace=false) {
     // (J1) QUICK CHECK
     $cfields = count($fields);
@@ -102,20 +102,40 @@ class DB extends Core {
 
     // (J3) RUN QUERY
     $this->query($sql, $data);
-    if (!$replace) { $this->lastID = $this->pdo->lastInsertId(); }
-    return true;
+    if (!$replace) {
+      $this->lastID = $this->pdo->lastInsertId();
+      $this->lastRows = $this->stmt->rowCount();
+    }
   }
 
-  // (K) UPDATE SQL HELPER
+  // (K) REPLACE
+  //  * simply reuses "insert" above, but with $replace flag
+  function replace ($table, $fields, $data) {
+    $this->insert($table, $fields, $data, true);
+  }
+
+  // (L) UPDATE SQL HELPER
   //  $table : table to update
   //  $fields : array of fields to update
   //  $where : where clause for update SQL
   //  $data : data array to update
+  // * simply throws exception on sql error, no return results.
   function update ($table, $fields, $where, $data) {
     $sql = "UPDATE `$table` SET ";
     foreach ($fields as $f) { $sql .= "`$f`=?,"; }
     $sql = substr($sql, 0, -1) . " WHERE $where";
     $this->query($sql, $data);
-    return true;
+    $this->lastRows = $this->stmt->rowCount();
+  }
+
+  // (M) DELETE SQL HELPER
+  //  $table : table to update
+  //  $where : where clause for delete SQL
+  //  $data : data array
+  // * simply throws exception on sql error, no return results.
+  function delete ($table, $where, $data=null) {
+    $sql = "DELETE FROM `$table` WHERE $where";
+    $this->query($sql, $data);
+    $this->lastRows = $this->stmt->rowCount();
   }
 }

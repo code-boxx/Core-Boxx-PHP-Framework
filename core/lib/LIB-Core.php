@@ -29,22 +29,37 @@ class CoreBoxx {
     // (C1-1) LOAD MODULE
     $this->load($module);
 
-    // (C1-2) GET FUNCTION PARAMETERS
+    // (C1-2) MAP POST OR GET?
+    if ($mode=="POST") { $target =& $_POST; }
+    else { $target =& $_GET; }
+
+    // (C1-3) GET FUNCTION PARAMETERS
     $reflect = new ReflectionMethod($module, $function);
     $params = $reflect->getParameters();
 
-    // (C1-3) EVIL AUTO MAP-AND-RUN
-    if ($mode=="POST") { $target =& $_POST; }
-    else { $target =& $_GET; }
+    // (C1-4) EVIL MAPPING
     $evil = "\$results = \$this->$module->$function(";
     if (count($params)==0) { $evil .= ");"; }
     else {
       foreach ($params as $p) {
-        if (!isset($target[$p->name])) { $target[$p->name] = null; }
-        $evil .= "\$_" . $mode . "['$p->name'],";
+        // POST OR GET HAS EXACT PARAMETER MATCH
+        if (isset($target[$p->name])) {
+          $evil .= "\$_". $mode ."[\"". $p->name ."\"],";
+        }
+
+        // USE DEFAULT VALUE
+        else if ($p->isDefaultValueAvailable()) {
+          $val = $p->getDefaultValue();
+          $evil .= is_string($val) ? "\"$val\"," : "$val,";
+        }
+
+        // NULL IF ALL ELSE FAILS
+        else { $evil .= "null,"; }
       }
       $evil = substr($evil, 0, -1) . ");";
     }
+
+    // (C1-5) EVIL RESULTS
     eval($evil);
     return $results;
   }
@@ -148,9 +163,15 @@ class CoreBoxx {
     // (E2-4) DONE
     return $page;
   }
+
+  // (F) REDIRECT
+  function redirect ($page="", $url=HOST_BASE) {
+    header("Location: $url$page");
+    exit();
+  }
 }
 
-// (F) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
+// (G) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
 class Core {
   function __construct ($core) {
     $this->core =& $core; // Link to core

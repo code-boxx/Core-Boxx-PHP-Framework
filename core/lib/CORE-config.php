@@ -53,5 +53,5 @@ define("PATH_API", PATH_BASE . "api" . DIRECTORY_SEPARATOR);
 define("PATH_ASSETS", PATH_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("PATH_PAGES", PATH_BASE . "pages" . DIRECTORY_SEPARATOR);
 
-// (G) PAGINATION
+// (G) MISC
 define("PAGE_PER", 20); // 20 entries per page by default

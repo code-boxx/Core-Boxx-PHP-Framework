@@ -18,10 +18,12 @@ exit();
 require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-go.php";
 $_CORE->load("Route");
 
-// (B) ADD YOUR OWN MANUAL ROUTES IF YOU WANT
-// $_CORE->Route->add("/", "myhome.php");
-// $_CORE->Route->add("mypage/", "page.php");
-// $_CORE->Route->add("products/*", "myproducts.php");
+/* (B) ADD YOUR OWN MANUAL ROUTES IF YOU WANT *
+$_CORE->Route->set([
+  "/" => "myhome.php",
+  "mypage/" => "page.php",
+  "products/*" => "myproducts.php"
+]);
 
 /* (C) OR YOUR OWN PATH OVERRIDE
 $_CORE->Route->run(function ($_PATH) {

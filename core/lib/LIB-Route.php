@@ -28,14 +28,13 @@ class Route extends Core {
     return true;
   }
 
-  // (C) ADD MANUAL ROUTES
-  //  $route : target route, see index.php for examples
-  //  $resolve : resolves to this file in the pages/ folder
-  function add ($route, $resolve) {
-    if (substr($route, -2) == "/*") {
-      $this->wild[substr($route, 0, -1)] = $resolve;
-    } else { $this->routes[rtrim($route)] = $resolve; }
-  }
+  // (C) SET MANUAL ROUTES
+  //  $routes : array of path => file
+  function set ($routes) { foreach ($routes as $path => $file) {
+    if (substr($path, -2) == "/*") {
+      $this->wild[substr($path, 0, -1)] = $file;
+    } else { $this->routes[rtrim($path)] = $file; }
+  }}
 
   // (D) RESOLVE URL ROUTE
   //  $before : function, use this to tweak the path or do permission check
