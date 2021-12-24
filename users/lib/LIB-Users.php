@@ -12,17 +12,19 @@ class Users extends Core {
 
     // (A2) ADD/UPDATE USER
     if ($id===null) {
-      return $this->DB->insert("users", $fields, $data);
+      $this->DB->insert("users", $fields, $data);
     } else {
       $data[] = $id;
-      return $this->DB->update("users", $fields, "`user_id`=?", $data);
+      $this->DB->update("users", $fields, "`user_id`=?", $data);
     }
+    return true;
   }
 
   // (B) DELETE USER
   //  $id : user id
   function del ($id) {
-    return $this->DB->query("DELETE FROM `users` WHERE `user_id`=?", [$id]);
+    $this->DB->delete("users", "`user_id`=?", [$id]);
+    return true;
   }
 
   // (C) GET USER
@@ -68,7 +70,6 @@ class Users extends Core {
   function verify ($email, $password) {
     // (E1) GET USER
     $user = $this->get($email);
-    if ($user===false) { return false; }
     $pass = is_array($user);
 
     // (E2) PASSWORD CHECK
@@ -89,17 +90,28 @@ class Users extends Core {
   //  $password : user password
   function login ($email, $password) {
     // (F1) ALREADY SIGNED IN
-    $this->core->load("JWT");
-    if ($this->core->JWT->verify(false)) { return true; }
+    global $_USER;
+    if ($_USER!==false) { return true; }
 
     // (F2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
-    // (F3) GENERATE TOKEN + REGISTER USER
-    $this->core->JWT->create(["user_id" => $user["user_id"]]);
-    unset($user["user_password"]);
-    $this->core->JWT->set($user);
+    // (F3) SESSION START
+    $this->core->load("Session");
+    $this->core->Session->start($user);
+    return true;
+  }
+
+  // (G) LOGOUT
+  function logout () {
+    // (G1) ALREADY SIGNED OFF
+    global $_USER;
+    if ($_USER===false) { return true; }
+
+    // (G2) END SESSION
+    $this->core->load("Session");
+    $this->core->Session->end();
     return true;
   }
 }

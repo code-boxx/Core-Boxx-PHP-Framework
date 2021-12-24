@@ -12,6 +12,6 @@ switch ($_REQ) {
 
   // (C) LOGOUT
   case "logout":
-    $_CORE->autoAPI("JWT", "expire");
+    $_CORE->autoAPI("Users", "logout");
     break;
 }
