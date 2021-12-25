@@ -1,30 +1,25 @@
 <?php
 class Mail extends Core {
-  // (A) SEND HTML MAIL
+  // (A) SEND HTML EMAIL
   // $mail : array, email to send
+  //  from : email string
   //  to : email string, or an array of email strings
   //  cc : email string, or an array of email strings (optional)
   //  bcc : email string, or an array of email strings (optional)
+  //  attach : file (string) or files (array) to attach (optional)
   //  subject : subject of email
   //  body : email body
-  //  attach : file (string) or files (array) to attach (optional)
-  // $single : only applies when $mail["to"] is an array
-  //  true : sends out one email to all the recipients at once
-  //  false : loops through $mail["to"], send one-by-one
-  function send ($mail, $single=true) {
+  //  template : email template file (has precedence over body)
+  //  vars : array of variables for template
+  function send ($mail) {
     // (A1) CHECKS
-    if (!isset($mail["to"])) {
-      $this->error = "Mail to is not set";
+    if (!isset($mail["from"]) || !isset($mail["to"]) || !isset($mail["subject"]) ||
+       (!isset($mail["body"]) && !isset($mail["template"]))) {
+      $this->error = "Please set from, to, subject, body (or template).";
       return false;
     }
-    if (!isset($mail["subject"])) {
-      $this->error = "Mail subject is not set";
-      return false;
-    }
-    if (!isset($mail["body"])) {
-      $this->error = "Mail body is not set";
-      return false;
-    }
+
+    // (A2) ATTACHMENT CHECK
     if (isset($mail["attach"])) {
       if (!is_array($mail["attach"])) { $mail["attach"] = [$mail["attach"]]; }
       foreach ($mail["attach"] as $f) { if (!file_exists($f)) {
@@ -33,38 +28,51 @@ class Mail extends Core {
       }}
     }
 
-    // (A2) BUILD MAIL HEADERS
+    // (A3) TEMPLATE FILE CHECK
+    if (isset($mail["template"]) && !file_exists($mail["template"])) {
+      $this->error = "Template ". $mail["template"] ." does not exist!";
+      return false;
+    }
+
+    // (A4) BUILD MAIL HEADERS
     $boundary = isset($mail["attach"]) ? md5(time()) : null ;
     $headers = [
       "MIME-Version: 1.0",
       "Content-type: " . (isset($mail["attach"])
         ? "multipart/mixed; boundary=\"$boundary\""
-        : "text/html; charset=utf-8")
+        : "text/html; charset=utf-8"),
+      "From: " . $mail["from"]
     ];
-    if (isset($mail["from"])) { $this->headers[] = "From: " . $mail["from"]; }
-    if ($single && isset($mail["cc"])) {
+    if (isset($mail["cc"])) {
       $headers[] = "Cc: " . (is_array($mail["cc"]) ? implode(", ", $mail["cc"]) : $mail["cc"]);
     }
-    if ($single && isset($mail["bcc"])) {
+    if (isset($mail["bcc"])) {
       $headers[] = "Bcc: " . (is_array($mail["bcc"]) ? implode(", ", $mail["bcc"]) : $mail["bcc"]);
     }
     $headers = implode("\r\n", $headers);
 
-    // (A3) MAIL ATTACHMENT
+    // (A5) BUILD TEMPLATE
+    if (isset($mail["template"])) {
+      $mail["body"] = $this->template(
+        $mail["template"], is_array($mail["vars"]) ? $mail["vars"] : null
+      );
+    }
+
+    // (A6) ADD ATTACHMENT(S)
     if (isset($mail["attach"])) {
-      // MAIL MESSAGE
+      // (A6-1) MAIL MESSAGE
       $mail["body"] = implode("\r\n", [
         "--$boundary",
         "Content-type: text/html; charset=utf-8",
         "", $mail["body"]
       ]);
 
-      // MAIL ATTACHMENTS
+      // (A6-2) MAIL ATTACHMENTS
       $attachments = count($mail["attach"]) - 1;
       for ($i=0; $i<=$attachments; $i++) {
         $mail["body"] .= implode("\r\n", [
           "", "--$boundary",
-          'Content-Type: application/octet-stream; name="'.basename($mail["attach"][$i]).'"',
+          "Content-Type: ".mime_content_type($mail["attach"][$i])."; name=\"".basename($mail["attach"][$i])."\"",
           "Content-Transfer-Encoding: base64",
           "Content-Disposition: attachment",
           "", chunk_split(base64_encode(file_get_contents($mail["attach"][$i]))),
@@ -74,25 +82,22 @@ class Mail extends Core {
       }
     }
 
-    // (A4) SEND TO EVERYONE IN A SINGLE EMAIL
-    if ($single) {
-      if (is_array($mail["to"])) { $mail["to"] = implode(", ", $mail["to"]); }
-      if (@mail($mail["to"], $mail["subject"], $mail["body"], $headers)) { return true; }
-      else {
-        $this->error = "Error sending mail";
-        return false;
-      }
-    }
-
-    // (A5) SEND ONE-BY-ONE (CC BCC WILL BE IGNORED!)
+    // (A7) MAIL SEND
+    if (is_array($mail["to"])) { $mail["to"] = implode(", ", $mail["to"]); }
+    if (@mail($mail["to"], $mail["subject"], $mail["body"], $headers)) { return true; }
     else {
-      if (!is_array($mail["to"])) { $mail["to"] = [$mail["to"]]; }
-      foreach ($mail["to"] as $to) {
-        if (!@mail($to, $mail["subject"], $mail["body"], $headers)) {
-          $this->error = "Failed to send to $to";
-          return false;
-        }
-      }
+      $this->error = "Error sending mail";
+      return false;
     }
+  }
+
+  // (B) LOAD TEMPLATE
+  function template ($file, $vars=null) {
+    ob_start();
+    if ($vars!==null) { extract($vars); }
+    include $file;
+    $content = ob_get_contents();
+    ob_end_clean();
+    return $content;
   }
 }
