@@ -154,13 +154,14 @@ class CoreBoxx {
   function paginator ($entries, $now=1) {
     // (E2-1) TOTAL NUMBER OF PAGES
     $page = [
-      "entries" => $entries,
+      "entries" => (int) $entries,
       "total" => ceil($entries / PAGE_PER)
     ];
 
     // (E2-2) CURRENT PAGE
     $page["now"] = $now > $page["total"] ? $page["total"] : $now ;
     if ($page["now"]<=0) { $page["now"] = 1; }
+    $page["now"] = (int) $page["now"];
 
     // (E2-3) LIMIT X,Y
     $page["x"] = ($page["now"] - 1) * PAGE_PER;
