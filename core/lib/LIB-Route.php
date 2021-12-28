@@ -70,6 +70,7 @@ class Route extends Core {
           if ($_PATH=="") { $_PATH = "/"; }
           unset($pathlen); unset($wildlen);
           $this->load($f, $_PATH);
+          break;
         }
       }
     }
