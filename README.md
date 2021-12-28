@@ -1,7 +1,19 @@
----
-## LICENSE
----
+## CORE BOXX
+Core Boxx is a lightweight PHP modular development framework. The whole idea is not to be another overly bloated framework with tons of unused features. So it is built around the idea of modularity, load only what you need. It is more like “predefined system modules you can expand on”, rather than a full-fledged framework.
+<br><br>
 
+
+## QUICK START & DOCUMENTATION
+1) Edit `lib/CORE-config.php`. Change `HOST_BASE` (A) and the database settings (B) to your own.
+2) Create a dummy database for your project. If you don’t need the use of a database, open `lib/CORE-go.php` and remove `$_CORE->load("DB")`.
+3) Access `index.php` in your browser, this will generate the necessary `.htaccess` and `api/.htaccess` files.
+4) Open `index.php` and remove the marked section.
+
+Done! You now have a working basic framework. Please visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for the full documentation!
+<br><br>
+
+
+## LICENSE
 Copyright by Code Boxx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +34,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-## DOCUMENTATION
----
-Please visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for the full documentation!
