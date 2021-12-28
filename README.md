@@ -3,6 +3,12 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 <br><br>
 
 
+## NOTES
+1) It is painful to create a new repo for each module, so I have combined the core engine and all the modules everything into this one.
+2) To get started, you only need to work with the `core` folder - The rest are optional modules that you can snap into your project later.
+<br><br>
+
+
 ## QUICK START & DOCUMENTATION
 1) Edit `lib/CORE-config.php`. Change `HOST_BASE` (A) and the database settings (B) to your own.
 2) Create a dummy database for your project. If you don’t need the use of a database, open `lib/CORE-go.php` and remove `$_CORE->load("DB")`.
