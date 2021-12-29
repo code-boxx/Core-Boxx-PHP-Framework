@@ -3,9 +3,9 @@
   <head>
     <!-- (A) HEAD -->
     <!-- (A1) TITLE, DESC, CHARSET, FAVICON -->
-    <title>Core Boxx</title>
+    <title><?=isset($_PMETA["title"])?$_PMETA["title"]:"Core Boxx"?></title>
     <meta charset="utf-8">
-    <meta name="description" content="Core Boxx Default HTML Template">
+    <meta name="description" content="<?=isset($_PMETA["desc"])?$_PMETA["desc"]:"Core Boxx"?>">
     <link rel="icon" href="<?=HOST_ASSETS?>favicon.png" type="image/png">
 
     <!-- (A2) ZOOM IN, NO OUT -->
@@ -34,13 +34,14 @@
     <script defer src="<?=HOST_ASSETS?>PAGE-cb.js"></script>
 
     <!-- (A6) ADDITIONAL SCRIPTS -->
-    <?php if (isset($_HLOAD)) { foreach ($_HLOAD as $load) {
+    <?php if (isset($_PMETA["load"])) { foreach ($_PMETA["load"] as $load) {
       if ($load[0]=="s") {
         printf("<script src='%s'%s></script>", $load[1], isset($load[2]) ? " ".$load[2] : "");
       } else {
         printf("<link rel='stylesheet' href='%s'>", $load[1], isset($load[2]) ? " ".$load[2] : "");
       }
-    } unset($_HLOAD); } ?>
+    }}
+    if (isset($_PMETA)) { unset($_PMETA); } ?>
   </head>
   <body>
     <!-- (B) COMMON SHARED INTERFACE -->
