@@ -4,7 +4,7 @@
 switch ($_REQ) {
   // (A) INVALID REQUEST
   default:
-    $_CORE->respond(0, "Invalid request");
+    $_CORE->respond(0, "Invalid request", null, null, 400);
     break;
 
   // (B) SAVE CONTENT
