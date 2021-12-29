@@ -6,24 +6,24 @@ if (isset($_SESS["user"])) { $_CORE->redirect(); }
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) JAVASCRIPT -->
 <script>
-function signin () {
+function register () {
   // FORM DATA
-  let data = new FormData(document.getElementById("loginform"));
+  let data = new FormData(document.getElementById("regform"));
 
   // CALL API
-  fetch("<?=HOST_API?>session/login", {
+  fetch("<?=HOST_API?>session/register", {
     method:"post", body:data
   }).then(res => res.json()).then((res) => {
-    if (res.status) { location.href = "<?=HOST_BASE?>"; }
-    else { alert(res.message); }
+    alert(res.message);
   });
   return false;
 }
 </script>
 
-<!-- (B2) LOGIN FORM -->
-<form onsubmit="return signin();" id="loginform">
-  <h4>SIGN IN</h4>
+<!-- (B2) REGISTRATION FORM -->
+<form onsubmit="return register();" id="regform">
+  <h4>REGISTER</h4>
+  <input type="text" name="name" required/>
   <input type="email" name="email" required/>
   <input type="password" name="password" required/>
   <input type="submit" value="Sign in"/>

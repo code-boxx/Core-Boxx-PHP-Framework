@@ -14,4 +14,9 @@ switch ($_REQ) {
   case "logout":
     $_CORE->autoAPI("Users", "logout");
     break;
+
+  // (D) REGISTER
+  case "register":
+    $_CORE->autoAPI("Users", "register");
+    break;
 }

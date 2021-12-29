@@ -20,14 +20,41 @@ class Users extends Core {
     return true;
   }
 
-  // (B) DELETE USER
+  // (B) REGISTER USER - RESTRICTED VERSION OF "SAVE" FOR FRONT-END
+  //  $name : user name
+  //  $email : user email
+  //  $password : user password
+  function register ($name, $email, $password) {
+    // (B1) ALREADY SIGNED IN
+    global $_SESS;
+    if (isset($_SESS["user"])) {
+      $this->error = "You are already signed in.";
+      return false;
+    }
+
+    // (B2) CHECK USER EXIST
+    if (is_array($this->get($email))) {
+      $this->error = "$email is already registered.";
+      return false;
+    }
+
+    // (B3) ADD YOUR OWN CHECKS
+    // PASSWORD LENGTH?
+    // USER ROLE?
+
+    // (B4) SAVE
+    $this->save($name, $email, $password);
+    return true;
+  }
+
+  // (C) DELETE USER
   //  $id : user id
   function del ($id) {
     $this->DB->delete("users", "`user_id`=?", [$id]);
     return true;
   }
 
-  // (C) GET USER
+  // (D) GET USER
   //  $id : user id or email
   function get ($id) {
     return $this->DB->fetch(
@@ -36,11 +63,11 @@ class Users extends Core {
     );
   }
 
-  // (D) GET ALL OR SEARCH USERS
+  // (E) GET ALL OR SEARCH USERS
   //  $search : optional, user name or email
   //  $page : optional, current page number
   function getAll ($search=null, $page=null) {
-    // (D1) PARITAL USERS SQL + DATA
+    // (E1) PARITAL USERS SQL + DATA
     $sql = "FROM `users`";
     $data = null;
     if ($search != null) {
@@ -48,7 +75,7 @@ class Users extends Core {
       $data = ["%$search%", "%$search%"];
     }
 
-    // (D2) PAGINATION
+    // (E2) PAGINATION
     if ($page != null) {
       $pgn = $this->core->paginator(
         $this->DB->fetchCol("SELECT COUNT(*) $sql", $data), $page
@@ -56,28 +83,28 @@ class Users extends Core {
       $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
     }
 
-    // (D3) RESULTS
+    // (E3) RESULTS
     $users = $this->DB->fetchAll("SELECT * $sql", $data, "id");
     return $page != null
      ? ["data" => $users, "page" => $pgn]
      : $users ;
   }
 
-  // (E) VERIFY EMAIL & PASSWORD (LOGIN OR SECURITY CHECK)
+  // (F) VERIFY EMAIL & PASSWORD (LOGIN OR SECURITY CHECK)
   // RETURNS USER ARRAY IF VALID, FALSE IF INVALID
   //  $email : user email
   //  $password : user password
   function verify ($email, $password) {
-    // (E1) GET USER
+    // (F1) GET USER
     $user = $this->get($email);
     $pass = is_array($user);
 
-    // (E2) PASSWORD CHECK
+    // (F2) PASSWORD CHECK
     if ($pass) {
       $pass = password_verify($password, $user["user_password"]);
     }
 
-    // (E3) RESULTS
+    // (F3) RESULTS
     if (!$pass) {
       $this->error = "Invalid user or password.";
       return false;
@@ -85,31 +112,31 @@ class Users extends Core {
     return $user;
   }
 
-  // (F) LOGIN
+  // (G) LOGIN
   //  $email : user email
   //  $password : user password
   function login ($email, $password) {
-    // (F1) ALREADY SIGNED IN
+    // (G1) ALREADY SIGNED IN
     global $_SESS;
     if (isset($_SESS["user"])) { return true; }
 
-    // (F2) VERIFY EMAIL PASSWORD
+    // (G2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
-    // (F3) SESSION START
+    // (G3) SESSION START
     $this->core->load("Session");
     $this->core->Session->set($user);
     return true;
   }
 
-  // (G) LOGOUT
+  // (H) LOGOUT
   function logout () {
-    // (G1) ALREADY SIGNED OFF
+    // (H1) ALREADY SIGNED OFF
     global $_SESS;
     if (!isset($_SESS["user"])) { return true; }
 
-    // (G2) END SESSION
+    // (H2) END SESSION
     $this->core->load("Session");
     $this->core->Session->unset();
     return true;
