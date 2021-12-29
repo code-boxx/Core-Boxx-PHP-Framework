@@ -1,10 +1,8 @@
 <?php
-// @TODO - YOU MIGHT WANT TO LIMIT "UPDATE" OR "DELETE" COMMENTS.
-// @TODO - YOU MIGHT WANT TO LIMIT TO USERS THAT ARE SIGNED IN ONLY.
 switch ($_REQ) {
   // (A) INVALID REQUEST
   default:
-    $_CORE->respond(0, "Invalid request");
+    $_CORE->respond(0, "Invalid request", null, null, 400);
     break;
 
   // (B) SAVE A COMMENT
@@ -18,7 +16,7 @@ switch ($_REQ) {
     break;
 
   // (D) GET COMMENTS
-  case "get":
-    $_CORE->autoGETAPI("Comments", "get");
+  case "getAll":
+    $_CORE->autoGETAPI("Comments", "getAll");
     break;
 }

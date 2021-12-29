@@ -1,57 +1,87 @@
 <?php
 class Comments extends Core {
   // (A) SAVE COMMENT
-  function save ($uid, $id, $message, $cid=null) {
-    // @TODO - CHECK IF REGISTERED USER?
-    // @TODO - ONLY ALLOW USER TO UPDATE OWN POST (OR ADMIN)
-    // if (!isset($_SESSION["user"])) { return false; }
+  //  $id : content id - post, product, video, whatever you are attaching comments to
+  //  $message : the message
+  //  $cid : comment id, for updating only
+  function save ($id, $message, $cid=null) {
+    // (A1) CHECK USER
+    global $_SESS;
+    if (!isset($_SESS["user"])) {
+      $this->error = "Please sign in first.";
+      return false;
+    }
 
-    // (A1) DATA SETUP
+    // (A2) DATA SETUP
     $fields = ["user_id", "id", "message"];
-    $data = [$uid, $id, htmlentities($message)];
+    $data = [$_SESS["user"]["user_id"], $id, htmlentities($message)];
 
-    // (A2) ADD/UPDATE COMMENT
-    if ($cid===null) {
-      return $this->DB->insert("comments", $fields, $data);
+    // (A3) ADD/UPDATE COMMENT
+    if ($cid==null) {
+      $this->DB->insert("comments", $fields, $data);
     } else {
       $data[] = $cid;
-      return $this->DB->update("comments", $fields, "`comment_id`=?", $data);
+      $this->DB->update("comments", $fields, "`comment_id`=?", $data);
     }
+    return true;
   }
 
   // (B) DELETE COMMENT
+  //  $cid : comment id
   function del ($cid) {
-    // @TODO - CHECK/ALLOW DELETE ONLY IF USER DELETING OWN POST? (OR ADMIN)
-    return $this->DB->query("DELETE FROM `comments` WHERE `comment_id`=?", [$cid]);
+    // (B1) MUST BE SIGNED IN
+    global $_SESS;
+    if (!isset($_SESS["user"])) {
+      $this->error = "Please sign in first.";
+      return false;
+    }
+
+    // (B2) GET COMMENT
+    $comment = $this->get($cid);
+
+    // (B3) CAN ONLY DELETE OWN COMMENT
+    // @TODO - ADD YOUR OWN CHANGES - ALLOW ADMIN TO DELETE
+    if ($comment["user_id"]!=$_SESS["user"]["user_id"]) {
+      $this->error = "You don't have permissions to delete this comment.";
+      return false;
+    }
+
+    // (B4) OK - DELETE
+    $this->DB->delete("comments", "`comment_id`=?", [$cid]);
   }
 
-  // (C) COUNT COMMENTS (FOR PAGINATION)
-  function count ($id) {
-    return $this->DB->fetchCol(
-      "SELECT COUNT(*) FROM `comments` WHERE `id`=?", [$id]
+  // (C) GET COMMENT
+  //  $cid : comment id
+  function get ($cid) {
+    return $this->DB->fetch(
+      "SELECT * FROM `comments` WHERE `comment_id`=?", [$cid]
     );
   }
 
-  // (D) GET COMMENTS
-  function get ($id, $page=1) {
-    // (D1) PAGINATION
-    $entries = $this->count($id);
-    if ($entries===false) { return false; }
-    $pgn = $this->core->paginator($entries, $page);
+  // (D) GET ALL COMMENTS
+  function getAll ($id, $page=null) {
+    // (D1) SQL & DATA
+    $sql = "SELECT c.`comment_id`, c.`timestamp`, c.`message`, u.`user_name`, u.`user_id`
+     FROM `comments` c
+     JOIN `users` u USING (`user_id`)
+     WHERE `id`=?
+     ORDER BY `timestamp` DESC";
+    $data = [$id];
 
-    // (D2) GET COMMENTS
-    $entries = $this->DB->fetchAll(
-      "SELECT c.*, u.`user_name`
-       FROM `comments` c
-       JOIN `users` u USING (`user_id`)
-       WHERE `id`=?
-       ORDER BY `timestamp` DESC
-       LIMIT {$pgn["x"]}, {$pgn["y"]}",
-      [$id], "comment_id"
-    );
-    if ($entries===false) { return false; }
+    // (D2) PAGINATION
+    if ($page != null) {
+      $pgn = $this->core->paginator(
+        $this->DB->fetchCol(
+          "SELECT COUNT(*) FROM `comments` WHERE `id`=?", [$id]
+        ), $page
+      );
+      $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
+    }
 
     // (D3) RESULTS
-    return ["data" => $entries, "page" => $pgn];
+    $comments = $this->DB->fetchAll($sql, $data, "comment_id");
+    return $page != null
+     ? ["data" => $comments, "page" => $pgn]
+     : $comments ;
   }
 }
