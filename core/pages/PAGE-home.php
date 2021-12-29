@@ -8,11 +8,14 @@ code { background:#f9ff9f; }
 </style>
 
 <h1>IT WORKS!</h1>
+
+<!-- (A) CORE ENGINE -->
 <div class="demoA">
   Every page has <code>$_CORE</code> - The core engine.
 </div>
 <div class="demoB"><?php print_r($_CORE); ?></div>
 
+<!-- (B) URL PATH -->
 <div class="demoA">
   <code>$_PATH</code> - The current relevant path.
   You can use this to resolve things like pagination <code>/page/123</code>,
@@ -20,8 +23,15 @@ code { background:#f9ff9f; }
 </div>
 <div class="demoB"><?php echo $_PATH; ?></div>
 
+<!-- (C) SESSION -->
 <div class="demoA">
   <code>$_SESS</code> - Something like the default PHP <code>$_SESSION</code>.
 </div>
 <div class="demoB"><?php print_r($_SESS); ?></div>
+
+<!-- (D) PAGE -->
+<div class="demoA">
+  <code>$_PAGE</code> - Current physical file.
+</div>
+<div class="demoB"><?=$_PAGE?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
