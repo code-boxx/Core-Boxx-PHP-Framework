@@ -53,7 +53,9 @@ class CoreBoxx {
         // USE DEFAULT VALUE
         else if ($p->isDefaultValueAvailable()) {
           $val = $p->getDefaultValue();
-          $evil .= is_string($val) ? "\"$val\"," : "$val,";
+          $evil .= is_string($val) ? "\"$val\"," : (
+            $val===null ? "null," : "$val,"
+          );
         }
 
         // NULL IF ALL ELSE FAILS
