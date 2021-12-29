@@ -1,31 +1,31 @@
 <?php
-/* @TODO - PROTECT USER ADMIN FUNCTIONS!
-if ($_USER == false) {
+// (A) REGISTERED USERS ONLY
+if (!isset($_SESS["user"])) {
   $_CORE->respond(0, "Please sign in first", null, null, 403);
-} */
+}
 
 switch ($_REQ) {
-  // (A) INVALID REQUEST
+  // (B) INVALID REQUEST
   default:
     $_CORE->respond(0, "Invalid request", null, null, 400);
     break;
 
-  // (B) GET USER
+  // (C) GET USER
   case "get":
     $_CORE->autoGETAPI("Users", "get");
     break;
 
-  // (C) GET OR SEARCH USERS
+  // (D) GET OR SEARCH USERS
   case "getAll":
     $_CORE->autoGETAPI("Users", "getAll");
     break;
 
-  // (D) SAVE USER
+  // (E) SAVE USER
   case "save":
     $_CORE->autoAPI("Users", "save");
     break;
 
-  // (E) DELETE USER
+  // (F) DELETE USER
   case "del":
     $_CORE->autoAPI("Users", "del");
     break;
