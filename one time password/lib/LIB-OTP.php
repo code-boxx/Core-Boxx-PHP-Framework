@@ -1,16 +1,15 @@
 <?php
 class OTP extends Core {
   // (A) ONE-TIME PASSWORD SETTINGS
-  private $valid = 15; // VALID FOR X MINUTES
-  private $tries = 3; // MAX TRIES
-  private $passlength = 8; // PASSWORD LENGTH
+  private $valid = 15; // valid for x minutes
+  private $tries = 3; // max tries
+  private $passlength = 8; // password length
 
   // (B) GENERATE OTP
   function generate ($email) {
     // (B1) CHECK IF USER IS REGISTERED
     $this->core->load("Users");
     $check = $this->core->Users->get($email);
-    if ($check===false) { return false; }
     if (!is_array($check)) {
       $this->error = "$email is not registered";
       return false;
@@ -18,41 +17,51 @@ class OTP extends Core {
 
     // (B2) CHECK IF USER ALREADY HAS EXISTING OTP REQUEST
     $check = $this->DB->fetch("SELECT * FROM `otp` WHERE `user_email`=?", [$email]);
-    if ($check===false) { return false; }
     if (is_array($check)) {
-      // @TODO - SET YOUR OWN RULES HERE - ALLOW NEW REQUEST IF EXIPRED?
-      // $validTill = strtotime(check["otp_timestamp"]) + ($this->valid * 60);
-      // if (strtotime("now") > $validTill) { DELETE OLD REQUEST }
-      // else { ERROR }
-      $this->error = "An OTP has already been sent";
-      return false;
+      // (B2-1) MUST WAIT FOR EXPIRY BEFORE RESEND
+      $expire = strtotime($check["otp_timestamp"]) + $this->valid;
+      $now = strtotime("now");
+      $left = $now - $expire;
+      if ($left <0) {
+        $this->error = "Please wait another ".abs($left)." seconds.";
+        return false;
+      }
+
+      // (B2-2) TOO MANY TRIES
+      if ($check["otp_tries"] >= $this->tries) {
+        $this->error = "You have exceeded the max number of tries.";
+        return false;
+      }
     }
 
     // (B3) GENERATE RANDOM PASSWORD
     $pass = $this->core->random($this->passlength);
-    if (!$this->DB->insert("otp",
-      ["user_email", "otp_pass"],
-      [$email, password_hash($pass, PASSWORD_DEFAULT)], true)) {
-      return false;
-    }
+    $this->DB->replace("otp",
+      ["user_email", "otp_pass", "otp_tries"], [
+        $email, password_hash($pass, PASSWORD_DEFAULT),
+        isset($check) ? $check["otp_tries"] : 0
+      ]
+    );
 
     // (B4) SEND OTP VIA EMAIL
     $this->core->load("Mail");
     return $this->core->Mail->send([
-      // @TODO - FORMAT YOUR OWN "NICE EMAIL"
+      // @TODO - format your own "nice email"
+      "from" => "sys@site.com",
       "to" => $email,
       "subject" => "Your OTP",
-      "body" => "Your OTP is $pass. Enter it at ".HOST_BASE."otp-demo-challenge.php within ".$this->valid." minutes."
+      "template" => PATH_PAGES . "MAIL-otp.php",
+      "vars" => [
+        "password" => $pass,
+        "link" => HOST_BASE . "otp/two"
+      ]
     ]);
   }
 
   // (C) CHALLENGE OTP
-  // @TODO - WHAT HAPPENS IF OTP FAILS ON TOO MANY TRIES OR EXPIRY?
-  // GIVE CHANCES? CONTACT ADMIN? MANUAL CHECK?
   function challenge ($email, $pass) {
     // (C1) GET THE OTP ENTRY
     $otp = $this->DB->fetch("SELECT * FROM `otp` WHERE `user_email`=?", [$email]);
-    if ($otp===false) { return false; }
     if (!is_array($otp)) {
       $this->error = "The specified OTP request is not found.";
       return false;
@@ -60,7 +69,7 @@ class OTP extends Core {
 
     // (C2) TOO MANY TRIES
     if ($otp["otp_tries"] >= $this->tries) {
-      $this->error = "Too many tries for OTP, contact your admin.";
+      $this->error = "Too many tries for OTP.";
       return false;
     }
 
@@ -73,16 +82,18 @@ class OTP extends Core {
 
     // (C4) INCORRECT PASSWORD - ADD STRIKE
     if (!password_verify($pass, $otp["otp_pass"])) {
-    //if ($pass != $otp["otp_pass"]) {
       $strikes = $otp["otp_tries"] + 1;
-      if (!$this->DB->update("otp", ["otp_tries"], "`user_email`=?", [$strikes, $email])) {
-        return false;
+      $this->DB->update("otp", ["otp_tries"], "`user_email`=?", [$strikes, $email]);
+      if ($strikes >= $this->tries) {
+        // @TODO - what happens if otp fails on too many strikes?
+        // give chances? contact admin? manual check? suspend account?
       }
       $this->error = "Incorrect OTP.";
       return false;
     }
 
     // (C5) ALL OK - DELETE OTP
-    return $this->DB->query("DELETE FROM `otp` WHERE `user_email`=?", [$email]);
+    $this->DB->delete("otp", "`user_email`=?", [$email]);
+    return true;
   }
 }
