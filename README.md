@@ -3,9 +3,9 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 <br><br>
 
 
-## NOTES
-1) It is painful to create a new repo for each module, so I have combined the core engine and all the modules everything into this one.
-2) To get started, you only need to work with the `core` folder - The rest are optional modules that you can snap into your project later.
+## NOTES ON THIS REPO
+1) It is painful to create a new repo for each module, so I have combined the core engine and all the modules into this one.
+2) To get started, you only need to work with the `core` folder - The rest are optional modules.
 <br><br>
 
 
@@ -14,9 +14,17 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 2) Create a dummy database for your project. If you don’t need the use of a database, open `lib/CORE-go.php` and remove `$_CORE->load("DB")`.
 3) Access `index.php` in your browser, this will generate the necessary `.htaccess` and `api/.htaccess` files.
 4) Open `index.php` and remove the marked section.
+5) Done! You now have a working basic framework. Also consider using `html template` if you need a kickstart with the client-side. It is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
 
-Done! You now have a working basic framework. Please visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for the full documentation!
+Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
 <br><br>
+
+
+## SCREENSHOTS (WITH HTML TEMPLATE)
+<p float="left">
+  <img width="350" style="inline-block" src="https://code-boxx.com/wp-content/uploads/2021/12/cb-html-1a.png">
+  <img width="350" style="inline-block" src="https://code-boxx.com/wp-content/uploads/2021/12/cb-html-2a.png">
+</p><br>
 
 
 ## LICENSE
