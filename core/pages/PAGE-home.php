@@ -1,12 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<style>
-h1, .demoA, .demoB { font-family:arial, sans-serif; }
-code { background:#f9ff9f; }
-.demoA, .demoB { font-size:18px; padding:20px; margin:10px 0; }
-.demoA { background:#ffdede; }
-.demoB { background:#f1f1f1; }
-</style>
-
+<style>.demoA,.demoB,h1{font-family:arial,sans-serif}code{background:#f9ff9f}.demoA,.demoB{font-size:18px;padding:20px;margin:10px 0}.demoA{background:#ffdede}.demoB{background:#f1f1f1}</style>
 <h1>IT WORKS!</h1>
 
 <!-- (A) CORE ENGINE -->

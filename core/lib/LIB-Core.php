@@ -127,7 +127,7 @@ class CoreBoxx {
 
     // (D2-2) SHOW HTML ERROR MESSAGE IN WEB MODE
     else { ?>
-    <div style="box-sizing:border-box;position:fixed;width:100vw;height:100vh;z-index:9999;background:#fff;color:#000;padding:30px;font-family:arial">
+    <div style="box-sizing:border-box;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;color:#000;padding:30px;font-family:arial">
       <h1 style="font-size:50px;padding:0;margin:0">(╯°□°)╯︵ ┻━┻</h1>
       <p style="font-size:30px;color:#ff4545">AN ERROR HAS OCCURED.</p>
       <?php if (ERR_SHOW) { ?>
