@@ -10,11 +10,8 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 
 
 ## QUICK START & DOCUMENTATION
-1) Create a dummy database for your project. If you do not require a database, edit `lib/CORE-go.php` and remove `$_CORE->load("DB")`.
-2) Edit `lib/CORE-config.php`. Change `HOST_BASE` (A) and the database settings (B) to your own.
-3) Access `index.php` in your browser, this will generate the necessary `.htaccess` and `api/.htaccess` files.
-4) Edit `index.php` and remove the marked section.
-5) Done! You now have a basic framework. Also consider using `html template` if you need a kickstart with the client-side. It is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
+1) Just access `index.php` in your browser to launch the installer. This will automatically create an empty project database and generate the necessary `.htaccess` and `api/.htaccess` files.
+2) Done! You now have a basic framework. Also consider using `html template` if you need a kickstart with the client-side. It is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
 
 Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
 <br><br>
