@@ -155,8 +155,8 @@ var cb = {
     var options = {};
     options.url = cbhost.api + `${opt.mod}/${opt.req}/`;
     if (opt.data) { options.data = opt.data; }
-    if (opt.loading) { options.loading = opt.loading; }
-    if (opt.debug) { options.debug = opt.debug; }
+    if (opt.loading!=undefined) { options.loading = opt.loading; }
+    if (opt.debug!=undefined) { options.debug = opt.debug; }
     if (opt.onerr) { options.onerr = opt.onerr; }
     if (opt.passmsg === undefined) { opt.passmsg = "OK"; }
     if (opt.nofail === undefined) { opt.nofail = false; }
@@ -200,8 +200,8 @@ var cb = {
     // (D1) INIT OPTIONS
     var options = {};
     options.url = cbhost.admin + `${opt.page}/`;
-    options.loading = opt.loading ? opt.loading : false;
-    if (opt.debug) { options.debug = opt.debug; }
+    if (opt.loading!=undefined) { options.loading = opt.loading; }
+    if (opt.debug!=undefined) { options.debug = opt.debug; }
     if (opt.onerr) { options.onerr = opt.onerr; }
     if (opt.data) {
       opt.data["ajax"] = 1;
