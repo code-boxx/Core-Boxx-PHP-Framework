@@ -48,7 +48,7 @@ var cb = {
     mbody.innerHTML = body;
 
     // SET FOOTER (NONE)
-    if (foot===undefined || foot===null) { foot = ""; }
+    if (foot===undefined || foot===null) { mfoot.innerHTML = ""; }
 
     // SET FOOTER (FUNCTION)
     else if (typeof foot == "function") {
