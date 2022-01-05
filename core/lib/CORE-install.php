@@ -93,12 +93,17 @@ if ($_IMODE == "C") { ?>
     .iSec{background:#f5f5f5;border:1px solid #dbdbdb;padding:20px;margin-bottom:20px}
     input,select{padding:10px}
     label{margin:10px 0;color:#7968ff}
-    input[type=submit]{background:#4e89f5;border:0;color:#fff}
+    #gobtn{background:#4e89f5;border:0;color:#fff}
+    #gobtn:disabled{background:#838383;color:#bbb}
     .danger{padding:20px;margin-bottom:30px;background:#5542f3;color:#fff;font-weight:700;font-size:20px;line-height:28px}
     .notes{font-size:17px;color:#585858;padding:10px 0}
     </style>
     <script>
     function install () {
+      // DISABLE GO BUTTON
+      var go = document.getElementById("gobtn");
+      go.disabled = true;
+
       /* @TODO - ENABLE IF GENERATING DEFAULT ADMIN USER
       // ADMIN PASSWORD
       var pass = document.getElementsByName("apass")[0],
@@ -132,7 +137,8 @@ if ($_IMODE == "C") { ?>
       .catch((err) => {
         alert(`Fetch error - ${err.message}`);
         console.error(err);
-      });
+      })
+      .finally(() => { go.disabled = false; });
       return false;
     }
 
@@ -222,7 +228,7 @@ if ($_IMODE == "C") { ?>
       </div>
       -->
 
-      <input type="submit" value="Go!"/>
+      <input id="gobtn" type="submit" value="Go!"/>
     </form>
   </body>
 </html>
