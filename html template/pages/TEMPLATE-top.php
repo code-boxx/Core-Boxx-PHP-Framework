@@ -11,12 +11,35 @@
     <!-- (A2) ZOOM IN, NO OUT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
 
-    <!-- (A3) BOOTSTRAP -->
+    <!-- (A3) WEB APP MANIFEST -->
+    <!-- https://web.dev/add-manifest/ -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- (A4) ANDROID/CHROME -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="white">
+
+    <!-- (A5) IOS APP ICON + MOBILE SAFARI -->
+    <link rel="apple-touch-icon" href="<?=HOST_ASSETS?>icon-512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hello World">
+
+    <!-- (A6) WINDOWS -->
+    <meta name="msapplication-TileImage" content="<?=HOST_ASSETS?>icon-512.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+
+    <!-- (A7) SERVICE WORKER -->
+    <script>if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("CB-worker.js");
+    }</script>
+
+    <!-- (A8) BOOTSTRAP -->
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="<?=HOST_ASSETS?>bootstrap.min.css">
     <script defer src="<?=HOST_ASSETS?>bootstrap.bundle.min.js"></script>
 
-    <!-- (A4) BURN-IN CSS -->
+    <!-- (A9) BURN-IN CSS -->
     <style>
     /* MATERIAL ICONS */
     /* https://fonts.google.com/icons */
@@ -29,11 +52,11 @@
     #cb-loading{width:100vw;height:100vh;position:fixed;top:0;left:0;z-index:999;background:rgba(0,0,0,.7)}#cb-loading .spinner-border{width:80px;height:80px}
     </style>
 
-    <!-- (A5) COMMON INTERFACE -->
+    <!-- (A10) COMMON INTERFACE -->
     <script>var cbhost={base:"<?=HOST_BASE?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"};</script>
     <script defer src="<?=HOST_ASSETS?>PAGE-cb.js"></script>
 
-    <!-- (A6) ADDITIONAL SCRIPTS -->
+    <!-- (A11) ADDITIONAL SCRIPTS -->
     <?php if (isset($_PMETA["load"])) { foreach ($_PMETA["load"] as $load) {
       if ($load[0]=="s") {
         printf("<script src='%s'%s></script>", $load[1], isset($load[2]) ? " ".$load[2] : "");
