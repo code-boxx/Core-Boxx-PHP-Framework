@@ -125,8 +125,8 @@ class Users extends Core {
     if ($user===false) { return false; }
 
     // (G3) SESSION START
-    $this->core->load("Session");
-    $this->core->Session->set($user);
+    $_SESS["user"] = $user;
+    $this->core->Session->create();
     return true;
   }
 
@@ -137,8 +137,7 @@ class Users extends Core {
     if (!isset($_SESS["user"])) { return true; }
 
     // (H2) END SESSION
-    $this->core->load("Session");
-    $this->core->Session->unset();
+    $this->core->Session->destroy();
     return true;
   }
 }

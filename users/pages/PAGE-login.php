@@ -23,8 +23,9 @@ function signin () {
 
 <!-- (B2) LOGIN FORM -->
 <form onsubmit="return signin();" id="loginform">
-  <h4>SIGN IN</h4>
+  <label for="email">Email</label>
   <input type="email" name="email" required/>
+  <label for="password">Password</label>
   <input type="password" name="password" required/>
   <input type="submit" value="Sign in"/>
 </form>

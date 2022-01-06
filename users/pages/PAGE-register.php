@@ -22,10 +22,12 @@ function register () {
 
 <!-- (B2) REGISTRATION FORM -->
 <form onsubmit="return register();" id="regform">
-  <h4>REGISTER</h4>
+  <label for="name">Name</label>
   <input type="text" name="name" required/>
+  <label for="email">Email</label>
   <input type="email" name="email" required/>
+  <label for="password">Password</label>
   <input type="password" name="password" required/>
-  <input type="submit" value="Sign in"/>
+  <input type="submit" value="Register"/>
 </form>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
