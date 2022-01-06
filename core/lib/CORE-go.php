@@ -12,8 +12,7 @@ set_exception_handler("_CORERR");
 // session_start(); // START SESSION IF YOU WANT
 $_CORE->load("DB");
 
-/* @CHANGE - ENABLE THIS SECTION IF USING USER MODULE FOR LOGIN
-$_CORE->load("Session");
-$_CORE->Session->start(); */
+// ENABLE IF USING USER MODULE
+// $_CORE->load("Session");
 
 // ADD MORE MODULES AS REQUIRED

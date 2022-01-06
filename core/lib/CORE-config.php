@@ -31,7 +31,7 @@ ini_set("display_errors", 1);
 ini_set("log_errors", 0);
 define("ERR_SHOW", true);
 
-/* @CHANGE - ENABLE THIS SECTION IF USING USER MODULE FOR LOGIN
+/* ENABLE THIS SECTION IF USING USER MODULE
 // (D) JSON WEB TOKEN
 define("JWT_SECRET", "YOUR-SECRET-KEY");
 define("JWT_ISSUER", "YOUR-NAME");
@@ -53,5 +53,8 @@ define("PATH_API", PATH_BASE . "api" . DIRECTORY_SEPARATOR);
 define("PATH_ASSETS", PATH_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("PATH_PAGES", PATH_BASE . "pages" . DIRECTORY_SEPARATOR);
 
-// (G) MISC
+// (G) EMAIL - ENABLE IF USING MAIL MODULE
+// define("EMAIL_FROM", "sys@core-boxx.com");
+
+// (H) MISC
 define("PAGE_PER", 20); // 20 entries per page by default
