@@ -53,7 +53,6 @@ class Forgot extends Core {
     $this->core->load("Mail");
     return $this->core->Mail->send([
       // @TODO - SET YOUR OWN EMAIL
-      "from" => "sys@site.com",
       "to" => $user["user_email"],
       "subject" => "Password Reset",
       "template" => PATH_PAGES . "MAIL-forgot-a.php",
@@ -115,7 +114,6 @@ class Forgot extends Core {
     $this->core->load("Mail");
     $pass = $this->core->Mail->send([
       // @TODO - SET YOUR OWN EMAIL
-      "from" => "sys@site.com",
       "to" => $user["user_email"],
       "subject" => "Password Reset",
       "template" => PATH_PAGES . "MAIL-forgot-b.php",

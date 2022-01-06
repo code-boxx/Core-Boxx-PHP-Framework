@@ -9,7 +9,7 @@ function forgot () {
   let data = new FormData(document.getElementById("forgotform"));
 
   // API REQUEST
-  fetch("<?=HOST_API?>forgot/request", { method:"post", body:data })
+  fetch("<?=HOST_API?>session/forgotA", { method:"post", body:data })
   .then(res => res.json()).then((res) => {
     if (res.status) { alert("Click on the link in your email."); }
     else { alert(res.message); }

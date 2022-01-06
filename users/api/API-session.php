@@ -19,4 +19,14 @@ switch ($_REQ) {
   case "register":
     $_CORE->autoAPI("Users", "register");
     break;
+
+  // (E) REQUEST PASSWORD RESET
+  case "forgotA":
+    $_CORE->autoAPI("Forgot", "request");
+    break;
+
+  // (F) PROCESS PASSWORD RESET
+  case "forgotB":
+    $_CORE->autoAPI("Forgot", "reset");
+    break;
 }
