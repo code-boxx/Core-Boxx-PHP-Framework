@@ -2,10 +2,10 @@
 class Mail extends Core {
   // (A) SEND HTML EMAIL
   // $mail : array, email to send
-  //  from : email string
   //  to : email string, or an array of email strings
   //  cc : email string, or an array of email strings (optional)
   //  bcc : email string, or an array of email strings (optional)
+  //  from : email string (optional)
   //  attach : file (string) or files (array) to attach (optional)
   //  subject : subject of email
   //  body : email body
@@ -13,9 +13,9 @@ class Mail extends Core {
   //  vars : array of variables for template
   function send ($mail) {
     // (A1) CHECKS
-    if (!isset($mail["from"]) || !isset($mail["to"]) || !isset($mail["subject"]) ||
+    if (!isset($mail["to"]) || !isset($mail["subject"]) ||
        (!isset($mail["body"]) && !isset($mail["template"]))) {
-      $this->error = "Please set from, to, subject, body (or template).";
+      $this->error = "Please set to, subject, body (or template).";
       return false;
     }
 
@@ -41,7 +41,7 @@ class Mail extends Core {
       "Content-type: " . (isset($mail["attach"])
         ? "multipart/mixed; boundary=\"$boundary\""
         : "text/html; charset=utf-8"),
-      "From: " . $mail["from"]
+      "From: " . (isset($mail["from"]) ? $mail["from"] : EMAIL_FROM)
     ];
     if (isset($mail["cc"])) {
       $headers[] = "Cc: " . (is_array($mail["cc"]) ? implode(", ", $mail["cc"]) : $mail["cc"]);
