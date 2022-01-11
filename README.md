@@ -19,8 +19,8 @@ Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framewor
 
 ## SCREENSHOTS (WITH HTML TEMPLATE)
 <p float="left">
-  <img width="350" style="inline-block" src="https://code-boxx.com/wp-content/uploads/2021/12/cb-html-1a.png">
-  <img width="350" style="inline-block" src="https://code-boxx.com/wp-content/uploads/2021/12/cb-html-2a.png">
+  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-1.jpg">
+  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-2.jpg">
 </p><br>
 
 
