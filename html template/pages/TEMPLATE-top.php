@@ -13,7 +13,7 @@
 
     <!-- (A3) WEB APP MANIFEST -->
     <!-- https://web.dev/add-manifest/ -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="<?=HOST_BASE?>manifest.json">
 
     <!-- (A4) ANDROID/CHROME -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -31,7 +31,7 @@
 
     <!-- (A7) SERVICE WORKER -->
     <script>if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("CB-worker.js");
+      navigator.serviceWorker.register("<?=HOST_BASE?>CB-worker.js", {scope: "./"});
     }</script>
 
     <!-- (A8) BOOTSTRAP -->
@@ -50,6 +50,8 @@
     #cb-loading{transition:opacity .3s}.cb-hide{opacity:0;visibility:hidden;height:0}.cb-pg-hide{display:none}
     /* NOW LOADING */
     #cb-loading{width:100vw;height:100vh;position:fixed;top:0;left:0;z-index:999;background:rgba(0,0,0,.7)}#cb-loading .spinner-border{width:80px;height:80px}
+    /* COMMON FORM */
+    .zebra .d-flex:nth-child(odd){background-color:#efefef}#reader video{height:400px}.pagination{background:#f0f8ff}
     </style>
 
     <!-- (A10) COMMON INTERFACE -->
@@ -88,7 +90,7 @@
     </div>
 
     <!-- (B3) MODAL DIALOG BOX -->
-    <div id="cb-modal" class="modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+    <div id="cb-modal" class="modal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
       <div class="modal-header">
         <h5 id="cb-modal-head" class="modal-title"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

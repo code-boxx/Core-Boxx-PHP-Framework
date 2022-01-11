@@ -12,9 +12,10 @@ define("I_APACHE", apache_get_version() !== false);
 // (A3) IMPORTANT FILES & FOLDERS
 define("I_BASE", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define("I_API", I_BASE . "api" . DIRECTORY_SEPARATOR);
+define("I_ASSETS", I_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("I_LIB", I_BASE . "lib" . DIRECTORY_SEPARATOR);
 define("I_ALL", [
-  I_BASE, I_API, I_LIB, I_LIB . "CORE-config.php", I_LIB . "INSTALL-index.foo"
+  I_BASE, I_API, I_ASSETS, I_LIB, I_LIB . "CORE-config.php", I_LIB . "INSTALL-index.foo"
   // @TODO - ADD MORE FILES IF NECESSARY
   // I_LIB . "SQL-project.sql"
 ]);
@@ -86,14 +87,13 @@ if ($_IMODE == "C") { ?>
   <head>
     <title>Installation</title>
     <style>
-    *{font-family: arial, sans-serif}
-    label,select,input{font-size:20px} h1{font-size:26px;margin:0 0 20px 0}
-    h1,label,select,input{box-sizing:border-box;display:block;width:100%}
-    form{max-width:500px;margin:20px auto 20px auto}
+    *{font-family: arial, sans-serif;box-sizing:border-box}
+    #iHead{display:flex;align-items:center;margin-bottom:20px}#iHead h1{margin:0}#iHead img{margin-right:20px}
+    form{max-width:500px;margin:20px auto}h2{margin:10px 0}
     .iSec{background:#f5f5f5;border:1px solid #dbdbdb;padding:20px;margin-bottom:20px}
-    input,select{padding:10px}
-    label{margin:10px 0;color:#7968ff}
-    #gobtn{background:#4e89f5;border:0;color:#fff}
+    select,input,label{font-size:16px;display:block;width:100%}select,input{padding:10px}
+    label{color:#88a8ff;font-weight:700;padding:10px 0}
+    #gobtn{background:#1a57c5;border:0;color:#fff}
     #gobtn:disabled{background:#838383;color:#bbb}
     .danger{padding:20px;margin-bottom:30px;background:#5542f3;color:#fff;font-weight:700;font-size:20px;line-height:28px}
     .notes{font-size:17px;color:#585858;padding:10px 0}
@@ -109,6 +109,7 @@ if ($_IMODE == "C") { ?>
       var pass = document.getElementsByName("apass")[0],
           cpass = document.getElementsByName("apassc")[0];
       if (pass.value != cpass.value) {
+        go.disabled = false;
         alert("Admin passwords do not match!");
         return false;
       } */
@@ -164,6 +165,11 @@ if ($_IMODE == "C") { ?>
     <?php } ?>
 
     <form id="iForm" onsubmit="return install()">
+      <div id="iHead">
+        <img src="assets/favicon.png"/>
+        <h1>CORE BOXX INSTALLATION</h1>
+      </div>
+
       <div class="iSec">
         <h1>HOST</h1>
         <label>HTTP or HTTPS</label>
