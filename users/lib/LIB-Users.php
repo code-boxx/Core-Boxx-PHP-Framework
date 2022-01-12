@@ -84,7 +84,7 @@ class Users extends Core {
     }
 
     // (E3) RESULTS
-    $users = $this->DB->fetchAll("SELECT * $sql", $data, "id");
+    $users = $this->DB->fetchAll("SELECT * $sql", $data, "user_id");
     return $page != null
      ? ["data" => $users, "page" => $pgn]
      : $users ;

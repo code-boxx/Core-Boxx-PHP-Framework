@@ -199,7 +199,7 @@ var cb = {
   load : (opt) => {
     // (D1) INIT OPTIONS
     var options = {};
-    options.url = cbhost.admin + `${opt.page}/`;
+    options.url = cbhost.base + `${opt.page}/`;
     if (opt.loading!=undefined) { options.loading = opt.loading; }
     if (opt.debug!=undefined) { options.debug = opt.debug; }
     if (opt.onerr) { options.onerr = opt.onerr; }
@@ -210,7 +210,7 @@ var cb = {
 
     // (D2) ON AJAX LOAD
     options.onpass = (res) => {
-      if (res=="SE") { location.href = cbhost.base + "login/"; }
+      if (res=="E") { location.href = cbhost.base + "login/"; }
       else {
         document.getElementById(opt.target).innerHTML = res;
         if (opt.onload) { opt.onload(); }
