@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h1 class="mb-3">COMMON JS &amp; HTML INTERFACE</h1>
+<h3 class="mb-3">COMMON JS &amp; HTML INTERFACE</h3>
 
 <!-- (A) PAGE LOAD SPINNER -->
 <div class="bg-primary text-white p-3">
@@ -9,7 +9,7 @@
     <li>Hide - cb.loading(0)</li>
   </ul>
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
   <button onclick="cb.loading(1)" class="btn btn-danger">Show</button>
 </div>
 
@@ -17,7 +17,7 @@
 <div class="bg-primary text-white p-3">
   <strong>Toast</strong> - cb.toast(STATUS, "TITLE", "MESSAGE")
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
   <button onclick="cb.toast(1, 'TITLE', 'MESSAGE')" class="btn btn-danger">OK Toast</button>
   <button onclick="cb.toast(0, 'TITLE', 'MESSAGE')" class="btn btn-danger">FAIL Toast</button>
 </div>
@@ -26,7 +26,7 @@
 <div class="bg-primary text-white p-3">
   <strong>Modal</strong> - cb.modal("TITLE", "MESSAGE", "OPTIONAL FOOT")
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
   <button onclick="cb.modal('TITLE', 'MESSAGE', 'OPTIONAL FOOT')" class="btn btn-danger">Modal</button>
 </div>
 
@@ -34,7 +34,7 @@
 <div class="bg-primary text-white p-3">
   <strong>API Calls</strong>
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
 <pre>cb.api({
   mod : "MODULE",
   req : "REQUEST",
@@ -53,7 +53,7 @@
 <div class="bg-primary text-white p-3">
   <strong>AJAX Load Content</strong>
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
 <pre>cb.load({
   page : "PAGE", // http://site.com/PAGE/
   target : "cb-page-2", // target html element to load content into
@@ -70,7 +70,7 @@
   <strong>Page</strong> - cb.page(1 TO 5).
   Use this to compliment cb.load().
 </div>
-<div class="bg-light border p-3 mb-3">
+<div class="bg-white border p-3 mb-3">
 <pre>cb.load({
   page : "MYPAGE",
   target : "cb-page-2",

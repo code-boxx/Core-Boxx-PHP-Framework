@@ -66,7 +66,7 @@
     }}
     if (isset($_PMETA)) { unset($_PMETA); } ?>
   </head>
-  <body>
+  <body class="bg-light">
     <!-- (B) COMMON SHARED INTERFACE -->
     <!-- (B1) NOW LOADING -->
     <div id="cb-loading" class="d-flex justify-content-center align-items-center cb-hide">
@@ -120,8 +120,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="<?=HOST_BASE?>section">
-              Section
+            <a class="nav-link" aria-current="page" href="<?=HOST_BASE?>users">
+              Users
             </a>
           </li>
         </ul>

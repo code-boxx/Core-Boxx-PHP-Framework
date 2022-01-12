@@ -27,4 +27,9 @@
   <code>$_PAGE</code> - Current physical file.
 </div>
 <div class="demoB"><?=$_PAGE?></div>
+
+<!-- (E) HTML MODULE LINK -->
+<div class="demoA">
+  This is ugly? Check the <a href="https://code-boxx.com/core-boxx-html-javascript-template/" target="_blank">Core Boxx HTML template</a>.
+</div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
