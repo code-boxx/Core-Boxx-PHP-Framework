@@ -274,7 +274,7 @@ if ($_IMODE=="D") {
   } */
 
   // (D5) SETTINGS TO UPDATE
-  $hbase = $_POST["https"]=="1" ? "https://" : "http://" . $_POST["host"];
+  $hbase = ($_POST["https"]=="1" ? "https://" : "http://") . $_POST["host"];
   $hbase = rtrim($hbase, "/") . "/";
   $replace = [
     "HOST_BASE" => $hbase,
