@@ -7,6 +7,8 @@
     <meta charset="utf-8">
     <meta name="description" content="<?=isset($_PMETA["desc"])?$_PMETA["desc"]:"Core Boxx"?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <!-- @TODO NOINDEX?
+    <meta name="robots" content="noindex"> -->
     <link rel="icon" href="<?=HOST_ASSETS?>favicon.png" type="image/png">
 
     <!-- (A2) ANDROID/CHROME -->
@@ -23,6 +25,8 @@
     <meta name="msapplication-TileImage" content="<?=HOST_ASSETS?>icon-512.png">
     <meta name="msapplication-TileColor" content="#ffffff">
 
+    <?php /* @TODO - ENABLE PWA ONLY IF SIGNED IN?
+    if (isset($_SESS["user"])) {} */ ?>
     <!-- (A5) WEB APP MANIFEST -->
     <!-- https://web.dev/add-manifest/ -->
     <link rel="manifest" href="<?=HOST_BASE?>manifest.json">
@@ -147,7 +151,7 @@
           <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">Forgot Password</a></li>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>register">Register</a></li>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">My Account</a></li>
-          <li><div class="dropdown-item" onclick="">Logout</div></li>
+          <li><div class="dropdown-item" onclick="cb.bye()">Logout</div></li>
         </ul>
       </div>
     </div></nav>

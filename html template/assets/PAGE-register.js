@@ -4,9 +4,16 @@ function register () {
       cpass = document.getElementById("reg-cpass").value;
   if (pass!=cpass) {
     cb.modal("Opps", "Passwords do not match!");
+    return false;
   }
 
-  // (B) CALL API
+  // (B) PASSWORD STRENGTH
+  if (!cb.checker(pass)) {
+    cb.modal("Opps", "Password must be at least 8 characters alphanumeric.");
+    return false;
+  }
+
+  // (C) CALL API
   cb.api({
     mod : "session", req : "register",
     data : {
