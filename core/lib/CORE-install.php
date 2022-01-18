@@ -112,6 +112,13 @@ if ($_IMODE == "C") { ?>
         go.disabled = false;
         alert("Admin passwords do not match!");
         return false;
+      }
+
+      // PASSWORD STRENGTH - AT LEAST 8 CHARACTERS ALPHANUMERIC
+      if (!/^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/i.test(pass.value)) {
+        go.disabled = false;
+        alert("Password must be at least 8 characters alphanumeric");
+        return false;
       } */
 
       // FORM DATA
@@ -166,6 +173,7 @@ if ($_IMODE == "C") { ?>
 
     <form id="iForm" onsubmit="return install()">
       <div id="iHead">
+        <!-- @TODO - CHANGE TO YOUR OWN PROJECT NAME -->
         <img src="assets/favicon.png"/>
         <h1>CORE BOXX INSTALLATION</h1>
       </div>
@@ -218,6 +226,13 @@ if ($_IMODE == "C") { ?>
         <label>Issuer</label>
         <input type="text" name="jwyiss" required value="<?=$_SERVER["HTTP_HOST"]?>"/>
         <div class="notes">Your company name or domain name.</div>
+      </div> -->
+
+      <!-- @TODO - ENABLE IF USING MAIL MODULE
+      <div class="iSec">
+        <h1>EMAIL</h1>
+        <label>Sent From</label>
+        <input type="text" name="mailfrom" value="sys@site.com" required/>
       </div> -->
 
       <!-- @TODO - ENABLE IF GENERATING DEFAULT ADMIN USER
@@ -287,6 +302,8 @@ if ($_IMODE=="D") {
     /* @TODO - ENABLE IF USING JWT USER LOGIN
     "JWT_SECRET" => $_POST["jwtkey"],
     "JWT_ISSUER" => $_POST["jwyiss"] */
+    // @TODO - ENABLE IF USING MAIL MODULE
+    // "EMAIL_FROM" => $_POST["mailfrom"]
   ];
   unset($_POST); unset($hbase);
 
