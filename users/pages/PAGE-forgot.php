@@ -1,8 +1,11 @@
-<?php require PATH_PAGES . "TEMPLATE-top.php";
+<?php
+// (A) ALREADY SIGNED IN
+if (isset($_SESS["user"])) { $_CORE->redirect(); }
 
-// (A) PART 1 - ENTER EMAIL
+// (B) PART 1 - ENTER EMAIL
+require PATH_PAGES . "TEMPLATE-top.php";
 if (!isset($_GET["i"]) && !isset($_GET["h"])) { ?>
-<!-- (A1) JS -->
+<!-- (B1) JS -->
 <script>
 function forgot () {
   // FORM DATA
@@ -18,14 +21,14 @@ function forgot () {
 }
 </script>
 
-<!-- (A2) REQEST FORM -->
+<!-- (B2) REQUEST FORM -->
 <form onsubmit="return forgot()" id="forgotform">
   <input type="email" name="email" required/>
   <input type="submit" value="Reset Request"/>
 </form>
 <?php }
 
-// (B) PART 2 - VALIDATION
+// (C) PART 2 - VALIDATION
 else {
 $_CORE->load("Forgot");
 $pass = $_CORE->Forgot->reset($_GET["i"], $_GET["h"]); ?>
