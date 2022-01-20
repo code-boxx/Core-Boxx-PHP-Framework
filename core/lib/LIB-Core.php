@@ -173,14 +173,14 @@ class CoreBoxx {
     return $page;
   }
 
-  // (F) REDIRECT
+  // (E3) REDIRECT
   function redirect ($page="", $url=HOST_BASE) {
     header("Location: $url$page");
     exit();
   }
 }
 
-// (G) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
+// (F) ALL LIBRARIES SHOULD EXTEND THIS CORE CLASS
 class Core {
   function __construct ($core) {
     $this->core =& $core; // Link to core

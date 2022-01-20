@@ -15,9 +15,9 @@ define("I_ASSETS", I_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("I_LIB", I_BASE . "lib" . DIRECTORY_SEPARATOR);
 define("I_PAGES", I_BASE . "pages" . DIRECTORY_SEPARATOR);
 
-// (A4) PROJECT CODE
+// (A4) PROJECT VERSION CODE
 // @TODO - SET YOUR OWN
-define("I_CODE", "CB");
+define("I_CODE", "CB_VER");
 
 // (A5) SQL FILES - FROM OLDEST TO NEWEST VERSIONS
 // WILL GET VERSION FROM DATABSE & PROGRESSIVE UPDATE HENCEFORTH
@@ -38,8 +38,8 @@ function import ($pdo, $from=0) {
   }
 
   // (A6-2) UPDATE VERSION
-  $stmt = $pdo->prepare("REPLACE INTO `cb_version` (`name`, `version`) VALUES (?, ?)");
-  $stmt->execute([I_CODE, count(I_DB_SQL)]);
+  $stmt = $pdo->prepare("REPLACE INTO `options` (`option_name`, `option_value`, `option_group`) VALUES (?,?,?)");
+  $stmt->execute([I_CODE, count(I_DB_SQL), 0]);
 }
 
 /* (PHASE B) UPGRADE OR INSTALL NEW? */
@@ -53,8 +53,7 @@ if ($_PHASE == "B") {
     $_CORE->load("DB");
 
     // (B1-2) CHECK VERSION + AUTO PATCH
-    // @TODO - CHANGE TO YOUR OWN NAME & VERSION
-    $ver = $_CORE->DB->fetchCol("SELECT `version` FROM `cb_version` WHERE `name`=?", [I_CODE]);
+    $ver = $_CORE->DB->fetchCol("SELECT `option_value` FROM `options` WHERE `option_name`=?", [I_CODE]);
     $newest = count(I_DB_SQL);
     if ($ver < $newest) { import($_CORE->DB->pdo, $ver); }
 
@@ -277,7 +276,7 @@ if ($_PHASE == "D") {
       <div class="iSec">
         <h1>EMAIL</h1>
         <label>Sent From</label>
-        <input type="text" name="mailfrom" value="sys@site.com" required/>
+        <input type="email" name="mailfrom" value="sys@site.com" required/>
       </div> -->
 
       <!-- @TODO - ENABLE IF GENERATING DEFAULT ADMIN USER
@@ -330,7 +329,16 @@ if ($_PHASE == "E") {
     exit("Error creating admin user - " . $ex->getMessage());
   } */
 
-  // (E5) SETTINGS TO UPDATE
+  /* @TODO - ENABLE IF USING MAIL MODULE
+  // (E5) EMAIL FROM
+  try {
+    $stmt = $pdo->prepare("UPDATE `options` SET `option_value`=? WHERE `option_name`='EMAIL_FROM'");
+    $stmt->execute([$_POST["mailfrom"]]);
+  } catch (Exception $ex) {
+    exit("Error creating admin user - " . $ex->getMessage());
+  } */
+
+  // (E6) SETTINGS TO UPDATE
   $hbase = ($_POST["https"]=="1" ? "https://" : "http://") . $_POST["host"];
   $hbase = rtrim($hbase, "/") . "/";
   $replace = [
@@ -344,17 +352,15 @@ if ($_PHASE == "E") {
     /* @TODO - ENABLE IF USING JWT USER LOGIN
     "JWT_SECRET" => $_POST["jwtkey"],
     "JWT_ISSUER" => $_POST["jwyiss"] */
-    // @TODO - ENABLE IF USING MAIL MODULE
-    // "EMAIL_FROM" => $_POST["mailfrom"]
   ];
   unset($_POST); unset($hbase);
 
-  // (E6) BACKUP LIB/CORE-CONFIG.PHP
+  // (E7) BACKUP LIB/CORE-CONFIG.PHP
   if (!copy(I_LIB . "CORE-config.php", I_LIB . "CORE-config.bak")) {
     exit("Failed to backup config file - " . I_LIB . "CORE-config.bak");
   }
 
-  // (E7) UPDATE LIB/CORE-CONFIG.PHP
+  // (E8) UPDATE LIB/CORE-CONFIG.PHP
   $go = file(I_LIB . "CORE-config.php") or exit("Cannot read". I_LIB ."CORE-config.php");
   foreach ($go as $j=>$line) { foreach ($replace as $k=>$v) {
     if (strpos($line, "\"$k\"") !== false) {
@@ -371,7 +377,7 @@ if ($_PHASE == "E") {
   }
   unset($go);
 
-  // (E8) GENERATE HTACCESS
+  // (E9) ALMOST DONE...
   require I_LIB . "CORE-go.php";
   $_PHASE = "F";
 }

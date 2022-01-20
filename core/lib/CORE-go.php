@@ -12,7 +12,10 @@ set_exception_handler("_CORERR");
 // session_start(); // START SESSION IF YOU WANT
 $_CORE->load("DB");
 
-// ENABLE IF USING USER MODULE
+// @TODO - ENABLE IF USING DATABASE OPTIONS
+// $_CORE->load("Options");
+
+// @TODO - ENABLE IF USING USER MODULE
 // $_CORE->load("Session");
 
 // ADD MORE MODULES AS REQUIRED
