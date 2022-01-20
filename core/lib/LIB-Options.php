@@ -3,15 +3,18 @@ class Options extends Core {
   // (A) CONSTRUCTOR - LOAD SYSTEM OPTIONS
   function __construct ($core) {
     parent::__construct($core);
-    foreach ($this->get(1) as $k=>$v) { define($k, $v); }
+    $options = $this->DB->fetchKV(
+      "SELECT * FROM `options` WHERE `option_group`=?",
+      [1], "option_name", "option_value"
+    );
+    foreach ($options as $k=>$v) { define($k, $v); }
   }
 
   // (B) GET OPTIONS
   //  $group : option group
-  function get ($group=1) {
-    return $this->DB->fetchKV(
-      "SELECT * FROM `options` WHERE `option_group`=?",
-      [$group], "option_name", "option_value"
+  function getAll ($group=1) {
+    return $this->DB->fetchAll(
+      "SELECT * FROM `options` WHERE `option_group`=?", [$group]
     );
   }
 
