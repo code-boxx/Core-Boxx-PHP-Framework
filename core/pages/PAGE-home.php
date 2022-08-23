@@ -1,35 +1,38 @@
-<?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<style>.demoA,.demoB,h1{font-family:arial,sans-serif}code{background:#f9ff9f}.demoA,.demoB{font-size:18px;padding:20px;margin:10px 0}.demoA{background:#ffdede}.demoB{background:#f1f1f1}</style>
-<h1>IT WORKS!</h1>
+<?php
+$_PMETA = [
+  "title" => "Core Boxx Demo Page",
+  "desription" => "Optional Description",
+  /* OPTIONAL - LOAD EXTRA SCRIPTS
+  "load" => [
+    ["s", "some.js"],
+    ["s", "somemore.js", "defer"],
+    ["c", "some.css"],
+  ]
+  */
+];
+require PATH_PAGES . "TEMPLATE-top.php"; ?>
+<h3>IT WORKS!</h3>
+<div class="mb-3">
+  Here's a quick walkthrough of PHP variables that may be useful in your pages.
+</div>
 
 <!-- (A) CORE ENGINE -->
-<div class="demoA">
-  Every page has <code>$_CORE</code> - The core engine.
+<div class="bg-primary text-white p-3">
+  <strong>$_CORE</strong> - The core engine.
 </div>
-<div class="demoB"><?php print_r($_CORE); ?></div>
+<div class="bg-white border p-3 mb-3"><?php print_r($_CORE); ?></div>
 
 <!-- (B) URL PATH -->
-<div class="demoA">
-  <code>$_PATH</code> - The current relevant path.
-  You can use this to resolve things like pagination <code>/page/123</code>,
-  or maybe a selected category <code>/products/toys</code>.
+<div class="bg-primary text-white p-3">
+  <strong>$_PATH</strong> - The current path.
+  You can use this to resolve things like pagination <strong>/page/123</strong>,
+  or maybe a selected category <strong>/products/toys</strong>.
 </div>
-<div class="demoB"><?php echo $_PATH; ?></div>
+<div class="bg-white border p-3 mb-3"><?php echo $_PATH; ?></div>
 
 <!-- (C) SESSION -->
-<div class="demoA">
-  <code>$_SESS</code> - Something like the default PHP <code>$_SESSION</code>.
+<div class="bg-primary text-white p-3">
+  <strong>$_SESS</strong> - Something like the default PHP <strong>$_SESSION</strong>.
 </div>
-<div class="demoB"><?php print_r($_SESS); ?></div>
-
-<!-- (D) PAGE -->
-<div class="demoA">
-  <code>$_PAGE</code> - Current physical file.
-</div>
-<div class="demoB"><?=$_PAGE?></div>
-
-<!-- (E) HTML MODULE LINK -->
-<div class="demoA">
-  This is ugly? Check the <a href="https://code-boxx.com/core-boxx-html-javascript-template/" target="_blank">Core Boxx HTML template</a>.
-</div>
+<div class="bg-white border p-3 mb-3"><?php print_r($_SESS); ?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

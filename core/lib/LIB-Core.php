@@ -46,16 +46,12 @@ class CoreBoxx {
     else {
       foreach ($params as $p) {
         // POST OR GET HAS EXACT PARAMETER MATCH
-        if (isset($target[$p->name])) {
-          $evil .= "\$_". $mode ."[\"". $p->name ."\"],";
-        }
+        if (isset($target[$p->name])) { $evil .= "\$_". $mode ."[\"". $p->name ."\"],"; }
 
         // USE DEFAULT VALUE
         else if ($p->isDefaultValueAvailable()) {
           $val = $p->getDefaultValue();
-          $evil .= is_string($val) ? "\"$val\"," : (
-            $val===null ? "null," : "$val,"
-          );
+          $evil .= is_string($val) ? "\"$val\"," : ($val===null ? "null," : "$val,");
         }
 
         // NULL IF ALL ELSE FAILS
@@ -108,10 +104,8 @@ class CoreBoxx {
       else { $msg = $this->error; }
     }
     echo json_encode([
-      "status" => $status,
-      "message" => $msg,
-      "data" => $data,
-      "more" => $more
+      "status" => $status, "message" => $msg,
+      "data" => $data, "more" => $more
     ]);
     if ($exit) { exit(); }
   }
@@ -122,11 +116,14 @@ class CoreBoxx {
     if (defined("API_MODE")) {
       $this->respond(0,
       ERR_SHOW ? $ex->getMessage() : "OPPS! An error has occured.",
-      ERR_SHOW ? ["code" => $ex->getCode(), "file" => $ex->getFile(), "line" => $ex->getLine() ] : null);
+      ERR_SHOW ? [
+        "code" => $ex->getCode(), "file" => $ex->getFile(),
+        "line" => $ex->getLine(), "trace" => $ex->getTraceAsString()
+      ] : null);
     }
 
     // (D2-2) SHOW HTML ERROR MESSAGE IN WEB MODE
-    else { ?>
+    else if (defined("WEB_MODE")) { ?>
     <div style="box-sizing:border-box;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;color:#000;padding:30px;font-family:arial">
       <h1 style="font-size:50px;padding:0;margin:0">(╯°□°)╯︵ ┻━┻</h1>
       <p style="font-size:30px;color:#ff4545">AN ERROR HAS OCCURED.</p>
@@ -141,6 +138,17 @@ class CoreBoxx {
       <?php } ?>
     </div>
     <?php }
+
+    // (D2-3) OUTPUT PLAIN TEXT OTHERWISE
+    else {
+      echo "An error has occured.";
+      if (ERR_SHOW) {
+        echo implode(" ", [
+          "Code : ", $ex->getCode(), "File : ", $ex->getFile(),
+          "Line : ", $ex->getLine(), "Trace : ", $ex->getTraceAsString()
+        ]);
+      }
+    }
   }
 
   // (E) OTHER CONVENIENCE
@@ -188,3 +196,8 @@ class Core {
     if ($core->loaded("DB")) { $this->DB =& $core->DB; } // Link to database module
   }
 }
+
+// (G) CORE OBJECT + GLOBAL ERROR HANDLING
+$_CORE = new CoreBoxx();
+function _CORERR ($ex) { global $_CORE; $_CORE->ouch($ex); }
+set_exception_handler("_CORERR");

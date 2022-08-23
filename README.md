@@ -3,21 +3,28 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 <br><br>
 
 
+## WORk-IN-PROGRESS
+23 AUG 2022 - THIS PROJECT IS CURRENTY UNDER MAJOR REVAMP. ONLY THE CORE IS UPDATED. WILL WORK ON THE MODULE SLOWLY.
+<br><br>
+
+
 ## NOTES ON THIS REPO
 1) Too lazy to create a repo for every module, so I have combined the core engine and all modules into this one.
 2) To get started, you only need to work with the `core` folder - The rest are optional modules.
-<br><br>
+
+
+## REQUIREMENTS & INSTALLATION
+1) Developed and tested on a WAMP server.
+2) Just access `http://your-site.com/` in your browser to launch the installer. This will automatically create an empty project database and generate the necessary `.htaccess` file.
 
 
 ## QUICK START & DOCUMENTATION
-1) Just access `index.php` in your browser to launch the installer. This will automatically create an empty project database and generate the necessary `.htaccess` and `api/.htaccess` files.
-2) Done! You now have a basic framework. Also consider using `html template` if you need a kickstart with the client-side. It is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
-
-Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
+1) The HTML is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
+2) Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
 <br><br>
 
 
-## SCREENSHOTS (WITH HTML TEMPLATE)
+## SCREENSHOTS
 <p float="left">
   <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-1.jpg">
   <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-2.jpg">
@@ -44,4 +51,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
