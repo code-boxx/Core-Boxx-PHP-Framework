@@ -50,10 +50,7 @@ class Users extends Core {
       return false;
     }
 
-    // (C3) ADD YOUR OWN CHECKS
-    // USER ROLE?
-
-    // (C4) SAVE
+    // (C3) SAVE
     $this->save($name, $email, $password);
     return true;
   }

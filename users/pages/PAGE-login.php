@@ -3,30 +3,38 @@
 if (isset($_SESS["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
+$_PMETA = ["load" => [
+  ["s", HOST_ASSETS."PAGE-login.js"]
+]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<!-- (B1) JAVASCRIPT -->
-<script>
-function signin () {
-  // FORM DATA
-  let data = new FormData(document.getElementById("loginform"));
+<div class="row justify-content-center">
+<div class="col-md-10 bg-white border">
+  <div class="row">
+    <div class="col-4" style="background:url('<?=HOST_ASSETS?>book.jpg') center"></div>
+    <form class="col-8 p-5" onsubmit="return login();">
+      <img src="<?=HOST_ASSETS?>favicon.png" class="p-1 bg-primary rounded-circle">
+      <h3 class="my-4">PLEASE SIGN IN</h3>
 
-  // CALL API
-  fetch("<?=HOST_API?>session/login", {
-    method:"post", body:data
-  }).then(res => res.json()).then((res) => {
-    if (res.status) { location.href = "<?=HOST_BASE?>"; }
-    else { alert(res.message); }
-  });
-  return false;
-}
-</script>
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text mi">email</span>
+        </div>
+        <input type="email" id="login-email" class="form-control" placeholder="Email" required>
+      </div>
 
-<!-- (B2) LOGIN FORM -->
-<form onsubmit="return signin();" id="loginform">
-  <label for="email">Email</label>
-  <input type="email" name="email" required/>
-  <label for="password">Password</label>
-  <input type="password" name="password" required/>
-  <input type="submit" value="Sign in"/>
-</form>
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text mi">lock</span>
+        </div>
+        <input type="password" id="login-pass" class="form-control" placeholder="Password" required>
+      </div>
+
+      <input type="submit" class="btn btn-primary py-2 mb-4" value="Sign in">
+      <div>
+        <a href="<?=HOST_BASE?>forgot">Forgot Password</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
