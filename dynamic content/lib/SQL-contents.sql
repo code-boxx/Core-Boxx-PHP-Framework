@@ -4,7 +4,7 @@ CREATE TABLE `contents` (
   `content_text` text NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_modified` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `contents` (`content_id`, `content_title`, `content_text`) VALUES
 (1, 'It Works!', 'This piece of content is loaded from the <strong>database</strong>.');
