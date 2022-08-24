@@ -2,23 +2,38 @@
 <!-- (A) JS -->
 <script>
 function otp () {
-  // FORM DATA
-  var data = new FormData(document.getElementById("otpform"));
-
-  // API CALL
-  fetch("<?=HOST_API?>otp/challenge", { method:"post", body:data })
-  .then(res => res.json()).then((res) => {
-    if (res.status) { alert("VERIFIED - DO SOMETHING"); }
-    else { alert(res.message); }
+  cb.api({
+    mod: "otp", req : "challenge", data : {
+      "email" : document.getElementById("oemail").value,
+      "pass" : document.getElementById("opass").value
+    },
+    passmsg : false,
+    onpass : () => {
+      cb.modal("Verified", "@TODO - Proceed to do something.");
+    }
   });
   return false;
 }
 </script>
 
-<h1>Verify OTP</h1>
-<form onsubmit="return otp()" id="otpform">
-  <input type="email" name="email" required/>
-  <input type="password" name="pass" required/>
-  <input type="submit" value="Go"/>
+<!-- (B) VERIFY OTP FORM -->
+<form class="bg-white border p-4" onsubmit="return otp()">
+  <h3 class="mb-4">VERIFY OTP</h3>
+
+  <div class="input-group mb-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text mi">email</span>
+    </div>
+    <input type="email" id="oemail" class="form-control" placeholder="Email" required>
+  </div>
+
+  <div class="input-group mb-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text mi">password</span>
+    </div>
+    <input type="password" id="opass" class="form-control" placeholder="Password" required>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Go">
 </form>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

@@ -2,22 +2,30 @@
 <!-- (A) JS -->
 <script>
 function otp () {
-  // FORM DATA
-  var data = new FormData(document.getElementById("otpform"));
-
-  // API CALL
-  fetch("<?=HOST_API?>otp/generate", { method:"post", body:data })
-  .then(res => res.json()).then((res) => {
-    if (res.status) { alert("Check your email"); }
-    else { alert(res.message); }
+  cb.api({
+    mod: "otp", req : "generate", data : {
+      "email" : document.getElementById("oemail").value
+    },
+    passmsg : false,
+    onpass : () => {
+      cb.modal("Success", "Please check your email");
+    }
   });
   return false;
 }
 </script>
 
-<h1>Request OTP</h1>
-<form onsubmit="return otp()" id="otpform">
-  <input type="email" name="email" required/>
-  <input type="submit" value="Go"/>
+<!-- (B) REQUEST OTP FORM -->
+<form class="bg-white border p-4" onsubmit="return otp()">
+  <h3 class="mb-4">REQUEST FOR OTP</h3>
+
+  <div class="input-group mb-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text mi">email</span>
+    </div>
+    <input type="email" id="oemail" class="form-control" placeholder="Email" required>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Go">
 </form>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
