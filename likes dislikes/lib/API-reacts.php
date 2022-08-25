@@ -12,6 +12,8 @@ switch ($_REQ) {
 
   // (C) SAVE REACTION
   case "save":
-    $_CORE->autoAPI("Reacts", "save");
+    if ($_CORE->autoCall("Reacts", "save")) {
+      $_CORE->respond(1, "OK", $_CORE->autoCall("Reacts", "get"));
+    } else { $_CORE->respond(0); }
     break;
 }
