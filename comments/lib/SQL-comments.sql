@@ -4,7 +4,7 @@ CREATE TABLE `comments` (
   `id` bigint(20) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
   `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),

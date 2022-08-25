@@ -3,19 +3,16 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 <br><br>
 
 
-## WORK-IN-PROGRESS
-23 AUG 2022 - THIS PROJECT IS CURRENTLY UNDER MAJOR REVAMP. ONLY THE CORE IS UPDATED. WILL WORK ON THE REST OF THE MODULES AS TIME PERMITS.
-<br><br>
-
-
 ## NOTES ON THIS REPO
 1) Too lazy to create a repo for every module, so I have combined the core engine and all modules into this one.
 2) To get started, you only need to work with the `core` folder - The rest are optional modules.
+<br><br>
 
 
 ## REQUIREMENTS & INSTALLATION
 1) Developed and tested on a WAMP server.
 2) Just access `http://your-site.com/` in your browser to launch the installer. This will automatically create an empty project database and generate the necessary `.htaccess` file.
+<br><br>
 
 
 ## QUICK START & DOCUMENTATION
