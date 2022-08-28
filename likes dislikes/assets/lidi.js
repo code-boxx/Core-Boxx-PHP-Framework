@@ -60,9 +60,18 @@ function lidi (inst) {
     // (D3) TRIGGER CHANGE
     inst.change(inst.status);
   };
-  inst.hUp.onclick = () => { inst.updown(true); };
-  inst.hDown.onclick = () => { inst.updown(false); };
 
-  // (E) DONE
+  // (E) ENABLE/DISABLE
+  inst.enable = () => {
+    inst.hUp.onclick = () => { inst.updown(true); };
+    inst.hDown.onclick = () => { inst.updown(false); };
+  };
+  inst.disable = () => {
+    inst.hUp.onclick = "";
+    inst.hDown.onclick = "";
+  };
+  inst.enable();
+
+  // (F) DONE
   return inst;
 }
