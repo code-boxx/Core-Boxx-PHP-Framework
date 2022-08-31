@@ -12,7 +12,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   <div class="row">
     <div class="col-4" style="background:url('<?=HOST_ASSETS?>book.jpg') center"></div>
     <form class="col-8 p-5" onsubmit="return login();">
-      <img src="<?=HOST_ASSETS?>favicon.png" class="p-1 bg-primary rounded-circle">
+      <img src="<?=HOST_ASSETS?>favicon.png" class="p-2 rounded-circle" style="background:#f1f1f1">
       <h3 class="my-4">PLEASE SIGN IN</h3>
 
       <div class="input-group mb-4">

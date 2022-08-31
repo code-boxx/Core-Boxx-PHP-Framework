@@ -20,12 +20,17 @@ switch ($_REQ) {
     $_CORE->autoAPI("Users", "register");
     break;
 
-  // (E) REQUEST PASSWORD RESET
+  // (E) UPDATE MY ACCOUNT
+  case "update":
+    $_CORE->autoAPI("Users", "update");
+    break;
+
+  // (F) REQUEST PASSWORD RESET
   case "forgotA":
     $_CORE->autoAPI("Forgot", "request");
     break;
 
-  // (F) PROCESS PASSWORD RESET
+  // (G) PROCESS PASSWORD RESET
   case "forgotB":
     $_CORE->autoAPI("Forgot", "reset");
     break;
