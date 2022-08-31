@@ -28,15 +28,23 @@ define("PATH_BASE", dirname(PATH_LIB) . DIRECTORY_SEPARATOR);
 define("PATH_ASSETS", PATH_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("PATH_PAGES", PATH_BASE . "pages" . DIRECTORY_SEPARATOR);
 
-// (E) ERROR HANDLING
-/* (E1) RECOMMENDED FOR LIVE SERVER
+/* ENABLE THIS SECTION IF USING USER MODULE
+// (E) JSON WEB TOKEN
+define("JWT_ALGO", "HS256");
+define("JWT_EXPIRE", 0);
+define("JWT_ISSUER", "YOUR-NAME");
+define("JWT_SECRET", "YOUR-SECRET-KEY");
+*/
+
+// (F) ERROR HANDLING
+/* (F1) RECOMMENDED FOR LIVE SERVER
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 0);
 ini_set("log_errors", 1);
 ini_set("error_log", "PATH/error.log");
 define("ERR_SHOW", false); */
 
-// (E2) RECOMMENDED FOR DEVELOPMENT SERVER
+// (F2) RECOMMENDED FOR DEVELOPMENT SERVER
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 1);
 ini_set("log_errors", 0);

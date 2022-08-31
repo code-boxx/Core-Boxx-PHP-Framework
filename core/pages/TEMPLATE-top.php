@@ -40,7 +40,7 @@
     .mi-big{font-size:32px}.mi-smol{font-size:18px}
     #cb-loading{transition:opacity .3s}.cb-hide{opacity:0;visibility:hidden;height:0}.cb-pg-hide{display:none}
     #cb-loading{width:100vw;height:100vh;position:fixed;top:0;left:0;z-index:999;background:rgba(0,0,0,.7)}#cb-loading .spinner-border{width:80px;height:80px}
-    .zebra .d-flex:nth-child(odd){background-color:#efefef}#reader video{height:400px}.pagination{background:#f0f8ff}
+    .head{background:#ddd}.zebra .d-flex{background:#fff;margin-bottom:10px}.zebra .d-flex:nth-child(odd){background-color:#f1f1f1}.pagination{border:1px solid #d0e8ff;background:#f0f8ff}
     </style>
     <script>var cbhost={base:"<?=HOST_BASE?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"};</script>
     <script defer src="<?=HOST_ASSETS?>PAGE-cb.js"></script>
@@ -66,11 +66,11 @@
 
     <!-- (B2) TOAST MESSAGE -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index:11">
-      <div id="cb-toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="cb-toast" class="toast hide" role="alert">
         <div class="toast-header">
           <span id="cb-toast-icon" class="mi"></span>
           <strong id="cb-toast-head" class="me-auto p-1"></strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
         </div>
         <div id="cb-toast-body" class="toast-body"></div>
       </div>
@@ -80,7 +80,7 @@
     <div id="cb-modal" class="modal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
       <div class="modal-header">
         <h5 id="cb-modal-head" class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div id="cb-modal-body" class="modal-body"></div>
       <div id="cb-modal-foot" class="modal-footer">
@@ -90,12 +90,12 @@
     <!-- (C) MAIN NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"><div class="container-fluid">
       <!-- (C1) MENU TOGGLE BUTTON -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cb-navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- (C2) COLLAPSABLE WRAPPER -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="cb-navbar">
         <!-- (C2-1) BRANDING LOGO -->
         <a class="navbar-brand" href="<?=HOST_BASE?>">
           <img src="<?=HOST_ASSETS?>favicon.png" loading="lazy" width="32" height="32"/>
@@ -104,7 +104,7 @@
         <!-- (C2-2) LEFT MENU ITEMS -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="<?=HOST_BASE?>demo">
+            <a class="nav-link" href="<?=HOST_BASE?>demo">
               Interface Demo
             </a>
           </li>
@@ -122,16 +122,18 @@
         <!-- (C3-2) USER -->
         <a class="dropdown-toggle text-decoration-none text-white mx-2"
           id="userMenuButton"
-          data-bs-toggle="dropdown"
-          aria-expanded="false">
+          data-bs-toggle="dropdown">
             <span class="mi">person</span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+          <?php if (isset($_SESS["user"])) { ?>
+          <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">My Account</a></li>
+          <li><div class="dropdown-item" onclick="cb.bye()">Logout</div></li>
+          <?php } else { ?>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>login">Login</a></li>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">Forgot Password</a></li>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>register">Register</a></li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">My Account</a></li>
-          <li><div class="dropdown-item" onclick="cb.bye()">Logout</div></li>
+          <?php } ?>
         </ul>
       </div>
     </div></nav>

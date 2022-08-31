@@ -85,7 +85,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   page : "MYPAGE",
   target : "cb-page-2",
   data : { "KEY" : "VALUE" },
-  onload : () => { cb.page(2); }
+  onload : () => { cb.page(1); } // 0 is cb-page-1
 })</pre>
 </div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

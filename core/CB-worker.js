@@ -1,8 +1,13 @@
 // (A) FILES TO CACHE
 const cName = "cb-pwa",
 cFiles = [
+  "assets/ico-512.png",
+  "assets/favicon.png",
+  "assets/maticon.woff2",
   "assets/bootstrap.bundle.min.js",
+  "assets/bootstrap.bundle.min.js.map",
   "assets/bootstrap.min.css",
+  "assets/bootstrap.min.css.map",
   "assets/PAGE-cb.js"
   // @TODO - ADD MORE OF YOUR OWN TO CACHE
 ];

@@ -2,31 +2,39 @@
 Core Boxx is a lightweight PHP modular development framework. The whole idea is not to be another bloated framework with tons of unused features. So it is built around the concept of modularity, load only what you need. It is more like “predefined system modules you can expand on”, rather than a full-fledged framework.
 <br><br>
 
+## SCREENSHOTS
+<p float="left">
+  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-1.jpg">
+  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-2.jpg">
+</p>
+<br><br>
+
+## REQUIREMENTS
+1) LAMP/WAMP/MAMP/XAMPP
+2) Apache Mod Rewrite
+3) PHP MYSQL PDO Extension
+4) At least PHP 8.0
+<br><br>
+
+## FEATURES
+1) Manage staff – Add/update/suspend.
+2) Manage leave – Apply, approve, and deny.
+3) Progressive web app.
+<br><br>
+
+## INSTALLATION
+Just access `http://your-site.com/` in your browser and walk through the installer.
+<br><br>
 
 ## NOTES ON THIS REPO
 1) Too lazy to create a repo for every module, so I have combined the core engine and all modules into this one.
 2) To get started, you only need to work with the `core` folder - The rest are optional modules.
 <br><br>
 
-
-## REQUIREMENTS & INSTALLATION
-1) Developed and tested on a WAMP server.
-2) Just access `http://your-site.com/` in your browser to launch the installer. This will automatically create an empty project database and generate the necessary `.htaccess` file.
+## DOCUMENTATION & FRAMEWORKS
+1) Built on [Bootstrap](https://getbootstrap.com/), [Material Icons](https://fonts.google.com/icons).
+2) Visit [Core Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
 <br><br>
-
-
-## QUICK START & DOCUMENTATION
-1) The HTML is built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
-2) Visit [Code Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
-<br><br>
-
-
-## SCREENSHOTS
-<p float="left">
-  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-1.jpg">
-  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-2.jpg">
-</p><br>
-
 
 ## LICENSE
 Copyright by Code Boxx
