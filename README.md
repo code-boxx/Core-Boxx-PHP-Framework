@@ -17,9 +17,10 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 <br><br>
 
 ## FEATURES
-1) Manage staff – Add/update/suspend.
-2) Manage leave – Apply, approve, and deny.
-3) Progressive web app.
+1) Modular PHP framework.
+2) Pretty URL.
+3) API endpoints with CORS support.
+4) Progressive web app.
 <br><br>
 
 ## INSTALLATION
@@ -32,7 +33,7 @@ Just access `http://your-site.com/` in your browser and walk through the install
 <br><br>
 
 ## DOCUMENTATION & FRAMEWORKS
-1) Built on [Bootstrap](https://getbootstrap.com/), [Material Icons](https://fonts.google.com/icons).
+1) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
 2) Visit [Core Boxx](https://code-boxx.com/core-boxx-php-rapid-development-framework/) for more for the full documentation!
 <br><br>
 
