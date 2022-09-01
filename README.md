@@ -16,15 +16,15 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 4) At least PHP 8.0
 <br><br>
 
+## INSTALLATION
+Just access `http://your-site.com/` in your browser and walk through the installer.
+<br><br>
+
 ## FEATURES
 1) Modular PHP framework.
 2) Pretty URL.
 3) API endpoints with CORS support.
 4) Progressive web app.
-<br><br>
-
-## INSTALLATION
-Just access `http://your-site.com/` in your browser and walk through the installer.
 <br><br>
 
 ## NOTES ON THIS REPO
