@@ -102,17 +102,14 @@ class Users extends Core {
 
     // (G2) PAGINATION
     if ($page != null) {
-      $pgn = $this->core->paginator(
+      $this->core->paginator(
         $this->DB->fetchCol("SELECT COUNT(*) $sql", $data), $page
       );
-      $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
+      $sql .= $this->core->page["lim"];
     }
 
     // (G3) RESULTS
-    $users = $this->DB->fetchAll("SELECT * $sql", $data, "user_id");
-    return $page != null
-     ? ["data" => $users, "page" => $pgn]
-     : $users ;
+    return $this->DB->fetchAll("SELECT * $sql", $data, "user_id");
   }
 
   // (H) VERIFY EMAIL & PASSWORD (LOGIN OR SECURITY CHECK)

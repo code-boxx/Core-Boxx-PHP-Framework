@@ -2,6 +2,7 @@
 class CoreBoxx {
   // (A) PROPERTIES & CONSTRUCTOR
   public $error = ""; // error message, if any
+  public $page = null; // pagination data, if any
   function __construct () {
     $GLOBALS["_SESS"] = []; // initialize global session variable
   }
@@ -82,11 +83,7 @@ class CoreBoxx {
   //  $mode : POST or GET
   function autoGETAPI ($module, $function, $mode="POST") {
     $results = $this->autoCall($module, $function, $mode);
-    $this->respond(
-      $results!==false, null,
-      isset($results["data"]) ? $results["data"] : $results,
-      isset($results["page"]) ? $results["page"] : null
-    );
+    $this->respond($results!==false, null, $results);
   }
 
   // (D) SYSTEM
@@ -105,7 +102,7 @@ class CoreBoxx {
     }
     echo json_encode([
       "status" => $status, "message" => $msg,
-      "data" => $data, "more" => $more
+      "data" => $data, "more" => $more, "page" => $this->page
     ]);
     if ($exit) { exit(); }
   }
@@ -163,22 +160,20 @@ class CoreBoxx {
   //  $now : current page
   function paginator ($entries, $now=1) {
     // (E2-1) TOTAL NUMBER OF PAGES
-    $page = [
+    $this->page = [
       "entries" => (int) $entries,
       "total" => ceil($entries / PAGE_PER)
     ];
 
     // (E2-2) CURRENT PAGE
-    $page["now"] = $now > $page["total"] ? $page["total"] : $now ;
-    if ($page["now"]<=0) { $page["now"] = 1; }
-    $page["now"] = (int) $page["now"];
+    $this->page["now"] = $now > $this->page["total"] ? $this->page["total"] : $now ;
+    if ($this->page["now"]<=0) { $this->page["now"] = 1; }
+    $this->page["now"] = (int) $this->page["now"];
 
     // (E2-3) LIMIT X,Y
-    $page["x"] = ($page["now"] - 1) * PAGE_PER;
-    $page["y"] = PAGE_PER;
-
-    // (E2-4) DONE
-    return $page;
+    $this->page["x"] = ($this->page["now"] - 1) * PAGE_PER;
+    $this->page["y"] = PAGE_PER;
+    $this->page["lim"] = " LIMIT {$this->page["x"]}, {$this->page["y"]}";
   }
 
   // (E3) REDIRECT

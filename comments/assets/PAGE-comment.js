@@ -9,8 +9,6 @@ var comment = {
       data : { id : comment.id },
       passmsg : false,
       onpass : res => {
-        // @TODO
-        console.log(res);
         var cwrap = document.getElementById("cwrap");
         cwrap.innerHTML = "";
         if (res.data!=null) { for (let cid in res.data) {

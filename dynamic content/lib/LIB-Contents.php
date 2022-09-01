@@ -51,20 +51,17 @@ class Contents extends Core {
 
     // (D2) PAGINATION
     if ($page != null) {
-      $pgn = $this->core->paginator(
+      $this->core->paginator(
         $this->DB->fetchCol("SELECT COUNT(*) $sql", $data), $page
       );
-      $sql .= " LIMIT {$pgn["x"]}, {$pgn["y"]}";
+      $sql .= $this->core->page["lim"];
     }
 
     // (D3) RESULTS
-    $content = $this->DB->fetchAll(
+    return $this->DB->fetchAll(
       "SELECT `content_id` ,`content_title`, `date_created`, `date_modified` $sql",
        $data, "content_id"
     );
-    return $page != null
-     ? ["data" => $content, "page" => $pgn]
-     : $content ;
   }
 
   // (E) GENERATE STATIC FILE FROM CONTENT
