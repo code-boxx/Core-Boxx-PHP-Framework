@@ -1,0 +1,74 @@
+/* (A) PERIOD SELECTOR */
+#calPeriod {
+  position: relative;
+  padding: 10px;
+  background: #3b39af;
+}
+#calPeriod input, #calPeriod select {
+  padding: 10px;
+  font-size: 1.2em;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+}
+#calMonth { width: 180px; }
+#calYear { width: 130px; text-align: center; }
+#calPeriod #calAdd { position: absolute; right: 10px; }
+
+/* (B) CALENDAR */
+/* (B1) SHARED */
+.calHead, .calRow { display: flex; }
+.calCell { width: 14.2857%; }
+
+/* (B2) HEADER - DAY NAMES */
+.calHead .calCell {
+  color: #fff;
+  background: #5250da;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px;
+}
+
+/* (B3) BODY - INDIVIDUAL DAYS */
+.calBlank { background: #eee; }
+.calToday { background: #e7f2ff; }
+.calBody .calCell {
+  border: 1px solid #ededed;
+  min-height: 100px;
+}
+.cellDate, .evt { padding: 5px; }
+.cellDate { font-size: 1.1em; }
+.evt {
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* (C) EVENT FORM */
+/* (C1) FORM WRAPPER */
+#calForm {
+  position: fixed; 
+  top: 0; left:0; z-index: 999;
+  width: 100vw; height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#calForm.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* (C2) FORM ITSELF */
+#calForm form {
+  width: 400px;
+  padding: 20px;
+  background: #fff;
+}
