@@ -18,7 +18,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </ul>
 </div>
 <div class="bg-white border p-3 mb-3">
-  <button onclick="cb.loading(1)" class="btn btn-danger">Show</button>
+  <button onclick="cb.loading(1); setTimeout(()=>{cb.loading(0);}, 3000);" class="btn btn-danger">Show Loading For 3 Seconds</button>
 </div>
 
 <!-- (B) TOAST MESSAGE -->
@@ -77,7 +77,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 
 <!-- (F) PAGE CHANGE -->
 <div class="bg-primary text-white p-3">
-  <strong>Page</strong> - cb.page(1 TO 5).
+  <strong>Page</strong> - cb.page(0 TO 4).
   Use this to compliment cb.load().
 </div>
 <div class="bg-white border p-3 mb-3">
