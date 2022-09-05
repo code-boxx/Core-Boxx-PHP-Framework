@@ -340,9 +340,11 @@ if ($_PHASE == "E") {
     "DB_USER" => $_POST["dbuser"],
     "DB_PASSWORD" => $_POST["dbpass"],
     "API_CORS" => ($_POST["apicors"]=="1" ? "true" : "false"),
-    "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false"),
-    "JWT_SECRET" => $_POST["jwtkey"],
+    "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false")
+    /* @TODO - ALLOW IF USING USER MODULE
+    ,"JWT_SECRET" => $_POST["jwtkey"],
     "JWT_ISSUER" => $_POST["jwyiss"]
+    */
   ];
   unset($_POST); unset($hbase);
 
