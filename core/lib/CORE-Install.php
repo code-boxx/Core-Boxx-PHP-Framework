@@ -320,20 +320,9 @@ if ($_PHASE == "E") {
   } catch (Exception $ex) {
     exit("Error creating admin user - " . $ex->getMessage());
   }
-
-  /* @TODO - ENABLE IF USING USER MODULE
-  // (E5) JWT
-  try {
-    $stmt = $pdo->prepare("UPDATE `settings` SET `setting_value`=? WHERE `setting_name`='JWT_SECRET'");
-    $stmt->execute([$_POST["jwtkey"]]);
-    $stmt = $pdo->prepare("UPDATE `settings` SET `setting_value`=? WHERE `setting_name`='JWT_ISSUER'");
-    $stmt->execute([$_POST["jwyiss"]]);
-  } catch (Exception $ex) {
-    exit("Error creating admin user - " . $ex->getMessage());
-  } */
   
   /* @TODO - ENABLE IF GENERATING DEFAULT ADMIN USER
-  // (E6) CREATE ADMIN USER
+  // (E5) CREATE ADMIN USER
   try {
     $stmt = $pdo->prepare("REPLACE INTO `users` (`user_name`, `user_email`, `user_password`) VALUES (?,?,?)");
     $stmt->execute([$_POST["aname"], $_POST["aemail"], password_hash($_POST["apass"], PASSWORD_DEFAULT)]);
@@ -341,7 +330,7 @@ if ($_PHASE == "E") {
     exit("Error creating admin user - " . $ex->getMessage());
   } */
   
-  // (E7) SETTINGS TO UPDATE
+  // (E6) SETTINGS TO UPDATE
   $hbase = ($_POST["https"]=="1" ? "https://" : "http://") . $_POST["host"];
   $hbase = rtrim($hbase, "/") . "/";
   $replace = [
@@ -351,17 +340,19 @@ if ($_PHASE == "E") {
     "DB_USER" => $_POST["dbuser"],
     "DB_PASSWORD" => $_POST["dbpass"],
     "API_CORS" => ($_POST["apicors"]=="1" ? "true" : "false"),
-    "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false")
+    "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false"),
+    "JWT_SECRET" => $_POST["jwtkey"],
+    "JWT_ISSUER" => $_POST["jwyiss"]
   ];
   unset($_POST); unset($hbase);
 
-  // (E8) BACKUP LIB/CORE-CONFIG.PHP
-  if (!copy(I_LIB . "CORE-config.php", I_LIB . "CORE-config.bak")) {
-    exit("Failed to backup config file - " . I_LIB . "CORE-config.bak");
+  // (E7) BACKUP LIB/CORE-CONFIG.PHP
+  if (!copy(I_LIB . "CORE-Config.php", I_LIB . "CORE-Config.old")) {
+    exit("Failed to backup config file - " . I_LIB . "CORE-Config.old");
   }
 
-  // (E9) UPDATE LIB/CORE-CONFIG.PHP
-  $go = file(I_LIB . "CORE-config.php") or exit("Cannot read". I_LIB ."CORE-config.php");
+  // (E8) UPDATE LIB/CORE-CONFIG.PHP
+  $go = file(I_LIB . "CORE-Config.php") or exit("Cannot read". I_LIB ."CORE-Config.php");
   foreach ($go as $j=>$line) { foreach ($replace as $k=>$v) {
     if (strpos($line, "\"$k\"") !== false) {
       if ($k!="API_HTTPS" && $k!="API_CORS") { $v = "\"$v\""; }
@@ -371,14 +362,14 @@ if ($_PHASE == "E") {
     }
   }}
   try {
-    file_put_contents(I_LIB . "CORE-config.php", implode("", $go));
+    file_put_contents(I_LIB . "CORE-Config.php", implode("", $go));
   } catch (Exception $ex) {
-    exit("Error writing to ". I_LIB ."CORE-config.php");
+    exit("Error writing to ". I_LIB ."CORE-Config.php");
   }
   unset($go);
 
-  // (E10) ALMOST DONE...
-  require I_LIB . "CORE-go.php";
+  // (E9) ALMOST DONE...
+  require I_LIB . "CORE-Go.php";
   $_PHASE = "F";
 }
 
