@@ -70,13 +70,19 @@ if ($_PHASE == "C") {
     exit("PDO MYSQL extension is not enabled.");
   }
 
-  // (C3) APACHE WEB SERVER + MOD REWRITE
+  /* @TODO - ENABLE CHECK IF USING WEB PUSH MODULE
+  // (C3) OPENSSL
+  if (!extension_loaded("openssl")) {
+    exit("OPENSSL extension is not enabled.");
+  } */
+
+  // (C4) APACHE WEB SERVER + MOD REWRITE
   define("I_APACHE", strpos(strtolower($_SERVER["SERVER_SOFTWARE"]), "apache")!==false);
   if (I_APACHE && function_exists("apache_get_version")) {
     define("I_REWRITE", in_array("mod_rewrite", apache_get_modules()));
   } else { define("I_REWRITE", false); }
 
-  // (C4) FILES & FOLDERS - READ/WRITE PERMISSIONS
+  // (C5) FILES & FOLDERS - READ/WRITE PERMISSIONS
   define("I_ALL", [
     I_BASE, I_ASSETS, I_LIB, I_PAGES,
     I_LIB . "CORE-Config.php", I_BASE . "index.php"
@@ -92,7 +98,7 @@ if ($_PHASE == "C") {
     if (!is_readable(I_LIB . $p)) { exit("Please give PHP read permission to $p"); }
   }
 
-  // (C5) ALL GREEN
+  // (C6) ALL GREEN
   $_PHASE = "D";
 }
 
@@ -114,7 +120,12 @@ if ($_PHASE == "D") {
   define("I_HOST", $uHOST);
   unset($uHOST); unset($uIDX);
 
-// (D3) HTML OUTPUT ?>
+  /* @TODO - ENABLE IF USING WEB PUSH MODULE *
+  // (D3) VAPID KEYS
+  require I_LIB . "webpush/autoload.php";
+  $vapid = Minishlink\WebPush\VAPID::createVapidKeys(); */
+
+// (D4) HTML OUTPUT ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -125,7 +136,7 @@ if ($_PHASE == "D") {
     form{max-width:500px;margin:20px auto}h2{margin:10px 0}
     .iSec{background:#f5f5f5;border:1px solid #dbdbdb;padding:20px;margin-bottom:20px}
     select,input,label{font-size:16px;display:block;width:100%}select,input{padding:10px}
-    label{color:#88a8ff;font-weight:700;padding:10px 0}
+    label{color:#88a8ff;font-weight:700;padding:10px 0}code{font-family:consolas;border:1px solid #cfe360;background:#f7ffb8}
     #gobtn{background:#1a57c5;border:0;color:#fff}
     #gobtn:disabled{background:#838383;color:#bbb}
     .danger{padding:20px;margin-bottom:30px;background:#5542f3;color:#fff;font-weight:700;font-size:20px;line-height:28px}
@@ -212,7 +223,7 @@ if ($_PHASE == "D") {
     <form id="iForm" onsubmit="return install()">
       <div id="iHead">
         <!-- @TODO - CHANGE TO YOUR OWN PROJECT NAME -->
-        <img src="assets/favicon.png"/>
+        <img src="assets/favicon.png">
         <h1>CORE BOXX INSTALLATION</h1>
       </div>
 
@@ -224,7 +235,7 @@ if ($_PHASE == "D") {
           <option value="1"<?=I_HTTPS?" selected":""?>>https://</option>
         </select>
         <label>Domain AND Path</label>
-        <input type="text" name="host" required value="<?=I_HOST?>"/>
+        <input type="text" name="host" required value="<?=I_HOST?>">
         <div class="notes">Change this only if wrong, include the path if not deployed in root. E.G. site.com/myproject/</div>
       </div>
 
@@ -247,46 +258,61 @@ if ($_PHASE == "D") {
       <div class="iSec">
         <h1>DATABASE</h1>
         <label>Host</label>
-        <input type="text" name="dbhost" required value="<?=I_DB_HOST?>"/>
+        <input type="text" name="dbhost" required value="<?=I_DB_HOST?>">
         <label>Name</label>
-        <input type="text" name="dbname" required value="<?=I_DB_NAME?>"/>
+        <input type="text" name="dbname" required value="<?=I_DB_NAME?>">
         <label>User</label>
-        <input type="text" name="dbuser" required value="<?=I_DB_USER?>"/>
+        <input type="text" name="dbuser" required value="<?=I_DB_USER?>">
         <label>Password</label>
-        <input type="password" name="dbpass" value="<?=I_DB_PASS?>"/>
+        <input type="password" name="dbpass" value="<?=I_DB_PASS?>">
       </div>
 
       <div class="iSec">
         <h1>EMAIL</h1>
         <label>Sent From</label>
-        <input type="email" name="mailfrom" value="sys@site.com" required/>
+        <input type="email" name="mailfrom" value="sys@site.com" required>
       </div>
 
       <!-- @TODO - ENABLE IF USING JWT USER LOGIN
       <div class="iSec">
         <h1>JSON WEB TOKEN</h1>
         <label>Secret Key <span onclick="rnd()">[RANDOM]</span></label>
-        <input type="text" name="jwtkey" required/>
+        <input type="text" name="jwtkey" required>
         <label>Issuer</label>
-        <input type="text" name="jwyiss" required value="<?=$_SERVER["HTTP_HOST"]?>"/>
+        <input type="text" name="jwyiss" required value="<?=$_SERVER["HTTP_HOST"]?>">
         <div class="notes">Your company name or domain name.</div>
       </div> -->
+
+      <!-- @TODO - ENABLE IF USING WEB PUSH
+      <div class="iSec">
+        <h1>WEB PUSH VAPID KEYS</h1>
+        <label>Private Key</label>
+        <input type="text" name="pushprivate" required value="<?=$vapid["privateKey"]?>">
+        <label>Public Key</label>
+        <input type="text" name="pushpublic" required value="<?=$vapid["publicKey"]?>">
+        <div class="notes">
+          You can generate these with:<br>
+          <code>require "lib/webpush/autoload.php";</code><br>
+          <code>$keys = Minishlink\WebPush\VAPID::createVapidKeys();</code>
+        </div>
+      </div>
+      -->
 
       <!-- @TODO - ENABLE IF GENERATING DEFAULT ADMIN USER
       <div class="iSec">
         <h1>ADMIN USER</h1>
         <label>Name</label>
-        <input type="text" name="aname" required value="Admin"/>
+        <input type="text" name="aname" required value="Admin">
         <label>Email</label>
-        <input type="text" name="aemail" required value="admin@site.com"/>
+        <input type="text" name="aemail" required value="admin@site.com">
         <label>Password</label>
-        <input type="password" name="apass" required/>
+        <input type="password" name="apass" required>
         <label>Confirm Password</label>
-        <input type="password" name="apassc" required/>
+        <input type="password" name="apassc" required>
       </div>
       -->
 
-      <input id="gobtn" type="submit" value="Go!"/>
+      <input id="gobtn" type="submit" value="Go!">
     </form>
   </body>
 </html>
@@ -341,9 +367,13 @@ if ($_PHASE == "E") {
     "DB_PASSWORD" => $_POST["dbpass"],
     "API_CORS" => ($_POST["apicors"]=="1" ? "true" : "false"),
     "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false")
-    /* @TODO - ALLOW IF USING USER MODULE
+    /* @TODO - ENABLE IF USING USER MODULE
     ,"JWT_SECRET" => $_POST["jwtkey"],
     "JWT_ISSUER" => $_POST["jwyiss"]
+    */
+    /* @TODO - ENABLE IF USING WEB PUSH MODULE
+    ,"PUSH_PRIVATE" => $_POST["pushprivate"],
+    "PUSH_PUBLIC" => $_POST["pushpublic"]
     */
   ];
   unset($_POST); unset($hbase);
