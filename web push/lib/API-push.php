@@ -16,6 +16,7 @@ switch ($_REQ) {
     break;
 
   // (D) SEND NOTIFICATIONS
+  case "send":
     $_CORE->autoAPI("Push", "send");
     break;
 }
