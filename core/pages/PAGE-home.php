@@ -4,9 +4,9 @@ $_PMETA = [
   "desription" => "Optional Description",
   /* OPTIONAL - LOAD EXTRA SCRIPTS
   "load" => [
-    ["s", "some.js"],
-    ["s", "somemore.js", "defer"],
-    ["c", "some.css"],
+    ["s", HOST_ASSETS."some.js"],
+    ["s", HOST_ASSETS."somemore.js", "defer"],
+    ["c", HOST_ASSETS."some.css"],
   ]
   */
 ];
@@ -32,7 +32,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 
 <!-- (C) SESSION -->
 <div class="bg-primary text-white p-3">
-  <strong>$_SESS</strong> - Something like the default PHP <strong>$_SESSION</strong>.
+  <strong>$_SESS</strong> - "Session variables", something like the default PHP <strong>$_SESSION</strong>.
 </div>
 <div class="bg-white border p-3 mb-3"><?php print_r($_SESS); ?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

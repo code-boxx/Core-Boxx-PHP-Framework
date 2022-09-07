@@ -108,6 +108,11 @@
               Interface Demo
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=HOST_BASE?>about">
+              About
+            </a>
+          </li>
         </ul>
       </div>
 
