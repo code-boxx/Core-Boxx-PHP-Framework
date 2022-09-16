@@ -98,7 +98,7 @@
       <div class="collapse navbar-collapse" id="cb-navbar">
         <!-- (C2-1) BRANDING LOGO -->
         <a class="navbar-brand" href="<?=HOST_BASE?>">
-          <img src="<?=HOST_ASSETS?>favicon.png" loading="lazy" width="32" height="32"/>
+          <img src="<?=HOST_ASSETS?>favicon.png" loading="lazy" width="32" height="32">
         </a>
 
         <!-- (C2-2) LEFT MENU ITEMS -->

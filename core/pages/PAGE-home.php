@@ -1,7 +1,7 @@
 <?php
 $_PMETA = [
   "title" => "Core Boxx Demo Page",
-  "desription" => "Optional Description",
+  "desc" => "Optional Description",
   /* OPTIONAL - LOAD EXTRA SCRIPTS
   "load" => [
     ["s", HOST_ASSETS."some.js"],
