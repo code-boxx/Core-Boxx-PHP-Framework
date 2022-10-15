@@ -88,11 +88,11 @@ if ($_PHASE=="B") {
   }
 
   // (B3) ALL GREEN
-  $_PHASE = "C";
+  $_PHASE = file_exists(I_BASE . ".htaccess") ? "C" : "D";
 }
 
 // (PHASE C) UPDATE CHECK
-if ($_PHASE == "C" && file_exists(I_BASE . ".htaccess")) { try {
+if ($_PHASE == "C") { try {
   // (C1) IF CONNECT TO DATABASE OK - IT'S A POSSIBLE UPDATE
   require I_LIB . "CORE-Config.php";
   require I_LIB . "LIB-Core.php";
