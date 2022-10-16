@@ -1,5 +1,13 @@
 ## CORE BOXX
-Core Boxx is a lightweight PHP modular development framework. The whole idea is not to be another bloated framework with tons of unused features. So it is built around the concept of modularity, load only what you need. It is more like “predefined system modules you can expand on”, rather than a full-fledged framework.
+Core Boxx is a lightweight PHP modular development framework. The whole idea is not to be another bloated framework with tons of unused features. So it is built around the concept of modularity, load only what you need. It is more like "predefined system modules you can expand on", rather than a full-fledged framework.
+<br><br>
+
+## "OUT OF THE BOX" FEATURES
+1) Modular PHP framework.
+2) Pretty URL.
+3) API endpoints with CORS support.
+4) Progressive web app.
+5) Bootstrap HTML template.
 <br><br>
 
 ## SCREENSHOTS
@@ -18,14 +26,6 @@ Core Boxx is a lightweight PHP modular development framework. The whole idea is 
 
 ## INSTALLATION
 Just access `http://your-site.com/` in your browser and walk through the installer.
-<br><br>
-
-## "OUT OF THE BOX" FEATURES
-1) Modular PHP framework.
-2) Pretty URL.
-3) API endpoints with CORS support.
-4) Progressive web app.
-5) Bootstrap HTML template.
 <br><br>
 
 ## NOTES ON THIS REPO
