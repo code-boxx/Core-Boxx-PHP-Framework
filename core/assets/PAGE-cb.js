@@ -3,6 +3,7 @@ var cb = {
   hLoad : null,  // loading
   hToast : null, // toast
   hModal : null, // popup dialog
+  hSide : null, // sidebar
   hPages : [], // page sections
   init : () => {
     // (A1) LOADING SPINNER
@@ -28,6 +29,9 @@ var cb = {
     for (let i=1; i<=5; i++) {
       cb.hPages.push(document.getElementById("cb-page-"+i));
     }
+
+    // (A5) SIDEBAR
+    cb.hSide = document.getElementById("cb-side");
   },
 
   // (B) HTML INTERFACE
@@ -76,6 +80,9 @@ var cb = {
     if (i==num) { cb.hPages[i].classList.remove("d-none"); }
     else { cb.hPages[i].classList.add("d-none"); }
   }},
+
+  // (B5) TOGGLE SIDEBAR
+  toggle : () => { cb.hSide.classList.toggle("show"); },
 
   // (C) AJAX CALL
   //  url : string, target URL
@@ -146,7 +153,7 @@ var cb = {
     if (opt.nofail === undefined) { opt.nofail = false; }
 
     // (D2) ON AJAX LOAD
-    options.onpass = (res) => {
+    options.onpass = res => {
       // (D2-1) PARSE RESULTS
       try { var res = JSON.parse(res); }
       catch (err) {
@@ -206,15 +213,10 @@ var cb = {
   },
 
   // (F) SIGN OFF
-  bye : () => {
-    cb.modal("Please Confirm", "Sign off?", () => {
-      cb.api({
-        mod : "session", req : "logout",
-        passmsg : false,
-        onpass : () => { location.href = cbhost.base + "login/"; }
-      });
-    });
-  },
+  bye : () => cb.modal("Please Confirm", "Sign off?", () => cb.api({
+    mod : "session", req : "logout", passmsg : false,
+    onpass : () => location.href = cbhost.base + "login/"
+  })),
 
   // (G) PASSWORD/HASH STRENGTH CHECKER
   checker : hash => /^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/i.test(hash)
