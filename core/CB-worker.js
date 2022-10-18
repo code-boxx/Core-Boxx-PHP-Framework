@@ -1,6 +1,7 @@
 // (A) FILES TO CACHE
 const cName = "cb-pwa",
 cFiles = [
+  "CB-manifest.json",
   "assets/ico-512.png",
   "assets/favicon.png",
   "assets/maticon.woff2",

@@ -82,7 +82,7 @@ var cb = {
   }},
 
   // (B5) TOGGLE SIDEBAR
-  toggle : () => { cb.hSide.classList.toggle("show"); },
+  toggle : () => cb.hSide.classList.toggle("show"),
 
   // (C) AJAX CALL
   //  url : string, target URL
