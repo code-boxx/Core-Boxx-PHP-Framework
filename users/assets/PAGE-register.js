@@ -22,9 +22,7 @@ function register () {
       password : pass
     },
     passmsg : false,
-    onpass : () => {
-      location.href = cbhost.base + "login/";
-    }
+    onpass : () => location.href = cbhost.base + "login/"
   });
   return false;
 }

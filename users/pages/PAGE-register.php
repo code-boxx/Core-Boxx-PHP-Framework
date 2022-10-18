@@ -3,9 +3,7 @@
 if (isset($_SESS["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
-$_PMETA = ["load" => [
-  ["s", HOST_ASSETS."PAGE-register.js"]
-]];
+$_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-register.js"]]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <form class="bg-white border p-4" onsubmit="return register();">
   <h3 class="mb-4">REGISTRATION</h3>

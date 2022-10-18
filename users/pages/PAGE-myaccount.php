@@ -3,10 +3,7 @@
 if (!isset($_SESS["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
-$_PMETA = [
-  "title" => "My Account",
-  "load" => [["s", HOST_ASSETS."PAGE-myaccount.js"]]
-];
+$_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-myaccount.js", "defer"]]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <form class="bg-white border p-4" onsubmit="return save()">
   <h3 class="mb-4">MY ACCOUNT</h3>

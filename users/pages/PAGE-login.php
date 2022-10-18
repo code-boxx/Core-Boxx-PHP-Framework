@@ -3,9 +3,7 @@
 if (isset($_SESS["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
-$_PMETA = ["load" => [
-  ["s", HOST_ASSETS."PAGE-login.js"]
-]];
+$_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-login.js", "defer"]]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border">
@@ -30,10 +28,8 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       </div>
 
       <input type="submit" class="btn btn-primary py-2 mb-4" value="Sign in">
-      <div>
-        <a href="<?=HOST_BASE?>forgot">Forgot Password</a>
-      </div>
-    </div>
+      <div><a href="<?=HOST_BASE?>forgot">Forgot Password</a></div>
+    </form>
   </div>
 </div>
 </div>
