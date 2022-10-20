@@ -9,8 +9,8 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border" style="max-width:1000px">
   <div class="row">
-    <div class="col-4" style="background:url('<?=HOST_ASSETS?>book.jpg') center"></div>
-    <form class="col-8 p-5" onsubmit="return forgot();">
+    <div class="col-2" style="background:url('<?=HOST_ASSETS?>book.jpg');background-size:cover"></div>
+    <form class="col-10 p-4" onsubmit="return forgot();">
       <h3 class="my-4">FORGOT PASSWORD</h3>
 
       <div class="input-group mb-4">
@@ -21,7 +21,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       </div>
 
       <input type="submit" class="btn btn-primary py-2 mb-4" value="Reset Request">
-      <div><a href="<?=HOST_BASE?>login">Login</a></div>
+      <div><a href="<?=HOST_BASE?>login">Back To Login</a></div>
     </form>
   </div>
 </div>
@@ -36,14 +36,14 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border" style="max-width:1000px">
   <div class="row">
-    <div class="col-4" style="background:url('<?=HOST_ASSETS?>book.jpg') center"></div>
-    <div class="col-8 p-5">
+  <div class="col-2" style="background:url('<?=HOST_ASSETS?>book.jpg');background-size:cover"></div>
+    <div class="col-10 p-4">
       <h3 class="my-4"><?=$pass?"DONE!":"OOOOOPPPSSSSSS...."?></h3>
       <div class="mb-4"><?php
         if ($pass) { echo "OK - New password sent to your email."; }
         else { echo $_CORE->error; }
       ?></div>
-      <div><a href="<?=HOST_BASE?>login">Login</a></div>
+      <div><a href="<?=HOST_BASE?>login">Back To Login</a></div>
     </div>
   </div>
 </div>

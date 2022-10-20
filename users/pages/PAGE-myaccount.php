@@ -22,12 +22,16 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <input type="email" id="user-email" class="form-control" required placeholder="Email" value="<?=$_SESS["user"]["user_email"]?>">
   </div>
 
-  <div class="input-group mb-4">
+  <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text mi">lock</span>
     </div>
     <input type="password" id="user-pass" class="form-control" required placeholder="Password">
   </div>
+  <div class="text-secondary mt-2 mb-4">
+    * At least 8 characters alphanumeric.
+  </div>
+
   <div class="input-group mb-4">
     <div class="input-group-prepend">
       <span class="input-group-text mi">lock</span>

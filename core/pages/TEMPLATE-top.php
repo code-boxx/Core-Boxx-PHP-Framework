@@ -26,7 +26,7 @@
 
     <!-- (A4) SERVICE WORKER -->
     <script>if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("<?=HOST_BASE?>CB-worker.js", {scope: "/"});
+      navigator.serviceWorker.register("<?=HOST_BASE?>CB-worker.js", {scope: "<?=HOST_BASE_PATH?>"});
     }</script>
 
     <!-- (A5) LIBRARIES & SCRIPTS -->
@@ -42,7 +42,7 @@
     #cb-loading{width:100vw;height:100vh;position:fixed;top:0;left:0;z-index:999;background:rgba(0,0,0,.7)}#cb-loading .spinner-border{width:80px;height:80px}
     .head{background:#ddd}.zebra .d-flex{background:#fff;margin-bottom:10px}.zebra .d-flex:nth-child(odd){background-color:#f1f1f1}.pagination{border:1px solid #d0e8ff;background:#f0f8ff}
     </style>
-    <script>var cbhost={base:"<?=HOST_BASE?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"};</script>
+    <script>var cbhost={base:"<?=HOST_BASE?>",basepath:"<?=HOST_BASE_PATH?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"};</script>
     <script defer src="<?=HOST_ASSETS?>PAGE-cb.js"></script>
 
     <!-- (A6) ADDITIONAL SCRIPTS -->
@@ -132,12 +132,25 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
           <?php if (isset($_SESS["user"])) { ?>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">My Account</a></li>
-          <li><div class="dropdown-item" onclick="cb.bye()">Logout</div></li>
+          <li class="dropdown-header">
+            <?=$_SESS["user"]["user_email"]?>
+          </li>
+          <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">
+            <i class="mi mi-smol">person</i> My Account
+          </a></li>
+          <li class="dropdown-item text-warning" onclick="cb.bye()">
+            <i class="mi mi-smol">logout</i> Logout
+          </li>
           <?php } else { ?>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>login">Login</a></li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">Forgot Password</a></li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>register">Register</a></li>
+          <li><a class="dropdown-item" href="<?=HOST_BASE?>login">
+            <i class="mi mi-smol">key</i> Login
+          </a></li>
+          <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">
+            <i class="mi mi-smol">question_mark</i> Forgot Password
+          </a></li>
+          <li><a class="dropdown-item" href="<?=HOST_BASE?>register">
+            <i class="mi mi-smol">edit</i> Register
+          </a></li>
           <?php } ?>
         </ul>
       </div>
