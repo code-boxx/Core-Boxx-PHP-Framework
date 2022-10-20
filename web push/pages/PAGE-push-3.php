@@ -15,5 +15,8 @@
 
 <?php
 // (B) SEND!
-if (count($_POST)>0) { $_CORE->autoCall("Push", "send"); }
+if (count($_POST)>0) {
+  echo "<div class='mt-4 p-2 bg-success text-white'>SENDING...</div>";
+  $_CORE->autoCall("Push", "send");
+}
 require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

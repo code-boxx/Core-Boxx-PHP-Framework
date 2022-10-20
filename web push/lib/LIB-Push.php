@@ -21,7 +21,10 @@ class Push extends Core {
       return false;
     } */
 
-    // (C2) LOAD WEB PUSH LIBRARY
+    // (C2) MAY TAKE A LONG TIME IF THERE ARE A LOT OF INACTIVE...
+    set_time_limit(45);
+
+    // (C3) LOAD WEB PUSH LIBRARY
     require PATH_LIB . "webpush/autoload.php";
     $push = new Minishlink\WebPush\WebPush(["VAPID" => [
       "subject" => EMAIL_FROM,
@@ -29,27 +32,27 @@ class Push extends Core {
       "privateKey" => PUSH_PRIVATE
     ]]);
 
-    // (C3) SEND TO SUBSCRIBERS
+    // (C4) SEND TO SUBSCRIBERS
     $this->DB->query("SELECT `data` FROM `webpush`");
     while ($r = $this->DB->stmt->fetchColumn()) {
-      // (C3-1) SUBSCRIBER
+      // (C4-1) SUBSCRIBER
       $sub = Minishlink\WebPush\Subscription::create(json_decode($r, true));
 
-      // (C3-2) PUSH
+      // (C4-2) PUSH
       $result = $push->sendOneNotification($sub, json_encode([
         "title" => $title,
         "body" => $body,
         "icon" => $icon,
         "image" => $image
-      ]));
+      ]), ["TTL" => 500]);
 
-      // (C3-3) RESULT
+      // (C4-3) RESULT
       if (!$result->isSuccess()) {
         $this->del($result->getRequest()->getUri()->__toString());
       }
     }
 
-    // (C4) DONE
+    // (C5) DONE
     return true;
   }
 }
