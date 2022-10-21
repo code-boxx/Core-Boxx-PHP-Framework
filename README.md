@@ -1,5 +1,5 @@
 ## CORE BOXX
-Core Boxx is a lightweight PHP modular development framework. The whole idea is not to be another bloated framework with tons of unused features. So it is built around the concept of modularity, load only what you need. It is more like "predefined system modules you can expand on", rather than a full-fledged framework.
+Core Boxx is an open-source PHP framework that comes with a PDO database, a pretty URL, and an API system out of the box. But the idea is not to be a bloated framework with tons of unused features. So it is built around the concept of modularity, loading only what you need. It is more like "predefined system modules you can expand on", rather than a full-fledged framework.
 <br><br>
 
 ## "OUT OF THE BOX" FEATURES
