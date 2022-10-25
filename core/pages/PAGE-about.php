@@ -4,7 +4,7 @@
 <div class="bg-white border p-3">
   <h6>Links & Documentation</h6>
   <ul>
-    <li><a href="https://code-boxx.com/core-boxx-php-rapid-development-framework/" target="_blank">Core Boxx Official Webpage</a></li>
+    <li><a href="https://code-boxx.com/core-boxx-php-framework/" target="_blank">Core Boxx Official Webpage</a></li>
     <li><a href="https://github.com/code-boxx/Core-Boxx" target="_blank">Core Boxx GitHub</a></li>
   </ul>
 
