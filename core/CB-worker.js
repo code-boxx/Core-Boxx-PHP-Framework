@@ -1,15 +1,18 @@
 // (A) FILES TO CACHE
-const cName = "cb-pwa",
+const cName = "coreboxx",
 cFiles = [
-  "CB-manifest.json",
-  "assets/ico-512.png",
-  "assets/favicon.png",
-  "assets/maticon.woff2",
+  // (A1) BOOTSTRAP
   "assets/bootstrap.bundle.min.js",
   "assets/bootstrap.bundle.min.js.map",
   "assets/bootstrap.min.css",
   "assets/bootstrap.min.css.map",
-  "assets/PAGE-cb.js"
+  // (A2) ICONS + IMAGES
+  "assets/ico-512.png",
+  "assets/favicon.png",
+  // (A3) COMMON INTERFACE
+  "assets/maticon.woff2",
+  "assets/PAGE-cb.js",
+  "CB-manifest.json"
   // @TODO - ADD MORE OF YOUR OWN TO CACHE
 ];
 
