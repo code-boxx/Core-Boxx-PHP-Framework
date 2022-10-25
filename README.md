@@ -35,7 +35,7 @@ Just access `http://your-site.com/` in your browser and walk through the install
 
 ## DOCUMENTATION & FRAMEWORKS
 1) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
-2) Visit https://code-boxx.com/core-boxx-php-rapid-development-framework/ for more for the full documentation!
+2) Visit https://code-boxx.com/core-boxx-php-framework/ for more for the full documentation!
 <br><br>
 
 ## LICENSE
