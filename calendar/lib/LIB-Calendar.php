@@ -13,7 +13,7 @@ class Calendar extends Core {
 
     // (B2) RUN SQL
     $fields = ["evt_start", "evt_end", "evt_text", "evt_color", "evt_bg"];
-    $data = [$start, $end, $txt, $color, $bg];
+    $data = [$start, $end, strip_tags($txt), $color, $bg];
     if ($id===null) { $this->DB->insert("events", $fields, $data); }
     else {
       $data[] = $id;
@@ -42,6 +42,7 @@ class Calendar extends Core {
                  // "d" day number
                  // "t" today
                  // "e" => [event ids]
+                 // "s" => [show text for these events]
     $events = []; // event id => data
     $map = []; // "yyyy-mm-dd" => $cells[n]
 
@@ -92,10 +93,21 @@ class Calendar extends Core {
       // (E6-2) "MAP" EVENTS TO $CELLS
       $start = substr($r["evt_start"], 5, 2)==$month ? (int)substr($r["evt_start"], 8, 2) : 1 ;
       $end = substr($r["evt_end"], 5, 2)==$month ? (int)substr($r["evt_end"], 8, 2) : 1 ;
+      $first = true;
       for ($d=$start; $d<=$end; $d++) {
+        // (E6-2-1) SET EVENT
         $eday = $dateYM . ($d<10?"0$d":$d);
         if (!isset($cells[$map[$eday]]["e"])) { $cells[$map[$eday]]["e"] = []; }
         $cells[$map[$eday]]["e"][] = $r["evt_id"];
+
+        // (E6-2-2) DRAW EVENT TEXT?
+        $edow = date("N", strtotime($eday));
+        $set = $first || ($this->sun ? $edow==7 : $edow==1);
+        if ($set) {
+          $first = false;
+          if (!isset($cells[$map[$eday]]["s"])) { $cells[$map[$eday]]["s"] = []; }
+          $cells[$map[$eday]]["s"][] = $r["evt_id"];
+        }
       }
     }
 

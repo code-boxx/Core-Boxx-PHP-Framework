@@ -27,9 +27,9 @@ var cal = {
     // (B2) ATTACH CONTROLS
     cal.hMth.onchange = cal.draw;
     cal.hYear.onchange = cal.draw;
-    document.getElementById("calAdd").onclick = () => { cal.show(); };
-    cal.hForm.onsubmit = () => { return cal.save(); };
-    document.getElementById("evtCX").onclick = () => { cal.hFormWrap.classList.remove("show"); };
+    document.getElementById("calAdd").onclick = () => cal.show();
+    cal.hForm.onsubmit = () => cal.save();
+    document.getElementById("evtCX").onclick = () => cal.hFormWrap.open = false;
     cal.hfDel.onclick = cal.del;
 
     // (B3) DRAW CALENDAR
@@ -37,76 +37,80 @@ var cal = {
   },
 
   // (C) DRAW CALENDAR
-  draw : () => {
-    // (C1) FETCH DATA
-    cb.api({
-      mod : "calendar", req : "getPeriod",
-      data : { month : cal.hMth.value, year : cal.hYear.value },
-      passmsg : false,
-      onpass : res => {
-        // (C2) "UNPACK DATA"
-        cal.events = res.data.e;
-        let wrap, row, cell, evt, i = 0,
-        days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        if (res.s) { days.unshift("Sun"); }
-        else { days.push("Sun"); }
+  draw : () => cb.api({
+    mod : "calendar", req : "getPeriod",
+    data : { month : cal.hMth.value, year : cal.hYear.value },
+    passmsg : false,
+    onpass : data => {
+      // (C1) "UNPACK DATA"
+      data = data.data;
+      let cells = data.c, sunFirst = data.s,
+          wrap, row, cell, evt, i = 0;
+      cal.events = data.e;
+      data = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      if (sunFirst) { data.unshift("Sun"); }
+      else { data.push("Sun"); }
 
-        // (C3) "RESET" CALENDAR
-        cal.hWrap.innerHTML = `<div class="calHead"></div>
-          <div class="calBody">
-          <div class="calRow"></div>
-        </div>`;
+      // (C2) "RESET" CALENDAR
+      cal.hWrap.innerHTML = `<div class="calHead"></div>
+        <div class="calBody">
+        <div class="calRow"></div>
+      </div>`;
+      
+      // (C3) CALENDAR HEADER - DAY NAMES
+      wrap = cal.hWrap.querySelector(".calHead");
+      for (let d of data) {
+        cell = document.createElement("div");
+        cell.className = "calCell";
+        cell.innerHTML = d;
+        wrap.appendChild(cell);
+      }
 
-        // (C4) CALENDAR HEADER - DAY NAMES
-        wrap = cal.hWrap.querySelector(".calHead");
-        for (let d of days) {
-          cell = document.createElement("div");
-          cell.className = "calCell";
-          cell.innerHTML = d;
-          wrap.appendChild(cell);
+      // (C4) CALENDAR BODY - INDIVIDUAL DAYS & EVENTS
+      wrap = cal.hWrap.querySelector(".calBody");
+      row = cal.hWrap.querySelector(".calRow");
+      for (let c of cells) {
+        // (C4-1) GENERATE CELL
+        cell = document.createElement("div");
+        cell.className = "calCell";
+        if (c.t) { cell.classList.add("calToday"); }
+        if (c.b) { cell.classList.add("calBlank"); }
+        else {
+          cell.innerHTML = `<div class="cellDate">${c.d}</div>
+          <div class="cellEvt"></div>`;
+        }
+        row.appendChild(cell);
+
+        // (C4-2) ATTACH EVENTS
+        if (c.e) {
+          cell = cell.querySelector(".cellEvt");
+          for (let id of c.e) {
+            evt = document.createElement("div");
+            evt.className = "evt";
+            evt.style.color = cal.events[id]["c"];
+            evt.style.background = cal.events[id]["b"];
+            if (c.s!=undefined && c.s.includes(id)) {
+              evt.innerHTML = cal.events[id]["t"];
+            } else {
+              evt.innerHTML = "&nbsp;";
+            }
+            evt.onclick = () => cal.show(id);
+            cell.appendChild(evt);
+          }
         }
 
-        // (C5) CALENDAR BODY - INDIVIDUAL DAYS & EVENTS
-        wrap = cal.hWrap.querySelector(".calBody");
-        row = cal.hWrap.querySelector(".calRow");
-        for (let c of res.data.c) {
-          // (C5-1) GENERATE CELL
-          cell = document.createElement("div");
-          cell.className = "calCell";
-          if (c.t) { cell.classList.add("calToday"); }
-          if (c.b) { cell.classList.add("calBlank"); }
-          else {
-            cell.innerHTML = `<div class="cellDate">${c.d}</div>
-            <div class="cellEvt"></div>`;
-          }
-          row.appendChild(cell);
-
-          if (c.e) {
-            cell = cell.querySelector(".cellEvt");
-            for (let id of c.e) {
-              evt = document.createElement("div");
-              evt.className = "evt";
-              evt.style.color = cal.events[id]["c"];
-              evt.style.background = cal.events[id]["b"];
-              evt.innerHTML = cal.events[id]["t"];
-              evt.onclick = () => { cal.show(id); };
-              cell.appendChild(evt);
-            }
-          }
-
-          // (C5-2) NEW ROW
-          i++;
-          if (i%7==0 && i!=res.data.c.length) {
-            row = document.createElement("div");
-            row.className = "calRow";
-            wrap.appendChild(row);
-          }
+        // (C4-3) NEW ROW
+        i++;
+        if (i%7==0 && i!=cells.length) {
+          row = document.createElement("div");
+          row.className = "calRow";
+          wrap.appendChild(row);
         }
       }
-    });
-  },
-
-  // (D) SHOW EVENT FORM
+    }
+  }),
+  
+  // (E) SHOW EVENT FORM
   show : id => {
     if (id) {
       cal.hfID.value = id;
@@ -115,18 +119,18 @@ var cal = {
       cal.hfTxt.value = cal.events[id]["t"];
       cal.hfColor.value = cal.events[id]["c"];
       cal.hfBG.value = cal.events[id]["b"];
-      cal.hfDel.style.display = "block";
+      cal.hfDel.style.display = "inline-block";
     } else {
       cal.hForm.reset();
       cal.hfID.value = "";
       cal.hfDel.style.display = "none";
     }
-    cal.hFormWrap.classList.add("show");
+    cal.hFormWrap.open = true;
   },
 
-  // (E) SAVE EVENT
+  // (F) SAVE EVENT
   save : () => {
-    // (E1) COLLECT DATA
+    // (F1) COLLECT DATA
     var data = {
       start : cal.hfStart.value,
       end : cal.hfEnd.value,
@@ -136,37 +140,32 @@ var cal = {
     };
     if (cal.hfID.value != "") { data.id = cal.hfID.value; }
 
-    // (E2) DATE CHECK
+    // (F2) DATE CHECK
     if (new Date(data.start) > new Date(data.end)) {
-      cb.modal("Error", "Start date cannot be later than end date!");
+      alert("Start date cannot be later than end date!");
       return false;
     }
 
-    // (E3) AJAX SAVE
+    // (F3) AJAX SAVE
     cb.api({
-      mod : "calendar", req : "save", data : data,
-      passmsg : "Event saved",
+      mod : "calendar", req : "save",
+      data : data,
       onpass : res => {
-        cal.hFormWrap.classList.remove("show");
+        cal.hFormWrap.open = false;
         cal.draw();
       }
     });
     return false;
   },
 
-  // (F) DELETE EVENT
-  del : () => {
-    cb.modal("Please Confirm", "Delete Event?", () => {
-      cb.api({
-        mod : "calendar", req : "del",
-        data : { id : cal.hfID.value },
-        passmsg : "Event deleted",
-        onpass : res => {
-          cal.hFormWrap.classList.remove("show");
-          cal.draw();
-        }
-      });
-    });
-  }
+  // (G) DELETE EVENT
+  del : () => cb.modal("Please confirm", "Delete this event?", () => cb.api({
+    mod : "calendar", req : "del",
+    data : { id : cal.hfID.value },
+    onpass : res => {
+      cal.hFormWrap.open = false;
+      cal.draw();
+    }
+  }))
 };
 window.addEventListener("load", cal.init);

@@ -18,13 +18,15 @@ $_PMETA = [
 ];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) PERIOD SELECTOR -->
-<div id="calPeriod">
-  <select id="calMonth"><?php foreach ($months as $m=>$mth) {
-    printf("<option value='%u'%s>%s</option>",
-      $m, $m==$monthNow?" selected":"", $mth
-    );
-  } ?></select>
-  <input id="calYear" type="number" value="<?=$yearNow?>">
+<div id="calHead">
+  <div id="calPeriod">
+    <select id="calMonth"><?php foreach ($months as $m=>$mth) {
+      printf("<option value='%u'%s>%s</option>",
+        $m, $m==$monthNow?" selected":"", $mth
+      );
+    } ?></select>
+    <input id="calYear" type="number" value="<?=$yearNow?>">
+  </div>
   <input id="calAdd" type="button" value="+">
 </div>
 
@@ -32,48 +34,33 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div id="calWrap"></div>
 
 <!-- (B3) EVENT FORM -->
-<div id="calForm"><form>
-  <input type="hidden" id="evtID">
-
-  <div class="input-group my-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">today</span>
-    </div>
-    <input id="evtStart" type="datetime-local" class="form-control" required>
+<dialog id="calForm"><form method="dialog">
+  <h2 class="evt100">CALENDAR EVENT</h2>
+  <div class="evt50">
+    <label>Start</label>
+    <input id="evtStart" type="datetime-local" required>
   </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">event</span>
-    </div>
-    <input id="evtEnd" type="datetime-local" class="form-control" required>
+  <div class="evt50">
+    <label>End</label>
+    <input id="evtEnd" type="datetime-local" required>
   </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">article</span>
-    </div>
-    <input id="evtTxt" type="text" class="form-control" required placeholder="Event">
+  <div class="evt50">
+    <label>Text Color</label>
+    <input id="evtColor" type="color" value="#000000" required>
   </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">format_color_text</span>
-    </div>
-    <input id="evtColor" type="color" class="form-control form-control-color" value="#000000" required>
+  <div class="evt50">
+    <label>Background Color</label>
+    <input id="evtBG" type="color" value="#ffdbdb" required>
   </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">format_color_fill</span>
-    </div>
-    <input id="evtBG" type="color" class="form-control form-control-color" value="#ffdbdb" required>
+  <div class="evt100">
+    <label>Event</label>
+    <input id="evtTxt" type="text" required>
   </div>
-
-  <div class="d-flex">
-    <input type="button" id="evtCX" class="btn btn-danger me-2" value="Cancel">
-    <input type="button" id="evtDel" class="btn btn-danger me-2" value="Delete">
-    <input type="submit" id="evtSave" class="btn btn-primary" value="Save">
+  <div class="evt100">
+    <input type="hidden" id="evtID">
+    <input type="button" id="evtCX" value="Close">
+    <input type="button" id="evtDel" value="Delete">
+    <input type="submit" id="evtSave" value="Save">
   </div>
-</form></div>
+</form></dialog>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
