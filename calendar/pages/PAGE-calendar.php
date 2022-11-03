@@ -31,7 +31,10 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 </div>
 
 <!-- (B2) CALENDAR WRAPPER -->
-<div id="calWrap"></div>
+<div id="calWrap">
+  <div id="calDays"></div>
+  <div id="calBody"></div>
+</div>
 
 <!-- (B3) EVENT FORM -->
 <dialog id="calForm"><form method="dialog">

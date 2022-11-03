@@ -29,37 +29,49 @@
 }
 
 /* (C) CALENDAR */
-/* (C1) SHARED */
-.calHead, .calRow { display: flex; }
-.calCell { width: 14.2857%; }
+/* (C1) ROWS */
+#calDays, .calRowHead, .calRowBack { display: flex; }
+#calDays, .calRow, .calRowHead, .calRowEvt {
+  position: relative;
+  width: 100%;
+}
+.calRow { min-height: 100px; }
+.calRowHead, .calRowEvt { z-index: 2; }
+.calRowBack {
+  position: absolute;
+  top: 0; left: 0; z-index: 1;
+  width: 100%; height: 100%;
+}
+.calRowEvt {
+  padding: 3px 10px;
+  margin-top: 5px;
+  font-size: 12px;
+  white-space: nowrap; text-overflow: ellipsis;
+  overflow: hidden; cursor: pointer;
+  border-radius: 10px;
+}
 
-/* (C2) HEADER - DAY NAMES */
-.calHead .calCell {
+/* (C2) CELLS & EVENTS */
+.calCell { width: 14.2857%; }
+.w1 { width: 14.2857%; } .w2 { width: 28.5714%; } .w3 { width: 42.8571%; }
+.w4 { width: 57.1428%; } .w5 { width: 71.4285%; } .w6 { width: 85.7142%; }
+.w7 { width: 100%; }
+.o1 { left: 14.2857%; } .o2 { left: 28.5714%; } .o3 { left: 42.8571%; }
+.o4 { left: 57.1428%; } .o5 { left: 71.4285%; } .o6 { left: 85.7142%; }
+#calDays .calCell {
   color: #fff; background: var(--bg-color-b);
   font-weight: 700; text-align: center;
   padding: 15px 0;
 }
-
-/* (C3) BODY - INDIVIDUAL DAYS */
-.calBlank { background: #eee; }
-.calToday { background: #feffd3; }
-.calToday .cellDate { color: #ff9b9b; }
-.calBody .calCell {
-  border: 1px solid #f5f5f5;
-  min-height: 100px;
-}
-.cellDate, .evt { padding: 5px; }
-.cellDate {
+.calRowHead .calCell {
   font-size: 14px;
   font-weight: 700;
   color: #b5b5b5;
+  padding: 5px;
 }
-.evt {
-  font-size: 12px;
-  white-space: nowrap; text-overflow: ellipsis;
-  overflow: hidden;
-  cursor: pointer;
-}
+.calRowBack .calCell { border: 1px solid #f5f5f5; }
+.calBlank { background: #f5f5f5; }
+.calToday { background: #feffd3; }
 
 /* (D) EVENT FORM */
 #calForm {

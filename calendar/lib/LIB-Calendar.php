@@ -37,81 +37,32 @@ class Calendar extends Core {
 
   // (E) GET DATES & EVENTS FOR SELECTED PERIOD
   function getPeriod ($month, $year) {
-    // (E1) DATA STRUCTURE
-    $cells = []; // "b" blank cell
-                 // "d" day number
-                 // "t" today
-                 // "e" => [event ids]
-                 // "s" => [show text for these events]
-    $events = []; // event id => data
-    $map = []; // "yyyy-mm-dd" => $cells[n]
-
-    // (E2) DATE RANGE CALCULATIONS
+    // (E1) DATE RANGE CALCULATIONS
     $month = $month<10 ? "0$month" : $month ;
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     $dateYM = "{$year}-{$month}-";
-    $dateFirst = $dateYM . "01";
-    $dateLast = $dateYM . $daysInMonth;
-    $dayFirst = (new DateTime($dateFirst))->format("w");
-    $dayLast = (new DateTime($dateLast))->format("w");
-    $nowDay = (date("n")==$month && date("Y")==$year) ? date("j") : 0 ;
+    $start = $dateYM . "01 00:00:00";
+    $end = $dateYM . $daysInMonth . " 23:59:59";
 
-    // (E3) PAD EMPTY CELLS BEFORE FIRST DAY OF MONTH
-    if ($this->sun) { $pad = $dayFirst; }
-    else { $pad = $dayFirst==0 ? 6 : $dayFirst-1 ; }
-    for ($i=0; $i<$pad; $i++) { $cells[] = ["b" => 1]; }
-
-    // (E4) DAYS IN MONTH
-    for ($day=1; $day<=$daysInMonth; $day++) {
-      $i = count($cells);
-      $map["$year-$month-".($day<10?"0$day":$day)] = $i;
-      $cells[] = ["d" => $day];
-      if ($day == $nowDay) { $cells[$i]["t"] = 1; }
-    }
-
-    // (E5) PAD EMPTY CELLS AFTER LAST DAY OF MONTH
-    if ($this->sun) { $pad = $dayLast==0 ? 6 : 6-$dayLast ; }
-    else { $pad = $dayLast==0 ? 0 : 7-$dayLast ; }
-    for ($i=0; $i<$pad; $i++) { $cells[] = ["b" => 1]; }
-
-    // (E6) GET EVENTS
-    $start = "$dateFirst 00:00:00";
-    $end = "$dateLast 23:59:59";
+    // (E2) GET EVENTS
+    // s & e : start & end date
+    // c & b : text & background color
+    // t : event text
     $this->DB->query("SELECT * FROM `events` WHERE (
       (`evt_start` BETWEEN ? AND ?)
       OR (`evt_end` BETWEEN ? AND ?)
       OR (`evt_start` <= ? AND `evt_end` >= ?)
     )", [$start, $end, $start, $end, $start, $end]);
+    $events = [];
     while ($r = $this->DB->stmt->fetch()) {
-      // (E6-1) "SAVE" $EVENTS DETAILS
       $events[$r["evt_id"]] = [
         "s" => $r["evt_start"], "e" => $r["evt_end"],
         "c" => $r["evt_color"], "b" => $r["evt_bg"],
         "t" => $r["evt_text"]
       ];
-
-      // (E6-2) "MAP" EVENTS TO $CELLS
-      $start = substr($r["evt_start"], 5, 2)==$month ? (int)substr($r["evt_start"], 8, 2) : 1 ;
-      $end = substr($r["evt_end"], 5, 2)==$month ? (int)substr($r["evt_end"], 8, 2) : 1 ;
-      $first = true;
-      for ($d=$start; $d<=$end; $d++) {
-        // (E6-2-1) SET EVENT
-        $eday = $dateYM . ($d<10?"0$d":$d);
-        if (!isset($cells[$map[$eday]]["e"])) { $cells[$map[$eday]]["e"] = []; }
-        $cells[$map[$eday]]["e"][] = $r["evt_id"];
-
-        // (E6-2-2) DRAW EVENT TEXT?
-        $edow = date("N", strtotime($eday));
-        $set = $first || ($this->sun ? $edow==7 : $edow==1);
-        if ($set) {
-          $first = false;
-          if (!isset($cells[$map[$eday]]["s"])) { $cells[$map[$eday]]["s"] = []; }
-          $cells[$map[$eday]]["s"][] = $r["evt_id"];
-        }
-      }
     }
 
-    // (E7) RESULTS
-    return ["s"=>$this->sun, "e" => $events, "c" => $cells];
+    // (E3) RESULTS
+    return count($events)==0 ? null : $events ;
   }
 }
