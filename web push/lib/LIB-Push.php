@@ -44,10 +44,10 @@ class Push extends Core {
         "body" => $body,
         "icon" => $icon,
         "image" => $image
-      ]), ["TTL" => 500]);
+      ]), ["TTL" => 1000]);
 
       // (C4-3) RESULT
-      if (!$result->isSuccess()) {
+      if (!$result->isSuccess() && $result->isSubscriptionExpired()) {
         $this->del($result->getRequest()->getUri()->__toString());
       }
     }
