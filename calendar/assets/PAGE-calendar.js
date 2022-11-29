@@ -136,9 +136,11 @@ var cal = {
     if (cal.events !== null) { for (let [id,evt] of Object.entries(cal.events)) {
       // (D3-1) EVENT START & END DAY
       let sd = new Date(evt.s), ed = new Date(evt.e);
-      sd = sd.getMonth()+1 < cal.sMth ? 1 : sd.getDate();
-      ed = ed.getMonth()+1 > cal.sMth ? daysInMth : ed.getDate();
-
+      if (sd.getFullYear() != cal.sYear) { sd = 1; }
+      else { sd = sd.getMonth()+1 < cal.sMth ? 1 : sd.getDate(); }
+      if (ed.getFullYear() != cal.sYear) { ed = daysInMth; }
+      else { ed = ed.getMonth()+1 > cal.sMth ? daysInMth : ed.getDate(); }
+ 
       // (D3-2) "MAP" ONTO HTML CALENDAR
       cell = {}; rowNum = 0;
       for (let i=sd; i<=ed; i++) {
