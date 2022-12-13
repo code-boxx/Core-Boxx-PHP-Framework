@@ -75,7 +75,7 @@
 
 /* (D) EVENT FORM */
 #calForm {
-  position:fixed; top: 0; left: 0; z-index: 999;
+  position: fixed; top: 0; left: 0; z-index: 999;
   width: 100vw; height: 100vh;
   padding: 0; margin: 0; border: 0;
   background: rgba(0,0,0,0.5);
@@ -85,9 +85,19 @@
   align-items: center; justify-content: center;
 }
 #calForm form {
+  position: relative;
   width: 450px; padding: 15px;
   border-radius: 10px;
   background: #fff;
+}
+#evtCX {
+  position: absolute;
+  top: 0; right: 0;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--bg-color-c);
+  cursor: pointer;
 }
 #calForm h2 { margin: 0 0 5px 0; }
 #calForm .evt50 { width: 50%; }

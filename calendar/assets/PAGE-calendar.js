@@ -31,7 +31,7 @@ var cal = {
     cal.hYear.onchange = cal.load;
     document.getElementById("calAdd").onclick = () => cal.show();
     cal.hForm.onsubmit = () => cal.save();
-    document.getElementById("evtCX").onclick = () => cal.hFormWrap.open = false;
+    document.getElementById("evtCX").onclick = () => cal.hFormWrap.close();
     cal.hfDel.onclick = cal.del;
 
     // (B3) DRAW DAY NAMES
@@ -118,7 +118,7 @@ var cal = {
     for (let i=1; i<=daysInMth; i++) {
       rowMap[i] = { r : rowNum, c : cellNum };
       celler(i);
-      if (cellNum%7==0) { rowNum++; rower(); }
+      if (cellNum%7==0 && i!=daysInMth) { rowNum++; rower(); }
       cellNum++;
     }
 
@@ -184,7 +184,7 @@ var cal = {
       cal.hfID.value = "";
       cal.hfDel.style.display = "none";
     }
-    cal.hFormWrap.open = true;
+    cal.hFormWrap.show();
   },
 
   // (F) SAVE EVENT
@@ -210,7 +210,7 @@ var cal = {
       mod : "calendar", req : "save",
       data : data,
       onpass : res => {
-        cal.hFormWrap.open = false;
+        cal.hFormWrap.close();
         cal.load();
       }
     });
@@ -222,7 +222,7 @@ var cal = {
     mod : "calendar", req : "del",
     data : { id : cal.hfID.value },
     onpass : res => {
-      cal.hFormWrap.open = false;
+      cal.hFormWrap.close();
       cal.load();
     }
   }))

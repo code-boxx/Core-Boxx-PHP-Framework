@@ -38,6 +38,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 
 <!-- (B3) EVENT FORM -->
 <dialog id="calForm"><form method="dialog">
+  <div id="evtCX" class="mi">clear</div>
   <h2 class="evt100">CALENDAR EVENT</h2>
   <div class="evt50">
     <label>Start</label>
@@ -61,7 +62,6 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </div>
   <div class="evt100">
     <input type="hidden" id="evtID">
-    <input type="button" id="evtCX" value="Close">
     <input type="button" id="evtDel" value="Delete">
     <input type="submit" id="evtSave" value="Save">
   </div>
