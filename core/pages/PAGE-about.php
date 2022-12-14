@@ -1,6 +1,7 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <h3>CORE BOXX</h3>
 <div class="mb-3">open source php mysql modular framework</div>
+<img class="ihead mb-3" src="<?=HOST_ASSETS?>HEAD-core-boxx.jpg">
 <div class="bg-white border p-3">
   <h6>Links & Documentation</h6>
   <ul>
