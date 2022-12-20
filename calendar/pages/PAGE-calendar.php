@@ -20,12 +20,14 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) PERIOD SELECTOR -->
 <div id="calHead">
   <div id="calPeriod">
+  <input id="calBack" type="button" class="mi" value="navigate_before">
     <select id="calMonth"><?php foreach ($months as $m=>$mth) {
       printf("<option value='%u'%s>%s</option>",
         $m, $m==$monthNow?" selected":"", $mth
       );
     } ?></select>
     <input id="calYear" type="number" value="<?=$yearNow?>">
+    <input id="calNext" type="button" class="mi" value="navigate_next">
   </div>
   <input id="calAdd" type="button" value="+">
 </div>

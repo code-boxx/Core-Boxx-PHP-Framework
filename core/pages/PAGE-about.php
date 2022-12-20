@@ -1,8 +1,9 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <h3>CORE BOXX</h3>
 <div class="mb-3">open source php mysql modular framework</div>
-<img class="ihead mb-3" src="<?=HOST_ASSETS?>HEAD-core-boxx.jpg">
-<div class="bg-white border p-3">
+<div class="bg-white border p-3 mb-3">
+  <img class="img-fluid d-block mx-auto mb-3" style="max-height:350px;" src="<?=HOST_ASSETS?>HEAD-core-boxx.jpg">
+
   <h6>Links & Documentation</h6>
   <ul>
     <li><a href="https://code-boxx.com/core-boxx-php-framework/" target="_blank">Core Boxx Official Webpage</a></li>
