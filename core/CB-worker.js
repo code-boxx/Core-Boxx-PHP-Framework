@@ -1,27 +1,29 @@
-// (A) FILES TO CACHE
-const cName = "coreboxx",
-cFiles = [
-  // (A1) BOOTSTRAP
-  "assets/bootstrap.bundle.min.js",
-  "assets/bootstrap.bundle.min.js.map",
-  "assets/bootstrap.min.css",
-  "assets/bootstrap.min.css.map",
-  // (A2) ICONS + IMAGES
-  "assets/ico-512.png",
-  "assets/favicon.png",
-  // (A3) COMMON INTERFACE
-  "assets/maticon.woff2",
-  "assets/PAGE-cb.js",
-  "CB-manifest.json"
-  // @TODO - ADD MORE OF YOUR OWN TO CACHE
-];
-
-// (B) CREATE/INSTALL CACHE
-self.addEventListener("install", evt => evt.waitUntil(
-  caches.open(cName)
-  .then(cache => cache.addAll(cFiles))
-  .catch(err => console.error(err))
-));
+// (A) CREATE/INSTALL CACHE
+self.addEventListener("install", evt => {
+  self.skipWaiting();
+  evt.waitUntil(
+    caches.open("CoreBoxx")
+    .then(cache => cache.addAll([
+      // (A1) BOOTSTRAP
+      "assets/bootstrap.bundle.min.js",
+      "assets/bootstrap.bundle.min.js.map",
+      "assets/bootstrap.min.css",
+      "assets/bootstrap.min.css.map",
+      // (A2) ICONS + IMAGES
+      "assets/ico-512.png",
+      "assets/favicon.png",
+      // (A3) COMMON INTERFACE
+      "assets/maticon.woff2",
+      "assets/PAGE-cb.js",
+      "CB-manifest.json"
+      // @TODO - ADD MORE OF YOUR OWN TO CACHE
+    ]))
+    .catch(err => console.error(err))
+  );
+});
+ 
+// (B) CLAIM CONTROL INSTANTLY
+self.addEventListener("activate", evt => self.clients.claim());
 
 // (C) LOAD FROM CACHE FIRST, FALLBACK TO NETWORK IF NOT FOUND
 self.addEventListener("fetch", evt => evt.respondWith(
