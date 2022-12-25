@@ -34,3 +34,13 @@ self.addEventListener("fetch", evt => evt.respondWith(
 self.addEventListener("fetch", evt => evt.respondWith(
   fetch(evt.request).catch(() => caches.match(evt.request))
 )); */
+
+// (D) LISTEN TO PUSH NOTIFICATIONS
+self.addEventListener("push", evt => {
+  const data = evt.data.json();
+  self.registration.showNotification(data.title, {
+    body: data.body,
+    icon: data.icon,
+    image: data.image
+  });
+});

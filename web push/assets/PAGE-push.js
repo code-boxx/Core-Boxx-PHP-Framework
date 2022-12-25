@@ -11,7 +11,7 @@ var pusher = {
   },
 
   // (C) INIT
-  init : () => {
+  init : async () => {
     // (C1) GET HTML STATUS
     pusher.hStat = document.getElementById("push-stat");
 
@@ -25,9 +25,8 @@ var pusher = {
       return false;
     }
 
-    // (C3) REGISTER SERVICE WORKER + NOTIFICATIONS PERMISSION CHECK
-    navigator.serviceWorker.register(cbhost.base + "CB-push-worker.js", { scope: cbhost.basepath })
-    .then(reg => {
+     // (C3) PUSH NOTIFICATIONS SETUP
+     navigator.serviceWorker.ready.then(reg => {
       pusher.worker = reg;
       if (Notification.permission == "default") {
         Notification.requestPermission()
@@ -42,7 +41,10 @@ var pusher = {
         pusher.show("Notifications denied - Manually enable permissions to allow low stock warning.");
       }
     })
-    .catch(err => pusher.show("ERROR - " + err.message));
+    .catch(err => {
+      pusher.show("ERROR - " + err.message);
+      console.error(err);
+    });
   },
 
   // (D) REGISTER PUSH NOTIFICATIONS

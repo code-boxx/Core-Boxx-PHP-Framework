@@ -9,7 +9,7 @@
   <label class="form-label">Icon</label>
   <input type="text" required class="form-control" name="icon" value="<?=HOST_ASSETS?>i-loud.png">
   <label class="form-label">Image</label>
-  <input type="text" required class="form-control" name="image" value="<?=HOST_ASSETS?>i-zap.png">
+  <input type="text" required class="form-control" name="image" value="<?=HOST_ASSETS?>i-cover.png">
   <input type="submit" value="Go" class="btn btn-primary mt-4">
 </form>
 
