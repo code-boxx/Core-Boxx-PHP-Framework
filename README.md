@@ -12,8 +12,9 @@ Core Boxx is an open-source PHP framework that comes with an installable PWA, a 
 
 ## SCREENSHOTS
 <p float="left">
-  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-1.jpg">
-  <img width="350" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/illus-coreboxx-ss-2.jpg">
+  <img width="250" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-1.png">
+  <img width="250" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-2.png">
+  <img width="250" style="inline-block" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-3.png">
 </p>
 <br><br>
 
