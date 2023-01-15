@@ -2,7 +2,7 @@
 Core Boxx is an open-source PHP framework that comes with an installable PWA, a PDO database, a pretty URL, and an API out of the box. But the idea is not to be a bloated framework with tons of unused features. It is built with the concept of modularity, loading only what you need – It also has plenty of “predefined system modules” that you can add on later.
 <br><br>
 
-## "OUT OF THE BOX" FEATURES
+## :white_check_mark: "OUT OF THE BOX" FEATURES
 1) Modular PHP framework.
 2) Pretty URL.
 3) API endpoints with CORS support.
@@ -10,7 +10,7 @@ Core Boxx is an open-source PHP framework that comes with an installable PWA, a 
 5) Bootstrap HTML template.
 <br><br>
 
-## SCREENSHOTS
+## :camera: SCREENSHOTS
 <p float="left">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-1.png">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-2.png">
@@ -20,28 +20,28 @@ Core Boxx is an open-source PHP framework that comes with an installable PWA, a 
 </p>
 <br><br>
 
-## REQUIREMENTS
+## :ballot_box_with_check: REQUIREMENTS
 1) LAMP/WAMP/MAMP/XAMPP
 2) Apache Mod Rewrite
 3) PHP MYSQL PDO Extension
 4) At least PHP 8.0
 <br><br>
 
-## INSTALLATION
+## :floppy_disk: INSTALLATION
 Just access `http://your-site.com/` in your browser and walk through the installer.
 <br><br>
 
-## NOTES ON THIS REPO
+## :page_facing_up: NOTES ON THIS REPO
 1) Too lazy to create a repo for every module, so I have combined the core engine and all modules into this one.
 2) To get started, you only need to work with the `core` folder - The rest are optional modules.
 <br><br>
 
-## DOCUMENTATION & FRAMEWORKS
+## :bulb: DOCUMENTATION & FRAMEWORKS
 1) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
 2) Visit https://code-boxx.com/core-boxx-php-framework/ for more for the full documentation!
 <br><br>
 
-## LICENSE
+## :newspaper: LICENSE
 Copyright by Code Boxx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
