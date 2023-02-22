@@ -27,13 +27,10 @@ Core Boxx is an open-source PHP framework that comes with an installable PWA, a 
 4) At least PHP 8.0
 <br><br>
 
-## :floppy_disk: INSTALLATION
-Just access `http://your-site.com/` in your browser and walk through the installer.
-<br><br>
-
-## :page_facing_up: NOTES ON THIS REPO
-1) Too lazy to create a repo for every module, so I have combined the core engine and all modules into this one.
-2) To get started, you only need to work with the `core` folder - The rest are optional modules.
+## :floppy_disk: INSTALLATION & NOTES
+1) Copy the `core` folder into your HTTP folder.
+2) Just access `http://your-site.com/` in your browser and walk through the installer.
+3) The rest of the project folders are optional modules. Too lazy and messy to create separate repos for each...
 <br><br>
 
 ## :bulb: DOCUMENTATION & FRAMEWORKS
