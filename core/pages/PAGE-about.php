@@ -2,7 +2,7 @@
 <h3>CORE BOXX</h3>
 <div class="mb-3">open source php mysql modular framework</div>
 <div class="bg-white border p-3 mb-3">
-  <img class="img-fluid d-block mx-auto mb-3" style="max-height:350px;" src="<?=HOST_ASSETS?>HEAD-core-boxx.jpg">
+  <img class="img-fluid d-block mx-auto mb-3" style="max-height:450px;" src="<?=HOST_ASSETS?>head-core-boxx.webp">
 
   <h6>Links & Documentation</h6>
   <ul>

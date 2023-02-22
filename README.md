@@ -1,5 +1,5 @@
 ## CORE BOXX
-Core Boxx is an open-source PHP framework that comes with an installable PWA, a PDO database, a pretty URL, and an API out of the box. But the idea is not to be a bloated framework with tons of unused features. It is built with the concept of modularity, loading only what you need – It also has plenty of “predefined system modules” that you can add on later.
+Core Boxx is an open-source PHP framework that comes with an installable PWA, a PDO database, a pretty URL, and an API out of the box. But the idea is not to be a bloated framework with tons of unused features. It is built with the concept of modularity, loading only what you need – It also has plenty of "predefined system modules" that you can add on later.
 <br><br>
 
 ## :white_check_mark: "OUT OF THE BOX" FEATURES
@@ -37,8 +37,12 @@ Just access `http://your-site.com/` in your browser and walk through the install
 <br><br>
 
 ## :bulb: DOCUMENTATION & FRAMEWORKS
-1) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
-2) Visit https://code-boxx.com/core-boxx-php-framework/ for more for the full documentation!
+1) Visit https://code-boxx.com/core-boxx-php-framework/ for more for the full documentation!
+2) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
+<br><br>
+
+## :star: SUPPORT
+Like this project? Just give it a star. That will indirectly help grow my blog a little bit. :wink:
 <br><br>
 
 ## :newspaper: LICENSE
