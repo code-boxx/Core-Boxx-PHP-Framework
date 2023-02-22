@@ -85,7 +85,7 @@ class Route extends Core {
   function api () : void {
     // (D1) ENFORCE HTTPS (RECOMMENDED)
     if (API_HTTPS && empty($_SERVER["HTTPS"])) {
-      $this->core->respond(0, "Please use HTTPS", null, null, 426);
+      $this->Core->respond(0, "Please use HTTPS", null, null, 426);
     }
 
     // (D2) PARSE URL PATH INTO AN ARRAY - CHECK VALID API REQUEST
@@ -97,7 +97,7 @@ class Route extends Core {
       $_REQ = $this->path[1];
       $valid = file_exists(PATH_LIB . "API-$_MOD.php");
     }
-    if (!$valid) { $this->core->respond(0, "Invalid request", null, null, 400); }
+    if (!$valid) { $this->Core->respond(0, "Invalid request", null, null, 400); }
     unset($this->path); unset($this->pathlen); unset($valid);
 
     // (D3) CORS SUPPORT - ONLY IF NOT LOCALHOST
@@ -125,7 +125,7 @@ class Route extends Core {
       // (D3-3) ACCESS DENIED
       if (!isset($access)) { $access = false; }
       if ($access === false) {
-        $this->core->respond(0, "Calls from $_OGN not allowed", null, null, 403);
+        $this->Core->respond(0, "Calls from $_OGN not allowed", null, null, 403);
       }
 
       // (D3-4) OUTPUT CORS HEADERS IF REQUIRED

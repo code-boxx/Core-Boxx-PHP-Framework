@@ -5,53 +5,53 @@ class Page extends Core {
   //  $mode : "J"avascript function or "A"nchor links
   //  $adj : number of adjcent page squares
   function draw ($action, $mode="J", $adj=1) : void {
-  if ($this->core->page != null && $this->core->page["total"]!=0) {
+  if ($this->Core->page != null && $this->Core->page["total"]!=0) {
     echo "<ul class='pagination p-2 m-0'>";
 
     // (A1) ENOUGH PAGES TO HIDE - DRAW WITH ... SQUARES
-    if ($this->core->page["total"]>5 + ($adj*2)) {
+    if ($this->Core->page["total"]>5 + ($adj*2)) {
       // (A1-1) CURRENT PAGE IS CLOSE TO BEGINNING - HIDE LATER PAGES
-      if ($this->core->page["now"] < 2 + ($adj*2)) {
+      if ($this->Core->page["now"] < 2 + ($adj*2)) {
         for ($i=1; $i<3 + ($adj*2); $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
         $this->cell("...");
-        for ($i=$this->core->page["total"]-1; $i<=$this->core->page["total"]; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+        for ($i=$this->Core->page["total"]-1; $i<=$this->Core->page["total"]; $i++) {
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
       }
 
       // (A1-2) CURRENT PAGE SOMEWHERE IN THE MIDDLE
-      else if ($this->core->page["total"] - ($adj*2) > $this->core->page["now"] && $this->core->page["now"] > ($adj*2)) {
+      else if ($this->Core->page["total"] - ($adj*2) > $this->Core->page["now"] && $this->Core->page["now"] > ($adj*2)) {
         for ($i=1; $i<3; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
         $this->cell("...");
-        for ($i=$this->core->page["now"]-$adj; $i<=$this->core->page["now"]+$adj; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+        for ($i=$this->Core->page["now"]-$adj; $i<=$this->Core->page["now"]+$adj; $i++) {
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
         $this->cell("...");
-        for ($i=$this->core->page["total"]-1; $i<=$this->core->page["total"]; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+        for ($i=$this->Core->page["total"]-1; $i<=$this->Core->page["total"]; $i++) {
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
       }
 
       // (A1-3) CURRENT PAGE SOMEWHERE IN THE MIDDLE - HIDE EARLY PAGES
       else {
         for ($i=1; $i<3; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
         $this->cell("...");
-        for ($i=$this->core->page["total"] - (2+($adj * 2)); $i<=$this->core->page["total"]; $i++) {
-          $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+        for ($i=$this->Core->page["total"] - (2+($adj * 2)); $i<=$this->Core->page["total"]; $i++) {
+          $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
         }
       }
     }
 
     // (A2) NOT ENOUGH PAGES - JUST DRAW ALL
     else {
-      for ($i=1; $i<=$this->core->page["total"]; $i++) {
-        $this->cell($i, $action, $mode, $i==$this->core->page["now"]);
+      for ($i=1; $i<=$this->Core->page["total"]; $i++) {
+        $this->cell($i, $action, $mode, $i==$this->Core->page["now"]);
       }
     }
     echo "</ul>";
