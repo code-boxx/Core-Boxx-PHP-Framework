@@ -1,7 +1,7 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <h1>VAPID KEYS</h1>
 <div class="my-3">
-  Enable "PUSH NOTIFICATION KEYS" in <code>LIB/Code-Config.php</code>.
+  Enable "PUSH NOTIFICATION KEYS" in <code>LIB/CORE-Config.php</code>.
   Copy and paste the following keys in.
 </div>
 
