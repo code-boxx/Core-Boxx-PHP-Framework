@@ -70,10 +70,10 @@ class Comments extends Core {
 
     // (D2) PAGINATION
     if ($page != null) {
-      $this->core->paginator($this->DB->fetchCol(
+      $this->Core->paginator($this->DB->fetchCol(
         "SELECT COUNT(*) FROM `comments` WHERE `id`=?", [$id]
       ), $page);
-      $sql .= $this->core->page["lim"];
+      $sql .= $this->Core->page["lim"];
     }
 
     // (D3) RESULTS
