@@ -63,8 +63,8 @@ function lidi (inst) {
 
   // (E) ENABLE/DISABLE
   inst.enable = () => {
-    inst.hUp.onclick = () => { inst.updown(true); };
-    inst.hDown.onclick = () => { inst.updown(false); };
+    inst.hUp.onclick = () => inst.updown(true);
+    inst.hDown.onclick = () => inst.updown(false);
   };
   inst.disable = () => {
     inst.hUp.onclick = "";
