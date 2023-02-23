@@ -8,8 +8,8 @@ class OTP extends Core {
   // (B) GENERATE OTP
   function generate ($email) {
     // (B1) CHECK IF USER IS REGISTERED
-    $this->core->load("Users");
-    $check = $this->core->Users->get($email);
+    $this->Core->load("Users");
+    $check = $this->Users->get($email);
     if (!is_array($check)) {
       $this->error = "$email is not registered";
       return false;
@@ -35,7 +35,7 @@ class OTP extends Core {
     }
 
     // (B3) GENERATE RANDOM PASSWORD
-    $pass = $this->core->random($this->passlength);
+    $pass = $this->Core->random($this->passlength);
     $this->DB->replace("otp",
       ["user_email", "otp_pass", "otp_tries"], [
         $email, password_hash($pass, PASSWORD_DEFAULT),
@@ -44,8 +44,8 @@ class OTP extends Core {
     );
 
     // (B4) SEND OTP VIA EMAIL
-    $this->core->load("Mail");
-    return $this->core->Mail->send([
+    $this->Core->load("Mail");
+    return $this->Mail->send([
       "from" => "sys@site.com",
       "to" => $email,
       "subject" => "Your OTP",
