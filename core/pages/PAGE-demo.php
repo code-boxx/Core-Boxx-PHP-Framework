@@ -42,7 +42,7 @@
 <div class="bg-white border p-3 mb-3">
 <pre>cb.api({
   mod : "MODULE",
-  req : "REQUEST",
+  act : "ACTION",
   data : { "KEY" : "VALUE" },
   loading : true/false,       // show loading spinner? default true.
   debug : true/false,         // debug mode? default false.

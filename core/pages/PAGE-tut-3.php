@@ -40,7 +40,7 @@
   <li class="list-group-item">
     We are pretty much just using <code>lib/LIB-DB.php</code> to build this library,
     which is the whole "modular and reusable" idea of Core Boxx.
-    Example, if you want to use this Items libray in a new library in the future:
+    Example, if you want to use this Items library in the future:
     <pre class="mb-4 p-3 bg-dark text-white border"><code>class Foo extends Core {
   function bar () {
     $this->Core->load("Items");

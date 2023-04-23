@@ -21,7 +21,7 @@ function save () {
 
   // (D) API CALL
   cb.api({
-    mod : "session", req : "update",
+    mod : "session", act : "update",
     data : data,
     passmsg : "Account Updated",
     onpass : () => {

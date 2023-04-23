@@ -1,6 +1,6 @@
 <?php
 // (A) NOT SIGNED IN
-if (!isset($_SESS["user"])) { $_CORE->redirect(); }
+if (!isset($_CORE->Session->data["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
 $_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-myaccount.js", "defer"]]];
@@ -12,14 +12,14 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <div class="input-group-prepend">
       <span class="input-group-text mi">person</span>
     </div>
-    <input type="text" id="user-name" class="form-control" required placeholder="Name" value=<?=$_SESS["user"]["user_name"]?>>
+    <input type="text" id="user-name" class="form-control" required placeholder="Name" value=<?=$_CORE->Session->data["user"]["user_name"]?>>
   </div>
 
   <div class="input-group mb-4">
     <div class="input-group-prepend">
       <span class="input-group-text mi">email</span>
     </div>
-    <input type="email" id="user-email" class="form-control" required placeholder="Email" value="<?=$_SESS["user"]["user_email"]?>">
+    <input type="email" id="user-email" class="form-control" required placeholder="Email" value="<?=$_CORE->Session->data["user"]["user_email"]?>">
   </div>
 
   <div class="input-group">

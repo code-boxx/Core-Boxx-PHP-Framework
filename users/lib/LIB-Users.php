@@ -35,16 +35,15 @@ class Users extends Core {
   // (C) UPDATE ACCOUNT (LIMITED SAVE)
   function update ($name, $email, $password) {
     // (C1) MUST BE SIGNED IN
-    global $_SESS;
-    if (!isset($_SESS["user"])) {
+    if (!isset($this->Session->data["user"])) {
       $this->error = "Please sign in first";
       return false;
     }
     
     // (C2) UPDATE DATABASE
     $this->DB->update("users",
-      ["user_name", "user_email", "user_password"],
-      "`user_id`=?", [$name, $email, password_hash($password, PASSWORD_DEFAULT), $_SESS["user"]["user_id"]]
+      ["user_name", "user_email", "user_password"], "`user_id`=?",
+      [$name, $email, password_hash($password, PASSWORD_DEFAULT), $this->Session->data["user"]["user_id"]]
     );
     return true;
   }
@@ -55,8 +54,7 @@ class Users extends Core {
   //  $password : user password
   function register ($name, $email, $password) {
     // (D1) ALREADY SIGNED IN
-    global $_SESS;
-    if (isset($_SESS["user"])) {
+    if (isset($this->Session->data["user"])) {
       $this->error = "You are already signed in.";
       return false;
     }
@@ -139,24 +137,23 @@ class Users extends Core {
   //  $password : user password
   function login ($email, $password) {
     // (I1) ALREADY SIGNED IN
-    global $_SESS;
-    if (isset($_SESS["user"])) { return true; }
+    if (isset($this->Session->data["user"])) { return true; }
 
     // (I2) VERIFY EMAIL PASSWORD
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
     // (I3) SESSION START
-    $_SESS["user"] = $user;
-    $this->Session->create();
+    $this->Session->data["user"] = $user;
+    unset($this->Session->data["user"]["user_password"]);
+    $this->Session->save();
     return true;
   }
 
   // (J) LOGOUT
   function logout () {
     // (J1) ALREADY SIGNED OFF
-    global $_SESS;
-    if (!isset($_SESS["user"])) { return true; }
+    if (!isset($this->Session->data["user"])) { return true; }
 
     // (J2) END SESSION
     $this->Session->destroy();

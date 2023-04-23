@@ -1,3 +1,4 @@
+-- (A) USERS
 CREATE TABLE `users` (
   `user_id` bigint(20) NOT NULL,
   `user_name` varchar(255) NOT NULL,
@@ -12,3 +13,13 @@ ALTER TABLE `users`
 
 ALTER TABLE `users`
   MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+-- (B) FORGOT PASSWORD
+CREATE TABLE `password_reset` (
+  `user_id` bigint(20) NOT NULL,
+  `reset_hash` varchar(64) NOT NULL,
+  `reset_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`user_id`);

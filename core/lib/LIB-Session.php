@@ -49,17 +49,15 @@ class Session extends Core {
       unset($token);
     }
 
-    // (B5) VALID SESSION HOOK
-    if ($valid) { require PATH_LIB . "HOOK-SESS-Load.php"; }
-
-    // (B6) INVALID SESSION
+    // (B5) INVALID SESSION
     if (!$valid && isset($_COOKIE["cbsess"])) {
       $this->destroy();
       throw new Exception("Invalid or expired session.");
     }
 
-    // (B7) OK
+    // (B6) OK - VALID SESSION HOOK
     unset($_COOKIE["cbsess"]);
+    require PATH_LIB . "HOOK-SESS-Load.php";
   }
 
   // (C) CREATE CBSESS COOKIE

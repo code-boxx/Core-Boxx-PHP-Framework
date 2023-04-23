@@ -15,7 +15,7 @@ function register () {
 
   // (C) CALL API
   cb.api({
-    mod : "session", req : "register",
+    mod : "session", act : "register",
     data : {
       name : document.getElementById("reg-name").value,
       email : document.getElementById("reg-email").value,
