@@ -126,6 +126,7 @@
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
           <?php if (isset($_CORE->Session->data["user"])) { ?>
           <li class="dropdown-header">
+            <?=$_CORE->Session->data["user"]["user_name"]?><br>
             <?=$_CORE->Session->data["user"]["user_email"]?>
           </li>
           <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">

@@ -122,8 +122,8 @@ function demo () {
 <!-- (I) URL PATH -->
 <div class="bg-primary text-white p-3">
   <strong>$_CORE->Route->path</strong> - The current path.
-  You can use this to resolve things like pagination <strong>/page/123</strong>,
-  or maybe a selected category <strong>/products/toys</strong>.
+  You can use this to resolve things like pagination <strong>page/123/</strong>,
+  or maybe a selected category <strong>products/toys/</strong>.
 </div>
 <div class="bg-white border p-3 mb-3"><?php echo $_CORE->Route->path; ?></div>
 

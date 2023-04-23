@@ -41,9 +41,9 @@ require PATH_PAGES . &quot;TEMPLATE-bottom.php&quot;; ?&gt;
 
 <div class="mb-1 fw-bold">The end! Dummy pages you can delete:</div>
 <ul class="list-group mb-4">
-  <li class="list-group-item">pages/PAGE-tut-1.php to pages/PAGE-tut-6.php</li>
-  <li class="list-group-item">pages/PAGE-demo.php</li>
-  <li class="list-group-item">pages/PAGE-about.php</li>
+  <li class="list-group-item"><code>pages/PAGE-tut-1~6.php</code></li>
+  <li class="list-group-item"><code>pages/PAGE-demo.php</code></li>
+  <li class="list-group-item"><code>pages/PAGE-about.php</code></li>
 </ul>
 
 <div class="mb-4">
