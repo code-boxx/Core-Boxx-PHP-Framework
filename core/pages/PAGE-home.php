@@ -11,28 +11,10 @@ $_PMETA = [
   */
 ];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h3>IT WORKS!</h3>
-<div class="mb-3">
-  Here's a quick walkthrough of PHP variables that may be useful in your pages.
-</div>
-
-<!-- (A) CORE ENGINE -->
-<div class="bg-primary text-white p-3">
-  <strong>$_CORE</strong> - The core engine.
-</div>
-<div class="bg-white border p-3 mb-3"><?php print_r($_CORE); ?></div>
-
-<!-- (B) URL PATH -->
-<div class="bg-primary text-white p-3">
-  <strong>$_PATH</strong> - The current path.
-  You can use this to resolve things like pagination <strong>/page/123</strong>,
-  or maybe a selected category <strong>/products/toys</strong>.
-</div>
-<div class="bg-white border p-3 mb-3"><?php echo $_PATH; ?></div>
-
-<!-- (C) SESSION -->
-<div class="bg-primary text-white p-3">
-  <strong>$_SESS</strong> - "Session variables", something like the default PHP <strong>$_SESSION</strong>.
-</div>
-<div class="bg-white border p-3 mb-3"><?php print_r($_SESS); ?></div>
+<div class="display-6 mb-4">IT WORKS! WHAT'S NEXT?</div>
+<ol class="list-group list-group-numbered mb-4">
+  <li class="list-group-item"><a target="_blank" href="<?=HOST_BASE?>tut/1">Very Fast Tutorial</a></li>
+  <li class="list-group-item"><a target="_blank" href="<?=HOST_BASE?>demo">HTML Interface Demo Page</a></li>
+  <li class="list-group-item"><a target="_blank" href="https://code-boxx.com/core-boxx-php-framework/">Core Boxx Official Page</a></li>
+</ol>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

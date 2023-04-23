@@ -6,8 +6,8 @@ define("HOST_BASE_PATH", parse_url(HOST_BASE, PHP_URL_PATH));
 define("HOST_ASSETS", HOST_BASE . "assets/");
 
 // (B) API ENDPOINT
-define("HOST_API", HOST_BASE_PATH . "api/");
-define("HOST_API_BASE", HOST_BASE . "api/");
+define("HOST_API", "api/");
+define("HOST_API_BASE", HOST_BASE . HOST_API);
 define("API_HTTPS", false);
 define("API_CORS", false);
 // define("API_CORS", false); // no cors, accept host_name only
@@ -28,19 +28,15 @@ define("PATH_BASE", dirname(PATH_LIB) . DIRECTORY_SEPARATOR);
 define("PATH_ASSETS", PATH_BASE . "assets" . DIRECTORY_SEPARATOR);
 define("PATH_PAGES", PATH_BASE . "pages" . DIRECTORY_SEPARATOR);
 
-/* ENABLE THIS SECTION IF USING USER MODULE
 // (E) JSON WEB TOKEN
 define("JWT_ALGO", "HS256");
 define("JWT_EXPIRE", 0);
 define("JWT_ISSUER", "YOUR-NAME");
 define("JWT_SECRET", "YOUR-SECRET-KEY");
-*/
 
-/* ENABLE THIS SECTION IF USING PUSH NOTIFICATION MODULE
 // (F) PUSH NOTIFICATION KEYS
 define("PUSH_PUBLIC", "PUBLIC-KEY");
 define("PUSH_PRIVATE", "SECRET-KEY");
-*/
 
 // (G) ERROR HANDLING
 /* (G1) RECOMMENDED FOR LIVE SERVER

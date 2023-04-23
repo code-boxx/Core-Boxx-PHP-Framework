@@ -1,9 +1,8 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h3>CORE BOXX</h3>
+<div class="display-6">CORE BOXX</div>
 <div class="mb-3">open source php mysql modular framework</div>
-<div class="bg-white border p-3 mb-3">
-  <img class="img-fluid d-block mx-auto mb-3" style="max-height:450px;" src="<?=HOST_ASSETS?>head-core-boxx.webp">
-
+<img class="img-fluid d-block mx-auto mb-3" style="max-height:450px;" src="<?=HOST_ASSETS?>head-core-boxx.webp">
+<div class="bg-white border p-4 mb-3">
   <h6>Links & Documentation</h6>
   <ul>
     <li><a href="https://code-boxx.com/core-boxx-php-framework/" target="_blank">Core Boxx Official Webpage</a></li>
@@ -24,6 +23,7 @@
   <ul>
     <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
     <li><a href="https://developers.google.com/fonts/docs/material_icons" target="_blank">Material Icons</a></li>
+    <li><a href="https://github.com/firebase/php-jwt" target="_blank">PHP JWT</a></li>
   </ul>
 </div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

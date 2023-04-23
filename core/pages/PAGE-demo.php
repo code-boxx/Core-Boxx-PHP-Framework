@@ -1,6 +1,6 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h3>COMMON INTERFACE</h3>
-<div class="mb-3">
+<div class="display-6">COMMON INTERFACE</div>
+<div class="mb-3 text-secondary">
   A quick walkthrough of the HTML and Javascript.
 </div>
 
@@ -13,7 +13,7 @@
   </ul>
 </div>
 <div class="bg-white border p-3 mb-3">
-  <button onclick="cb.loading(1); setTimeout(()=>{cb.loading(0);}, 3000);" class="btn btn-danger">Show Loading For 3 Seconds</button>
+  <button onclick="cb.loading(1); setTimeout(()=>cb.loading(0), 3000);" class="btn btn-danger">Show Loading For 3 Seconds</button>
 </div>
 
 <!-- (B) TOAST MESSAGE -->
@@ -76,22 +76,22 @@ function demo () {
   cb.hPages[1].innerHTML =
   `<h3>THIS IS CB-PAGE-2</h3>
     <div class="my-3">Right click - Inspect element.</div>
-    <button onclick="cb.page(0)" class="btn btn-danger">Back</button>`;
-  cb.page(1)
+    <button onclick="cb.page(1)" class="btn btn-danger">Back</button>`;
+  cb.page(2);
 }
 </script>
 <div class="bg-primary text-white p-3">
   <strong>Page</strong>
   <ul>
     <li>There are 5 &lt;div id="cb-page-N"&gt; in this template to facilitate a single page app (as much as possible).</li>
-    <li>Use cb.page(0 TO 4) to switch between &lt;div id="cb-page-N"&gt;</li>
+    <li>Use cb.page(1 TO 5) to switch between &lt;div id="cb-page-N"&gt;</li>
   </ul>
 </div>
 <div class="bg-white border p-3 mb-3">
 <pre>cb.load({
   page : "MYPAGE",
   target : "cb-page-2",
-  onload : () => { cb.page(1); } // 0 is cb-page-1
+  onload : () => cb.page(2)
 })</pre>
 <button onclick="demo()" class="btn btn-danger">Demo</button>
 </div>
@@ -107,4 +107,29 @@ function demo () {
     <li><strong>cbhost.assets</strong> - Assets URL <?=HOST_ASSETS?></li>
   </ul>
 </div>
+
+<div class="display-6">USEFUL VARIABLES</div>
+<div class="mb-3 text-secondary">
+  A quick walkthrough of PHP variables that may be useful in your pages.
+</div>
+
+<!-- (H) CORE ENGINE -->
+<div class="bg-primary text-white p-3">
+  <strong>$_CORE</strong> - The core engine.
+</div>
+<div class="bg-white border p-3 mb-3"><?php print_r($_CORE); ?></div>
+
+<!-- (I) URL PATH -->
+<div class="bg-primary text-white p-3">
+  <strong>$_CORE->Route->path</strong> - The current path.
+  You can use this to resolve things like pagination <strong>/page/123</strong>,
+  or maybe a selected category <strong>/products/toys</strong>.
+</div>
+<div class="bg-white border p-3 mb-3"><?php echo $_CORE->Route->path; ?></div>
+
+<!-- (J) SESSION -->
+<div class="bg-primary text-white p-3">
+  <strong>$_CORE->Session->data</strong> - "Session variables", something like the default PHP <strong>$_SESSION</strong>.
+</div>
+<div class="bg-white border p-3 mb-3"><?php print_r($_CORE->Session->data); ?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

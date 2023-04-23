@@ -21,7 +21,7 @@ self.addEventListener("install", evt => {
     .catch(err => console.error(err))
   );
 });
- 
+
 // (B) CLAIM CONTROL INSTANTLY
 self.addEventListener("activate", evt => self.clients.claim());
 

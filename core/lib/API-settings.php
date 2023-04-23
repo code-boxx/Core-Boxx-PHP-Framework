@@ -1,18 +1,13 @@
 <?php
 // (A) ADMIN ONLY
-if (!isset($_SESS["user"])) {
+if (!isset($_CORE->Session->data["user"])) {
   $_CORE->respond(0, "Please sign in first", null, null, 403);
 }
 
-switch ($_REQ) {
-  // (B) INVALID REQUEST
-  default:
-    $_CORE->respond(0, "Invalid request", null, null, 400);
-    break;
+// (B) API ENDPOINTS
+$_CORE->autoAPI([
+  "save" => ["Settings", "save"]
+]);
 
-  // (C) SAVE SETTINGS
-  case "save":
-    $_POST["settings"] = json_decode($_POST["settings"], 1);
-    $_CORE->autoAPI("Settings", "save");
-    break;
-}
+// (C) INVALID REQUEST
+$_CORE->respond(0, "Invalid request", null, null, 400);
