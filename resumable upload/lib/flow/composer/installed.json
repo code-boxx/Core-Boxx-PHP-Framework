@@ -2,29 +2,34 @@
     "packages": [
         {
             "name": "flowjs/flow-php-server",
-            "version": "v1.1.0",
-            "version_normalized": "1.1.0.0",
+            "version": "v1.2.0",
+            "version_normalized": "1.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flowjs/flow-php-server.git",
-                "reference": "ab7f6f9a5a47ccd242d48affd20c98e5f785ad14"
+                "reference": "fe8890c25e835d0b4f58d8bd91331326ab1808ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flowjs/flow-php-server/zipball/ab7f6f9a5a47ccd242d48affd20c98e5f785ad14",
-                "reference": "ab7f6f9a5a47ccd242d48affd20c98e5f785ad14",
+                "url": "https://api.github.com/repos/flowjs/flow-php-server/zipball/fe8890c25e835d0b4f58d8bd91331326ab1808ba",
+                "reference": "fe8890c25e835d0b4f58d8bd91331326ab1808ba",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.4"
             },
             "require-dev": {
+                "ext-mongodb": "*",
                 "fabpot/php-cs-fixer": "~2.2",
                 "league/phpunit-coverage-listener": "~1.1",
                 "mikey179/vfsstream": "v1.2.0",
+                "mongodb/mongodb": "^1.4.0",
                 "phpunit/phpunit": "4.*"
             },
-            "time": "2020-12-25T10:52:04+00:00",
+            "suggest": {
+                "mongodb/mongodb": "Required to use this package with Mongo DB"
+            },
+            "time": "2022-08-26T15:50:37+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -55,7 +60,7 @@
             ],
             "support": {
                 "issues": "https://github.com/flowjs/flow-php-server/issues",
-                "source": "https://github.com/flowjs/flow-php-server/tree/v1.1.0"
+                "source": "https://github.com/flowjs/flow-php-server/tree/v1.2.0"
             },
             "install-path": "../flowjs/flow-php-server"
         }

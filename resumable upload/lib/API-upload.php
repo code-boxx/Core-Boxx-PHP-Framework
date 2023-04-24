@@ -1,18 +1,17 @@
 <?php
-switch ($_REQ) {
-  // (A) BAD REQUEST
-  default:
-    $_CORE->respond(0, "Invalid request", null, null, 400);
-    break;
+// (A) RECEIVE UPLOAD
+if ($_CORE->Route->act == "recv") {
+  $_CORE->load("Upload");
+  $_CORE->Upload->recv();
+}
 
-  // (B) RECIEVE UPLOAD
-  case "recv":
-    $_CORE->load("Upload");
-    $_CORE->Upload->recv();
-    break;
+// (B) ALL OTHER REQUESTS
+else {
+  // (B1) API ENDPOINTS
+  $_CORE->autoAPI([
+    "flush" => ["Upload", "flush"]
+  ]);
 
-  // (C) FLUSH TEMP FOLDER
-  case "flush":
-    $_CORE->autoAPI("Upload", "flush");
-    break;
+  // (B2) INVALID REQUEST
+  $_CORE->respond(0, "Invalid request", null, null, 400);
 }
