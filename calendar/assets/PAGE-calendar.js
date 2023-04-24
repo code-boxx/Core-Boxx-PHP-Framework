@@ -67,7 +67,7 @@ var cal = {
     cal.sMth = parseInt(cal.hMth.value);
     cal.sYear = parseInt(cal.hYear.value);
     cb.api({
-      mod : "calendar", req : "getPeriod",
+      mod : "calendar", act : "getPeriod",
       data : { month : cal.hMth.value, year : cal.hYear.value },
       passmsg : false,
       onpass : res => {
@@ -221,7 +221,7 @@ var cal = {
 
     // (G3) AJAX SAVE
     cb.api({
-      mod : "calendar", req : "save",
+      mod : "calendar", act : "save",
       data : data,
       onpass : res => {
         cal.hFormWrap.close();
@@ -233,7 +233,7 @@ var cal = {
 
   // (H) DELETE EVENT
   del : () => cb.modal("Please confirm", "Delete this event?", () => cb.api({
-    mod : "calendar", req : "del",
+    mod : "calendar", act : "del",
     data : { id : cal.hfID.value },
     onpass : res => {
       cal.hFormWrap.close();
