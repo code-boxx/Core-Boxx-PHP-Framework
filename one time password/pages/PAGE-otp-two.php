@@ -3,14 +3,12 @@
 <script>
 function otp () {
   cb.api({
-    mod: "otp", req : "challenge", data : {
+    mod: "otp", act : "challenge", data : {
       "email" : document.getElementById("oemail").value,
       "pass" : document.getElementById("opass").value
     },
     passmsg : false,
-    onpass : () => {
-      cb.modal("Verified", "@TODO - Proceed to do something.");
-    }
+    onpass : () => cb.modal("Verified", "@TODO - Proceed to do something.")
   });
   return false;
 }

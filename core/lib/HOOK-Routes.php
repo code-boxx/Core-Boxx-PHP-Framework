@@ -6,13 +6,14 @@
 // (A) EXAMPLE - MANUAL PATH OVERRIDE
 $override = function ($path) {
   // (A1) REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
-  if (!isset($_SESSION["user"]) && $path!="login/") {
+  global $_CORE;
+  if (!isset($_CORE->Session->data["user"]) && $path!="login/") {
     header("Location: " . HOST_BASE . "login/");
     exit();
   }
 
   // (A2) TWEAK PATH BASED ON USER ROLE
-  if ($path=="products/" && $_SESSION["user"]["role"]=="admin") {
+  if ($path=="products/" && $_CORE->Session->data["user"]["role"]=="admin") {
     $path = "admin/products/";
   }
 

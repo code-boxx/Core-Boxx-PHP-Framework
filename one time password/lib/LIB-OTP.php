@@ -44,6 +44,7 @@ class OTP extends Core {
     );
 
     // (B4) SEND OTP VIA EMAIL
+    // @TODO - complete your own otp email
     $this->Core->load("Mail");
     return $this->Mail->send([
       "from" => "sys@site.com",
