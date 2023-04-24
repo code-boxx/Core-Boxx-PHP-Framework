@@ -5,7 +5,7 @@ var reacts = {
 
   // (B) INITIALIZE
   init : () => cb.api({
-    mod : "reacts", req : "get",
+    mod : "reacts", act : "get",
     data : { id : reacts.cid },
     passmsg : false,
     onpass : res => reacts.lidi = lidi({
@@ -18,9 +18,10 @@ var reacts = {
 
   // (C) SAVE LIKE/DISLIKE STATUS
   save : status => cb.api({
-    mod : "reacts", req : "save", data : {
+    mod : "reacts", act : "save", data : {
       id : reacts.cid,
-      reaction : status
+      reaction : status,
+      get : 1
     },
     passmsg : false,
     onpass : res => reacts.lidi.recount(res.data.react)

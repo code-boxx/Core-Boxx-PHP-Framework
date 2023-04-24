@@ -1,7 +1,7 @@
 <?php
 $_PMETA = [
   "load" => [
-    ["c", HOST_ASSETS."lidi.css"],
+    ["l", HOST_ASSETS."lidi.css"],
     ["s", HOST_ASSETS."lidi.js", "defer"],
     ["s", HOST_ASSETS."PAGE-reacts.js", "defer"]
   ]

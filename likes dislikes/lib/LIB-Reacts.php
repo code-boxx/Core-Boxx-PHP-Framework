@@ -16,11 +16,10 @@ class Reacts extends Core {
     }
 
     // (A2) GET REACTION BY USER (IF SIGNED IN)
-    global $_SESS;
-    if (isset($_SESS["user"])) {
+    if (isset($this->Session->data["user"])) {
       $reacts["user"] = $this->DB->fetchCol(
         "SELECT `reaction` FROM `reactions` WHERE `id`=? AND `user_id`=?",
-        [$id, $_SESS["user"]["user_id"]]
+        [$id, $this->Session->data["user"]["user_id"]]
       );
     }
 
@@ -31,10 +30,10 @@ class Reacts extends Core {
   // (B) SAVE REACTION
   //  $id : content id - video, product, comment, audio, whatever
   //  $reaction : 1 like, -1 dislike, 0 neutral
-  function save ($id, $reaction) {
+  //  $get : get update reaction count after save?
+  function save ($id, $reaction, $get=false) {
     // (B1) MUST BE SIGNED IN
-    global $_SESS;
-    if (!isset($_SESS["user"])) {
+    if (!isset($this->Session->data["user"])) {
       $this->error = "Please sign in first.";
       return false;
     }
@@ -42,13 +41,15 @@ class Reacts extends Core {
     // (B2) UPDATE REACTION
     if ($reaction == 0) {
       $this->DB->delete("reactions",
-        "`id`=? AND `user_id`=?", [$id, $_SESS["user"]["user_id"]]
+        "`id`=? AND `user_id`=?", [$id, $this->Session->data["user"]["user_id"]]
       );
     } else {
       $this->DB->replace("reactions",
-        ["id", "user_id", "reaction"], [$id, $_SESS["user"]["user_id"], $reaction]
+        ["id", "user_id", "reaction"], [$id, $this->Session->data["user"]["user_id"], $reaction]
       );
     }
-    return true;
+
+    // (B3) RESULT
+    return $get ? $this->get($id) : true ;
   }
 }

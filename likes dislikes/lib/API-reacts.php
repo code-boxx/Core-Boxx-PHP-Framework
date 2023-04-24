@@ -1,19 +1,9 @@
 <?php
-switch ($_REQ) {
-  // (A) INVALID REQUEST
-  default:
-    $_CORE->respond(0, "Invalid request", null, null, 400);
-    break;
+// (A) API ENDPOINTS
+$_CORE->autoAPI([
+  "get" => ["Reacts", "get"],
+  "save" => ["Reacts", "save"]
+]);
 
-  // (B) GET REACTS FOR SPECIFIED ID
-  case "get":
-    $_CORE->autoGETAPI("Reacts", "get");
-    break;
-
-  // (C) SAVE REACTION
-  case "save":
-    if ($_CORE->autoCall("Reacts", "save")) {
-      $_CORE->respond(1, "OK", $_CORE->autoCall("Reacts", "get"));
-    } else { $_CORE->respond(0); }
-    break;
-}
+// (B) INVALID REQUEST
+$_CORE->respond(0, "Invalid request", null, null, 400);
