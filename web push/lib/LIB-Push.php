@@ -15,8 +15,7 @@ class Push extends Core {
   // (C) SEND PUSH
   function send ($title, $body, $icon=null, $image=null) {
     /* (C1) THIS SHOULD BE ADMIN-ONLY FUNCTION!
-    global $_SESS;
-    if (!isset($_SESS)) {
+    if (!isset($this->Session->data["user"])) {
       $this->error = "No permission to send notifications.";
       return false;
     } */
