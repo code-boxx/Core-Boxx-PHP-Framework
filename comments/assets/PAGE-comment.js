@@ -4,7 +4,7 @@ var comment = {
 
   // (B) SHOW COMMENTS
   show : () => cb.api({
-    mod : "comments", req : "getAll",
+    mod : "comments", act : "getAll",
     data : { id : comment.id },
     passmsg : false,
     onpass : res => {
@@ -24,7 +24,7 @@ var comment = {
   // (C) ADD COMMENT
   add : () => {
     cb.api({
-      mod : "comments", req : "save", data : {
+      mod : "comments", act : "save", data : {
         id : comment.id,
         message : document.getElementById("cmsg").value
       },
