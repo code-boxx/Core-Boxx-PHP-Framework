@@ -122,30 +122,32 @@
       <div class="flex-grow-1">
         <?php if (isset($_CORE->Session->data["user"])) { ?>
         <!-- (C2-1) TOP NAV -->
-        <nav class="d-flex bg-dark text-white p-1">
-          <div class="flex-grow-1">
-            <button id="cb-toggle" class="btn btn-sm mi text-white" onclick="cb.toggle()">
-              menu
-            </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><div class="container-fluid">
+          <button id="cb-toggle" class="navbar-toggler btn btn-sm mi text-white" onclick="cb.toggle()">
+            menu
+          </button>
+          <div class="navbar-nav me-auto mb-2 mb-lg-0"></div>
+
+          <div class="d-flex align-items-center">
+            <a class="btn btn-sm mi text-danger me-2" href="<?=HOST_BASE?>">
+              admin_panel_settings
+            </a>
+            <div class="dropdown">
+              <button class="btn btn-sm text-white mi" type="button" data-bs-toggle="dropdown">
+                person
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                <li class="dropdown-header">
+                  <?=$_CORE->Session->data["user"]["user_name"]?><br>
+                  <?=$_CORE->Session->data["user"]["user_email"]?>
+                </li>
+                <li class="dropdown-item text-warning" onclick="cb.bye()">
+                  <i class="mi mi-smol">logout</i> Logout
+                </li>
+              </ul>
+            </div>
           </div>
-          <a class="btn btn-sm mi text-danger me-2" href="<?=HOST_BASE?>">
-            admin_panel_settings
-          </a>
-          <div class="dropdown">
-            <button class="btn btn-sm text-white mi" type="button" data-bs-toggle="dropdown">
-              person_outline
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-              <li class="dropdown-header">
-                <?=$_CORE->Session->data["user"]["user_name"]?><br>
-                <?=$_CORE->Session->data["user"]["user_email"]?>
-              </li>
-              <li class="dropdown-item text-warning" onclick="cb.bye()">
-                <i class="mi mi-smol">logout</i> Logout
-              </li>
-            </ul>
-          </div>
-        </nav>
+        </div></nav>
         <?php } ?>
 
         <!-- (C2-2) CONTENTS -->
