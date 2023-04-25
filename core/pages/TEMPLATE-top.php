@@ -90,8 +90,8 @@
     <!-- (C) MAIN NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"><div class="container-fluid">
       <!-- (C1) MENU TOGGLE BUTTON -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cb-navbar">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler btn btn-sm mi text-white" data-bs-toggle="collapse" data-bs-target="#cb-navbar">
+        menu
       </button>
 
       <!-- (C2) COLLAPSABLE WRAPPER -->
@@ -114,39 +114,39 @@
         <!-- (C3-1) NOTIFICATIONS -->
         <a class="text-decoration-none text-white mx-2" href="<?=HOST_BASE?>notifications">
           <span class="mi">notifications</span>
-          <span id="cart-count" class="badge bg-danger rounded-pill">9</span>
+          <span class="badge bg-danger rounded-pill">9</span>
         </a>
 
         <!-- (C3-2) USER -->
-        <a class="dropdown-toggle text-decoration-none text-white mx-2"
-          id="userMenuButton"
-          data-bs-toggle="dropdown">
-            <span class="mi">person</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-          <?php if (isset($_CORE->Session->data["user"])) { ?>
-          <li class="dropdown-header">
-            <?=$_CORE->Session->data["user"]["user_name"]?><br>
-            <?=$_CORE->Session->data["user"]["user_email"]?>
-          </li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">
-            <i class="mi mi-smol">person</i> My Account
-          </a></li>
-          <li class="dropdown-item text-warning" onclick="cb.bye()">
-            <i class="mi mi-smol">logout</i> Logout
-          </li>
-          <?php } else { ?>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>login">
-            <i class="mi mi-smol">key</i> Login
-          </a></li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">
-            <i class="mi mi-smol">question_mark</i> Forgot Password
-          </a></li>
-          <li><a class="dropdown-item" href="<?=HOST_BASE?>register">
-            <i class="mi mi-smol">edit</i> Register
-          </a></li>
-          <?php } ?>
-        </ul>
+        <div class="dropdown">
+          <button class="btn btn-sm text-white mi" type="button" data-bs-toggle="dropdown">
+            person
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+            <?php if (isset($_CORE->Session->data["user"])) { ?>
+            <li class="dropdown-header">
+              <?=$_CORE->Session->data["user"]["user_name"]?><br>
+              <?=$_CORE->Session->data["user"]["user_email"]?>
+            </li>
+            <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">
+              <i class="mi mi-smol">person</i> My Account
+            </a></li>
+            <li class="dropdown-item text-warning" onclick="cb.bye()">
+              <i class="mi mi-smol">logout</i> Logout
+            </li>
+            <?php } else { ?>
+            <li><a class="dropdown-item" href="<?=HOST_BASE?>login">
+              <i class="mi mi-smol">key</i> Login
+            </a></li>
+            <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">
+              <i class="mi mi-smol">question_mark</i> Forgot Password
+            </a></li>
+            <li><a class="dropdown-item" href="<?=HOST_BASE?>register">
+              <i class="mi mi-smol">edit</i> Register
+            </a></li>
+            <?php } ?>
+          </ul>
+        </div>
       </div>
     </div></nav>
 
