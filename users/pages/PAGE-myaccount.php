@@ -8,35 +8,24 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <form class="bg-white border p-4" onsubmit="return save()">
   <h3 class="mb-4">MY ACCOUNT</h3>
 
-  <div class="input-group mb-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">person</span>
-    </div>
+  <div class="form-floating mb-4">
     <input type="text" id="user-name" class="form-control" required placeholder="Name" value=<?=$_CORE->Session->data["user"]["user_name"]?>>
+    <label>Name</label>
   </div>
 
-  <div class="input-group mb-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">email</span>
-    </div>
+  <div class="form-floating mb-4">
     <input type="email" id="user-email" class="form-control" required placeholder="Email" value="<?=$_CORE->Session->data["user"]["user_email"]?>">
+    <label>Email</label>
   </div>
 
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">lock</span>
-    </div>
+  <div class="form-floating mb-4">
     <input type="password" id="user-pass" class="form-control" required placeholder="Password">
-  </div>
-  <div class="text-secondary mt-2 mb-4">
-    * At least 8 characters alphanumeric.
+    <label>Password, at least 8 characters alphanumeric.</label>
   </div>
 
-  <div class="input-group mb-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text mi">lock</span>
-    </div>
+  <div class="form-floating mb-4">
     <input type="password" id="user-cpass" class="form-control" required placeholder="Confirm Password">
+    <label>Confirm Password</label>
   </div>
 
   <input type="submit" class="btn btn-primary" value="Save">

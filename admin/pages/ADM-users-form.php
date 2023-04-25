@@ -20,9 +20,8 @@ if ($edit) { $user = $_CORE->autoCall("Users", "get"); }
 
     <div class="form-floating">
       <input type="password" class="form-control" id="user_password" placeholder="Password" required>
-      <label>User Password</label>
+      <label>Password, at least 8 characters alphanumeric.</label>
     </div>
-    <small class="text-secondary">* At least 8 characters alphanumeric.</small>
   </div>
 
   <input type="button" class="col btn btn-danger" value="Back" onclick="cb.page(1)">

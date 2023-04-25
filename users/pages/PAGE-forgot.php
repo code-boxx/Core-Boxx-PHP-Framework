@@ -15,11 +15,9 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <h3 class="mt-4">FORGOT PASSWORD</h3>
       <div class="mb-4">Enter your email below, a reset link will be sent.</div>
 
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text mi">email</span>
-        </div>
+      <div class="form-floating mb-4">
         <input type="email" id="forgot-email" class="form-control" required placeholder="Email">
+        <label>Email</label>
       </div>
 
       <input type="submit" class="btn btn-primary py-2 mb-4" value="Reset Request">

@@ -13,18 +13,14 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <img src="<?=HOST_ASSETS?>favicon.png" class="p-2 rounded-circle" style="background:#f1f1f1">
     <h3 class="my-4">PLEASE SIGN IN</h3>
 
-    <div class="input-group mb-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text mi">email</span>
-      </div>
+    <div class="form-floating mb-4">
       <input type="email" id="login-email" class="form-control" placeholder="Email" required>
+      <label>Email</label>
     </div>
 
-    <div class="input-group mb-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text mi">lock</span>
-      </div>
+    <div class="form-floating mb-4">
       <input type="password" id="login-pass" class="form-control" placeholder="Password" required>
+      <label>Password</label>
     </div>
 
     <input type="submit" class="btn btn-primary py-2 mb-4" value="Sign In">
