@@ -21,7 +21,8 @@ CREATE TABLE `users_hash` (
   `user_id` bigint(20) NOT NULL,
   `hash_for` varchar(1) NOT NULL,
   `hash_code` varchar(64) NOT NULL,
-  `hash_time` datetime NOT NULL
+  `hash_time` datetime NOT NULL,
+  `hash_tries` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `users_hash`
