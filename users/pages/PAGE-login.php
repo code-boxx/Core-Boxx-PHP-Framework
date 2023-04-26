@@ -14,12 +14,12 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <h3 class="my-4">PLEASE SIGN IN</h3>
 
     <div class="form-floating mb-4">
-      <input type="email" id="login-email" class="form-control" placeholder="Email" required>
+      <input type="email" id="login-email" class="form-control" required>
       <label>Email</label>
     </div>
 
     <div class="form-floating mb-4">
-      <input type="password" id="login-pass" class="form-control" placeholder="Password" required>
+      <input type="password" id="login-pass" class="form-control" required>
       <label>Password</label>
     </div>
 

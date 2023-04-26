@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<div class="display-6">CORE BOXX</div>
+<h1>CORE BOXX</h1>
 <div class="mb-3">open source php mysql modular framework</div>
 <img class="img-fluid d-block mx-auto mb-3" style="max-height:450px;" src="<?=HOST_ASSETS?>head-core-boxx.webp">
 <div class="bg-white border p-4 mb-3">

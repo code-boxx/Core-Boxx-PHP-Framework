@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<div class="display-6 mb-4">VERY FAST TUTORIAL 4/6</div>
+<h1 class="mb-4">VERY FAST TUTORIAL 4/6</h1>
 
 <div class="mb-1 fw-bold">
   Create API endpoint. Add a new <code>lib/API-items.php</code> file.

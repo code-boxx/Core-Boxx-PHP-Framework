@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<div class="display-6 mb-4">VERY FAST TUTORIAL 1/6</div>
+<h1 class="mb-4">VERY FAST TUTORIAL 1/6</h1>
 
 <div class="mb-1 fw-bold">Core Boxx only has 3 folders:</div>
 <ol class="list-group list-group-numbered mb-4">

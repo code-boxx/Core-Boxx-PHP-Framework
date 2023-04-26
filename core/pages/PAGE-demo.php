@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<div class="display-6">COMMON INTERFACE</div>
+<h1>COMMON INTERFACE</h1>
 <div class="mb-3 text-secondary">
   A quick walkthrough of the HTML and Javascript.
 </div>

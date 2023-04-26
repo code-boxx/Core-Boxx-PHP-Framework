@@ -16,7 +16,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <div class="mb-4">Enter your email below, a reset link will be sent.</div>
 
       <div class="form-floating mb-4">
-        <input type="email" id="forgot-email" class="form-control" required placeholder="Email">
+        <input type="email" id="forgot-email" class="form-control" required>
         <label>Email</label>
       </div>
 

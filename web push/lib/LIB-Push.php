@@ -14,11 +14,8 @@ class Push extends Core {
 
   // (C) SEND PUSH
   function send ($title, $body, $icon=null, $image=null) {
-    /* (C1) THIS SHOULD BE ADMIN-ONLY FUNCTION!
-    if (!isset($this->Session->data["user"])) {
-      $this->error = "No permission to send notifications.";
-      return false;
-    } */
+    // (C1) THIS SHOULD BE ADMIN-ONLY FUNCTION!
+    // $this->Core->ucheck("A");
 
     // (C2) MAY TAKE A LONG TIME IF THERE ARE A LOT OF INACTIVE...
     set_time_limit(45);

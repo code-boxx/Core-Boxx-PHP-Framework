@@ -1,8 +1,6 @@
 <?php
 // (A) ADMIN ONLY
-if (!isset($_CORE->Session->data["user"])) {
-  $_CORE->respond(0, "Please sign in first", null, null, 403);
-}
+$_CORE->ucheck("A");
 
 // (B) API ENDPOINTS
 $_CORE->autoAPI([

@@ -22,7 +22,7 @@ function register () {
       password : pass
     },
     passmsg : false,
-    onpass : () => location.href = cbhost.base + "login/"
+    onpass : () => cb.modal("One More Step", "Please click on the activation link in your email.")
   });
   return false;
 }

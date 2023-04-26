@@ -1,0 +1,4 @@
+// USER LEVELS
+define("USR_LVL", [
+  "A" => "Admin", "U" => "User"
+]);

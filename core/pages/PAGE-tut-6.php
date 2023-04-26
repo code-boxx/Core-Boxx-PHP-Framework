@@ -1,5 +1,5 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<div class="display-6 mb-4">VERY FAST TUTORIAL 6/6</div>
+<h1 class="mb-4">VERY FAST TUTORIAL 6/6</h1>
 
 <div class="mb-1 fw-bold">
   Or add a new <code>pages/PAGE-items.php</code>
