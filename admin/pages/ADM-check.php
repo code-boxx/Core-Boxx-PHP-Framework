@@ -1,6 +1,6 @@
 <?php
-// (A) NO PERMISSION - REDIRECT TO LOGIN PAGE
-if (!isset($_CORE->Session->data["user"])) { $_CORE->redirect("login/"); }
+// (A) ADMIN ONLY
+$_CORE->ucheck("A");
  
 // (B) STRIP "ADMIN/" FROM PATH
 $_CORE->Route->path = substr($_CORE->Route->path, 6);

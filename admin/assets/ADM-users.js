@@ -42,7 +42,8 @@ var usr = {
     var data = {
       name : document.getElementById("user_name").value,
       email : document.getElementById("user_email").value,
-      password : document.getElementById("user_password").value
+      password : document.getElementById("user_password").value,
+      lvl : document.getElementById("user_level").value
     };
     var id = document.getElementById("user_id").value;
     if (id!="") { data.id = id; }

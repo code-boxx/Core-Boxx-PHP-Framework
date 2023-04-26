@@ -90,7 +90,6 @@
 
     <!-- (C) MAIN INTERFACE -->
     <div id="cb-body" class="d-flex">
-      <?php if (isset($_CORE->Session->data["user"])) { ?>
       <!-- (C1) LEFT SIDEBAR -->
       <nav id="cb-side" class="bg-dark text-white p-2"><ul class="navbar-nav">
         <li class="nav-item">
@@ -116,11 +115,9 @@
           <hr>
         </li>
       </ul></nav>
-      <?php } ?>
 
       <!-- (C2) RIGHT CONTENTS -->
       <div class="flex-grow-1">
-        <?php if (isset($_CORE->Session->data["user"])) { ?>
         <!-- (C2-1) TOP NAV -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><div class="container-fluid">
           <button id="cb-toggle" class="navbar-toggler btn btn-sm mi text-white" onclick="cb.toggle()">
@@ -148,7 +145,6 @@
             </div>
           </div>
         </div></nav>
-        <?php } ?>
 
         <!-- (C2-2) CONTENTS -->
         <div class="p-4">

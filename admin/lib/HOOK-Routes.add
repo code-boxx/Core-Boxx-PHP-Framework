@@ -1,7 +1,3 @@
-<?php
-// CALLED BY $_CORE->ROUTES->RESOLVE()
-// USE THIS TO OVERRIDE URL PAGE ROUTES
-
 $wild = [
   "admin/" => "ADM-check.php"
 ];
