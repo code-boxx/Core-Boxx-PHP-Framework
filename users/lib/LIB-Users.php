@@ -27,7 +27,7 @@ class Users extends Core {
     // (C1) SELECT
     $sql = sprintf(
       "SELECT %s FROM `users` u%s WHERE u.`user_%s`=?",
-      $hash==null ? "u.*" : "u.*, h.`hash_code`, h.`hash_time`" ,
+      $hash==null ? "u.*" : "u.*, h.`hash_code`, h.`hash_time`, h.`hash_tries`",
       $hash==null ? "" : " LEFT JOIN `users_hash` h ON (u.`user_id`=h.`user_id` AND h.`hash_for`=?)",
       is_numeric($id) ? "id" : "email"
     );
