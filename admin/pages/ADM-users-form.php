@@ -20,10 +20,9 @@ if ($edit) { $user = $_CORE->autoCall("Users", "get"); }
 
     <div class="form-floating mb-4">
       <select class="form-select" id="user_level" required><?php
-        // @TODO
         foreach (USR_LVL as $k=>$v) {
           printf("<option %svalue='%s'>%s</option>",
-            $edit && $user["user_level"]==$k ? "selected" : "" ,
+            $edit && $user["user_level"]==$k ? "selected " : "" ,
             $k, $v
           );
         }

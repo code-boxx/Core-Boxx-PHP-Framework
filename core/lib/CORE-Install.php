@@ -448,8 +448,8 @@ if ($_PHASE == "F") {
 
   // (F5) CREATE ADMIN USER
   if (I_USER) { try {
-    $stmt = $pdo->prepare("REPLACE INTO `users` (`user_name`, `user_email`, `user_password`) VALUES (?,?,?)");
-    $stmt->execute([$_POST["aname"], $_POST["aemail"], password_hash($_POST["apass"], PASSWORD_DEFAULT)]);
+    $stmt = $pdo->prepare("REPLACE INTO `users` (`user_name`, `user_email`, `user_level`, `user_password`) VALUES (?,?,?,?)");
+    $stmt->execute([$_POST["aname"], $_POST["aemail"], "A", password_hash($_POST["apass"], PASSWORD_DEFAULT)]);
   } catch (Exception $ex) { exit("Error creating admin user - " . $ex->getMessage()); }}
 
   // (F6) CORE_CONFIG.PHP SETTINGS TO UPDATE
