@@ -254,8 +254,11 @@ if ($_PHASE == "D") {
       }
     };
 
-    // (DD7) ENABLE INSTALL FORM ON WINDOW LOAD
-    window.onload = () => install.toggle(true);
+    // (DD7) GENERATE RANDOM JWT KEY + ENABLE INSTALL FORM ON WINDOW LOAD
+    window.onload = () => {
+      install.rnd();
+      install.toggle(true);
+    };
     </script>
   </head>
   <body>

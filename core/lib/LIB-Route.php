@@ -19,8 +19,13 @@ class Route extends Core {
     $this->path = rtrim($this->path, "/\\") . "/";
     $this->pathlen = strlen($this->path);
 
-    // (A2) THIS IS AN API REQUEST
-    if (
+    // (A2) MISSING ASSET FILE
+    if (substr($this->path, 0, 6) == "assets") {
+      $this->load("PAGE-404.php", 404);
+    }
+
+    // (A3) THIS IS AN API REQUEST
+    else if (
       strlen($this->path) >= strlen(HOST_API) &&
       substr($this->path, 0, strlen(HOST_API)) == HOST_API
     ) {
@@ -28,7 +33,7 @@ class Route extends Core {
       $this->api();
     }
 
-    // (A3) A "NORMAL" HTTP REQUEST
+    // (A4) A "NORMAL" HTTP REQUEST
     else {
       $this->Core->mode = "W";
       $this->resolve();
