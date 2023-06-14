@@ -1,4 +1,13 @@
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+INSTALL
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder.
+Import lib/SQL-WebPush.sql into your database.
+Access http://yoursite.com/push/1 to generate the private/public keys. Copy them into the PUSH NOTIFICATION KEYS section of lib/CORE-Config.php.
+Access http://yoursite.com/push/2 and allow notifications to show.
+Access http://yoursite.com/push/3 and send a test notification.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 LICENSE
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
