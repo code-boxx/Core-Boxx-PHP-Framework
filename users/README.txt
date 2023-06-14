@@ -1,4 +1,13 @@
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+INSTALL
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder.
+Import lib/SQL-Users.sql into your database.
+Copy the snippet from lib/CORE-Config.add into lib/CORE-Config.php.
+Copy the snippet from lib/HOOK-SESS-Load.add into lib/HOOK-SESS-Load.php.
+Copy the snippet from lib/HOOK-SESS-Save.add into lib/HOOK-SESS-Save.php.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 LICENSE
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
