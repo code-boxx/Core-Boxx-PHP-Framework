@@ -123,10 +123,10 @@
             person
           </button>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-            <?php if (isset($_CORE->Session->data["user"])) { ?>
+            <?php if (isset($_SESSION["user"])) { ?>
             <li class="dropdown-header">
-              <?=$_CORE->Session->data["user"]["user_name"]?><br>
-              <?=$_CORE->Session->data["user"]["user_email"]?>
+              <?=$_SESSION["user"]["user_name"]?><br>
+              <?=$_SESSION["user"]["user_email"]?>
             </li>
             <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">
               <i class="mi mi-smol">person</i> My Account

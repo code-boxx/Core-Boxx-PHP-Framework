@@ -108,7 +108,7 @@ function demo () {
   </ul>
 </div>
 
-<div class="display-6">USEFUL VARIABLES</div>
+<h1>USEFUL VARIABLES</h1>
 <div class="mb-3 text-secondary">
   A quick walkthrough of PHP variables that may be useful in your pages.
 </div>
@@ -129,7 +129,9 @@ function demo () {
 
 <!-- (J) SESSION -->
 <div class="bg-primary text-white p-3">
-  <strong>$_CORE->Session->data</strong> - "Session variables", something like the default PHP <strong>$_SESSION</strong>.
+  <strong>$_SESSION</strong> - Session variables.
+  <strong>TAKE NOTE - Core Boxx is not using PHP session_start()!</strong>
+  It's best to follow up with the <a class="text-white" href="https://code-boxx.com/core-boxx-session-library/" target="_blank">session module documentation</a>.
 </div>
-<div class="bg-white border p-3 mb-3"><?php print_r($_CORE->Session->data); ?></div>
+<div class="bg-white border p-3 mb-3"><?php print_r($_SESSION); ?></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

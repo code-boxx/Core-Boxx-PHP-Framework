@@ -4,21 +4,21 @@
 
 /*
 // (A) EXAMPLE - LOAD USER CUSTOM SETTINGS
-if (isset($this->data["user"])) {
-  $this->data["settings"] = $this->DB->fetchAll(
+if (isset($_SESSION["user"])) {
+  $_SESSION["settings"] = $this->DB->fetchAll(
     "SELECT * FROM `user_settings` WHERE `user_id`=?",
-    [$this->data["user"]["user_id"]]
+    [$_SESSION["user"]["user_id"]]
   );
 }
 
 // (B) EXAMPLE - CHECK IF COUPON STILL VALID
-if (isset($this->data["coupon"])) {
+if (isset($_SESSION["coupon"])) {
   $coupon = $this->DB->fetchAll(
     "SELECT * FROM `coupons` WHERE `coupon_id`=?",
-    [$this->data["coupon"]]
+    [$_SESSION["coupon"]]
   );
   if ($coupon["expire"] >= strtotime("now")) {
-    unset($this->data["coupon"]);
+    unset($_SESSION["coupon"]);
   }
 }
 */

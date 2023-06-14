@@ -97,7 +97,7 @@ class Users extends Core {
   //  $pass : new password
   function update ($name, $cpass, $pass) {
     // (G1) MUST BE SIGNED IN
-    if (!isset($this->Session->data["user"])) {
+    if (!isset($_SESSION["user"])) {
       $this->error = "Please sign in first";
       return false;
     }
@@ -106,14 +106,14 @@ class Users extends Core {
     if (!$this->checker($pass)) { return false; }
 
     // (G3) VERIFY CURRENT PASSWORD
-    if (!$this->verify($this->Session->data["user"]["user_email"], $cpass)) {
+    if (!$this->verify($_SESSION["user"]["user_email"], $cpass)) {
       return false;
     }
 
     // (G4) UPDATE DATABASE
     $this->DB->update("users",
       ["user_name", "user_password"], "`user_id`=?",
-      [$name, password_hash($pass, PASSWORD_DEFAULT), $this->Session->data["user"]["user_id"]]
+      [$name, password_hash($pass, PASSWORD_DEFAULT), $_SESSION["user"]["user_id"]]
     );
     return true;
   }
@@ -149,17 +149,17 @@ class Users extends Core {
   //  $password : user password
   function login ($email, $password) {
     // (I1) ALREADY SIGNED IN
-    if (isset($this->Session->data["user"])) { return true; }
+    if (isset($_SESSION["user"])) { return true; }
 
     // (I2) VERIFY EMAIL PASSWORD ACCOUNT
     $user = $this->verify($email, $password);
     if ($user===false) { return false; }
 
     // (I3) SESSION START
-    $this->Session->data["user"] = $user;
-    unset($this->Session->data["user"]["user_password"]);
-    unset($this->Session->data["user"]["hash_code"]);
-    unset($this->Session->data["user"]["hash_time"]);
+    $_SESSION["user"] = $user;
+    unset($_SESSION["user"]["user_password"]);
+    unset($_SESSION["user"]["hash_code"]);
+    unset($_SESSION["user"]["hash_time"]);
     $this->Session->save();
     return true;
   }
@@ -167,7 +167,7 @@ class Users extends Core {
   // (J) LOGOUT
   function logout () {
     // (J1) ALREADY SIGNED OFF
-    if (!isset($this->Session->data["user"])) { return true; }
+    if (!isset($_SESSION["user"])) { return true; }
 
     // (J2) END SESSION
     $this->Session->destroy();
@@ -180,7 +180,7 @@ class Users extends Core {
   //  $password : user password
   function register ($name, $email, $password) {
     // (K1) ALREADY SIGNED IN
-    if (isset($this->Session->data["user"])) {
+    if (isset($_SESSION["user"])) {
       $this->error = "You are already signed in.";
       return false;
     }
@@ -203,7 +203,7 @@ class Users extends Core {
   //  $id : user id or email
   function hsend ($id) {
     // (L1) ALREADY SIGNED IN
-    if (isset($this->Session->data["user"])) {
+    if (isset($_SESSION["user"])) {
       $this->error = "You are already signed in.";
       return false;
     }
@@ -247,7 +247,7 @@ class Users extends Core {
   // (M) ACTIVATE ACCOUNT
   function hactivate ($i, $h) {
     // (M1) ALREADY SIGNED IN
-    if (isset($this->Session->data["user"])) {
+    if (isset($_SESSION["user"])) {
       $this->error = "Already signed in";
       return false;
     }
@@ -282,7 +282,7 @@ class Users extends Core {
     unset($user["user_password"]);
     unset($user["hash_code"]);
     unset($user["hash_time"]);
-    $this->Session->data["user"] = $user;
+    $_SESSION["user"] = $user;
     $this->Session->save();
     return true;
   }

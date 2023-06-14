@@ -1,6 +1,6 @@
 <?php
 // (A) NOT SIGNED IN
-if (!isset($_CORE->Session->data["user"])) { $_CORE->redirect(); }
+if (!isset($_SESSION["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
 $_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-myaccount.js", "defer"]]];
@@ -13,12 +13,12 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <img src="<?=HOST_ASSETS?>favicon.png" class="p-2 rounded-circle" style="background:#f1f1f1">
     <h3 class="mb-4">MY ACCOUNT</h3>
     <div class="form-floating mb-4">
-      <input type="text" id="user-name" class="form-control" required value=<?=$_CORE->Session->data["user"]["user_name"]?>>
+      <input type="text" id="user-name" class="form-control" required value=<?=$_SESSION["user"]["user_name"]?>>
       <label>Name</label>
     </div>
 
     <div class="form-floating mb-4">
-      <input type="email" class="form-control" readonly value="<?=$_CORE->Session->data["user"]["user_email"]?>">
+      <input type="email" class="form-control" readonly value="<?=$_SESSION["user"]["user_email"]?>">
       <label>Email</label>
     </div>
 

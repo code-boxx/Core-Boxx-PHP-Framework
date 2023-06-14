@@ -1,6 +1,6 @@
 <?php
 // (A) ALREADY SIGNED IN
-if (isset($_CORE->Session->data["user"])) { $_CORE->redirect(); }
+if (isset($_SESSION["user"])) { $_CORE->redirect(); }
 
 // (B) HTML PAGE
 $_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-register.js"]]];

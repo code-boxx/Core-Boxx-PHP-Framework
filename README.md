@@ -6,7 +6,7 @@ Core Boxx is an open-source PHP framework that comes with installable PWA, PDO d
 1) Modular PHP framework.
 2) Pretty URL.
 3) API endpoints with CORS support.
-4) Progressive web app.
+4) Installable Progressive Web App.
 5) JSON Web Token sessions.
 6) Bootstrap HTML template.
 <br><br>
