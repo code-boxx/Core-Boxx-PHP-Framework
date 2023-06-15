@@ -135,8 +135,8 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                 <li class="dropdown-header">
-                  <?=$_CORE->Session->data["user"]["user_name"]?><br>
-                  <?=$_CORE->Session->data["user"]["user_email"]?>
+                  <?=$_SESSION["user"]["user_name"]?><br>
+                  <?=$_SESSION["user"]["user_email"]?>
                 </li>
                 <li class="dropdown-item text-warning" onclick="cb.bye()">
                   <i class="mi mi-smol">logout</i> Logout

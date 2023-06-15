@@ -1,4 +1,13 @@
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+INSTALL
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Install the "main" Core Boxx and the user module first.
+Unzip this module into your existing Core Boxx project folder.
+Copy the snippet from lib/CORE-Config.add to lib/CORE-Config.php.
+Copy the snippet from lib/HOOK-Routes.add to lib/HOOK-Routes.php.
+Create an admin account first, then access http://yoursite.com/admin.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 LICENSE
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
