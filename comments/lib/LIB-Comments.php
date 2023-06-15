@@ -6,14 +6,14 @@ class Comments extends Core {
   //  $cid : comment id, for updating only
   function save ($id, $message, $cid=null) {
     // (A1) CHECK USER
-    if (!isset($this->Session->data["user"])) {
+    if (!isset($_SESSION["user"])) {
       $this->error = "Please sign in first.";
       return false;
     }
 
     // (A2) DATA SETUP
     $fields = ["user_id", "id", "message"];
-    $data = [$this->Session->data["user"]["user_id"], $id, htmlentities($message)];
+    $data = [$_SESSION["user"]["user_id"], $id, htmlentities($message)];
 
     // (A3) ADD/UPDATE COMMENT
     if ($cid==null) {
@@ -29,7 +29,7 @@ class Comments extends Core {
   //  $cid : comment id
   function del ($cid) {
     // (B1) MUST BE SIGNED IN
-    if (!isset($this->Session->data["user"])) {
+    if (!isset($_SESSION["user"])) {
       $this->error = "Please sign in first.";
       return false;
     }
@@ -39,7 +39,7 @@ class Comments extends Core {
 
     // (B3) CAN ONLY DELETE OWN COMMENT
     // @TODO - ADD YOUR OWN CHANGES - ALLOW ADMIN TO DELETE
-    if ($comment["user_id"]!=$this->Session->data["user"]["user_id"]) {
+    if ($comment["user_id"]!=$_SESSION["user"]["user_id"]) {
       $this->error = "You don't have permissions to delete this comment.";
       return false;
     }
