@@ -16,10 +16,10 @@ class Reacts extends Core {
     }
 
     // (A2) GET REACTION BY USER (IF SIGNED IN)
-    if (isset($this->Session->data["user"])) {
+    if (isset($_SESSION["user"])) {
       $reacts["user"] = $this->DB->fetchCol(
         "SELECT `reaction` FROM `reactions` WHERE `id`=? AND `user_id`=?",
-        [$id, $this->Session->data["user"]["user_id"]]
+        [$id, $_SESSION["user"]["user_id"]]
       );
     }
 
@@ -33,7 +33,7 @@ class Reacts extends Core {
   //  $get : get update reaction count after save?
   function save ($id, $reaction, $get=false) {
     // (B1) MUST BE SIGNED IN
-    if (!isset($this->Session->data["user"])) {
+    if (!isset($_SESSION["user"])) {
       $this->error = "Please sign in first.";
       return false;
     }
@@ -41,11 +41,11 @@ class Reacts extends Core {
     // (B2) UPDATE REACTION
     if ($reaction == 0) {
       $this->DB->delete("reactions",
-        "`id`=? AND `user_id`=?", [$id, $this->Session->data["user"]["user_id"]]
+        "`id`=? AND `user_id`=?", [$id, $_SESSION["user"]["user_id"]]
       );
     } else {
       $this->DB->replace("reactions",
-        ["id", "user_id", "reaction"], [$id, $this->Session->data["user"]["user_id"], $reaction]
+        ["id", "user_id", "reaction"], [$id, $_SESSION["user"]["user_id"], $reaction]
       );
     }
 
