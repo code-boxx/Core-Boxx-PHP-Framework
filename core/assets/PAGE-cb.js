@@ -76,7 +76,12 @@ var cb = {
 
   // (B4) CHANGE "LOCAL" PAGE
   //  num : int, page number (1 to 5)
-  page : num => { num--; for (let i in cb.hPages) {
+  page : num => {
+    num --;
+    if (document.startViewTransition) { document.startViewTransition(() => cb.pswitch(num)); }
+    else { cb.pswitch(num); }
+  },
+  pswitch : num => { for (let i in cb.hPages) {
     if (i==num) { cb.hPages[i].classList.remove("d-none"); }
     else { cb.hPages[i].classList.add("d-none"); }
   }},

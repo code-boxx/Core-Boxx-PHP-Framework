@@ -9,14 +9,20 @@
     <li><a href="https://github.com/code-boxx/Core-Boxx" target="_blank">Core Boxx GitHub</a></li>
   </ul>
 
+  <h6>Support</h6>
+  <ul>
+    <li><a href="https://payhip.com/codeboxx" target="_blank">Code Boxx Store (Buy something to support us)</a></li>
+    <li><a href="https://www.paypal.com/paypalme/wstoh/5" target="_blank">Donate (Feed a malnourished developer)</a></li>
+  </ul>
+
   <h6>Socials</h6>
   <ul>
     <li><a href="https://code-boxx.com/" target="_blank">Code Boxx Webpage</a></li>
-    <li><a href="https://payhip.com/codeboxx" target="_blank">Code Boxx Store (Buy a little something to support us?)</a></li>
-    <li><a href="https://www.youtube.com/c/CodeBoxx" target="_blank">Code Boxx YouTube</a></li>
-    <li><a href="https://www.pinterest.com/codeboxx/" target="_blank">Code Boxx Pinterest</a></li>
+    <li><a href="https://www.youtube.com/c/CodeBoxx" target="_blank">YouTube</a></li>
+    <li><a href="https://www.pinterest.com/codeboxx/" target="_blank">Pinterest</a></li>
     <li><a href="https://github.com/code-boxx/" target="_blank">GitHub</a></li>
     <li><a href="https://codepen.io/code-boxx" target="_blank">CodePen</a></li>
+    <li><a href="https://dev.to/codeboxx" target="_blank">DEV</a></li>
   </ul>
 
   <h6>Built With</h6>

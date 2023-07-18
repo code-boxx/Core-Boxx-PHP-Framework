@@ -74,10 +74,16 @@ class CoreBoxx {
   }
 
   // (F) AUTO RESOLVE API REQUEST
-  //  $actions : ["action" => ["module", "function"]]
+  //  $actions : ["action" => ["module", "function", "level"]]
   //  $mode : POST or GET
   function autoAPI ($actions, $mode="POST") : void {
     if (isset($actions[$this->Route->act])) {
+      // (F1) ACCESS CHECK
+      if (isset($actions[$this->Route->act][2])) {
+        $this->ucheck($actions[$this->Route->act][2]);
+      }
+
+      // (F2) RUN FUNCTION
       $result = $this->autoCall($actions[$this->Route->act][0], $actions[$this->Route->act][1], $mode);
       if ($result!==null) {
         $this->respond(

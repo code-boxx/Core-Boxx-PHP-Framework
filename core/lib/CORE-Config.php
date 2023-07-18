@@ -51,3 +51,13 @@ error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 1);
 ini_set("log_errors", 0);
 define("ERR_SHOW", true);
+
+// (H) TIMEZONE
+// https://www.php.net/manual/en/timezones.php
+define("SYS_TZ", "UTC");
+date_default_timezone_set(SYS_TZ);
+$now = ["o" => (new DateTime())->getOffset()];
+$now["h"] = floor(abs($now["o"]) / 3600);
+$now["m"] = floor((abs($now["o"]) - ($now["h"] * 3600)) / 60);
+define("SYS_TZ_OFFSET", sprintf("%s%02d:%02d", $now["o"]<0 ? "-" : "+", $now["h"], $now["m"]));
+unset($now);

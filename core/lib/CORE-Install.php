@@ -335,11 +335,18 @@ if ($_PHASE == "D") {
         <input type="password" name="dbpass" value="<?=I_DB_PASS?>">
       </div>
 
-      <!-- (DD10-4) EMAIL SEND FROM -->
-      <h2>EMAIL</h2>
+      <!-- (DD10-4) EMAIL & TIMEZONE -->
+      <h2>SYSTEM DEFAULTS</h2>
       <div class="iSec">
-        <label>Sent From</label>
+        <label>Email Sent From</label>
         <input type="email" name="mailfrom" value="sys@site.com" required>
+
+        <label>Timezone</label>
+        <input type="text" name="timezone" value="<?=date_default_timezone_get()?>" required>
+        <div class="notes">
+          * This is your current system timezone.
+            If you wish to change it, see the full list of <a href="https://www.php.net/manual/en/timezones.php" target="_blank">supported timezones here</a>.
+        </div>
       </div>
 
       <!-- (DD10-5) JWT -->
@@ -473,7 +480,8 @@ if ($_PHASE == "F") {
       : "false" ),
     "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false"),
     "JWT_SECRET" => $_POST["jwtkey"],
-    "JWT_ISSUER" => $_POST["jwyiss"]
+    "JWT_ISSUER" => $_POST["jwyiss"],
+    "SYS_TZ" => $_POST["timezone"]
   ];
   if (I_PUSH) {
     $replace["PUSH_PRIVATE"] = $_POST["pushprivate"];

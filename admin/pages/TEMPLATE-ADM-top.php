@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="description" content="<?=isset($_PMETA["desc"])?$_PMETA["desc"]:"Core Boxx Admin"?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <meta name="view-transition" content="same-origin">
     <meta name="robots" content="noindex">
 
     <!-- (A2) WEB APP & ICONS -->
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="<?=HOST_ASSETS?>bootstrap.min.css">
     <script defer src="<?=HOST_ASSETS?>bootstrap.bundle.min.js"></script>
     <style>
+    ::view-transition-old(root),::view-transition-new(root){animation-duration:0.5s}
     @font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:url(<?=HOST_ASSETS?>maticon.woff2) format("woff2");}
     .mi{font-family:"Material Icons";font-weight:400;font-style:normal;font-size:24px;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased}
     .mi-big{font-size:32px}.mi-smol{font-size:18px}
@@ -144,7 +146,7 @@
               </ul>
             </div>
           </div>
-        </div></nav>
+        </nav>
 
         <!-- (C2-2) CONTENTS -->
         <div class="p-4">
