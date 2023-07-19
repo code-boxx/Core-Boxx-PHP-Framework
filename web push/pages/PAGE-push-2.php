@@ -1,7 +1,22 @@
+<?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
+<!-- (A) HTML FORM -->
+<h1>SEND TEST NOTIFICATION</h1>
+<form method="post" class="p-4 bg-white border">
+  <label class="form-label">Title</label>
+  <input type="text" required class="form-control" name="title" value="Title">
+  <label class="form-label">Message</label>
+  <input type="text" required class="form-control" name="body" value="Message">
+  <label class="form-label">Icon</label>
+  <input type="text" required class="form-control" name="icon" value="<?=HOST_ASSETS?>CORE-BOXX-PUSH-A.webp">
+  <label class="form-label">Image</label>
+  <input type="text" required class="form-control" name="image" value="<?=HOST_ASSETS?>CORE-BOXX-PUSH-B.webp">
+  <input type="submit" value="Go" class="btn btn-primary mt-4">
+</form>
+
 <?php
-$_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-push.js", "defer"]]];
-require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<script>var cbvapid = "<?=PUSH_PUBLIC?>";</script>
-<h1>SERVICE WORKER & PERMISSION</h1>
-<div id="push-stat">Allow push notifications, and let the script run in the background.</div>
-<?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
+// (B) SEND!
+if (count($_POST)>0) {
+  echo "<div class='mt-4 p-2 bg-success text-white'>SENDING...</div>";
+  $_CORE->autoCall("Push", "send");
+}
+require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

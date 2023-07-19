@@ -1,11 +1,7 @@
-<?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h1>VAPID KEYS</h1>
-<div class="my-3">
-  Copy and paste the following keys into the <code>PUSH NOTIFICATION KEYS</code> section of <code>LIB/CORE-Config.php</code>.
-</div>
-
-<div class="bg-white border p-3 mb-3"><pre><?php
-  require PATH_LIB . "webpush/autoload.php";
-  print_r(Minishlink\WebPush\VAPID::createVapidKeys());
-?></pre></div>
+<?php
+$_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-push.js", "defer"]]];
+require PATH_PAGES . "TEMPLATE-top.php"; ?>
+<script>var cbvapid = "<?=PUSH_PUBLIC?>";</script>
+<h1>SERVICE WORKER & PERMISSION</h1>
+<div id="push-stat">Allow push notifications, and let the script run in the background.</div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

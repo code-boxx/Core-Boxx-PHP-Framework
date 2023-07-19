@@ -1,16 +1,15 @@
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-INSTALL
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder.
-Import lib/SQL-WebPush.sql into your database.
-Access http://yoursite.com/push/1 to generate the private/public keys. Copy them into the PUSH NOTIFICATION KEYS section of lib/CORE-Config.php.
-Access http://yoursite.com/push/2 and allow notifications to show.
-Access http://yoursite.com/push/3 and send a test notification.
+## CORE BOXX WEB PUSH MODULE
+https://code-boxx.com/core-boxx-push-notifications-module/
 
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-LICENSE
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+## INSTALL
+Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-push.php`, this will automatically:
 
+* Import `lib/SQL-WebPush.sql` into your database.
+* Generate the VAPID private/public keys, update `lib/CORE-Config.php`.
+
+After installation, access `http://your-site.com/push/1` and allow notifications to show. Then, access `http://your-site.com/push/2` and send a test notification.
+
+## LICENSE
 Copyright by Code Boxx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,9 +29,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-MORE
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Please visit https://code-boxx.com/ for more!
