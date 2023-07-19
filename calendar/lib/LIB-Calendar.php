@@ -63,6 +63,6 @@ class Calendar extends Core {
     }
 
     // (E3) RESULTS
-    return count($events)==0 ? null : $events ;
+    return count($events)==0 ? "" : $events ;
   }
 }
