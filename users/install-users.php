@@ -11,6 +11,7 @@ try {
 
 // (C) ADD USER LEVEL TO CORE-CONFIG.PHP
 if (!defined("USR_LVL")) {
+  copy(PATH_LIB . "CORE-Config.php", PATH_LIB . "CORE-Config.old");
   try {
     $add = <<<EOD
     // ADDED BY INSTALLER - USER LEVELS
@@ -28,6 +29,7 @@ if (!defined("USR_LVL")) {
 
 // (D) ADD SESSION HOOK TO SAVE ONLY USER ID
 try {
+  copy(PATH_LIB . "HOOK-SESS-Save.php", PATH_LIB . "HOOK-SESS-Save.old");
   $add = <<<EOD
   // ADDED BY INSTALLER - ONLY SAVE USER ID INTO JWT
   if (isset(\$data["user"])) {
@@ -43,6 +45,7 @@ try {
 
 // (E) ADD SESSION HOOK TO LOAD USER FROM DATABASE
 try {
+  copy(PATH_LIB . "HOOK-SESS-Load.php", PATH_LIB . "HOOK-SESS-Load.old");
   $add = <<<EOD
   // ADDED BY INSTALLER - LOAD USER INFO INTO SESSION
   if (isset(\$_SESSION["user"])) {

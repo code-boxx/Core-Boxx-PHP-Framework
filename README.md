@@ -29,7 +29,7 @@ Core Boxx is an open-source PHP framework that comes with installable PWA, PDO d
 <br><br>
 
 ## :floppy_disk: INSTALLATION & NOTES
-1) Just copy the `core` folder into your HTTP folder. Then access `http://your-site.com/` in the browser and walk through the installer.
+1) Just copy the `core/` into your project folder. Then access `http://your-site.com/` in the browser and walk through the installer.
 2) The rest are optional modules. Too lazy and messy to create separate repos for each...
 3) Some optional modules may require "extra installation steps", do check out the documentation - https://code-boxx.com/core-boxx-php-framework/#sec-ref
 <br><br>

@@ -1,16 +1,16 @@
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-INSTALL
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Install the "main" Core Boxx and the user module first.
-Unzip this module into your existing Core Boxx project folder.
-Copy the snippet from lib/CORE-Config.add to lib/CORE-Config.php.
-Copy the snippet from lib/HOOK-Routes.add to lib/HOOK-Routes.php.
-Create an admin account first, then access http://yoursite.com/admin.
+## CORE BOXX ADMIN MODULE
+https://code-boxx.com/core-boxx-admin-panel/
 
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-LICENSE
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+## INSTALL
+Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-admin.php`, this will automatically:
 
+* Create a new `HOST_ADMIN` definition in `lib/CORE-config.php`.
+* Add a new `$wild = [ "admin/" => "ADM-check.php" ]` line to `lib/HOOK-Routes.php`.
+
+**A gentle reminder to create your own admin account.
+`$_CORE->Users->save(NAME, EMAIL, PASSWORD, "A");`**
+
+## LICENSE
 Copyright by Code Boxx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,9 +30,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-MORE
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Please visit https://code-boxx.com/ for more!
