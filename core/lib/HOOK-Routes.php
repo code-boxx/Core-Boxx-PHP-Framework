@@ -2,33 +2,35 @@
 // CALLED BY $_CORE->ROUTES->RESOLVE()
 // USE THIS TO OVERRIDE URL PAGE ROUTES
 
+// (A) EXACT PATH ROUTING
+$routes = [
+  // EXAMPLES
+  // "/" => "myhome.php", // http://site.com/ > pages/myhome.php
+  // "foo/" => "bar.php", // http://site.com/foo/ > pages/bar.php
+];
+
+// (B) WILDCARD PATH ROUTING
+$wild = [
+  // EXAMPLE
+  // "category/" => "category.php", // http://site.com/category/* > pages/category.php
+];
+
 /*
-// (A) EXAMPLE - MANUAL PATH OVERRIDE
+// (C) MANUAL PATH OVERRIDE
 $override = function ($path) {
-  // (A1) REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
+  // EXAMPLE - REDIRECT TO LOGIN PAGE IF NOT SIGNED IN
   global $_CORE;
   if (!isset($_SESSION["user"]) && $path!="login/") {
     header("Location: " . HOST_BASE . "login/");
     exit();
   }
 
-  // (A2) TWEAK PATH BASED ON USER ROLE
+  // EXAMPLE - TWEAK PATH BASED ON USER ROLE
   if ($path=="products/" && $_SESSION["user"]["role"]=="admin") {
     $path = "admin/products/";
   }
 
-  // (A3) RETURN OVERIDDEN PATH
+  // MUST RETURN OVERIDDEN PATH
   return $path;
 };
-
-// (B) EXAMPLE - EXACT PATH ROUTING
-$routes = [
-  "/" => "myhome.php", // http://site.com/ > pages/myhome.php
-  "foo/" => "bar.php", // http://site.com/foo/ > pages/bar.php
-];
-
-// (C) EXAMPLE - WILDCARD PATH ROUTING
-$wild = [
-  "bar/" => "foo.php" // http://site.com/bar/* > pages/foo.php
-];
 */

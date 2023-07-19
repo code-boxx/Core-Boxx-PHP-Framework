@@ -3,7 +3,7 @@
 // USE THIS TO BUILD/OVERRIDE SESSION DATA WHEN UNPACKING THE JWT
 
 /*
-// (A) EXAMPLE - LOAD USER CUSTOM SETTINGS
+// EXAMPLE - LOAD USER CUSTOM SETTINGS
 if (isset($_SESSION["user"])) {
   $_SESSION["settings"] = $this->DB->fetchAll(
     "SELECT * FROM `user_settings` WHERE `user_id`=?",
@@ -11,7 +11,7 @@ if (isset($_SESSION["user"])) {
   );
 }
 
-// (B) EXAMPLE - CHECK IF COUPON STILL VALID
+// EXAMPLE - CHECK IF COUPON STILL VALID
 if (isset($_SESSION["coupon"])) {
   $coupon = $this->DB->fetchAll(
     "SELECT * FROM `coupons` WHERE `coupon_id`=?",

@@ -1,4 +1,0 @@
-// ONLY SAVE USER ID INTO JWT
-if (isset($data["user"])) {
-  $data["user"] = ["user_id" => $data["user"]["user_id"]];
-}
