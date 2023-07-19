@@ -85,13 +85,11 @@ class CoreBoxx {
 
       // (F2) RUN FUNCTION
       $result = $this->autoCall($actions[$this->Route->act][0], $actions[$this->Route->act][1], $mode);
-      if ($result!==null) {
-        $this->respond(
-          is_bool($result) ? $result : true, null,
-          is_bool($result) ? null : $result,
-          $this->DB->lastID!==null ? $this->DB->lastID : null
-        );
-      }
+      $this->respond(
+        is_bool($result) ? $result : true, null,
+        is_bool($result) ? null : $result,
+        $this->DB->lastID!==null ? $this->DB->lastID : null
+      );
     }
   }
 
