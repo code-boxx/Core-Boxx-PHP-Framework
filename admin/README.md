@@ -6,9 +6,9 @@ Install the "main" Core Boxx first, then unzip this module into your existing Co
 
 * Create a new `HOST_ADMIN` definition in `lib/CORE-config.php`.
 * Add a new `$wild = [ "admin/" => "ADM-check.php" ]` line to `lib/HOOK-Routes.php`.
+* Create a dummy admin - `admin@site.com`, password `ABC12345`.
 
-**A gentle reminder to create your own admin account.
-`$_CORE->Users->save(NAME, EMAIL, PASSWORD, "A");`**
+After installing, login and access `http://your-site.com/admin`.
 
 ## LICENSE
 Copyright by Code Boxx

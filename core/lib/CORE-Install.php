@@ -466,7 +466,13 @@ if ($_PHASE == "F") {
     $stmt->execute([$_POST["aname"], $_POST["aemail"], "A", password_hash($_POST["apass"], PASSWORD_DEFAULT)]);
   } catch (Exception $ex) { exit("Error creating admin user - " . $ex->getMessage()); }}
 
-  // (F6) CORE_CONFIG.PHP SETTINGS TO UPDATE
+  // (F6) TIMEZONE
+  date_default_timezone_set($_POST["timezone"]);
+  $now = ["o" => (new DateTime())->getOffset()];
+  $now["h"] = floor(abs($now["o"]) / 3600);
+  $now["m"] = floor((abs($now["o"]) - ($now["h"] * 3600)) / 60);
+
+  // (F7) CORE_CONFIG.PHP SETTINGS TO UPDATE
   $hbase = ($_POST["https"]=="1" ? "https://" : "http://") . $_POST["host"];
   $hbase = rtrim($hbase, "/\\") . "/";
   $replace = [
@@ -481,7 +487,8 @@ if ($_PHASE == "F") {
     "API_HTTPS" => ($_POST["apihttps"]=="1" ? "true" : "false"),
     "JWT_SECRET" => $_POST["jwtkey"],
     "JWT_ISSUER" => $_POST["jwyiss"],
-    "SYS_TZ" => $_POST["timezone"]
+    "SYS_TZ" => $_POST["timezone"],
+    "SYS_TZ_OFFSET" => sprintf("%s%02d:%02d", $now["o"]<0 ? "-" : "+", $now["h"], $now["m"])
   ];
   if (I_PUSH) {
     $replace["PUSH_PRIVATE"] = $_POST["pushprivate"];
@@ -489,12 +496,12 @@ if ($_PHASE == "F") {
   }
   unset($_POST);
 
-  // (F6) BACKUP LIB/CORE-CONFIG.PHP
+  // (F8) BACKUP LIB/CORE-CONFIG.PHP
   if (!copy(I_LIB . "CORE-Config.php", I_LIB . "CORE-Config.old")) {
     exit("Failed to backup config file - " . I_LIB . "CORE-Config.old");
   }
 
-  // (F7) UPDATE LIB/CORE-CONFIG.PHP
+  // (F9) UPDATE LIB/CORE-CONFIG.PHP
   $cfg = file(I_LIB . "CORE-Config.php") or exit("Cannot read". I_LIB ."CORE-Config.php");
   foreach ($cfg as $j=>$line) { foreach ($replace as $k=>$v) { if (strpos($line, "\"$k\"") !== false) {
     if ($k!="API_HTTPS" && $k!="API_CORS") { $v = "\"$v\""; }
@@ -505,7 +512,7 @@ if ($_PHASE == "F") {
   try { file_put_contents(I_LIB . "CORE-Config.php", implode("", $cfg)); }
   catch (Exception $ex) { exit("Error writing to ". I_LIB ."CORE-Config.php"); }
 
-  // (F8) UPDATE WEB MANIFEST
+  // (F10) UPDATE WEB MANIFEST
   $replace = ["start_url", "scope"];
   $hbase = parse_url(rtrim($hbase, "/\\") . "/", PHP_URL_PATH);
   $cfg = file(I_BASE . "CB-manifest.json") or exit("Cannot read". I_BASE . "CB-manifest.json");
@@ -516,7 +523,7 @@ if ($_PHASE == "F") {
   catch (Exception $ex) { exit("Error writing to ". I_BASE . "CB-manifest.json"); }
   unset($hbase); unset($cfg); unset($replace);
 
-  // (F9) ALMOST DONE...
+  // (F11) ALMOST DONE...
   $_PHASE = "G";
 }
 

@@ -55,9 +55,5 @@ define("ERR_SHOW", true);
 // (H) TIMEZONE
 // https://www.php.net/manual/en/timezones.php
 define("SYS_TZ", "UTC");
+define("SYS_TZ_OFFSET", "+00:00");
 date_default_timezone_set(SYS_TZ);
-$now = ["o" => (new DateTime())->getOffset()];
-$now["h"] = floor(abs($now["o"]) / 3600);
-$now["m"] = floor((abs($now["o"]) - ($now["h"] * 3600)) / 60);
-define("SYS_TZ_OFFSET", sprintf("%s%02d:%02d", $now["o"]<0 ? "-" : "+", $now["h"], $now["m"]));
-unset($now);

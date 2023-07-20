@@ -46,7 +46,7 @@ try {
 
   // (D3) INSERT NEW ADMIN ROUTE
   $add = <<<EOF
-    "admin/" => "ADM-check.php" // ADDED BY INSTALLER
+    "admin/" => "ADM-check.php"
   EOF;
   $at = 0;
   foreach ($cfg as $l=>$line) {
@@ -55,18 +55,22 @@ try {
     }
   }
   $at = $at + 1;
-  array_splice($cfg, $at, 0, $add . ($wild==0?"":",") . "\r\n");
+  array_splice($cfg, $at, 0, $add . ($wild==0?"":",") . " // ADDED BY INSTALLER\r\n");
   file_put_contents(PATH_LIB . "HOOK-Routes.php", implode("", $cfg));
 } catch (Exception $ex) {
   exit("Unable to update HOOK-Routes.php - " . $ex->getMessage());
 }
 
-// (E) DELETE THIS SCRIPT
+// (E) CREATE DUMMY ADMIN
+$_CORE->load("Users");
+$_CORE->Users->save("Admin", "admin@site.com", "ABC12345", "A");
+
+// (F) DELETE THIS SCRIPT
 try {
   unlink(PATH_BASE . "install-admin.php");
 } catch (Exception $ex) {
   exit("Unable to delete install-admin.php, please do so manually.");
 }
 
-// (F) DONE
+// (G) DONE
 echo "Admin module successfully installed.";

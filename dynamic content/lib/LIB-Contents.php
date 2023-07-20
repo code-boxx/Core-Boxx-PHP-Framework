@@ -1,17 +1,17 @@
 <?php
 class Contents extends Core {
   // (A) SAVE CONTENT
+  //  $slug : url slug
   //  $title : title
-  //  $text : body of content
+  //  $text : text content
   //  $id : content id, for editing only
-  function save ($title, $text, $id=null) {
+  function save ($slug, $title, $text, $id=null) {
     // (A1) DATA SETUP
-    $fields = ["content_title", "content_text"];
-    $data = [$title, $text];
+    $fields = ["content_slug", "content_title", "content_text"];
+    $data = [$slug, $title, $text];
     if ($id!=null) {
       $fields[] = "date_modified";
       $data[] = date("Y-m-d H:i:s");
-      $data[] = $id;
     }
 
     // (A2) ADD/UPDATE CONTENT
@@ -31,9 +31,13 @@ class Contents extends Core {
   }
 
   // (C) GET CONTENT
+  //  $id : content id or slug
   function get ($id) {
     return $this->DB->fetch(
-      "SELECT * FROM `contents` WHERE `content_id`=?", [$id]
+      sprintf(
+        "SELECT * FROM `contents` WHERE `content_%s`=?",
+        is_numeric($id) ? "id" : "slug"
+      ), [$id]
     );
   }
 
@@ -67,7 +71,11 @@ class Contents extends Core {
   // (E) GENERATE STATIC FILE FROM CONTENT
   // @TODO - UP TO YOU, MAY BE USEFUL TO GENERATE STATIC HTML, MD, ETC...
   function toFile ($id) {
+    // (E1) GET CONTENT
     $content = $this->get($id);
+    if (!isset($content["content_text"])) { return false; }
+
+    // (E2) GENERATE STATIC PAGE
     ob_start();
     require PATH_PAGES . "TEMPLATE-top.php";
     echo $content["content_text"];
