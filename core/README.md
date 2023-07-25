@@ -2,7 +2,7 @@
 https://code-boxx.com/core-boxx-php-framework/
 
 ## INSTALL
-Just access `http://your-site.com`... Unless you want to do it manually for some reason.
+Just copy/unzip into your project folder, and access `http://your-site.com`.
 
 ## LICENSE
 Copyright by Code Boxx

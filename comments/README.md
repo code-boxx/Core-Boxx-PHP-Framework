@@ -1,8 +1,12 @@
 ## CORE BOXX COMMENTS MODULE
 https://code-boxx.com/core-boxx-comments-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+* [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
+
 ## INSTALL
-Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-comments.php`, this will automatically:
+Just copy/unzip this module into your existing Core Boxx project folder. Run `install-comments.php`, this will automatically:
 
 * Import `lib/SQL-Comments.sql` into your database.
 

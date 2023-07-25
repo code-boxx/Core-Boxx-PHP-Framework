@@ -1,8 +1,12 @@
 ## CORE BOXX LIKES DISLIKES MODULE
 https://code-boxx.com/core-boxx-reactions-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+* [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
+
 ## INSTALL
-Install the "main" Core Boxx and users module first, then unzip this module into your existing Core Boxx project folder. Run `install-lidi.php`, this will automatically:
+Just copy/unzip this module into your existing Core Boxx project folder. Run `install-lidi.php`, this will automatically:
 
 * Import `lib/SQL-Reacts.sql` into your database.
 

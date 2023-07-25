@@ -1,12 +1,16 @@
 ## CORE BOXX CALENDAR MODULE
 https://code-boxx.com/core-boxx-calendar-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+
 ## INSTALL
-Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-calendar.php`, this will automatically:
+Just copy/unzip this module into your existing Core Boxx project folder. Run `install-calendar.php`, this will automatically:
 
 * Import `lib/SQL-Calendar.sql` into your database.
+* If you want "Monday first", just change `mon : true` in `assets/PAGE-calendar.js`.
 
-If you want "Monday first", just change `mon : true` in `assets/PAGE-calendar.js`. Lastly, just access `http://your-site.com/calendar` for the demo.
+After installing, access `http://your-site.com/calendar` for the demo.
 
 ## LICENSE
 Copyright by Code Boxx

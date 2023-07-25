@@ -1,13 +1,16 @@
 ## CORE BOXX DYNAMIC CONTENT MODULE
 https://code-boxx.com/core-boxx-dynamic-content-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+
 ## INSTALL
-Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-users.php`, this will automatically:
+Just copy/unzip this module into your existing Core Boxx project folder. Run `install-content.php`, this will automatically:
 
 * Import `lib/SQL-Contents.sql` into your database.
 * Add a new `$wild = [ "post/" => "POST-load.php" ]` route to `HOOK-Routes.php`.
 
-Open `http://your-site.com/post/hello` for the demo. Feel free to use `$_CORE->Contents->save(SLUG, TITLE, TEXT)` to create more posts.
+Open `http://your-site.com/post/hello` for the demo, feel free to use `$_CORE->Contents->save(SLUG, TITLE, TEXT)` to create more posts.
 
 ## LICENSE
 Copyright by Code Boxx

@@ -1,8 +1,11 @@
 ## CORE BOXX WEB PUSH MODULE
 https://code-boxx.com/core-boxx-push-notifications-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+
 ## INSTALL
-Install the "main" Core Boxx first, then unzip this module into your existing Core Boxx project folder. Run `install-push.php`, this will automatically:
+Just copy/unzip this module into your existing Core Boxx project folder. Run `install-push.php`, this will automatically:
 
 * Import `lib/SQL-WebPush.sql` into your database.
 * Generate the VAPID private/public keys, update `lib/CORE-Config.php`.

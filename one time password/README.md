@@ -1,10 +1,11 @@
 ## CORE BOXX OTP MODULE
 https://code-boxx.com/core-boxx-one-time-password-module/
 
+## REQUIREMENTS
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+
 ## INSTALL
-* Install the "main" Core Boxx and the user module first.
-* Unzip this module into your existing Core Boxx project folder.
-* Access http://your-site.com/otp/1 for the demo.
+Just copy/unzip this module into your existing Core Boxx project folder. Access `http://your-site.com/otp/1` for the demo.
 
 ## LICENSE
 Copyright by Code Boxx
