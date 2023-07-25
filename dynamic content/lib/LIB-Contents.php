@@ -12,6 +12,7 @@ class Contents extends Core {
     if ($id!=null) {
       $fields[] = "date_modified";
       $data[] = date("Y-m-d H:i:s");
+      $data[] = $id;
     }
 
     // (A2) ADD/UPDATE CONTENT
@@ -63,7 +64,7 @@ class Contents extends Core {
 
     // (D3) RESULTS
     return $this->DB->fetchAll(
-      "SELECT `content_id` ,`content_title`, `date_created`, `date_modified` $sql",
+      "SELECT `content_id`, `content_slug`, `content_title`, `date_created`, `date_modified` $sql",
        $data, "content_id"
     );
   }
