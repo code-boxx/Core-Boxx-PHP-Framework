@@ -10,24 +10,22 @@ try {
 }
 
 // (C) ADD USER LEVEL TO CORE-CONFIG.PHP
-if (!defined("USR_LVL")) {
+try {
   copy(PATH_LIB . "CORE-Config.php", PATH_LIB . "CORE-Config.old");
-  try {
-    $add = <<<EOD
-    // ADDED BY INSTALLER - USER LEVELS
-    define("USR_LVL", [
-      "A" => "Admin", "U" => "User"
-    ]);
-    EOD;
-    $fh = fopen(PATH_LIB . "CORE-Config.php", "a");
-    fwrite($fh, "\r\n\r\n$add");
-    fclose($fh);
-  } catch (Exception $ex) {
-    exit("Unable to update CORE-Config.php - " . $ex->getMessage());
-  }
+  $add = <<<EOD
+  // ADDED BY INSTALLER - USER LEVELS
+  define("USR_LVL", [
+    "A" => "Admin", "U" => "User"
+  ]);
+  EOD;
+  $fh = fopen(PATH_LIB . "CORE-Config.php", "a");
+  fwrite($fh, "\r\n\r\n$add");
+  fclose($fh);
+} catch (Exception $ex) {
+  exit("Unable to update CORE-Config.php - " . $ex->getMessage());
 }
 
-// (D) ADD SESSION HOOK TO SAVE ONLY USER ID
+// (D) ADD SESSION HOOK TO ONLY SAVE USER ID
 try {
   copy(PATH_LIB . "HOOK-SESS-Save.php", PATH_LIB . "HOOK-SESS-Save.old");
   $add = <<<EOD

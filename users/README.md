@@ -5,13 +5,13 @@ https://code-boxx.com/core-boxx-users-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
 
 ## INSTALL
-Just copy/unzip this module into your existing Core Boxx project folder. Run `install-users.php`, this will automatically:
-
-* Import `lib/SQL-Users.sql` into your database.
-* Add a new `USR_LVL` definition into `lib/CORE-Config.php`.
-* Update `lib/HOOK-SESS-Save.php` to save only the user ID into the JWT.
-* Update `lib/HOOK-SESS-Load.php` to load the user from the database.
-* Delete `install-users.php` itself.
+* Copy/unzip this module into your existing Core Boxx project folder.
+* Run `install-users.php`, this will automatically:
+  - Import `lib/SQL-Users.sql` into your database.
+  - Add a new `USR_LVL` definition into `lib/CORE-Config.php`.
+  - Update `lib/HOOK-SESS-Save.php` to save only the user ID into the JWT.
+  - Update `lib/HOOK-SESS-Load.php` to load user data from the database into `$_SESSION`.
+  - Delete `install-users.php` itself.
 
 ## LICENSE
 Copyright by Code Boxx

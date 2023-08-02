@@ -1,8 +1,15 @@
-## CORE BOXX MODULAR FRAMEWORK
+## CORE BOXX MODULAR PHP FRAMEWORK
 https://code-boxx.com/core-boxx-php-framework/
 
+## REQUIREMENTS
+* LAMP/WAMP/MAMP/XAMPP
+* Apache Mod Rewrite
+* PHP MYSQL PDO Extension
+* PHP OpenSSL Extension
+* At least PHP 8.0
+
 ## INSTALL
-Just copy/unzip into your project folder, and access `http://your-site.com`.
+Copy/unzip into your project folder, and access `http://your-site.com`.
 
 ## LICENSE
 Copyright by Code Boxx

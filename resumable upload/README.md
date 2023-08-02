@@ -5,7 +5,8 @@ https://code-boxx.com/core-boxx-resumable-upload-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
 
 ## INSTALL
-Just copy/unzip this module into your existing Core Boxx project folder. Access `http://your-site.com/upload` for the demo.
+* Copy/unzip this module into your existing Core Boxx project folder.
+* Access `http://your-site.com/upload` for the demo.
 
 ## LICENSE
 Copyright by Code Boxx

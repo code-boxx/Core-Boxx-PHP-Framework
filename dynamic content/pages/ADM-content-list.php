@@ -7,9 +7,9 @@ if (is_array($contents)) { foreach ($contents as $id=>$content) { ?>
 <div class="d-flex align-items-center border p-2">
   <div class="flex-grow-1">
     <div class="fw-bold"><?=$content["content_title"]?></div>
-    <div>
+    <div><a target="_blank" href="<?=HOST_BASE?>post/<?=$content["content_slug"]?>">
       <?=HOST_BASE?>post/<?=$content["content_slug"]?>
-    </div>
+    </a></div>
     <div class="small text-secondary">
       Last Modified: <?=$content["date_modified"]?>
     </div>

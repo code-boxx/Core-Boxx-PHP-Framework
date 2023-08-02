@@ -6,11 +6,10 @@ https://code-boxx.com/core-boxx-comments-module/
 * [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
 
 ## INSTALL
-Just copy/unzip this module into your existing Core Boxx project folder. Run `install-comments.php`, this will automatically:
-
-* Import `lib/SQL-Comments.sql` into your database.
-
-After installation, access `http://your-site.com/comment` for the demo page.
+* Copy/unzip this module into your existing Core Boxx project folder.
+* Run `install-comments.php`, this will automatically:
+  - Import `lib/SQL-Comments.sql` into your database.
+* After installation, access `http://your-site.com/comment` for the demo page.
 
 ## LICENSE
 Copyright by Code Boxx

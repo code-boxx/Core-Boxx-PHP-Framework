@@ -5,6 +5,12 @@ if (isset($_SESSION["user"])) { $_CORE->redirect(); }
 // (B) HTML PAGE
 $_PMETA = ["load" => [["s", HOST_ASSETS."PAGE-login.js", "defer"]]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
+<?php if ($_CORE->error!="") { ?>
+<!-- (B1) ERROR MESSAGE -->
+<div class="p-2 mb-3 text-light bg-danger"><?=$_CORE->error?></div>  
+<?php } ?>
+
+<!-- (B2) LOGIN FORM -->
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border">
 <div class="row">

@@ -3,7 +3,7 @@
 require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
 
 // (B) NEED USERS MODULE
-if (!file_exists(PATH_LIB . "LIB-Users.php")) {
+if (!defined("USR_LVL")) {
   exit("Please install the users module first.");
 }
 

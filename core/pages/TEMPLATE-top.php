@@ -113,13 +113,20 @@
 
       <!-- (C3) RIGHT ITEMS -->
       <div class="d-flex align-items-center">
-        <!-- (C3-1) NOTIFICATIONS -->
+        <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["user_level"]=="A") { ?>
+        <!-- (C3-1) SWITCH TO ADMIN PANEL -->
+        <a class="btn btn-sm mi text-primary me-2" href="<?=HOST_ADMIN?>">
+          wysiwyg
+        </a>
+        <?php } ?>
+
+        <!-- (C3-2) NOTIFICATIONS -->
         <a class="text-decoration-none text-white mx-2" href="<?=HOST_BASE?>notifications">
           <span class="mi">notifications</span>
           <span class="badge bg-danger rounded-pill">9</span>
         </a>
 
-        <!-- (C3-2) USER -->
+        <!-- (C3-3) USER -->
         <div class="dropdown">
           <button class="btn btn-sm text-white mi" type="button" data-bs-toggle="dropdown">
             person
