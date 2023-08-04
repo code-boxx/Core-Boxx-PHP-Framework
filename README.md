@@ -1,13 +1,21 @@
 ## CORE BOXX
-Core Boxx is an open-source PHP framework built with the concept of modularity - Load only what you need, not bloated with tons of unused features. It also has plenty of "predefined system modules" that you can add on.
+Core Boxx is an open-source PHP framework built with the concept of simplicity and modularity. Install and load only what you need, not bloated with unused features.
 <br><br>
 
 ## :white_check_mark: "OUT OF THE BOX" FEATURES
-1) Pretty URL.
+1) Pretty URL and routing.
 2) API endpoints with CORS support.
 3) Installable Progressive Web App.
 4) JSON Web Token sessions.
 5) Bootstrap HTML template.
+<br><br>
+
+## :joy: AS SIMPLE AS IT GETS
+A typical development cycle with Core Boxx:
+1) Create database table.
+2) Create module library - `class MOD extends Core { function FN ... }`
+3) Creat API endpoint - `$_CORE->autoAPI([ "ENDPOINT" => ["MOD", "FN" ]]);`
+4) Create HTML pages and/or mobile app. The end.
 <br><br>
 
 ## :camera: SCREENSHOTS
@@ -28,13 +36,13 @@ Core Boxx is an open-source PHP framework built with the concept of modularity -
 <br><br>
 
 ## :floppy_disk: INSTALLATION & NOTES
-1) Just copy `core/` into your project folder, access `http://your-site.com/` in the browser and walk through the installer.
+1) Just copy `core/` into your project folder. Access `http://your-site.com/` in the browser and walk through the installer.
 2) The rest are optional modules... Too lazy and messy to create separate repos for each.
 3) Some modules may require "extra installation steps", do check out the documentation - https://code-boxx.com/core-boxx-php-framework/#sec-ref
 <br><br>
 
 ## :bulb: DOCUMENTATION & FRAMEWORKS
-1) Visit https://code-boxx.com/core-boxx-php-framework/ for more for the full documentation!
+1) Visit [Core Boxx](https://code-boxx.com/core-boxx-php-framework/) for more for the full documentation!
 2) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
 3) Using [PHP-JWT library](https://github.com/firebase/php-jwt)
 <br><br>

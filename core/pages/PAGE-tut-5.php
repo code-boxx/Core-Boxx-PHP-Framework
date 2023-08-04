@@ -1,39 +1,48 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <h1 class="mb-4">VERY FAST TUTORIAL 5/6</h1>
 
-<div class="mb-1 fw-bold">
-  You can build your web and/or mobile app by solely working with the API.
-</div>
-<pre class="mb-4 p-3 bg-dark text-white border"><code>// (A) HELPER - CALL API
-function ajax (mod, act, data, after) {
-  // (A1) FORM DATA
-  let form = new FormData();
-  if (data) {
-    for (let [k,v] of Object.entries(data)) { form.append(k, v); }
-  } 
+<h5 class="mb-2 text-danger">CREATE HTML PAGE</h5>
+<div class="p-2 bg-primary text-white fw-bold">pages/PAGE-items.php</div>
+<pre class="mb-2 p-3 bg-dark text-white border"><code>&lt;?php
+// (A) HTML TOP HALF
+require PATH_PAGES . &quot;TEMPLATE-top.php&quot;;
 
-  // (A2) AJAX FETCH
-  fetch(`http://site.com/api/${mod}/${act}`, { method:"POST", body:form })
-  .then(res => res.json())
-  .then(res => {
-    if (res.status) { after(res.data); }
-    else { alert(res.message); }
-  })
-  .catch(err => console.error(err));
-}
+// (B) YOUR CONTENT
+$_CORE-&gt;load(&quot;items&quot;);
 
-// (B) ADD/UPDATE ITEM
-ajax("items", "save", { name: "Test" }, () => alert("OK"));
-ajax("items", "save", { name: "Testzzz", id: 1 }, () => alert("OK"));
+// (B1) GET ALL ITEMS
+$items = $_CORE-&gt;items-&gt;getAll();
+foreach ($items as $id=&gt;$name) { /* DRAW HTML */ }
 
-// (C) DELETE ITEM
-ajax("items", "del", { id: 123 }, () => alert("OK"));
+// (B2) SAVE ITEM
+$_CORE-&gt;items-&gt;save(&quot;ANOTHER&quot;);
+$_CORE-&gt;items-&gt;save(&quot;ANOTHERZZ&quot;, 123);
 
-// (D) GET ALL
-ajax("items", "getAll", null, data => {
-  for (let [i,n] of Object.entries(data)) { BUILD HTML LIST }
-});
+// (B3) DELETE ITEM
+$_CORE-&gt;items-&gt;del(456);
+
+// (C) HTML BOTTOM HALF
+require PATH_PAGES . &quot;TEMPLATE-bottom.php&quot;; ?&gt;
 </code></pre>
+<ol class="list-group list-group-numbered mb-4">
+  <li class="list-group-item"><code>http://site.com/foo/</code> will "map" to <code>pages/PAGE-foo.php</code></li>
+  <li class="list-group-item"><code>http://site.com/foo/bar/</code> will "map" to <code>pages/PAGE-foo-bar.php</code></li>
+  <li class="list-group-item">So, <code>http://site.com/items/</code> will "map" to <code>pages/PAGE-items.php</code></li>
+  <li class="list-group-item">Every page will have access to <code>$_CORE</code>, so you can use any module.</li>
+</ol>
+
+<h5 class="mb-2 text-danger">DEFAULT HTML TEMPLATE</h5>
+<ol class="list-group list-group-numbered mb-4">
+  <li class="list-group-item">
+    The default HTML template is using Bootstrap and Google Material Icons.
+  </li>
+  <li class="list-group-item">
+    No hard rules that you MUST use it.
+  </li>
+  <li class="list-group-item">
+    Feel free to redevelop <code>TEMPLATE-top.php</code> and <code>TEMPLATE-bottom.php</code> to suit your needs.
+  </li>
+</ol>
 
 <div class="mb-4">
   <a class="btn btn-danger" href="<?=HOST_BASE?>tut/4">Last Page</a>

@@ -106,7 +106,10 @@
         <!-- (C2-2) LEFT MENU ITEMS -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?=HOST_BASE?>about">About</a>
+            <a class="nav-link" href="<?=HOST_BASE?>">PAGE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=HOST_BASE?>">PAGE</a>
           </li>
         </ul>
       </div>

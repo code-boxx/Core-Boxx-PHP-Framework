@@ -1,8 +1,10 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
-<h1>COMMON INTERFACE</h1>
-<div class="mb-3 text-secondary">
-  A quick walkthrough of the HTML and Javascript.
+<h1>DEMO PAGE</h1>
+<div class="mb-4">
+  A quick walkthrough of the common HTML, Javascript, and PHP variables.
 </div>
+
+<h5 class="mb-2 text-danger">COMMON INTERFACE</h5>
 
 <!-- (A) PAGE LOAD SPINNER -->
 <div class="bg-primary text-white p-3">
@@ -108,10 +110,7 @@ function demo () {
   </ul>
 </div>
 
-<h1>USEFUL VARIABLES</h1>
-<div class="mb-3 text-secondary">
-  A quick walkthrough of PHP variables that may be useful in your pages.
-</div>
+<h5 class="mb-2 text-danger">PHP CORE BOXX</h5>
 
 <!-- (H) CORE ENGINE -->
 <div class="bg-primary text-white p-3">

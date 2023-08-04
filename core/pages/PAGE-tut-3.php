@@ -1,15 +1,14 @@
 <?php require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <h1 class="mb-4">VERY FAST TUTORIAL 3/6</h1>
 
-<div class="mb-1 fw-bold">
-  Create a new library to work with the database.
-  Add a new <code>lib/LIB-Items.php</code> file.
-</div>
-<pre class="mb-4 p-3 bg-dark text-white border"><code>class Items extends Core {
+<h5 class="mb-2 text-danger">CREATE NEW LIBRARY</h5>
+<div class="p-2 bg-primary text-white fw-bold">lib/LIB-Items.php</div>
+<pre class="mb-2 p-3 bg-dark text-white border"><code>class Items extends Core {
   // (A) GET ALL ITEMS
   function getAll () {
     return $this->DB->fetchKV(
-      "SELECT * FROM `items`", null, "item_id", "item_name"
+      "SELECT * FROM `items`", null,
+      "item_id", "item_name"
     );
   }
 
@@ -31,24 +30,26 @@
   }
 }
 </code></pre>
-
-<div class="mb-1 fw-bold">How this works:</div>
 <ol class="list-group list-group-numbered mb-4">
   <li class="list-group-item"><code>lib/LIB-Items.php</code> - Items, capital "I".</li>
   <li class="list-group-item"><code>class Items</code> - Same name, captial "I".</li>
   <li class="list-group-item"><code>extends Core</code> - Necessary.</li>
   <li class="list-group-item">
-    We are pretty much just using <code>lib/LIB-DB.php</code> to build this library,
-    which is the whole "modular and reusable" idea of Core Boxx.
-    Example, if you want to use this Items library in the future:
-    <pre class="mb-4 p-3 bg-dark text-white border"><code>class Foo extends Core {
+    We are pretty much just using <code>lib/LIB-DB.php</code> to build this library.
+  </li>
+</ol>
+
+<h5 class="mb-2 text-danger">REUSABLE MODULES</h5>
+<pre class="p-3 mb-2 bg-dark text-white border"><code>class Foo extends Core {
   function bar () {
     $this->Core->load("Items");
     $items = $this->Items->getAll();
   }
 }</code></pre>
-  </li>
-</ol>
+<div class="mb-4">
+  Core Boxx is a <strong>modular and reusable</strong> engine.
+  We can create another library, and reuse the <code>Items</code> library entirely.
+</div>
 
 <div class="mb-4">
   <a class="btn btn-danger" href="<?=HOST_BASE?>tut/2">Last Page</a>
