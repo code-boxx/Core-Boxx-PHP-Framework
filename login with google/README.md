@@ -17,7 +17,7 @@ https://code-boxx.com/core-boxx-google-login-module/
   - Create credentials > OAuth client ID.
   - Set the name of your app, set your origin - `http://your-site.com`.
   - Set redirect URL as `http://your-site.com/login`.
-  - On complete, Google will give you the client ID and secret. Download and save it as `lib/CRD-google.json`.
+  - On complete, Google will give you the client ID and secret. Download and save it as `lib/CRD-Google.json`.
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
