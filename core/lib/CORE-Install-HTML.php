@@ -24,7 +24,7 @@ if (I_PUSH && I_OPENSSL) {
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="<?=HOST_ASSETS?>bootstrap.min.css">
     <script defer src="<?=HOST_ASSETS?>bootstrap.bundle.min.js"></script>
-    <?php require PATH_LIB . "CORE-install-js.php"; ?>
+    <?php require PATH_LIB . "CORE-Install-JS.php"; ?>
   </head>
   <body><div class="container p-4">
     <?php if (I_APACHE === false || I_REWRITE === false) { ?>
