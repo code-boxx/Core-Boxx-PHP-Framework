@@ -9,7 +9,7 @@ class GOOIN extends Core {
     // (A2) NEW GOOGLE CLIENT OBJECT
     require PATH_LIB . "GoogleAPI" . DIRECTORY_SEPARATOR . "autoload.php";
     $this->goo = new Google\Client();
-    $this->goo->setAuthConfig(PATH_LIB . "CRD-google.json");
+    $this->goo->setAuthConfig(PATH_LIB . "CRD-Google.json");
     $this->goo->addScope("email");
     $this->goo->addScope("profile");
   }
