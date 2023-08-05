@@ -17,15 +17,14 @@ https://code-boxx.com/core-boxx-google-login-module/
   - Create credentials > OAuth client ID.
   - Set the name of your app, set your origin - `http://your-site.com`.
   - Set redirect URL as `http://your-site.com/login`.
-  - After saving, Google will give you the client ID and secret.
+  - On complete, Google will give you the client ID and secret. Download and save it as `lib/CRD-google.json`.
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Edit `install-GOOIN.php`, paste your client ID and secret.
 * Run `install-GOOIN.php`, this will automatically:
   - Import `lib/SQL-GOOIN.sql` into your database.
-  - Add the client ID and secret into `lib/CORE-Config.php`.
-  - Add Google login to `pages/PAGE-login.php`.
+  - Add Google login button to `pages/PAGE-login.php`.
   - Delete `install-GOOIN.php` itself.
 
 ## LICENSE

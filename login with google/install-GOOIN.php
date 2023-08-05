@@ -1,15 +1,13 @@
 <?php
-// (A) PASTE YOUR CLIENT ID & SECRET HERE
-$clientID = "";
-$clientSecret = "";
-
-// (B) START CORE ENGINE & CHECKS
+// (A) START CORE ENGINE & CHECKS
 require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
 if (!defined("USR_LVL")) {
   exit("Please install the users module first.");
 }
-if ($clientID=="" || $clientSecret=="") {
-  exit("Please enter your client ID and secret.");
+
+// (B) CHECK CREDENTIALS
+if (!file_exists(PATH_LIB . "CRD-google.json")) {
+  exit(PATH_LIB . "CRD-google.json not found.");
 }
 
 // (C) IMPORT SQL
@@ -19,27 +17,12 @@ try {
   exit("Unable to import SQL - " . $ex->getMessage());
 }
 
-// (D) ADD CLIENT ID & SECRET TO CORE-CONFIG.PHP
+// (D) MODIFY LOGIN PAGE
 try {
-  copy(PATH_LIB . "CORE-Config.php", PATH_LIB . "CORE-Config.old");
-  $add = <<<EOD
-  // ADDED BY INSTALLER - LOGIN WITH GOOGLE
-  define("GOOGLE_CLIENT_ID", "$clientID");
-  define("GOOGLE_CLIENT_SECRET", "$clientSecret");
-  EOD;
-  $fh = fopen(PATH_LIB . "CORE-Config.php", "a");
-  fwrite($fh, "\r\n\r\n$add");
-  fclose($fh);
-} catch (Exception $ex) {
-  exit("Unable to update CORE-Config.php - " . $ex->getMessage());
-}
-
-// (E) MODIFY LOGIN PAGE
-try {
-  // (E1) BACKUP LOGIN PAGE
+  // (D1) BACKUP LOGIN PAGE
   copy(PATH_PAGES . "PAGE-login.php", PATH_PAGES . "PAGE-login.old");
 
-  // (E2) LOAD GOOGLE CLIENT LIBRARY
+  // (D2) LOAD GOOGLE CLIENT LIBRARY
   $login = file(PATH_PAGES . "PAGE-login.php");
   foreach ($login as $j=>$line) {
     if (strpos($line, "ALREADY SIGNED IN") !== false) {
@@ -52,7 +35,7 @@ try {
     }
   }
 
-  // (E3) ADD "LOGIN WITH GOOGLE" BUTTON
+  // (D3) ADD "LOGIN WITH GOOGLE" BUTTON
   foreach ($login as $j=>$line) {
     if (strpos($line, "Forgot Password") !== false) {
       array_splice($login, $j, 0, [
@@ -63,18 +46,18 @@ try {
     }
   }
 
-  // (E4) UPDATE LOGIN PAGE
+  // (D4) UPDATE LOGIN PAGE
   file_put_contents(PATH_PAGES . "PAGE-login.php", implode("", $login));
 } catch (Exception $ex) {
   exit("Unable to update PAGE-login.php - " . $ex->getMessage());
 }
 
-// (F) DELETE THIS SCRIPT
+// (E) DELETE THIS SCRIPT
 try {
   unlink(PATH_BASE . "install-GOOIN.php");
 } catch (Exception $ex) {
   exit("Unable to delete install-GOOIN.php, please do so manually.");
 }
 
-// (G) DONE
+// (F) DONE
 echo "Google Login module successfully installed.";
