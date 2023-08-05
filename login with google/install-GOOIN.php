@@ -7,7 +7,7 @@ if (!defined("USR_LVL")) {
 
 // (B) CHECK CREDENTIALS
 if (!file_exists(PATH_LIB . "CRD-Google.json")) {
-  exit(PATH_LIB . "CRD-google.json not found.");
+  exit(PATH_LIB . "CRD-Google.json not found.");
 }
 
 // (C) IMPORT SQL
