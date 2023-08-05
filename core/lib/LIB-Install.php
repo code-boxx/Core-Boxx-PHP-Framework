@@ -86,7 +86,7 @@ class Install extends Core {
 
   // (PHASE D) INSTALLATION HTML PAGE
   function D () {
-    require PATH_LIB . "CORE-install-html.php";
+    require PATH_LIB . "CORE-Install-HTML.php";
     exit();
   }
 
