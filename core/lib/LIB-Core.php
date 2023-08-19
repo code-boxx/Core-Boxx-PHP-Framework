@@ -144,8 +144,10 @@ class CoreBoxx {
   }
 
   // (I) GENERATE RANDOM STRING
-  // $length : number of bytes
-  function random ($length=8) { return bin2hex(random_bytes($length)); }
+  // $length : number of characters to generate
+  function random ($length=8) {
+    return substr(preg_replace("/[^A-Za-z0-9]/", "", base64_encode(random_bytes($length * 2))), 0, $length);
+  }
 
   // (J) PAGINATION CALCULATOR
   //  $entries : total number of entries

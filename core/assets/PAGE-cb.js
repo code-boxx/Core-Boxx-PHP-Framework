@@ -47,9 +47,9 @@ var cb = {
   //  head : string, title text
   //  body : string, body text
   toast : (status, head, body) => {
-    if (status==1 || status=="1" || status==true) { cb.hToast.i.innerHTML = "thumb_up"; }
-    else if (status==0 || status=="0" || status==false) { cb.hToast.i.innerHTML = "error"; }
-    else { cb.hToast.i.innerHTML = "help"; }
+    if (status==1 || status=="1" || status==true) { cb.hToast.i.className = "ico icon-checkmark"; }
+    else if (status==0 || status=="0" || status==false) { cb.hToast.i.className = "ico icon-cross"; }
+    else { cb.hToast.i.className = "ico icon-question"; }
     cb.hToast.h.innerHTML = head;
     cb.hToast.b.innerHTML = body;
     cb.hToast.o.show();
@@ -199,7 +199,8 @@ var cb = {
     options.onpass = res => {
       if (res=="E") { location.href = cbhost.base + "login/"; }
       else {
-        document.getElementById(opt.target).innerHTML = res;
+        if (document.startViewTransition) { document.startViewTransition(() => document.getElementById(opt.target).innerHTML = res); }
+        else { document.getElementById(opt.target).innerHTML = res; }
         if (opt.onload) { opt.onload(); }
       }
     };

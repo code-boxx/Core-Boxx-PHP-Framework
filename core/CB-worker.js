@@ -13,7 +13,7 @@ self.addEventListener("install", evt => {
       "assets/ico-512.png",
       "assets/favicon.png",
       // (A3) COMMON INTERFACE
-      "assets/maticon.woff2",
+      "assets/icomoon.woff",
       "assets/PAGE-cb.js",
       "CB-manifest.json"
       // @TODO - ADD MORE OF YOUR OWN TO CACHE
