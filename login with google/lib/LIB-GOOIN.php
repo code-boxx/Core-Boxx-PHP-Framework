@@ -2,6 +2,7 @@
 class GOOIN extends Core {
   // (A) CONSTRUCTOR
   private $goo;
+  private $plen = 10; // random password will be 10 characters
   function __construct ($core) {
     // (A1) LINK WITH MODULES
     parent::__construct($core);
@@ -19,7 +20,7 @@ class GOOIN extends Core {
     return $this->goo->createAuthUrl();
   }
 
-  // (C) PROCESS LOGIN
+  // (C) PROCESS LOGIN OR REGISTRATION
   function go () {
     // (C1) UNPACK TOKEN
     $token = $this->goo->fetchAccessTokenWithAuthCode($_GET["code"]);
@@ -49,7 +50,7 @@ class GOOIN extends Core {
     }
 
     // (C6) NEW USER REGISTRATION
-    $password = $this->Core->random(6);
+    $password = $this->Core->random($this->plen);
     $this->Users->save(
       $guser["givenName"] . " " . $guser["familyName"],
       $guser["email"], $password, "U"

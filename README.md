@@ -43,7 +43,7 @@ A typical development cycle with Core Boxx:
 
 ## :bulb: DOCUMENTATION & FRAMEWORKS
 1) Visit [Core Boxx](https://code-boxx.com/core-boxx-php-framework/) for more for the full documentation!
-2) Built on [Bootstrap](https://getbootstrap.com/) and [Material Icons](https://fonts.google.com/icons).
+2) Built on [Bootstrap](https://getbootstrap.com/) and [IcoMoon](https://icomoon.io/).
 3) Using [PHP-JWT library](https://github.com/firebase/php-jwt)
 <br><br>
 

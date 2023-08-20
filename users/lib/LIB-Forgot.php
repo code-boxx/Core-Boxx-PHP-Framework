@@ -2,8 +2,8 @@
 class Forgot extends Core {
   // (A) SETTINGS
   private $valid = 900; // request valid for 15 minutes
-  private $plen = 5; // random password will be 10 characters
-  private $hlen = 12; // hash will be 24 characters
+  private $plen = 10; // random password will be 10 characters
+  private $hlen = 24; // hash will be 24 characters
 
   // (B) GET PASSWORD RESET REQUEST
   function get ($id) {

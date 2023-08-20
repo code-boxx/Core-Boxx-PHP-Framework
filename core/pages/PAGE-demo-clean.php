@@ -17,6 +17,8 @@ for ($i=1; $i<=5; $i++) {
   $file = PATH_ASSETS . "core-boxx-$i.png"; 
   if (file_exists($file)) { unlink($file); }
 }
+$file = PATH_ASSETS . "head-core-boxx.png"; 
+if (file_exists($file)) { unlink($file); }
 
 // (D) REPLACE HOME PAGE WITH EMPTY PAGE
 $page = <<<EOF
