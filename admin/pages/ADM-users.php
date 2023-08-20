@@ -8,7 +8,7 @@ require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
 <form class="d-flex align-items-stretch head border mb-3 p-2" onsubmit="return usr.search()">
   <input type="text" id="user-search" placeholder="Search" class="form-control form-control-sm">
   <button type="submit" class="btn btn-primary p-3 mx-1 ico-sm icon-search"></button>
-  <button class="btn btn-primary p-3 ico-sm icon-plus" onclick="usr.addEdit()"></button>
+  <button type="button" class="btn btn-primary p-3 ico-sm icon-plus" onclick="usr.addEdit()"></button>
 </form>
 
 <!-- (C) USERS LIST -->
