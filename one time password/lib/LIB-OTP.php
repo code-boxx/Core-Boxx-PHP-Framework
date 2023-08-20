@@ -3,7 +3,7 @@ class OTP extends Core {
   // (A) ONE-TIME PASSWORD SETTINGS
   private $valid = 15; // valid for x minutes
   private $tries = 3; // max tries
-  private $passlength = 8; // password length - 16 characters
+  private $passlength = 12; // password length - 12 characters
 
   // (B) GENERATE OTP
   function generate ($email) {
@@ -44,7 +44,6 @@ class OTP extends Core {
     );
 
     // (B4) SEND OTP VIA EMAIL
-    // @TODO - complete your own otp email
     $this->Core->load("Mail");
     return $this->Mail->send([
       "from" => "sys@site.com",
