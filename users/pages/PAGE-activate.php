@@ -33,7 +33,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <input type="email" id="activate-email" class="form-control" required>
       <label>Email</label>
     </div>
-    <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" onclick="tut(2)">
+    <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
       <i class="ico-sm icon-envelop me-1"></i> Send
     </button>
 

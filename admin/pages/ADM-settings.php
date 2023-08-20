@@ -14,6 +14,9 @@ require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
     <label><?=$o["setting_description"]?></label>
   </div>
   <?php } ?>
-  <input type="submit" class="btn btn-primary" value="Save">
+
+  <button type="submit" class="btn btn-primary">
+    <i class="ico-sm icon-floppy-disk me-1"></i> Save Settings
+  </button>
 </form>
 <?php require PATH_PAGES . "TEMPLATE-ADM-bottom.php"; ?>

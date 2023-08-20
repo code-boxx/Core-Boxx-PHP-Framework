@@ -11,6 +11,6 @@ $_PMETA = [
   */
 ];
 require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
-<div class="display-6 mb-4">IT WORKS!</div>
+<h3 class="mb-3">IT WORKS!</h3>
 <p>Build your own dashboard here.</p>
 <?php require PATH_PAGES . "TEMPLATE-ADM-bottom.php"; ?>

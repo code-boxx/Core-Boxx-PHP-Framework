@@ -41,7 +41,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <label>Confirm Password</label>
     </div>
 
-    <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" onclick="tut(2)">
+    <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
       <i class="ico-sm icon-checkmark me-1"></i> Save
     </button>
   </form>

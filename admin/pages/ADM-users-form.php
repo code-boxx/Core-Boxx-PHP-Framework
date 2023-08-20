@@ -36,6 +36,10 @@ if ($edit) { $user = $_CORE->autoCall("Users", "get"); }
     </div>
   </div>
 
-  <input type="button" class="col btn btn-danger" value="Back" onclick="cb.page(1)">
-  <input type="submit" class="col btn btn-primary" value="Save">
+  <button class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center" onclick="cb.page(1)">
+    <i class="ico-sm icon-undo2 me-1"></i> Back
+  </button>
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+    <i class="ico-sm icon-checkmark me-1"></i> Save
+  </button>
 </form>
