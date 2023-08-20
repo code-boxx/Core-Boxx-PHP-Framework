@@ -9,8 +9,8 @@ https://code-boxx.com/core-boxx-push-notifications-module/
 * Run `install-push.php`, this will automatically:
   - Import `lib/SQL-WebPush.sql` into your database.
   - Generate the VAPID private/public keys, update `lib/CORE-Config.php`.
-* After installation, access `http://your-site.com/push/1` and allow notifications to show.
-* Then, access `http://your-site.com/push/2` and send a test notification.
+* After installation, access `http://your-site.com/push` for the demo.
+* If you have installed the admin panel, there is also an admin page at `http://your-site.com/admin/push`.
 
 ## LICENSE
 Copyright by Code Boxx

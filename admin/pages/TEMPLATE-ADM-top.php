@@ -112,7 +112,7 @@
             <i class="me-1 text-secondary ico-sm icon-users"></i> Users
           </a>
           <a class="nav-link ms-2" href="<?=HOST_ADMIN?>settings">
-          <i class="me-1 text-secondary ico-sm icon-cog"></i> Settings
+            <i class="me-1 text-secondary ico-sm icon-cog"></i> Settings
           </a>
           <hr>
         </li>

@@ -2,8 +2,8 @@
 // (A) API ENDPOINTS
 $_CORE->autoAPI([
   "save" => ["Push", "save"],
-  "del" => ["Push", "del"],
-  "send" => ["Push", "send"]
+  "del" => ["Push", "del", "A"],
+  "send" => ["Push", "send", "A"]
 ]);
 
 // (B) INVALID REQUEST

@@ -4,10 +4,11 @@ var pusher = {
   worker : null, // registered service worker
   sub : null, // push notification subscription
 
-  // (B) HELPER - SHOW HTML "ALERT MESSAGE"
-  show : msg => {
-    pusher.hStat.innerHTML = msg;
-    pusher.hStat.classList.remove("d-none");
+  // (B) HELPER - SHOW HTML MESSAGE
+  show : (msg, good) => {
+    let ico = `<i class="ico-sm icon-${good?"checkmark":"cross"}"></i> `;
+    pusher.hStat.innerHTML = ico + msg;
+    if (good) { pusher.hStat.className = "p-2 bg-success text-white"; }
   },
 
   // (C) INIT
@@ -71,7 +72,7 @@ var pusher = {
       sub : JSON.stringify(pusher.sub)
     },
     passmsg : false,
-    onpass : () => cb.modal("Success", "Push notifications good to go.")
+    onpass : () => pusher.show("Push notifications good to go.", 1)
   })
 };
 window.addEventListener("load", pusher.init);
