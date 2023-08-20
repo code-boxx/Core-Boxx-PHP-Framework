@@ -20,16 +20,16 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) PERIOD SELECTOR -->
 <div id="calHead" class="d-flex align-items-stretch p-2">
   <div id="calPeriod" class="d-flex align-items-stretch flex-grow-1">
-    <button id="calBack" class="p-2 me-2 ico icon-circle-left"></button>
+    <button type="button" id="calBack" class="p-2 me-2 ico icon-circle-left"></button>
     <select id="calMonth" class="p-2 me-2"><?php foreach ($months as $m=>$mth) {
       printf("<option value='%u'%s>%s</option>",
         $m, $m==$monthNow?" selected":"", $mth
       );
     } ?></select>
     <input id="calYear" class="p-2 me-2" type="number" value="<?=$yearNow?>">
-    <button id="calNext" class="p-2 ico icon-circle-right"></button>
+    <button type="button" id="calNext" class="p-2 ico icon-circle-right"></button>
   </div>
-  <button id="calAdd" class="p-2 ico-sm icon-plus"></button>
+  <button type="button" id="calAdd" class="p-2 ico-sm icon-plus"></button>
 </div>
 
 <!-- (B2) CALENDAR WRAPPER -->
@@ -70,10 +70,10 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </div>
 
   <div class="w-100 mt-2">
-    <button id="evtDel" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center">
+    <button type="button" id="evtDel" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center">
       <i class="ico-sm icon-bin2 me-1"></i> Delete
     </button>
-    <button id="evtSave" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+    <button type="submit" id="evtSave" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
       <i class="ico-sm icon-checkmark me-1"></i> Save
     </button>
   </div>

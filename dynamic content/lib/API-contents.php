@@ -2,9 +2,9 @@
 // (A) API ENDPOINTS
 $_CORE->autoAPI([
   "get" => ["Contents", "get"],
-  "getAll" => ["Contents", "getAll"],
-  "save" => ["Contents", "save"],
-  "del" => ["Contents", "del"]
+  "getAll" => ["Contents", "getAll", "A"],
+  "save" => ["Contents", "save", "A"],
+  "del" => ["Contents", "del", "A"]
 ]);
 
 // (B) INVALID REQUEST

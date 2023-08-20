@@ -10,12 +10,8 @@ require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
 <!-- (B) SEARCH BAR -->
 <form class="d-flex align-items-stretch head border mb-3 p-2" onsubmit="return content.search()">
   <input type="text" id="content-search" placeholder="Search" class="form-control form-control-sm">
-  <button type="submit" class="btn btn-primary mi mx-1">
-    search
-  </button>
-  <button class="btn btn-primary mi" onclick="content.addEdit()">
-    add
-  </button>
+  <button type="submit" class="btn btn-primary p-3 mx-1 ico-sm icon-search"></button>
+  <button class="btn btn-primary p-3 ico-sm icon-plus" onclick="content.addEdit()"></button>
 </form>
 
 <!-- (C) CONTENTS LIST -->

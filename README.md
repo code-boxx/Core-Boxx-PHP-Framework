@@ -38,7 +38,7 @@ A typical development cycle with Core Boxx:
 ## :floppy_disk: INSTALLATION & NOTES
 1) Just copy `core/` into your project folder. Access `http://your-site.com/` in the browser and walk through the installer.
 2) The rest are optional modules... Too lazy and messy to create separate repos for each.
-3) Some modules may require "extra installation steps", do check out the documentation - https://code-boxx.com/core-boxx-php-framework/#sec-ref
+3) Some modules may require "extra installation steps", do check out the respective documentation - https://code-boxx.com/core-boxx-php-framework/#sec-ref
 <br><br>
 
 ## :bulb: DOCUMENTATION & FRAMEWORKS

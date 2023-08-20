@@ -199,8 +199,7 @@ var cb = {
     options.onpass = res => {
       if (res=="E") { location.href = cbhost.base + "login/"; }
       else {
-        if (document.startViewTransition) { document.startViewTransition(() => document.getElementById(opt.target).innerHTML = res); }
-        else { document.getElementById(opt.target).innerHTML = res; }
+        document.getElementById(opt.target).innerHTML = res;
         if (opt.onload) { opt.onload(); }
       }
     };

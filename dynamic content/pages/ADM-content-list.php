@@ -15,18 +15,16 @@ if (is_array($contents)) { foreach ($contents as $id=>$content) { ?>
     </div>
   </div>
   <div class="dropdown">
-    <button class="btn btn-primary btn-sm mi" type="button" data-bs-toggle="dropdown">
-      more_vert
-    </button>
+    <button class="btn btn-primary p-3 ico-sm icon-arrow-right" type="button" data-bs-toggle="dropdown"></button>
     <ul class="dropdown-menu dropdown-menu-dark">
       <li class="dropdown-item" onclick="content.addEdit(<?=$id?>)">
-        <i class="mi mi-smol">edit</i> Edit
+        <i class="ico-sm icon-pencil"></i> Edit
       </li>
       <li><a class="dropdown-item" target="_blank" href="<?=HOST_BASE?>post/<?=$content["content_slug"]?>">
-        <i class="mi mi-smol">search</i> View
+        <i class="ico-sm icon-zoom-in"></i> View
       </a></li>
       <li class="dropdown-item text-warning" onclick="content.del(<?=$id?>)">
-        <i class="mi mi-smol">delete</i> Delete
+        <i class="ico-sm icon-bin2"></i> Delete
       </li>
     </ul>
   </div>

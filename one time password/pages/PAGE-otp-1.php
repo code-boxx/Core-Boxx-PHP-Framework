@@ -21,6 +21,8 @@ function otp () {
     <label>Email</label>
   </div>
 
-  <input type="submit" class="btn btn-primary" value="Go">
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+    <i class="ico-sm icon-checkmark me-1"></i> Go
+  </button>
 </form>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

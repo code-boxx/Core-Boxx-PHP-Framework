@@ -19,9 +19,13 @@ if ($edit) { $content = $_CORE->autoCall("Contents", "get"); }
       <label>Title</label>
     </div>
 
-    <textarea id="content_text" class="form-control"><?=isset($content)?$content["content_text"]:""?></textarea>
+    <textarea id="content_text" class="w-100"><?=isset($content)?$content["content_text"]:""?></textarea>
   </div>
 
-  <input type="button" class="col btn btn-danger" value="Back" onclick="cb.page(1)">
-  <input type="submit" class="col btn btn-primary" value="Save">
+  <button type="button" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center" onclick="cb.page(1)">
+    <i class="ico-sm icon-undo2 me-1"></i> Back
+  </button>
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+    <i class="ico-sm icon-checkmark me-1"></i> Save
+  </button>
 </form>
