@@ -6,29 +6,15 @@
 }
 
 /* (B) PERIOD SELECTOR */
-#calHead, #calPeriod {
-  display: flex; align-items: stretch;
-}
-#calHead {
-  padding: 15px;
-  background: var(--bg-color-a);
-}
-#calPeriod { flex-grow: 1; }
-#calHead input, #calHead select {
-  font-size: 24px;
+#calHead { background: var(--bg-color-a); }
+#calHead input, #calHead button, #calHead select {
   border: 0; outline: none;
   color: #fff; background: 0;
   cursor: pointer;
 }
-#calHead option { color: #000; }
-#calYear {
-  width: 80px;
-  margin-left: 10px;
-}
-#calHead #calAdd {
-  padding: 5px 20px;
-  background: var(--bg-color-c);
-}
+#calMonth, #calYear { font-size: 20px; }
+#calMonth option { color: #000; }
+#calYear { width: 100px; }
 
 /* (C) CALENDAR */
 /* (C1) ROWS */
@@ -71,7 +57,7 @@
   color: #b5b5b5;
   padding: 5px;
 }
-.calRowBack .calCell { border: 1px solid #f5f5f5; }
+.calRowBack .calCell { border: 1px solid #eee; }
 .calBlank { background: #f5f5f5; }
 .calToday { background: #feffd3; }
 
@@ -95,33 +81,6 @@
 #evtCX {
   position: absolute;
   top: 0; right: 0;
-  padding: 10px;
-  font-size: 30px;
-  font-weight: 700;
   color: var(--bg-color-c);
-  cursor: pointer;
-}
-#calForm h2 { margin: 0 0 5px 0; }
-#calForm .evt50 { width: 50%; }
-#calForm .evt100 { width: 100%; }
-#calForm .evt50, #calForm .evt100 { padding: 8px; }
-#calForm label, #calForm input[type=datetime-local], #calForm input[type=color], #calForm input[type=text] {
-  display: block;
-  width: 100%;
-}
-#calForm label {
-  color: #a1a1a1;
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-#calForm input[type=datetime-local], #calForm input[type=text] {
-  padding: 5px;
-  border: 1px solid #eee;
-  background: #f5f5f5;
-}
-#calForm input[type=color] { height: 30px; border: 0; }
-#calForm input[type=button], #calForm input[type=submit] {
-  border: 0; padding: 10px; margin: 10px 2px 0 0;
-  color: #fff; background: var(--bg-color-c);
   cursor: pointer;
 }

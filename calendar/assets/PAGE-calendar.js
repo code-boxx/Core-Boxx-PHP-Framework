@@ -33,7 +33,10 @@ var cal = {
     document.getElementById("calNext").onclick = () => cal.pshift(1);
     document.getElementById("calAdd").onclick = () => cal.show();
     cal.hForm.onsubmit = () => cal.save();
-    document.getElementById("evtCX").onclick = () => cal.hFormWrap.close();
+    document.getElementById("evtCX").onclick = () => {
+      if (document.startViewTransition) { document.startViewTransition(() => cal.hFormWrap.close()); }
+      else { cal.hFormWrap.close(); }
+    };
     cal.hfDel.onclick = cal.del;
 
     // (B3) DRAW DAY NAMES
@@ -198,7 +201,8 @@ var cal = {
       cal.hfID.value = "";
       cal.hfDel.style.display = "none";
     }
-    cal.hFormWrap.show();
+    if (document.startViewTransition) { document.startViewTransition(() => cal.hFormWrap.show()); }
+    else { cal.hFormWrap.show(); }
   },
 
   // (G) SAVE EVENT
@@ -224,7 +228,8 @@ var cal = {
       mod : "calendar", act : "save",
       data : data,
       onpass : res => {
-        cal.hFormWrap.close();
+        if (document.startViewTransition) { document.startViewTransition(() => cal.hFormWrap.close()); }
+        else { cal.hFormWrap.close(); }
         cal.load();
       }
     });
@@ -236,7 +241,8 @@ var cal = {
     mod : "calendar", act : "del",
     data : { id : cal.hfID.value },
     onpass : res => {
-      cal.hFormWrap.close();
+      if (document.startViewTransition) { document.startViewTransition(() => cal.hFormWrap.close()); }
+      else { cal.hFormWrap.close(); }
       cal.load();
     }
   }))

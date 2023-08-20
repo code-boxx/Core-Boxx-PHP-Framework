@@ -18,18 +18,18 @@ $_PMETA = [
 ];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) PERIOD SELECTOR -->
-<div id="calHead">
-  <div id="calPeriod">
-  <input id="calBack" type="button" class="mi" value="navigate_before">
-    <select id="calMonth"><?php foreach ($months as $m=>$mth) {
+<div id="calHead" class="d-flex align-items-stretch p-2">
+  <div id="calPeriod" class="d-flex align-items-stretch flex-grow-1">
+    <button id="calBack" class="p-2 me-2 ico icon-circle-left"></button>
+    <select id="calMonth" class="p-2 me-2"><?php foreach ($months as $m=>$mth) {
       printf("<option value='%u'%s>%s</option>",
         $m, $m==$monthNow?" selected":"", $mth
       );
     } ?></select>
-    <input id="calYear" type="number" value="<?=$yearNow?>">
-    <input id="calNext" type="button" class="mi" value="navigate_next">
+    <input id="calYear" class="p-2 me-2" type="number" value="<?=$yearNow?>">
+    <button id="calNext" class="p-2 ico icon-circle-right"></button>
   </div>
-  <input id="calAdd" type="button" value="+">
+  <button id="calAdd" class="p-2 ico-sm icon-plus"></button>
 </div>
 
 <!-- (B2) CALENDAR WRAPPER -->
@@ -40,32 +40,42 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 
 <!-- (B3) EVENT FORM -->
 <dialog id="calForm"><form method="dialog">
-  <div id="evtCX" class="mi">clear</div>
-  <h2 class="evt100">CALENDAR EVENT</h2>
-  <div class="evt50">
+  <div id="evtCX" class="ico icon-cross p-3"></div>
+  <h4 class="w-100 mb-4">CALENDAR EVENT</h4>
+  <input type="hidden" id="evtID">
+
+  <div class="w-50 p-1 form-floating">
+    <input id="evtStart" class="form-control" type="datetime-local" required>
     <label>Start</label>
-    <input id="evtStart" type="datetime-local" required>
   </div>
-  <div class="evt50">
+
+  <div class="w-50 p-1 form-floating">
+    <input id="evtEnd" class="form-control" type="datetime-local" required>
     <label>End</label>
-    <input id="evtEnd" type="datetime-local" required>
   </div>
-  <div class="evt50">
+
+  <div class="w-50 p-1 form-floating">
+    <input id="evtColor" class="form-control" type="color" value="#000000" required>
     <label>Text Color</label>
-    <input id="evtColor" type="color" value="#000000" required>
   </div>
-  <div class="evt50">
+
+  <div class="w-50 p-1 form-floating">
+    <input id="evtBG" class="form-control" type="color" value="#ffdbdb" required>
     <label>Background Color</label>
-    <input id="evtBG" type="color" value="#ffdbdb" required>
   </div>
-  <div class="evt100">
+
+  <div class="w-100 p-1 form-floating">
+    <input id="evtTxt" class="form-control" type="text" required>
     <label>Event</label>
-    <input id="evtTxt" type="text" required>
   </div>
-  <div class="evt100">
-    <input type="hidden" id="evtID">
-    <input type="button" id="evtDel" value="Delete">
-    <input type="submit" id="evtSave" value="Save">
+
+  <div class="w-100 mt-2">
+    <button id="evtDel" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center">
+      <i class="ico-sm icon-bin2 me-1"></i> Delete
+    </button>
+    <button id="evtSave" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+      <i class="ico-sm icon-checkmark me-1"></i> Save
+    </button>
   </div>
 </form></dialog>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
