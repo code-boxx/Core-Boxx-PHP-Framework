@@ -13,10 +13,8 @@ class Upload extends Core {
   }
 
   // (C) RECEIVE FILE
-  // @TODO - THIS IS VERY BASIC!
-  // do your own security checks and processes.
-  // for example, only registered users can upload.
-  // each registered user has their own folder, upload quota, etc...
+  // @TODO - ADD YOUR OWN CHECKS, RULES, PROCESSES!
+  // e.g. only registered users can upload. set upload folder, upload quota, etc...
   function recv () {
     // (C1) INIT FLOW
     require PATH_LIB . "flow" . DIRECTORY_SEPARATOR . "autoload.php";
@@ -43,7 +41,6 @@ class Upload extends Core {
 
   // (D) FLUSH TEMP FOLDER
   // CREDITS : https://stackoverflow.com/questions/3349753/delete-directory-with-files-in-it
-  // @TODO - PROTECT THIS FUNCTION!
   function flush () {
     $it = new RecursiveDirectoryIterator($this->upTemp, RecursiveDirectoryIterator::SKIP_DOTS);
     $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);

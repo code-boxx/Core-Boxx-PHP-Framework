@@ -9,7 +9,7 @@ if ($_CORE->Route->act == "recv") {
 else {
   // (B1) API ENDPOINTS
   $_CORE->autoAPI([
-    "flush" => ["Upload", "flush"]
+    "flush" => ["Upload", "flush", "A"]
   ]);
 
   // (B2) INVALID REQUEST

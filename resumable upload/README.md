@@ -8,6 +8,12 @@ https://code-boxx.com/core-boxx-resumable-upload-module/
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/upload` for the demo.
 
+## NOTES
+* By default, `LIB-Upload.php` is set to create 2 folders `upload` and `temp`.
+* Go ahead and change to your own upload path.
+* Also complete `recv()` on your own - Set your own upload rules and processes.
+* Best to run `flush()` periodically to clear broken uploads.
+
 ## LICENSE
 Copyright by Code Boxx
 

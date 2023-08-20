@@ -4,8 +4,16 @@ $_PMETA = ["load" => [
   ["s", HOST_ASSETS."PAGE-upload.js", "defer"]
 ]];
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
+<!-- (A) SELECT FILE & PAUSE/RESUME -->
 <h3 class="mb-4">RESUMABLE FILE UPLOAD DEMO</h3>
-<input type="button" class="btn btn-primary" id="upbrowse" value="Browse">
-<input type="button" class="btn btn-primary" id="upToggle" value="Pause OR Continue">
+<button type="button" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" id="upbrowse">
+  <i class="ico-sm icon-file-empty me-1"></i> Select File
+</button>
+
+<button type="button" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" id="uptoggle">
+  <i class="ico-sm icon-play3 me-1"></i> Pause/Resume
+</button>
+
+<!-- (B) UPLOAD LIST -->
 <div id="uplist" class="mt-4"></div>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
