@@ -23,7 +23,13 @@ class GOOIN extends Core {
   // (C) PROCESS LOGIN OR REGISTRATION
   function go () {
     // (C1) UNPACK TOKEN
-    $token = $this->goo->fetchAccessTokenWithAuthCode($_GET["code"]);
+    try {
+      $token = $this->goo->fetchAccessTokenWithAuthCode($_GET["code"]);
+    } catch (Exception $ex) {
+      $this->error = "Failed to fetch token from Google.";
+      $this->goo->revokeToken();
+      return;
+    }
 
     // (C2) ERROR!
     if (isset($token["error"])) {
@@ -33,9 +39,15 @@ class GOOIN extends Core {
     }
 
     // (C3) GET USER PROFILE FROM GOOGLE
-    $this->goo->setAccessToken($token);
-    $guser = (new Google_Service_Oauth2($this->goo))->userinfo->get();
-    $this->goo->revokeToken();
+    try {
+      $this->goo->setAccessToken($token);
+      $guser = (new Google_Service_Oauth2($this->goo))->userinfo->get();
+      $this->goo->revokeToken();
+    } catch (Exception $ex) {
+      $this->error = "Failed to get user profile from Google.";
+      $this->goo->revokeToken();
+      return;
+    }
 
     // (C4) USER HAS ALREADY TIED GOOGLE TO ACCOUNT - LOGIN
     $user = $this->get($guser["id"]);
@@ -52,7 +64,7 @@ class GOOIN extends Core {
     // (C6) NEW USER REGISTRATION
     $password = $this->Core->random($this->plen);
     $this->Users->save(
-      $guser["givenName"] . " " . $guser["familyName"],
+      (str_replace(["\r", "\n"], "", $guser["givenName"]) . " " . str_replace(["\r", "\n"], "", $guser["familyName"])),
       $guser["email"], $password, "U"
     );
     $uid = $this->DB->lastID;
@@ -73,15 +85,17 @@ class GOOIN extends Core {
   // (D) GET USER BY GOOGLE ID
   function get ($id) {
     return $this->DB->fetch(
-      "SELECT * FROM `users` WHERE `google_id`=?", [$id]
+      "SELECT * FROM `users_hash` h
+       LEFT JOIN `users` u USING (`user_id`)
+       WHERE h.`hash_for`='GOO' AND h.`hash_code`=?", [$id]
     );
   }
 
   // (E) TIE GOOGLE ID TO ACCOUNT
   function set ($gid, $id) : void {
-    $this->DB->update(
-      "users", ["google_id"], "`user_id`=?",
-      [$gid, $id]
+    $this->DB->replace(
+      "users_hash", ["user_id", "hash_for", "hash_code", "hash_time"],
+      [$id, "GOO", $gid, date("Y-m-d H:i:s")]
     );
   }
 
