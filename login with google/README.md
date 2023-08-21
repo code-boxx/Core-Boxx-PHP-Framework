@@ -22,7 +22,6 @@ https://code-boxx.com/core-boxx-google-login-module/
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Run `install-GOOIN.php`, this will automatically:
-  - Import `lib/SQL-GOOIN.sql` into your database.
   - Add Google login button to `pages/PAGE-login.php`.
   - Add Google sign up button to `pages/PAGE-register.php`.
   - Delete `install-GOOIN.php` itself.
