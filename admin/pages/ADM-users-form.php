@@ -30,10 +30,11 @@ if ($edit) { $user = $_CORE->autoCall("Users", "get"); }
       <label>User Level</label>
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-1">
       <input type="password" class="form-control" id="user_password" required>
-      <label>Password, at least 8 characters alphanumeric.</label>
+      <label>Password</label>
     </div>
+    <div class="text-secondary">* At least 8 alphanumeric characters.</div>
   </div>
 
   <button type="button" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center" onclick="cb.page(1)">

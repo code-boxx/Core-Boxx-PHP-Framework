@@ -31,10 +31,11 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <label>Current Password</label>
     </div>
 
-    <div class="form-floating mb-4">
+    <div class="form-floating mb-1">
       <input type="password" id="user-npass" class="form-control" required>
-      <label>New Password, at least 8 characters alphanumeric.</label>
+      <label>New Password</label>
     </div>
+    <div class="mb-4 text-secondary">* At least 8 alphanumeric characters.</div>
 
     <div class="form-floating mb-4">
       <input type="password" id="user-ncpass" class="form-control" required>

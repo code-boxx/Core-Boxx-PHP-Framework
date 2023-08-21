@@ -1,30 +1,24 @@
-## CORE BOXX LOGIN WITH GOOGLE MODULE
-https://code-boxx.com/core-boxx-google-login-module/
+## CORE BOXX LOGIN WITH NFC MODULE
+https://code-boxx.com/core-boxx-nfc-login-module/
 
 ## REQUIREMENTS
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
 * [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
-
-## REGISTER WITH GOOGLE
-* Head over to [Google API Console](https://console.cloud.google.com/apis/dashboard)
-* Create a new project, or select an existing project.
-* Next, go under "OAuth consent screen".
-  - Fill in your app info.
-  - Scopes can be left blank.
-  - Under "Test Users", add your own Gmail account.
-  - Leave the app as "testing", do not publish until you are ready.
-* Finally, go under "Credentials".
-  - Create credentials > OAuth client ID.
-  - Set the name of your app, set your origin - `http://your-site.com`.
-  - Set redirect URL as `http://your-site.com/login`.
-  - On complete, Google will give you the client ID and secret. Download and save it as `lib/CRD-Google.json`.
+* [Admin Module](https://github.com/code-boxx/Core-Boxx/tree/main/admin)
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-GOOIN.php`, this will automatically:
-  - Add Google login button to `pages/PAGE-login.php`.
-  - Add Google sign up button to `pages/PAGE-register.php`.
-  - Delete `install-GOOIN.php` itself.
+* Run `install-NFCIN.php`, this will automatically:
+  - Modify `pages/ADM-users.php`, load additional JS for NFC.
+  - Add "NFC Login" button to `pages/ADM-users-list.php`.
+  - Modify `pages/PAGE-login.php`, load additional JS and add "NFC login" button.
+  - Delete `install-NFCIN.php` itself.
+
+## NOTES
+* At the time of writing, Web NFC is only supported on Android devices.
+* Access admin users, select a user, "NFC login".
+* Create an NFC token for the user.
+* That's all, give the token to the user - Just tap to login.
 
 ## LICENSE
 Copyright by Code Boxx
