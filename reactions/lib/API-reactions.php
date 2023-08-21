@@ -1,8 +1,8 @@
 <?php
 // (A) API ENDPOINTS
 $_CORE->autoAPI([
-  "get" => ["Reacts", "get"],
-  "save" => ["Reacts", "save"]
+  "get" => ["Reactions", "get"],
+  "save" => ["Reactions", "save"]
 ]);
 
 // (B) INVALID REQUEST

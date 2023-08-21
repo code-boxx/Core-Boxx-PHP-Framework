@@ -1,0 +1,4 @@
+#reactions { user-select: none; }
+#reactions .ico { color: #adadad; font-size: 26px; }
+#reactions .ico.set { color: #000; }
+#reactions .count { font-style: normal; }

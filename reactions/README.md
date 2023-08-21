@@ -1,4 +1,4 @@
-## CORE BOXX LIKES DISLIKES MODULE
+## CORE BOXX REACTIONS MODULE
 https://code-boxx.com/core-boxx-reactions-module/
 
 ## REQUIREMENTS
@@ -7,9 +7,9 @@ https://code-boxx.com/core-boxx-reactions-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-lidi.php`, this will automatically:
-  - Import `lib/SQL-Reacts.sql` into your database.
-* After installation, access `http://your-site.com/reacts` for the demo page.
+* Run `install-reactions.php`, this will automatically:
+  - Import `lib/SQL-Reactions.sql` into your database.
+* After installation, access `http://your-site.com/reactions` for the demo page.
 
 ## LICENSE
 Copyright by Code Boxx

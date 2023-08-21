@@ -1,35 +1,34 @@
 <?php
-class Reacts extends Core {
+class Reactions extends Core {
   // (A) GET REACTIONS FOR ID
   //  $id : content id - video, product, comment, audio, whatever
   function get ($id) {
     // (A1) GET TOTAL REACTIONS
-    $reacts = ["react" => [0, 0]]; // likes, dislikes
+    $data = ["react" => [], "user" => null];
     $this->DB->query(
       "SELECT `reaction`, COUNT(`reaction`) `total`
        FROM `reactions` WHERE `id`=?
        GROUP BY `reaction`", [$id]
     );
     while ($r = $this->DB->stmt->fetch()) {
-      if ($r["reaction"]==1) { $reacts["react"][0] = $r["total"]; }
-      else { $reacts["react"][1] = $r["total"]; }
+      $data["react"][$r["reaction"]] = $r["total"];
     }
 
     // (A2) GET REACTION BY USER (IF SIGNED IN)
     if (isset($_SESSION["user"])) {
-      $reacts["user"] = $this->DB->fetchCol(
+      $data["user"] = $this->DB->fetchCol(
         "SELECT `reaction` FROM `reactions` WHERE `id`=? AND `user_id`=?",
         [$id, $_SESSION["user"]["user_id"]]
       );
     }
 
     // (A3) DONE - RETURN RESULTS
-    return $reacts;
+    return $data;
   }
 
   // (B) SAVE REACTION
   //  $id : content id - video, product, comment, audio, whatever
-  //  $reaction : 1 like, -1 dislike, 0 neutral
+  //  $reaction : 0 none (delete reaction), 1 dislike, 2 like
   //  $get : get update reaction count after save?
   function save ($id, $reaction, $get=false) {
     // (B1) MUST BE SIGNED IN
