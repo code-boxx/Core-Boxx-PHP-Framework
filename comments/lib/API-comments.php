@@ -2,8 +2,8 @@
 // (A) API ENDPOINTS
 $_CORE->autoAPI([
   "getAll" => ["Comments", "getAll"],
-  "save" => ["Comments", "save"],
-  "del" => ["Comments", "del"]
+  "save" => ["Comments", "savewc"],
+  "del" => ["Comments", "delwc"]
 ]);
 
 // (B) INVALID REQUEST

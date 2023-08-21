@@ -12,7 +12,7 @@ var comment = {
       cwrap.innerHTML = "";
       if (res.data!=null) { for (let cid in res.data) {
         let row = document.createElement("div");
-        row.className = "p-2 mb-2 border bg-white";
+        row.className = "p-3 mb-2 border bg-white";
         row.innerHTML = `<div class="fw-bold text-danger">${res.data[cid]["user_name"]}</div>
         <div>${res.data[cid]["message"]}</div>
         <small class="text-secondary">${res.data[cid]["timestamp"]}</small>`;

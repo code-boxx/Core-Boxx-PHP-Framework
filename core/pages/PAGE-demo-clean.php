@@ -13,7 +13,7 @@ $file = PATH_ASSETS . "PAGE-tut.js";
 if (file_exists($file)) { unlink($file); }
 
 // (C) DELETE SCREENSHOTS
-for ($i=1; $i<=5; $i++) {
+for ($i=1; $i<=6; $i++) {
   $file = PATH_ASSETS . "core-boxx-$i.png"; 
   if (file_exists($file)) { unlink($file); }
 }

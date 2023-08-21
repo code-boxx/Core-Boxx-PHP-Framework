@@ -25,6 +25,7 @@ A typical development cycle with Core Boxx:
   <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-3.png">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-4.png">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-5.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-6.png">
 </p>
 <br><br>
 

@@ -11,6 +11,11 @@ https://code-boxx.com/core-boxx-comments-module/
   - Import `lib/SQL-Comments.sql` into your database.
 * After installation, access `http://your-site.com/comment` for the demo page.
 
+## NOTES
+* Very simplistic module out-of-the-box.
+* You decide if users can edit/delete their own comments.
+* Admin have full control over comments.
+
 ## LICENSE
 Copyright by Code Boxx
 
