@@ -115,7 +115,7 @@
       <!-- (C3) RIGHT ITEMS -->
       <div class="d-flex align-items-center">
         <!-- (C3-1) SWITCH TO ADMIN PANEL -->
-        <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["user_level"]=="A") { ?>
+        <?php if (defined("HOST_ADMIN") && isset($_SESSION["user"]) && $_SESSION["user"]["user_level"]=="A") { ?>
         <a class="text-decoration-none text-danger me-3 ico icon-shield" href="<?=HOST_ADMIN?>"></a>
         <?php } ?>
 
