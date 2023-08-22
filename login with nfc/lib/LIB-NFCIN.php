@@ -10,7 +10,7 @@ class NFCIN extends Core {
     $token = $this->Core->random($this->nlen);
     $this->DB->replace("users_hash",
       ["user_id", "hash_for", "hash_code", "hash_time", "hash_tries"],
-      [$id, "N", $token, date("Y-m-d H:i:s"), 0]
+      [$id, "NFC", $token, date("Y-m-d H:i:s"), 0]
     );
 
     // (B2) RETURN ENCODED TOKEN
@@ -21,7 +21,7 @@ class NFCIN extends Core {
   // (C) NULLIFY NFC TOKEN
   //  $id : user id
   function del ($id) {
-    $this->DB->delete("users_hash", "`user_id`=? AND `hash_for`='N'", [$id]);
+    $this->DB->delete("users_hash", "`user_id`=? AND `hash_for`='NFC'", [$id]);
     return true;
   }
 
@@ -44,7 +44,7 @@ class NFCIN extends Core {
     // (D2) VERIFY TOKEN
     if ($valid) {
       $this->Core->load("Users");
-      $user = $this->Users->get($token[0], "N");
+      $user = $this->Users->get($token[0], "NFC");
       $valid = (is_array($user) && $user["hash_code"]==$token[1]);
     }
 
