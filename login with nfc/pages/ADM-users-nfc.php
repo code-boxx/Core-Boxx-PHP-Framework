@@ -1,6 +1,6 @@
 <?php
 // (A) GET USER
-$_POST["hash"] = "N";
+$_POST["hash"] = "NFC";
 $user = $_CORE->autoCall("Users", "get");
 if (!is_array($user)) { exit("Invalid user"); }
 ?>

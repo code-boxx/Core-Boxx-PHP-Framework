@@ -10,7 +10,7 @@ class NFCIN extends Core {
     $token = $this->Core->random($this->nlen);
     $this->DB->replace("users_hash",
       ["user_id", "hash_for", "hash_code", "hash_time", "hash_tries"],
-      [$id, "NFC", $token, date("Y-m-d H:i:s"), 0]
+      [$id, "NFC", password_hash($token, PASSWORD_DEFAULT), date("Y-m-d H:i:s"), 0]
     );
 
     // (B2) RETURN ENCODED TOKEN
@@ -45,7 +45,7 @@ class NFCIN extends Core {
     if ($valid) {
       $this->Core->load("Users");
       $user = $this->Users->get($token[0], "NFC");
-      $valid = (is_array($user) && $user["hash_code"]==$token[1]);
+      $valid = (is_array($user) && password_verify($token[1], $user["hash_code"]));
     }
 
     // (D3) SESSION START
