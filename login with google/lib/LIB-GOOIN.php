@@ -57,7 +57,7 @@ class GOOIN extends Core {
     $this->Core->load("Users");
     $user = $this->Users->get($guser["email"]);
     if (is_array($user)) {
-      $this->set($guser["id"], $user["user_id"]);
+      $this->Users->hashAdd($user["user_id"], "GOO", $guser["id"]);
       $this->login($user);
     }
 
@@ -68,7 +68,7 @@ class GOOIN extends Core {
       $guser["email"], $password, "U"
     );
     $uid = $this->DB->lastID;
-    $this->set($guser["id"], $uid);
+    $this->Users->hashAdd($uid, "GOO", $guser["id"]);
     $this->Core->load("Mail");
     $this->Mail->send([
       "to" => $guser["email"],
@@ -91,15 +91,7 @@ class GOOIN extends Core {
     );
   }
 
-  // (E) TIE GOOGLE ID TO ACCOUNT
-  function set ($gid, $id) : void {
-    $this->DB->replace(
-      "users_hash", ["user_id", "hash_for", "hash_code", "hash_time"],
-      [$id, "GOO", $gid, date("Y-m-d H:i:s")]
-    );
-  }
-
-  // (F) LOGIN GIVEN USER - HELPER FOR GO(), NO VERIFICATION CHECKS
+  // (E) LOGIN GIVEN USER - HELPER FOR GO(), NO VERIFICATION CHECKS
   function login ($user) {
     $_SESSION["user"] = $user;
     unset($_SESSION["user"]["user_password"]);

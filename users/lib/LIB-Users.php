@@ -227,10 +227,7 @@ class Users extends Core {
 
     // (L4) GENERATE RANDOM HASH
     $hash = $this->Core->random($this->hlen);
-    $this->DB->replace("users_hash",
-      ["user_id", "hash_for", "hash_code", "hash_time"],
-      [$user["user_id"], "A", $hash, date("Y-m-d H:i:s")]
-    );
+    $this->hashAdd($user["user_id"], "A", $hash);
 
     // (L5) SEND ACTIVATION LINK TO USER EMAIL
     $this->Core->load("Mail");
@@ -245,6 +242,8 @@ class Users extends Core {
   }
 
   // (M) ACTIVATE ACCOUNT
+  //  $i : user id
+  //  $h : hash code
   function hactivate ($i, $h) {
     // (M1) ALREADY SIGNED IN
     if (isset($_SESSION["user"])) {
@@ -274,9 +273,7 @@ class Users extends Core {
     }
 
     // (M4) ACTIVATE ACCOUNT
-    $this->DB->delete(
-      "users_hash", "`user_id`=? AND `hash_for`=?", [$i, "A"]
-    );
+    $this->hashDel($i, "A");
 
     // (M5) LOGIN
     unset($user["user_password"]);
@@ -285,5 +282,39 @@ class Users extends Core {
     $_SESSION["user"] = $user;
     $this->Session->save();
     return true;
+  }
+
+  // (N) HASH ADD
+  //  $id : user id
+  //  $for : hash for - "A"ctivation, "O"TP, "P"assword reset, "GOO"gle, "NFC"
+  //  $time : timestamp
+  //    - null : use current time
+  //    - string : specify your own
+  //    - "" : don't change
+  function hashAdd ($id, $for, $code, $time=null) : void {
+    $fields = ["user_id", "hash_for", "hash_code"];
+    $data = [$id, $for, $code];
+    if ($time===null) { $fields[] = "hash_time"; $data[] = date("Y-m-d H:i:s"); }
+    else if ($time!="") { $fields[] = "hash_time"; $data[] = $time; }
+    $this->DB->replace("users_hash", $fields, $data);
+  }
+
+  // (O) HASH GET
+  //  $id : user id
+  //  $for : hash for
+  function hashGet ($id, $for) {
+    return $this->DB->fetch(
+      "SELECT * FROM `users_hash` WHERE `user_id`=? AND `hash_for`=?",
+      [$id, $for]
+    );
+  }
+
+  // (P) HASH DELETE
+  //  $id : user id
+  //  $for : hash for
+  function hashDel ($id, $for) : void {
+    $this->DB->delete(
+      "users_hash", "`user_id`=? AND `hash_for`=?", [$id, $for]
+    );
   }
 }

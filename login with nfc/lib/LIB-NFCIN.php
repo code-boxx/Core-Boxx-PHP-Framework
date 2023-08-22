@@ -1,17 +1,18 @@
 <?php
 class NFCIN extends Core {
-  // (A) SETTINGS
+  // (A) INIT
   private $nlen = 12; // 12 characters nfc login random hash
+  function __construct ($core) {
+    parent::__construct($core);
+    $core->load("Users");
+  }
 
   // (B) CREATE NEW NFC LOGIN TOKEN
   //  $id : user id
   function add ($id) {
     // (B1) UPDATE TOKEN
     $token = $this->Core->random($this->nlen);
-    $this->DB->replace("users_hash",
-      ["user_id", "hash_for", "hash_code", "hash_time", "hash_tries"],
-      [$id, "NFC", password_hash($token, PASSWORD_DEFAULT), date("Y-m-d H:i:s"), 0]
-    );
+    $this->Users->hashAdd($id, "NFC", password_hash($token, PASSWORD_DEFAULT));
 
     // (B2) RETURN ENCODED TOKEN
     require PATH_LIB . "JWT/autoload.php";
@@ -21,7 +22,7 @@ class NFCIN extends Core {
   // (C) NULLIFY NFC TOKEN
   //  $id : user id
   function del ($id) {
-    $this->DB->delete("users_hash", "`user_id`=? AND `hash_for`='NFC'", [$id]);
+    $this->Users->hashDel($id, "NFC");
     return true;
   }
 
@@ -43,7 +44,6 @@ class NFCIN extends Core {
 
     // (D2) VERIFY TOKEN
     if ($valid) {
-      $this->Core->load("Users");
       $user = $this->Users->get($token[0], "NFC");
       $valid = (is_array($user) && password_verify($token[1], $user["hash_code"]));
     }

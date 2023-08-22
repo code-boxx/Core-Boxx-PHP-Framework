@@ -20,8 +20,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <div class="mb-4"><?=$valid?"Your account has been activated.":$_CORE->error?></div>
 
     <div class="text-secondary mt-3">
-      <a href="<?=HOST_BASE?>">Home</a> |
-      <a href="<?=HOST_BASE?>login">Login</a>
+      <a href="<?=HOST_BASE?>">Home</a>
     </div>
     <?php }
 
