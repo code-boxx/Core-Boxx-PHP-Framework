@@ -286,7 +286,7 @@ class Users extends Core {
 
   // (N) HASH ADD
   //  $id : user id
-  //  $for : hash for - "A"ctivation, "O"TP, "P"assword reset, "GOO"gle, "NFC"
+  //  $for : hash for - "A"ctivation, "OTP", "P"assword reset, "GOO"gle, "NFC"
   //  $time : timestamp
   //    - null : use current time
   //    - string : specify your own
