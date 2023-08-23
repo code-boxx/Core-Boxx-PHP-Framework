@@ -3,9 +3,9 @@
   <head>
     <!-- (A) HEAD -->
     <!-- (A1) TITLE, DESC, CHARSET, VIEWPORT -->
-    <title><?=isset($_PMETA["title"])?$_PMETA["title"]:""?></title>
+    <title><?=isset($_PMETA["title"])?$_PMETA["title"]:SITE_NAME?></title>
     <meta charset="utf-8">
-    <meta name="description" content="<?=isset($_PMETA["desc"])?$_PMETA["desc"]:""?>">
+    <meta name="description" content="<?=isset($_PMETA["desc"])?$_PMETA["desc"]:SITE_NAME?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
     <meta name="view-transition" content="same-origin">
     <!-- @TODO <meta name="robots" content="noindex"> -->
@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" href="<?=HOST_ASSETS?>icon-512.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Core Boxx">
+    <meta name="apple-mobile-web-app-title" content="<?=SITE_NAME?>">
     <meta name="msapplication-TileImage" content="<?=HOST_ASSETS?>icon-512.png">
     <meta name="msapplication-TileColor" content="#ffffff">
 
