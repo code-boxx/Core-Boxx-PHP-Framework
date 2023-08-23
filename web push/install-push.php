@@ -22,16 +22,14 @@ try {
   copy(PATH_LIB . "CORE-Config.php", PATH_LIB . "CORE-Config.old");
 
   // (C3) INSERT KEYS INTO CORE-CONFIG.PHP
-  $cfg = file(PATH_LIB . "CORE-Config.php");
-  foreach ($cfg as $l=>$line) {
-    if (strpos($line, "PUSH_PUBLIC") !== false) {
-      $cfg[$l] = "define(\"PUSH_PUBLIC\", \"" . $keys["publicKey"] . "\"); // CHANGED BY INSTALLER\r\n";
-    }
-    if (strpos($line, "PUSH_PRIVATE") !== false) {
-      $cfg[$l] = "define(\"PUSH_PRIVATE\", \"" . $keys["privateKey"] . "\"); // CHANGED BY INSTALLER\r\n";
-    }
-  }
-  file_put_contents(PATH_LIB . "CORE-Config.php", implode("", $cfg));
+  $add = <<<EOD
+  // ADDED BY INSTALLER - PUSH NOTIFICATION
+  define("PUSH_PUBLIC", "{$keys["publicKey"]}");
+  define("PUSH_PRIVATE", "{$keys["privateKey"]}");
+  EOD;
+  $fh = fopen(PATH_LIB . "CORE-Config.php", "a");
+  fwrite($fh, "\r\n\r\n$add");
+  fclose($fh);
 } catch (Exception $ex) {
   exit("Unable to update CORE-Config.php - " . $ex->getMessage());
 }

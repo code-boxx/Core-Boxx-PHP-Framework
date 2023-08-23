@@ -1,10 +1,9 @@
 <?php
 // (PHASE A) BASE SETTINGS
 // @TODO - SET AS NECESSARY
-// (A1) PROJECT NAME & MODULES
-define("I_NAME", "CORE BOXX"); // project name
-define("I_USER", false); // user module
-define("I_PUSH", false); // push notifications module
+// (A1) MODULES
+define("I_USER", defined("USR_LVL")); // user module
+define("I_PUSH", defined("PUSH_PUBLIC")); // push notifications module
 
 // (A2) FILES & FOLDERS THAT REQUIRE READ/WRITE PERMISSION
 define("I_ALL", [

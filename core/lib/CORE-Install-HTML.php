@@ -41,7 +41,7 @@ if (I_PUSH && I_OPENSSL) {
     <!-- (C2) HEADER -->
     <div class="d-flex align-items-center mb-3">
       <img src="assets/favicon.png" class="me-2">
-      <h1><?=I_NAME?> INSTALLATION</h1>
+      <h1><?=SITE_NAME?> INSTALLATION</h1>
     </div>
 
     <!-- (C3) INSTALLATION FORM -->

@@ -167,6 +167,10 @@ class Route extends Core {
     foreach ($cfg as $j=>$line) { foreach ($replace as $r) { if (strpos($line, "\"$r\"") !== false) {
       $cfg[$j] = "  \"$r\": \"".$hbase."\",\r\n";
     }}}
+    $replace = ["short_name", "name"];
+    foreach ($cfg as $j=>$line) { foreach ($replace as $r) { if (strpos($line, "\"$r\"") !== false) {
+      $cfg[$j] = "  \"$r\": \"".SITE_NAME."\",\r\n";
+    }}}
     if (file_put_contents($file, implode("", $cfg)) === false) {
       throw new Exception("Failed to write $file");
     }
