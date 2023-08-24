@@ -78,8 +78,7 @@ var cb = {
   //  num : int, page number (1 to 5)
   page : num => {
     num --;
-    if (document.startViewTransition) { document.startViewTransition(() => cb.pswitch(num)); }
-    else { cb.pswitch(num); }
+    cb.transit(() => cb.pswitch(num));
   },
   pswitch : num => { for (let i in cb.hPages) {
     if (i==num) { cb.hPages[i].classList.remove("d-none"); }
@@ -215,7 +214,13 @@ var cb = {
   })),
 
   // (G) PASSWORD/HASH STRENGTH CHECKER
-  checker : hash => /^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/i.test(hash)
+  checker : hash => /^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/i.test(hash),
+
+  // (H) TRANSITION
+  transit : swap => {
+    if (document.startViewTransition) { document.startViewTransition(swap); }
+    else { swap(); }
+  }
 };
 
 // (H) INIT INTERFACE
