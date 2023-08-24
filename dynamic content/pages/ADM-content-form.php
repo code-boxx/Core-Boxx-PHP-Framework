@@ -22,10 +22,10 @@ if ($edit) { $content = $_CORE->autoCall("Contents", "get"); }
     <textarea id="content_text" class="w-100"><?=isset($content)?$content["content_text"]:""?></textarea>
   </div>
 
-  <button type="button" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center" onclick="cb.page(1)">
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="cb.page(1)">
     <i class="ico-sm icon-undo2 me-1"></i> Back
   </button>
-  <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline">
     <i class="ico-sm icon-checkmark me-1"></i> Save
   </button>
 </form>

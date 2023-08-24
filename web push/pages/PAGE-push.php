@@ -31,7 +31,7 @@
     <label class="form-label">Image</label>
   </div>
 
-  <button type="submit" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline">
     <i class="ico-sm icon-arrow-right me-1"></i> Send!
   </button>
 </form>

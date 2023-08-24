@@ -70,10 +70,10 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </div>
 
   <div class="w-100 mt-2">
-    <button type="button" id="evtDel" class="my-1 btn btn-danger d-flex-inline align-items-center justify-content-center">
+    <button type="button" id="evtDel" class="my-1 btn btn-danger d-flex-inline">
       <i class="ico-sm icon-bin2 me-1"></i> Delete
     </button>
-    <button type="submit" id="evtSave" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+    <button type="submit" id="evtSave" class="my-1 btn btn-primary d-flex-inline">
       <i class="ico-sm icon-checkmark me-1"></i> Save
     </button>
   </div>

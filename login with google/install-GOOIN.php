@@ -45,7 +45,7 @@ try {
       // (D3-2) "LOGIN WITH GOOGLE"
       array_splice($login, $pointer, 0, [
         "    <!-- (LOGIN WITH GOOGLE) ADDED BY INSTALLER -->\r\n",
-        '    <a class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
+        '    <a class="my-1 btn btn-primary d-flex-inline" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
         '      <i class="ico-sm icon-google me-1"></i> Google' . "\r\n",
         '    </a>' . "\r\n"
       ]);
@@ -93,7 +93,7 @@ try {
       // (E3-2) "SIGN UP WITH GOOGLE"
       array_splice($reg, $pointer, 0, [
         "    <!-- (REGISTER WITH GOOGLE) ADDED BY INSTALLER -->\r\n",
-        '    <a class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
+        '    <a class="my-1 btn btn-primary d-flex-inline" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
         '      <i class="ico-sm icon-google me-1"></i> Google' . "\r\n",
         '    </a>' . "\r\n"
       ]);

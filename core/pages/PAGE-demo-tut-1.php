@@ -14,7 +14,7 @@
 </ul></div>
 
 <div class="mb-4">
-  <button class="btn btn-primary w-100 mx-1 d-flex align-items-center justify-content-center" onclick="tut(2)">
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(2)">
     Next Page <i class="ico-sm icon-arrow-right ms-2"></i>
   </button>
 </div>

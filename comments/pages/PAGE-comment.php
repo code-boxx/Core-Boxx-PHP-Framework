@@ -15,7 +15,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
         It is covered in blue flowers and leaves, but somehow still works.
       </div>
       <div class="text-danger fw-bold mb-4">$999,999.99 (before tax)</div>
-      <button type="button" class="my-1 btn btn-primary d-flex-inline align-items-center justify-content-center">
+      <button type="button" class="my-1 btn btn-primary d-flex-inline">
         <i class="ico-sm icon-cart me-1"></i> Add To Cart
       </button>
     </div>
@@ -27,7 +27,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <form class="border bg-light p-3" onsubmit="return comment.add()">
       <?php if (isset($_SESSION["user"])) { ?>
       <input type="text" class="form-control" id="cmsg" required>
-      <button type="submit" class="mt-3 btn btn-primary d-flex-inline align-items-center justify-content-center">
+      <button type="submit" class="mt-3 btn btn-primary d-flex-inline">
         <i class="ico-sm icon-bubble me-1"></i> Comment
       </button>
       <?php } else { ?>

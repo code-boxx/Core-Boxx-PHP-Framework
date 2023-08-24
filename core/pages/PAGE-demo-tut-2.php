@@ -9,11 +9,11 @@
   For this example, we will create a list of items.
 </div>
 
-<div class="mb-4 d-flex">
-  <button class="btn btn-danger w-50 mx-1 d-flex align-items-center justify-content-center" onclick="tut(1)">
+<div class="mb-4">
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(1)">
     <i class="ico-sm icon-arrow-left me-2"></i> Last Page
   </button>
-  <button class="btn btn-primary w-50 mx-1 d-flex align-items-center justify-content-center" onclick="tut(3)">
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(3)">
     Next Page <i class="ico-sm icon-arrow-right ms-2"></i>
   </button>
 </div>

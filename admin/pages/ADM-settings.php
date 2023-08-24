@@ -15,7 +15,7 @@ require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
   </div>
   <?php } ?>
 
-  <button type="submit" class="btn btn-primary">
+  <button type="submit" class="my-1 btn btn-primary d-flex-inline">
     <i class="ico-sm icon-floppy-disk me-1"></i> Save Settings
   </button>
 </form>

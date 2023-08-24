@@ -9,7 +9,7 @@
     <li>Show - <code>cb.loading(1)</code></li>
     <li>Hide - <code>cb.loading(0)</code></li>
   </ul>
-  <button onclick="cb.loading(1); setTimeout(()=>cb.loading(0), 3000);" class="m-1 btn btn-primary">Show Loading For 3 Seconds</button>
+  <button onclick="cb.loading(1); setTimeout(()=>cb.loading(0), 3000);" class="my-1 btn btn-primary d-flex-inline">Show Loading For 3 Seconds</button>
 </div>
 
 <!-- (B) TOAST MESSAGE -->
@@ -21,9 +21,9 @@
     <li>Status <code>1</code> - OK</li>
     <li>Status <code>0</code> - Fail</li>
   </ul>
-  <button onclick="cb.toast(2, 'TITLE', 'MESSAGE')" class="m-1 btn btn-primary">QUESTION Toast</button>
-  <button onclick="cb.toast(1, 'TITLE', 'MESSAGE')" class="m-1 btn btn-primary">OK Toast</button>
-  <button onclick="cb.toast(0, 'TITLE', 'MESSAGE')" class="m-1 btn btn-primary">FAIL Toast</button>
+  <button onclick="cb.toast(2, 'TITLE', 'MESSAGE')" class="my-1 btn btn-primary d-flex-inline">QUESTION Toast</button>
+  <button onclick="cb.toast(1, 'TITLE', 'MESSAGE')" class="my-1 btn btn-primary d-flex-inline">OK Toast</button>
+  <button onclick="cb.toast(0, 'TITLE', 'MESSAGE')" class="my-1 btn btn-primary d-flex-inline">FAIL Toast</button>
 </div>
 
 <!-- (C) MODAL DIALOG BOX -->
@@ -34,9 +34,9 @@
     <li>Run function on clicking "OK" - <code>cb.modal("TITLE", "MESSAGE", FUNCTION)</code></li>
     <li>Define your own footer - <code>cb.modal("TITLE", "MESSAGE", "MY FOOTER")</code></li>
   </ul>
-  <button onclick="cb.modal('TITLE', 'MESSAGE')" class="m-1 btn btn-primary">Modal - No Footer</button>
-  <button onclick="cb.modal('TITLE', 'MESSAGE', ()=>{ alert('ok'); })" class="m-1 btn btn-primary">Modal - Custom OK Function</button>
-  <button onclick="cb.modal('TITLE', 'MESSAGE', 'MY FOOTER')" class="m-1 btn btn-primary">Modal - Custom Footer</button>
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="cb.modal('TITLE', 'MESSAGE')">Modal - No Footer</button>
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="cb.modal('TITLE', 'MESSAGE', ()=>{ alert('ok'); })">Modal - Custom OK Function</button>
+  <button class="my-1 btn btn-primary d-flex-inline" onclick="cb.modal('TITLE', 'MESSAGE', 'MY FOOTER')">Modal - Custom Footer</button>
 </div>
 
 <!-- (D) API CALL -->
@@ -72,8 +72,8 @@
 function demo () {
   cb.hPages[1].innerHTML =
   `<h3>THIS IS CB-PAGE-2</h3>
-    <div class="my-3">Right click - Inspect element.</div>
-    <button onclick="cb.page(1)" class="m-1 btn btn-primary">Back</button>`;
+   <div class="my-3">Right click - Inspect element.</div>
+   <button onclick="cb.page(1)" class="my-1 btn btn-danger d-flex-inline">Back</button>`;
   cb.page(2);
 }
 </script>
@@ -87,7 +87,7 @@ function demo () {
     <li>There are 5 <code>&lt;div id="cb-page-N"&gt;</code> in this template to facilitate a single page app (as much as possible).</li>
     <li>Use <code>cb.page(1 TO 5)</code> to switch between <code>&lt;div id="cb-page-N"&gt;</code></li>
   </ul>
-  <button onclick="demo()" class="m-1 btn btn-primary">Switch To cb-page-2</button>
+  <button onclick="demo()" class="my-1 btn btn-primary d-flex-inline">Switch To cb-page-2</button>
 </div>
 
 <!-- (G) URL -->

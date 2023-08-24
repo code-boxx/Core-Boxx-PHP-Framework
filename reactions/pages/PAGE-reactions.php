@@ -18,7 +18,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
         It's highly overpriced, but people still like it abd buy for some reason.
       </div>
       <div class="text-danger fw-bold mb-4">$999,999.99 (before tax)</div>
-      <button type="button" class="mb-4 btn btn-primary d-flex-inline align-items-center justify-content-center">
+      <button type="button" class="mb-4 btn btn-primary d-flex-inline">
         <i class="ico-sm icon-cart me-1"></i> Add To Cart
       </button>
 
