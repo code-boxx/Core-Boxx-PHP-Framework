@@ -19,7 +19,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       </div>
       <div class="text-danger fw-bold mb-4">$999,999.99 (before tax)</div>
       <button type="button" class="mb-4 btn btn-primary d-flex-inline">
-        <i class="ico-sm icon-cart me-1"></i> Add To Cart
+        <i class="ico-sm icon-cart"></i> Add To Cart
       </button>
 
       <!-- REACTIONS WIDGET -->

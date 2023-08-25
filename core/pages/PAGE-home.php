@@ -7,7 +7,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <img class="img-fluid d-block mx-auto mb-4" style="max-height:450px;" src="<?=HOST_ASSETS?>head-core-boxx.webp">
 
 <!-- (B) HOW TO USE -->
-<h5 class="text-danger">HOW TO USE CORE BOXX</h5>
+<h5 class="text-danger mb-2">HOW TO USE CORE BOXX</h5>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">
     <li><a href="<?=HOST_BASE?>demo/tut" target="_blank">
@@ -26,7 +26,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 </div>
 
 <!-- (C) MORE TUTORIALS -->
-<h5 class="text-danger">DIVE DEEPER</h5>
+<h5 class="text-danger mb-2">DIVE DEEPER</h5>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">
     <li><a href="https://code-boxx.com/core-boxx-core-library-reference/" target="_blank">
@@ -45,7 +45,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 </div>
 
 <!-- (D) CLEAR -->
-<h5 class="text-danger">NAH, I AM GOOD.</h5>
+<h5 class="text-danger mb-2">NAH, I AM GOOD.</h5>
 <div class="bg-white border p-4 mb-4">
   <a href="<?=HOST_BASE?>demo/clean">
     <i class="ico-sm icon-warning"></i> Delete all the demo files and give me a clean installation.
@@ -53,7 +53,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 </div>
 
 <!-- (E) LINKS & CREDITS -->
-<h5 class="text-danger">LINKS &AMP; CREDITS</h5>
+<h5 class="text-danger mb-2">LINKS &AMP; CREDITS</h5>
 <div class="bg-white border p-4 mb-4">
   <h6><i class="ico-sm icon-sphere"></i> Official</h6>
   <ul>

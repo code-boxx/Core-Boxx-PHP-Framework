@@ -30,11 +30,11 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <!-- (D2) REGISTER & UNREGISTER -->
     <button type="button" id="wa-unreg" class="my-1 btn btn-primary d-flex-inline"
             onclick="wa.unreg()"<?=$regged?"":" disabled"?>>
-      <i class="ico-sm icon-cross me-1"></i> Unregister
+      <i class="ico-sm icon-cross"></i> Unregister
     </button>
     <button type="button" id="wa-reg" class="my-1 btn btn-primary d-flex-inline"
             onclick="wa.regA()" disabled>
-      <i class="ico-sm icon-key me-1"></i> Register
+      <i class="ico-sm icon-key"></i> Register
     </button>
 
     <!-- (D3) NOTES -->

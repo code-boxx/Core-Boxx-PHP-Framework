@@ -116,18 +116,18 @@
       <div class="d-flex align-items-center">
         <!-- (C3-1) SWITCH TO ADMIN PANEL -->
         <?php if (defined("HOST_ADMIN") && isset($_SESSION["user"]) && $_SESSION["user"]["user_level"]=="A") { ?>
-        <a class="text-decoration-none text-danger me-3 ico icon-shield" href="<?=HOST_ADMIN?>"></a>
+        <a class="text-decoration-none text-danger p-2 me-2 ico icon-shield" href="<?=HOST_ADMIN?>"></a>
         <?php } ?>
 
         <!-- (C3-2) NOTIFICATIONS -->
-        <a class="text-decoration-none text-white me-3" href="<?=HOST_BASE?>notifications">
+        <a class="text-decoration-none text-white p-2 me-1" href="<?=HOST_BASE?>notifications">
           <span class="ico icon-bell"></span>
           <span class="badge bg-danger rounded-pill">9</span>
         </a>
 
         <!-- (C3-3) USER -->
         <div class="dropdown">
-          <div class="text-white ico icon-user" role="button" data-bs-toggle="dropdown"></div>
+          <div class="text-white ico icon-user p-2" role="button" data-bs-toggle="dropdown"></div>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
             <?php if (isset($_SESSION["user"])) { ?>
             <li class="dropdown-header">

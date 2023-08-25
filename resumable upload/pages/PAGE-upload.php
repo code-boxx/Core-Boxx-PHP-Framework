@@ -7,11 +7,11 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (A) SELECT FILE & PAUSE/RESUME -->
 <h3 class="mb-4">RESUMABLE FILE UPLOAD DEMO</h3>
 <button type="button" class="my-1 btn btn-primary d-flex-inline" id="upbrowse">
-  <i class="ico-sm icon-file-empty me-1"></i> Select File
+  <i class="ico-sm icon-file-empty"></i> Select File
 </button>
 
 <button type="button" class="my-1 btn btn-primary d-flex-inline" id="uptoggle">
-  <i class="ico-sm icon-play3 me-1"></i> Pause/Resume
+  <i class="ico-sm icon-play3"></i> Pause/Resume
 </button>
 
 <!-- (B) UPLOAD LIST -->

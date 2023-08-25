@@ -28,7 +28,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <?php if (isset($_SESSION["user"])) { ?>
       <input type="text" class="form-control" id="cmsg" required>
       <button type="submit" class="mt-3 btn btn-primary d-flex-inline">
-        <i class="ico-sm icon-bubble me-1"></i> Comment
+        <i class="ico-sm icon-bubble"></i> Comment
       </button>
       <?php } else { ?>
       To comment, please <a href="<?=HOST_BASE?>login">login</a> first.

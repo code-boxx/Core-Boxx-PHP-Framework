@@ -3,7 +3,7 @@
 <div class="text-secondary mb-4">a quick walkthrough of the common html js</div>
 
 <!-- (A) PAGE LOAD SPINNER -->
-<h5 class="text-danger">PAGE LOAD SPINNER</h5>
+<h5 class="text-danger mb-2">PAGE LOAD SPINNER</h5>
 <div class="bg-white border p-4 mb-4">
   <ul>
     <li>Show - <code>cb.loading(1)</code></li>
@@ -13,7 +13,7 @@
 </div>
 
 <!-- (B) TOAST MESSAGE -->
-<h5 class="text-danger">TOAST MESSAGE</h5>
+<h5 class="text-danger mb-2">TOAST MESSAGE</h5>
 <div class="bg-white border p-4 mb-4">
   <ul>
     <li><code>cb.toast(STATUS, "TITLE", "MESSAGE")</code></li>
@@ -27,7 +27,7 @@
 </div>
 
 <!-- (C) MODAL DIALOG BOX -->
-<h5 class="text-danger">MODAL DIALOG BOX</h5>
+<h5 class="text-danger mb-2">MODAL DIALOG BOX</h5>
 <div class="bg-white border p-4 mb-4">
   <ul>
     <li>Basic - <code>cb.modal("TITLE", "MESSAGE")</code></li>
@@ -40,7 +40,7 @@
 </div>
 
 <!-- (D) API CALL -->
-<h5 class="text-danger">API CALL</h5>
+<h5 class="text-danger mb-2">API CALL</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-4"><code>cb.api({
   mod : "MODULE",
   act : "ACTION",
@@ -55,7 +55,7 @@
 })</code></pre>
 
 <!-- (E) AJAX LOAD CONTENT -->
-<h5 class="text-danger">AJAX LOAD CONTENT</h5>
+<h5 class="text-danger mb-2">AJAX LOAD CONTENT</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-4"><code>cb.load({
   page : "PAGE",              // http://site.com/PAGE/
   target : "ID",              // target html element to load content into
@@ -67,7 +67,7 @@
 })</code></pre>
 
 <!-- (F) PAGE CHANGE -->
-<h5 class="text-danger">PAGES</h5>
+<h5 class="text-danger mb-2">PAGES</h5>
 <script>
 function demo () {
   cb.hPages[1].innerHTML =
@@ -87,11 +87,13 @@ function demo () {
     <li>There are 5 <code>&lt;div id="cb-page-N"&gt;</code> in this template to facilitate a single page app (as much as possible).</li>
     <li>Use <code>cb.page(1 TO 5)</code> to switch between <code>&lt;div id="cb-page-N"&gt;</code></li>
   </ul>
-  <button onclick="demo()" class="my-1 btn btn-primary d-flex-inline">Switch To cb-page-2</button>
+  <button onclick="demo()" class="my-1 btn btn-primary d-flex-inline">
+    Switch To cb-page-2
+  </button>
 </div>
 
 <!-- (G) URL -->
-<h5 class="text-danger">URL</h5>
+<h5 class="text-danger mb-2">URL</h5>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">
     <li><code>cbhost.base</code> - Base URL <code><?=HOST_BASE?></code></li>

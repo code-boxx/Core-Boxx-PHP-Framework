@@ -127,9 +127,9 @@
           <div class="navbar-nav me-auto mb-2 mb-lg-0"></div>
 
           <div class="d-flex align-items-center">
-            <a class="text-decoration-none text-primary me-3 ico icon-home3" href="<?=HOST_BASE?>"></a>
+            <a class="text-decoration-none text-primary p-2 me-3 ico icon-home3" href="<?=HOST_BASE?>"></a>
             <div class="dropdown">
-              <div class="text-white ico icon-user" role="button" data-bs-toggle="dropdown"></div>
+              <div class="text-white ico icon-user p-2" role="button" data-bs-toggle="dropdown"></div>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                 <li class="dropdown-header">
                   <?=$_SESSION["user"]["user_name"]?><br>

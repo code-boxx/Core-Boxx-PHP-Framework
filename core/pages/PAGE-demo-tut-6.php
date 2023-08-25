@@ -1,4 +1,4 @@
-<h5 class="text-danger">JAVASCRIPT ONLY</h5>
+<h5 class="text-danger mb-2">JAVASCRIPT ONLY</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code>// (A) HELPER - CALL API
 function ajax (mod, act, data, after) {
   // (A1) FORM DATA
@@ -39,10 +39,10 @@ ajax("items", "getAll", null, data => {
 </div>
 
 <div class="mb-4">
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(5)">
-    <i class="ico-sm icon-arrow-left me-2"></i> Last Page
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="tut(5)"> 
+    <i class="ico-sm icon-arrow-left"></i> Last Page
   </button>
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(1)">
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="tut(1)"> 
     <i class="ico-sm icon-undo me-2"></i> Restart
   </button>
 </div>

@@ -21,7 +21,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     </div>
 
     <button type="submit" class="my-1 btn btn-primary d-flex-inline">
-      <i class="ico-sm icon-history me-1"></i> Reset Request
+      <i class="ico-sm icon-history"></i> Reset Request
     </button>
 
     <div class="text-secondary mt-3">

@@ -24,7 +24,7 @@ require PATH_PAGES . "TEMPLATE-ADM-top.php"; ?>
   </div>
 
   <button type="submit" class="my-1 btn btn-primary d-flex-inline">
-    <i class="ico-sm icon-arrow-right me-1"></i> Send
+    <i class="ico-sm icon-arrow-right"></i> Send
   </button>
 </form>
 <?php require PATH_PAGES . "TEMPLATE-ADM-bottom.php"; ?>

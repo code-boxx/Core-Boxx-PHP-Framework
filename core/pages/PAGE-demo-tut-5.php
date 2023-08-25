@@ -1,4 +1,4 @@
-<h5 class="text-danger">CREATE HTML PAGE</h5>
+<h5 class="text-danger mb-2">CREATE HTML PAGE</h5>
 <div class="p-2 bg-dark text-white fw-bold">pages/PAGE-items.php</div>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code>&lt;?php
 // (A) HTML TOP HALF
@@ -29,7 +29,7 @@ require PATH_PAGES . &quot;TEMPLATE-bottom.php&quot;; ?&gt;
   <li>Every page will have access to <code>$_CORE</code>, so you can use any module.</li>
 </ol></div>
 
-<h5 class="text-danger">DEFAULT HTML TEMPLATE</h5>
+<h5 class="text-danger mb-2">DEFAULT HTML TEMPLATE</h5>
 <div class="bg-white border p-4 mb-4"><ol class="mb-0">
   <li>The default HTML template is using Bootstrap and IcoMoon.</li>
   <li>No hard rules that you MUST use it.</li>
@@ -38,10 +38,10 @@ require PATH_PAGES . &quot;TEMPLATE-bottom.php&quot;; ?&gt;
 </ol></div>
 
 <div class="mb-4">
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(4)">
-    <i class="ico-sm icon-arrow-left me-2"></i> Last Page
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="tut(4)"> 
+    <i class="ico-sm icon-arrow-left"></i> Last Page
   </button>
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(6)">
-    Next Page <i class="ico-sm icon-arrow-right ms-2"></i>
+  <button type="button" class="my-1 btn btn-primary d-flex-inline" onclick="tut(6)"> 
+    Next Page <i class="ico-sm icon-arrow-right"></i>
   </button>
 </div>

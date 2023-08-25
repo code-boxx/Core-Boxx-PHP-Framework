@@ -3,7 +3,7 @@
 <div class="text-secondary mb-3">a quick walkthrough of the common php variables</div>
 
 <!-- (A) CORE ENGINE -->
-<h5 class="text-danger">THE CORE ENGINE</h5>
+<h5 class="text-danger mb-2">THE CORE ENGINE</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code><?php print_r($_CORE); ?></code></pre>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">
@@ -15,7 +15,7 @@
 </div>
 
 <!-- (B) URL PATH -->
-<h5 class="text-danger">CURRENT PATH</h5>
+<h5 class="text-danger mb-2">CURRENT PATH</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code><?php echo $_CORE->Route->path; ?></code></pre>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">
@@ -26,7 +26,7 @@
 </div>
 
 <!-- (C) SESSION -->
-<h5 class="text-danger">SESSION DATA</h5>
+<h5 class="text-danger mb-2">SESSION DATA</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code><?php print_r($_SESSION); ?></code></pre>
 <div class="bg-white border p-4 mb-4">
   <ul class="mb-0">

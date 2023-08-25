@@ -46,7 +46,7 @@ try {
       array_splice($login, $pointer, 0, [
         "    <!-- (LOGIN WITH GOOGLE) ADDED BY INSTALLER -->\r\n",
         '    <a class="my-1 btn btn-primary d-flex-inline" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
-        '      <i class="ico-sm icon-google me-1"></i> Google' . "\r\n",
+        '      <i class="ico-sm icon-google"></i> Google' . "\r\n",
         '    </a>' . "\r\n"
       ]);
       break;

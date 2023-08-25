@@ -1,4 +1,4 @@
-<h5 class="text-danger">CREATE API ENDPOINT</h5>
+<h5 class="text-danger mb-2">CREATE API ENDPOINT</h5>
 <div class="p-2 bg-dark text-white fw-bold">lib/API-items.php</div>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code>// (A) API ENDPOINTS
 $_CORE->autoAPI([
@@ -20,10 +20,10 @@ $_CORE->respond(0, "Invalid request", null, null, 400);
 </ol></div>
 
 <div class="mb-4">
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(3)">
-    <i class="ico-sm icon-arrow-left me-2"></i> Last Page
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="tut(3)"> 
+    <i class="ico-sm icon-arrow-left"></i> Last Page
   </button>
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(5)">
-    Next Page <i class="ico-sm icon-arrow-right ms-2"></i>
+  <button type="button" class="my-1 btn btn-primary d-flex-inline" onclick="tut(5)"> 
+    Next Page <i class="ico-sm icon-arrow-right"></i>
   </button>
 </div>

@@ -46,7 +46,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       </div>
 
       <button type="submit" class="my-1 btn btn-primary d-flex-inline">
-        <i class="ico-sm icon-checkmark me-1"></i> Register
+        <i class="ico-sm icon-checkmark"></i> Register
       </button>
     </form>
 

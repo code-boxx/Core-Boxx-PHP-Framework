@@ -87,7 +87,7 @@ try {
       array_splice($data, $j+1, 0, [
         "      <!-- (LOGIN WITH NFC) ADDED BY INSTALLER -->\r\n",
         '      <button type="button" id="nfc-a" onclick="nin.go()" disabled class="my-1 btn btn-primary d-flex-inline">' . "\r\n",
-        '        <i class="ico-sm icon-feed me-1"></i> <span id="nfc-b">NFC</span>' . "\r\n",
+        '        <i class="ico-sm icon-feed"></i> <span id="nfc-b">NFC</span>' . "\r\n",
         "      </button>\r\n"
       ]);
       break;

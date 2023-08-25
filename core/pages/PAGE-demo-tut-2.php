@@ -1,4 +1,4 @@
-<h5 class="text-danger">CREATE DATABASE TABLE</h5>
+<h5 class="text-danger mb-2">CREATE DATABASE TABLE</h5>
 <pre style="background:#2a3d6a" class="text-white border p-4 mb-2"><code>CREATE TABLE `items` (
   `item_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `item_name` varchar(255) NOT NULL,
@@ -10,10 +10,10 @@
 </div>
 
 <div class="mb-4">
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(1)">
-    <i class="ico-sm icon-arrow-left me-2"></i> Last Page
+  <button type="button" class="my-1 btn btn-danger d-flex-inline" onclick="tut(1)"> 
+    <i class="ico-sm icon-arrow-left"></i> Last Page
   </button>
-  <button class="my-1 btn btn-primary d-flex-inline" onclick="tut(3)">
-    Next Page <i class="ico-sm icon-arrow-right ms-2"></i>
+  <button type="button" class="my-1 btn btn-primary d-flex-inline" onclick="tut(3)"> 
+    Next Page <i class="ico-sm icon-arrow-right"></i>
   </button>
 </div>

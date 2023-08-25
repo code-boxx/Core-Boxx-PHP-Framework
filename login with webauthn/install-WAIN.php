@@ -61,7 +61,7 @@ try {
       array_splice($data, $j+1, 0, [
         "      <!-- (LOGIN WITH WEBAUTHN) ADDED BY INSTALLER -->\r\n",
         '      <button type="button" id="wa-in" onclick="wa.go()" disabled class="my-1 btn btn-primary d-flex-inline">' . "\r\n",
-        '        <i class="ico-sm icon-key me-1"></i> Passwordless' . "\r\n",
+        '        <i class="ico-sm icon-key"></i> Passwordless' . "\r\n",
         "      </button>\r\n"
       ]);
       break;

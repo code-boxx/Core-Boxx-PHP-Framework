@@ -14,7 +14,7 @@ if (is_array($users)) { foreach ($users as $id=>$u) { ?>
     <button type="button" class="btn btn-primary p-3 ico-sm icon-arrow-right" type="button" data-bs-toggle="dropdown"></button>
     <ul class="dropdown-menu dropdown-menu-dark">
       <li class="dropdown-item" onclick="usr.addEdit(<?=$id?>)">
-        <i class="ico-sm icon-pencil"></i> Edit
+        <i class="text-secondary ico-sm icon-pencil"></i> Edit
       </li>
       <li class="dropdown-item text-warning" onclick="usr.del(<?=$id?>)">
         <i class="ico-sm icon-bin2"></i> Delete

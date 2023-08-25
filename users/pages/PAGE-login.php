@@ -36,7 +36,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       </div>
       
       <button type="submit" class="my-1 btn btn-primary d-flex-inline">
-        <i class="ico-sm icon-enter me-1"></i> Sign In
+        <i class="ico-sm icon-enter"></i> Sign In
       </button>
 
       <!-- (C2-2) MORE LOGIN -->

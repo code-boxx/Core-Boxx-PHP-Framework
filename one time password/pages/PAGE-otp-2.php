@@ -29,7 +29,7 @@ function otp () {
   </div>
 
   <button type="submit" class="my-1 btn btn-primary d-flex-inline">
-    <i class="ico-sm icon-checkmark me-1"></i> Go
+    <i class="ico-sm icon-checkmark"></i> Go
   </button>
 </form>
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>
