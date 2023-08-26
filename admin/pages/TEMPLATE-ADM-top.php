@@ -98,20 +98,20 @@
           <img src="<?=HOST_ASSETS?>favicon.png" loading="lazy" width="42" height="42">
           <hr>
           <div class="mb-2 fw-bold">Section</div>
-          <a class="nav-link ms-2" href="<?=HOST_ADMIN?>">
+          <a class="nav-link ms-1" href="<?=HOST_ADMIN?>">
             <i class="me-1 text-secondary ico-sm icon-link"></i> Link
           </a>
-          <a class="nav-link ms-2" href="<?=HOST_ADMIN?>">
+          <a class="nav-link ms-1" href="<?=HOST_ADMIN?>">
             <i class="me-1 text-secondary ico-sm icon-link"></i> Link
           </a>
           <hr>
         </li>
         <li class="nav-item">
           <div class="my-2 fw-bold">System</div>
-          <a class="nav-link ms-2" href="<?=HOST_ADMIN?>users">
+          <a class="nav-link ms-1" href="<?=HOST_ADMIN?>users">
             <i class="me-1 text-secondary ico-sm icon-users"></i> Users
           </a>
-          <a class="nav-link ms-2" href="<?=HOST_ADMIN?>settings">
+          <a class="nav-link ms-1" href="<?=HOST_ADMIN?>settings">
             <i class="me-1 text-secondary ico-sm icon-cog"></i> Settings
           </a>
           <hr>
