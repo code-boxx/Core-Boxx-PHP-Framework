@@ -1,6 +1,6 @@
 <?php
 // (A) DELETE DEMO PAGES
-foreach (["html", "icomoon", "php"] as $file) {
+foreach (["html", "icomoon", "php", "transit"] as $file) {
   $file = PATH_PAGES . "PAGE-demo-$file.php"; 
   if (file_exists($file)) { unlink($file); }
 }
