@@ -19,6 +19,9 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <li><a href="<?=HOST_BASE?>demo/html" target="_blank">
       HTML Interface Demo Page
     </a></li>
+    <li><a href="<?=HOST_BASE?>demo/transit" target="_blank">
+      Page Transitions Demo Page
+    </a></li>
     <li><a href="<?=HOST_BASE?>demo/icomoon" target="_blank">
       IcoMoon Icons List
     </a></li>
