@@ -13,7 +13,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="bg-white border p-4 mb-4">
   <div class="fw-bold mb-2">THE BASICS</div>
   <ul class="mb-4">
-    <li><a href="<?=HOST_BASE?>demo/tut" target="_blank">
+    <li><a href="https://code-boxx.com/core-boxx-php-framework/#sec-tut" target="_blank">
       Very Fast Tutorial
     </a></li>
     <li><a href="<?=HOST_BASE?>demo/html" target="_blank">
