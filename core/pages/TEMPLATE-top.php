@@ -138,20 +138,20 @@
               <?=$_SESSION["user"]["user_email"]?>
             </li>
             <li><a class="dropdown-item" href="<?=HOST_BASE?>myaccount">
-              <i class="ico-sm icon-briefcase"></i> My Account
+              <i class="text-secondary ico-sm icon-briefcase"></i> My Account
             </a></li>
             <li class="dropdown-item text-warning" onclick="cb.bye()">
               <i class="ico-sm icon-exit"></i> Logout
             </li>
             <?php } else { ?>
             <li><a class="dropdown-item" href="<?=HOST_BASE?>login">
-              <i class="ico-sm icon-enter"></i> Login
+              <i class="text-secondary ico-sm icon-enter"></i> Login
             </a></li>
             <li><a class="dropdown-item" href="<?=HOST_BASE?>forgot">
-              <i class="ico-sm icon-question"></i> Forgot Password
+              <i class="text-secondary ico-sm icon-question"></i> Forgot Password
             </a></li>
             <li><a class="dropdown-item" href="<?=HOST_BASE?>register">
-              <i class="ico-sm icon-pencil"></i> Register
+              <i class="text-secondary ico-sm icon-pencil"></i> Register
             </a></li>
             <?php } ?>
           </ul>

@@ -39,7 +39,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 </div>
 
 <!-- (B3) EVENT FORM -->
-<dialog id="calForm"><form method="dialog">
+<dialog id="calForm" class="tran-zoom"><form method="dialog">
   <div id="evtCX" class="ico icon-cross p-3"></div>
   <h4 class="w-100 mb-4">CALENDAR EVENT</h4>
   <input type="hidden" id="evtID">

@@ -8,11 +8,11 @@ https://code-boxx.com/core-boxx-nfc-login-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-NFCIN.php`, this will automatically:
+* Access `http://your-site.com/install/NFCIN`, this will automatically:
   - Modify `pages/ADM-users.php`, load additional JS for NFC.
   - Add "NFC Login" button to `pages/ADM-users-list.php`.
   - Modify `pages/PAGE-login.php`, load additional JS and add "NFC login" button.
-  - Delete `install-NFCIN.php` itself.
+  - Delete `PAGE-install-NFCIN.php` itself.
 
 ## NOTES
 * At the time of writing, Web NFC is only supported on Android devices.

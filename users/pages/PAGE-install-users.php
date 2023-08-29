@@ -1,15 +1,12 @@
 <?php
-// (A) START CORE ENGINE
-require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
-
-// (B) IMPORT SQL
+// (A) IMPORT SQL
 try {
   $_CORE->DB->query(file_get_contents(PATH_LIB . "SQL-Users.sql"));
 } catch (Exception $ex) {
   exit("Unable to import SQL - " . $ex->getMessage());
 }
 
-// (C) ADD USER LEVEL TO CORE-CONFIG.PHP
+// (B) ADD USER LEVEL TO CORE-CONFIG.PHP
 try {
   copy(PATH_LIB . "CORE-Config.php", PATH_LIB . "CORE-Config.old");
   $add = <<<EOD
@@ -25,7 +22,7 @@ try {
   exit("Unable to update CORE-Config.php - " . $ex->getMessage());
 }
 
-// (D) ADD SESSION HOOK TO ONLY SAVE USER ID
+// (C) ADD SESSION HOOK TO ONLY SAVE USER ID
 try {
   copy(PATH_LIB . "HOOK-SESS-Save.php", PATH_LIB . "HOOK-SESS-Save.old");
   $add = <<<EOD
@@ -41,7 +38,7 @@ try {
   exit("Unable to update HOOK-SESS-Save.php - " . $ex->getMessage());
 }
 
-// (E) ADD SESSION HOOK TO LOAD USER FROM DATABASE
+// (D) ADD SESSION HOOK TO LOAD USER FROM DATABASE
 try {
   copy(PATH_LIB . "HOOK-SESS-Load.php", PATH_LIB . "HOOK-SESS-Load.old");
   $add = <<<EOD
@@ -66,12 +63,12 @@ try {
   exit("Unable to update HOOK-SESS-Load.php - " . $ex->getMessage());
 }
 
-// (F) DELETE THIS SCRIPT
+// (E) DELETE THIS SCRIPT
 try {
-  unlink(PATH_BASE . "install-users.php");
+  unlink(PATH_PAGES . "PAGE-install-users.php");
 } catch (Exception $ex) {
-  exit("Unable to delete install-users.php, please do so manually.");
+  exit("Unable to delete PAGE-install-users.php, please do so manually.");
 }
 
-// (G) DONE
-echo "User module successfully installed.";
+// (F) DONE
+exit("User module successfully installed.");

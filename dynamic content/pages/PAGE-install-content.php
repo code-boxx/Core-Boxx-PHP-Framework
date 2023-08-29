@@ -1,17 +1,14 @@
 <?php
-// (A) START CORE ENGINE
-require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
-
-// (B) IMPORT SQL
+// (A) IMPORT SQL
 try {
   $_CORE->DB->query(file_get_contents(PATH_LIB . "SQL-Contents.sql"));
 } catch (Exception $ex) {
   exit("Unable to import SQL - " . $ex->getMessage());
 }
 
-// (C) UPDATE HOOK-ROUTES.PHP
+// (B) UPDATE HOOK-ROUTES.PHP
 try {
-  // (C1) SIMPLE CHECKS
+  // (B1) SIMPLE CHECKS
   require PATH_LIB . "HOOK-Routes.php";
   if (!isset($wild)) {
     exit("Please define \$wild=[] in HOOK-Routes.php");
@@ -19,11 +16,11 @@ try {
   $wild = count($wild);
   unset($routes); unset($override);
 
-  // (C2) BACKUP & READ HOOK-ROUTES.PHP
+  // (B2) BACKUP & READ HOOK-ROUTES.PHP
   copy(PATH_LIB . "HOOK-Routes.php", PATH_LIB . "HOOK-Routes.old");
   $cfg = file(PATH_LIB . "HOOK-Routes.php");
 
-  // (C3) INSERT NEW POSTS ROUTE
+  // (B3) INSERT NEW POSTS ROUTE
   $add = <<<EOF
     "post/" => "POST-load.php"
   EOF;
@@ -40,12 +37,12 @@ try {
   exit("Unable to update HOOK-Routes.php - " . $ex->getMessage());
 }
 
-// (D) DELETE THIS SCRIPT
+// (C) DELETE THIS SCRIPT
 try {
-  unlink(PATH_BASE . "install-content.php");
+  unlink(PATH_PAGES . "PAGE-install-content.php");
 } catch (Exception $ex) {
-  exit("Unable to delete install-content.php, please do so manually.");
+  exit("Unable to delete PAGE-install-content.php, please do so manually.");
 }
 
-// (E) DONE
-echo "Dynamic Content module successfully installed.";
+// (D) DONE
+exit("Dynamic Content module successfully installed.");

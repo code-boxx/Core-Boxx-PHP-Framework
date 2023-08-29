@@ -7,8 +7,9 @@ https://code-boxx.com/core-boxx-reactions-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-reactions.php`, this will automatically:
+* Access `http://your-site.com/install/reactions`, this will automatically:
   - Import `lib/SQL-Reactions.sql` into your database.
+  - Delete `PAGE-install-reactions.php` itself.
 * After installation, access `http://your-site.com/reactions` for the demo page.
 
 ## LICENSE

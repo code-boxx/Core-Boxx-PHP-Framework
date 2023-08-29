@@ -1,6 +1,8 @@
 <?php
-// (A) START CORE ENGINE
-require __DIR__ . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
+// (A) CHECK OPENSSL
+if (!extension_loaded("openssl")) {
+  exit("OPENSSL extension not enabled.");
+}
 
 // (B) IMPORT SQL
 try {
@@ -15,7 +17,7 @@ try {
   require PATH_LIB . "webpush/autoload.php";
   $keys = Minishlink\WebPush\VAPID::createVapidKeys();
   if ($keys == null) {
-    exit("Unabled to create keys, please make sure OpenSSL is properly installed.");
+    exit("Unabled to create keys, please make sure OpenSSL is properly installed and configured.");
   }
 
   // (C2) BACKUP CORE-CONFIG.PHP
@@ -36,10 +38,10 @@ try {
 
 // (D) DELETE THIS SCRIPT
 try {
-  unlink(PATH_BASE . "install-push.php");
+  unlink(PATH_PAGES . "PAGE-install-push.php");
 } catch (Exception $ex) {
-  exit("Unable to delete install-push.php, please do so manually.");
+  exit("Unable to delete PAGE-install-push.php, please do so manually.");
 }
 
 // (E) DONE
-echo "Web Push module successfully installed.";
+exit("Web Push module successfully installed.");

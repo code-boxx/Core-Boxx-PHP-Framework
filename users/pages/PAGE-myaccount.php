@@ -17,7 +17,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <img src="<?=HOST_ASSETS?>favicon.png" class="p-2 rounded-circle" style="width:128px;height:128px;background:#f1f1f1">
     <h3 class="my-4">MY ACCOUNT</h3>
     <div class="form-floating mb-4">
-      <input type="text" id="user-name" class="form-control" required value=<?=$_SESSION["user"]["user_name"]?>>
+      <input type="text" id="user-name" class="form-control" required value="<?=$_SESSION["user"]["user_name"]?>">
       <label>Name</label>
     </div>
 

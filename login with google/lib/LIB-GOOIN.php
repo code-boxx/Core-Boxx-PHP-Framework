@@ -43,6 +43,9 @@ class GOOIN extends Core {
       $this->goo->setAccessToken($token);
       $guser = (new Google_Service_Oauth2($this->goo))->userinfo->get();
       $this->goo->revokeToken();
+      if (!isset($guser["email"]) || $guser["email"]=="" || $guser["email"]==null) {
+        $this->error = "Failed to get user profile from Google.";
+      }
     } catch (Exception $ex) {
       $this->error = "Failed to get user profile from Google.";
       $this->goo->revokeToken();
@@ -64,8 +67,7 @@ class GOOIN extends Core {
     // (C6) NEW USER REGISTRATION
     $password = $this->Core->random($this->plen);
     $this->Users->save(
-      (str_replace(["\r", "\n"], "", $guser["givenName"]) . " " . str_replace(["\r", "\n"], "", $guser["familyName"])),
-      $guser["email"], $password, "U"
+      str_replace(["\r", "\n"], "", $guser["name"]), $guser["email"], $password, "U"
     );
     $uid = $this->DB->lastID;
     $this->Users->hashAdd($uid, "GOO", $guser["id"]);

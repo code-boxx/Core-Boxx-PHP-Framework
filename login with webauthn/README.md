@@ -7,10 +7,10 @@ https://code-boxx.com/core-boxx-webauthn-login-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-WAIN.php`, this will automatically:
+* Access `http://your-site.com/install/WAIN`, this will automatically:
   - Modify `pages/TEMPLATE-top`, add "Passwordless Login" to the user menu.
   - Modify `pages/PAGE-login.php`, load additional JS and add "Passwordless Login" button.
-  - Delete `install-WAIN.php` itself.
+  - Delete `PAGE-install-WAIN.php` itself.
 
 ## NOTES
 * User needs to be registered first.

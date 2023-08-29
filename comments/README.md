@@ -7,9 +7,10 @@ https://code-boxx.com/core-boxx-comments-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-comments.php`, this will automatically:
+* Acces `http://your-site.com/install/comments`, this will automatically:
   - Import `lib/SQL-Comments.sql` into your database.
-* After installation, access `http://your-site.com/comment` for the demo page.
+  - Delete `PAGE-install-comments.php` itself.
+* After installation, access `http://your-site.com/comments` for the demo page.
 
 ## NOTES
 * Very simplistic module out-of-the-box.

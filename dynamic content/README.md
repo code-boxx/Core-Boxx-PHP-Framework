@@ -6,9 +6,10 @@ https://code-boxx.com/core-boxx-dynamic-content-module/
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Run `install-content.php`, this will automatically:
+* Access `http://your-site.com/install/content`, this will automatically:
   - Import `lib/SQL-Contents.sql` into your database.
   - Add a new `$wild = [ "post/" => "POST-load.php" ]` route to `HOOK-Routes.php`.
+  - Delete `PAGE-install-content.php` itself.
 * Open `http://your-site.com/post/hello` for the demo.
 * Feel free to use `$_CORE->Contents->save(SLUG, TITLE, TEXT)` to create more posts.
 * Or if you have installed the admin module - `http://your-site.com/admin/content`
