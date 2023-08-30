@@ -45,14 +45,14 @@
   mod : "MODULE",
   act : "ACTION",
   data : { "KEY" : "VALUE" },
-  loading : true/false,       // show loading spinner? default true.
-  debug : true/false,         // debug mode? default false.
-  passmsg : "Add successful", // toast message to show on success, false for none.
-  nofail : true/false,        // supress "fetch failed" message? default false.
-  onpass : FUNCTION,          // function to call on success, optional
-  onfail : FUNCTION,          // function to call on failure, optional
-  onerr : FUNCTION            // function to call on error, optional
-})</code></pre>
+  loading : true/false,            // show loading spinner? default true.
+  noerr : true/false,              // supress "ajax failed/bad server response" messages? default false. 
+  passmsg : "Add user successful", // toast message to show on success, false for none.
+  nofail : true/false,             // supress "process failed" message? default false.
+  onpass : FUNCTION,               // function to call on success, optional
+  onfail : FUNCTION,               // function to call on failure, optional
+  onerr : FUNCTION                 // function to call on fetch/server error, optional
+});</code></pre>
 
 <!-- (E) AJAX LOAD CONTENT -->
 <h5 class="text-danger mb-2">AJAX LOAD CONTENT</h5>
@@ -61,10 +61,10 @@
   target : "ID",              // target html element to load content into
   data : { "KEY" : "VALUE" }, // data to send, if any.
   loading : true/false,       // show loading screen? default false.
-  debug : true/false,         // debug mode? default false.
+  noerr : true/false,         // supress "ajax failed/bad server response" messages? default false. 
   onload : FUNCTION,          // do this on content load, optional.
   onerr : FUNCTION            // do this on ajax error, optional.
-})</code></pre>
+});</code></pre>
 
 <!-- (F) PAGE CHANGE -->
 <h5 class="text-danger mb-2">PAGES</h5>
