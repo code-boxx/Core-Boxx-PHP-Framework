@@ -76,10 +76,10 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     <li><a href="https://code-boxx.com/core-boxx-php-framework/#sec-faq" target="_blank">
       FAQ
     </a></li>
-    <li><a href="https://github.com/code-boxx/Core-Boxx/issues/new/choose" target="_blank">
+    <li><a href="https://github.com/code-boxx/Core-Boxx-PHP-Framework/issues/new/choose" target="_blank">
       Report a bug
     </a></li>
-    <li><a href="https://github.com/code-boxx/Core-Boxx" target="_blank">
+    <li><a href="https://github.com/code-boxx/Core-Boxx-PHP-Framework/" target="_blank">
       Core Boxx GitHub
     </a></li>
   </ul>
