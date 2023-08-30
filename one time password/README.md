@@ -3,7 +3,8 @@ https://code-boxx.com/core-boxx-one-time-password-module/
 
 ## REQUIREMENTS
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
-
+* [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
+ 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/otp/1` for the demo.
