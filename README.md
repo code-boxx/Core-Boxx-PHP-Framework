@@ -1,5 +1,7 @@
 ## CORE BOXX
-Core Boxx is an open-source PHP framework built with the concept of simplicity and modularity. Install and load only what you need, not bloated with unused features.
+Core Boxx is a PHP framework built with the concept of simplicity and modularity. Install and load only what you need, not bloated with unused features.
+
+TLDR - "Jumpstart your project with a collection of predefined plug-and-play modules".
 <br><br>
 
 ## :white_check_mark: "OUT OF THE BOX" FEATURES
@@ -10,12 +12,20 @@ Core Boxx is an open-source PHP framework built with the concept of simplicity a
 5) Bootstrap HTML template.
 <br><br>
 
-## :joy: AS SIMPLE AS IT GETS
-A typical development cycle with Core Boxx:
-1) Create database table.
-2) Create module library - `class MOD extends Core { function FN ... }`
-3) Creat API endpoint - `$_CORE->autoAPI([ "ENDPOINT" => ["MOD", "FN" ]]);`
-4) Create HTML pages and/or mobile app. The end.
+## :electric_plug: A LOT OF MODULES
+* `admin` Admin panel.
+* `autocomplete` Autocomplete/suggestion.
+* `calendar` Calendar widget.
+* `comments` Add simple comments to your post/video/audio/product/etc...
+* `dynamic content` Create pages with a WYSIWYG editor.
+* `login with google` Login with Google.
+* `login with nfc` Create an NFC login token and login with it.
+* `login with webauth` Passwordless login.
+* `one time password` OTP for added security.
+* `reactions` Like, dislike, upvote, downvote, whatever else reactions.
+* `resumable upload` Upload large files.
+* `users` User system. Registration, login, forgot password.
+* `web push` Send push notifications.
 <br><br>
 
 ## :camera: SCREENSHOTS
