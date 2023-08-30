@@ -30,12 +30,12 @@ TLDR - "Jumpstart your project with a collection of predefined plug-and-play mod
 
 ## :camera: SCREENSHOTS
 <p float="left">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-1.png">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-2.png">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-3.png">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-4.png">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-5.png">
-  <img width="250" src="https://github.com/code-boxx/Core-Boxx/blob/main/core/assets/core-boxx-6.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-1.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-2.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-3.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-4.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-5.png">
+  <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-6.png">
 </p>
 <br><br>
 
