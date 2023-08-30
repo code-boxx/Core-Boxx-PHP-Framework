@@ -2,8 +2,8 @@
 https://code-boxx.com/core-boxx-google-login-module/
 
 ## REQUIREMENTS
-* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
-* [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
+* [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
 
 ## REGISTER WITH GOOGLE
 * Head over to [Google API Console](https://console.cloud.google.com/apis/dashboard)
