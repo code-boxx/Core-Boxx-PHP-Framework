@@ -2,9 +2,9 @@
 https://code-boxx.com/core-boxx-nfc-login-module/
 
 ## REQUIREMENTS
-* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
-* [Users Module](https://github.com/code-boxx/Core-Boxx/tree/main/users)
-* [Admin Module](https://github.com/code-boxx/Core-Boxx/tree/main/admin)
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
+* [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
+* [Admin Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/admin)
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
