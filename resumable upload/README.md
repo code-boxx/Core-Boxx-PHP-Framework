@@ -2,7 +2,7 @@
 https://code-boxx.com/core-boxx-resumable-upload-module/
 
 ## REQUIREMENTS
-* [Core Boxx](https://github.com/code-boxx/Core-Boxx/tree/main/core)
+* [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 
 ## INSTALL
 * Copy/unzip this module into your existing Core Boxx project folder.
