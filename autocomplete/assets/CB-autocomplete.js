@@ -13,6 +13,7 @@ var autocomplete = {
     // (B1) CREATE SUGGESTION BOX + NATIVE AUTOCOMPLETE OFF
     i.suggest = document.createElement("ul");
     i.suggest.className = "list-group position-absolute z-2 d-none";
+    i.suggest.style.top = "100%";
     i.target.setAttribute("autocomplete", "off");
 
     // (B2) FLOATING FORM - DIRECT INSERT SUGGESTION BOX
@@ -24,8 +25,13 @@ var autocomplete = {
     // (B3) "NORMAL FIELD"
     else {
       i.wrapper = document.createElement("div");
-      i.wrapper.style.display = window.getComputedStyle(i.target).getPropertyValue("display");
+
+      // CRAZY CSS STYLES - CHANGE THESE IF IT LOOKS STRANGE
+      let d = window.getComputedStyle(i.target).getPropertyValue("display");
+      if (i.target.classList.contains("form-control")) { i.wrapper.style.width = "100%"; }
+      i.wrapper.style.display = d.includes("inline") ? "inline-flex" : "flex" ;
       i.wrapper.style.position = "relative";
+
       i.target.parentElement.insertBefore(i.wrapper, i.target);
       i.wrapper.appendChild(i.target);
       i.wrapper.appendChild(i.suggest);
@@ -93,11 +99,11 @@ var autocomplete = {
   },
 
   // (C) AUTOCLOSE SUGGESTION BOX ON CLICK ELSEWHERE
-  checkclose : evt => { if (autocomplete.active != null) {
-    if (i.wrapper.contains(evt.target)==false &&
-        i.field.contains(evt.target)==false) {
-      i.close();
-      autocomplete.active = null;
+  checkclose : evt => {
+    if (autocomplete.active!=null && 
+        autocomplete.active.wrapper.contains(evt.target)==false) {
+      autocomplete.active.close();
     }
-  }}
+  }
 };
+document.addEventListener("click", autocomplete.checkclose);
