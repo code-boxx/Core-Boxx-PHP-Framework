@@ -8,11 +8,12 @@ var autocomplete = {
   //  target : target html field
   //  mod : api module
   //  act : api action
+  //  data : additional data to send, optional
   //  onpick : callback function, optional
   attach : i => {
     // (B1) CREATE SUGGESTION BOX + NATIVE AUTOCOMPLETE OFF
     i.suggest = document.createElement("ul");
-    i.suggest.className = "list-group position-absolute z-2 d-none";
+    i.suggest.className = "list-group position-absolute z-3 d-none";
     i.suggest.style.top = "100%";
     i.target.setAttribute("autocomplete", "off");
 
@@ -54,8 +55,11 @@ var autocomplete = {
       window.clearTimeout(i.timer);
 
       // (B6-2) POST DATA
-      let data = i.data;
-      data.search = i.target.value;
+      let data = { search : i.target.value };
+      if (i.data) { for (let k in i.data) {
+        if (i.data[k] instanceof HTMLElement) { data[k] = i.data[k].value; }
+        else { data[k] = i.data[k]; }
+      }}
 
       // (B6-3) API CALL
       cb.api({

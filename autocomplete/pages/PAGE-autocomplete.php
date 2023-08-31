@@ -39,13 +39,18 @@ window.addEventListener("load", () => {
     mod : "autocomplete", act : "user"
   });
 
-  // (B2-2) CALLBACK ON PICK
+  // (B2-2) WITH OPTIONS
   autocomplete.attach({
+    // REQUIRED
     target : document.getElementById("dummyB"),
     mod : "autocomplete", act : "item",
-    onpick : picked => {
-      console.log(picked);
-    }
+
+    // OPTIONAL
+    data : {
+      aaa : "fixed value",
+      bbb : document.getElementById("dummyA")
+    },
+    onpick : picked => { console.log(picked); }
   });
 });
 </script>
