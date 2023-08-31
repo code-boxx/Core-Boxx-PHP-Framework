@@ -12,7 +12,7 @@ TLDR - "Jumpstart your project with a collection of predefined plug-and-play mod
 5) Bootstrap HTML template.
 <br><br>
 
-## :electric_plug: A LOT OF MODULES
+## :electric_plug: PLENTY OF MODULES
 * `admin` Admin panel.
 * `autocomplete` Autocomplete/suggestion.
 * `calendar` Calendar widget.
