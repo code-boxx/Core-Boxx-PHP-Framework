@@ -15,6 +15,7 @@ self.addEventListener("install", evt => {
       // (A3) COMMON INTERFACE
       "assets/icomoon.woff",
       "assets/PAGE-cb.js",
+      "assets/PAGE-cb.css",
       "CB-manifest.json"
       // @TODO - ADD MORE OF YOUR OWN TO CACHE
     ]))

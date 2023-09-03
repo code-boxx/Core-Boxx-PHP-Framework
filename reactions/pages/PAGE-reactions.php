@@ -1,15 +1,18 @@
 <?php
+// (A) PAGE META
 $_PMETA = [
   "load" => [
     ["l", HOST_ASSETS."PAGE-reactions.css"],
     ["s", HOST_ASSETS."PAGE-reactions.js", "defer"]
   ]
 ];
+
+// (B) HTML PAGE
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border">
   <div class="row d-flex flex-nowrap">
-    <!-- DOES NOT MATTER - DUMMY PRODUCT -->
+    <!-- (B1) DOES NOT MATTER - DUMMY PRODUCT -->
     <img src="<?=HOST_ASSETS?>reactions.webp" style="max-width:200px;height:auto;object-fit:cover">
     <div class="flex-shrink-1 p-3">
       <h3 class="mb-4">SOME EXPENSIVE PERFUME THAT LOOKS LIKE WINE</h3>
@@ -22,9 +25,9 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
         <i class="ico-sm icon-cart"></i> Add To Cart
       </button>
 
-      <!-- REACTIONS WIDGET -->
+      <!-- (B2) REACTIONS WIDGET -->
       <div id="reactions" class="d-flex align-items-center pt-3 border-top"><?php
-      // (A) "SETTINGS"
+      // (B2-1) "SETTINGS"
       $pid = 999; // fixed dummy product id for this example
       $code = [
         // reaction code => icon
@@ -36,11 +39,11 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
         // 4 => "icon-power"     // power
       ];
 
-      // (B) GET REACTIONS
+      // (B2-2) GET REACTIONS
       $_CORE->load("Reactions");
       $reactions = $_CORE->Reactions->get($pid);
 
-      // (C) DRAW "REACTIONS WIDGET"
+      // (B2-3) DRAW "REACTIONS WIDGET"
       printf("<input type='hidden' id='pid' value='%u'>", $pid);
       foreach ($code as $cid=>$icon) {
         printf("<div id='reaction%u' data-rid='%u' class='me-3 reaction' role='button'%s>

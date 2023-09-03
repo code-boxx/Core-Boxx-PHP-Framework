@@ -1,11 +1,14 @@
 <?php
+// (A) PAGE META
 $_PMETA = ["load" => [
   ["s", HOST_ASSETS."PAGE-comment.js", "defer"]
 ]];
+
+// (B) HTML PAGE
 require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <div class="row justify-content-center">
 <div class="col-md-10 bg-white border">
-  <!-- (A) DOES NOT MATTER - DUMMY PRODUCT -->
+  <!-- (B1) DOES NOT MATTER - DUMMY PRODUCT -->
   <div class="row d-flex flex-nowrap">
     <img src="<?=HOST_ASSETS?>comment.webp" style="max-width:200px;height:auto;object-fit:cover">
     <div class="flex-shrink-1 p-3">
@@ -21,9 +24,9 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
     </div>
   </div>
 
-  <!-- (B) COMMENTS -->
+  <!-- (B2) COMMENTS -->
   <div class="row p-4">
-    <!-- (B1) ADD COMMENT FORM -->
+    <!-- (B2-1) ADD COMMENT FORM -->
     <form class="border bg-light p-3" onsubmit="return comment.add()">
       <?php if (isset($_SESSION["user"])) { ?>
       <input type="text" class="form-control" id="cmsg" required>
@@ -35,7 +38,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <?php } ?>
     </form>
 
-    <!-- (B2) COMMENTS WRAPPER -->
+    <!-- (B2-2) COMMENTS WRAPPER -->
     <div id="cwrap" class="mt-4 p-0"></div>
   </div>
 </div>

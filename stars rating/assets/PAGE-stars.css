@@ -1,0 +1,53 @@
+/* (A) WHOLE PAGE */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  max-width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+  background: #f2f2f2;
+}
+.note {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f5e9ad;
+  background: #fff8e2;
+}
+
+/* (B) PRODUCTS LIST */
+#demo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 10px;
+}
+.pCell {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ecede7;
+}
+.pImg {
+  display: block;
+  width: 100%;
+}
+.pName {
+  font-size: 24px;
+  margin-top: 10px;
+}
+.pReview { color: #fb3232; }
+.pStar {
+  display: flex;
+  margin-bottom: 15px;
+}
+.pStar .star {
+  width: 36px;
+  height: 36px;
+  background-image: url("stars.png");
+  cursor: pointer;
+}
+.pStar .star.blank { background-position: -36px; }
+.pStat {
+  font-size: 15px;
+  color: #4a4a4a;
+}

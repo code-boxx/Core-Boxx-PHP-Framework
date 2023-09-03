@@ -24,6 +24,7 @@ TLDR - "Jumpstart your project with a collection of predefined plug-and-play mod
 * `one time password` OTP for added security.
 * `reactions` Like, dislike, upvote, downvote, whatever else reactions.
 * `resumable upload` Upload large files.
+* `stars rating` Stars rating.
 * `users` User system. Registration, login, forgot password.
 * `web push` Send push notifications.
 <br><br>
