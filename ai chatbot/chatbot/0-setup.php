@@ -21,7 +21,7 @@ foreach ($cfg as $j=>$line) { foreach ($replace as $k=>$v) { if (strpos($line, $
   unset($replace[$k]);
   if (count($replace)==0) { break; }
 }}}
-try { file_put_contents(PATH_CHATBOT . "settingszzzzzz.py", implode("", $cfg)); }
+try { file_put_contents(PATH_CHATBOT . "settings.py", implode("", $cfg)); }
 catch (Exception $ex) { exit("Error writing to ". PATH_CHATBOT . "settings.py"); }
 
 // (E) ADD AI TO CORE-CONFIG.PHP
