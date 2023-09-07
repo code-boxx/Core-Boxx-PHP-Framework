@@ -1,0 +1,22 @@
+/* (A) WRAPPER */
+#ai-wrap { height: calc(100vh - 120px); position: relative; }
+
+/* (B) CHAT MESSAGES */
+#ai-chat { height: calc(100% - 70px); overflow: auto; }
+.ai-system, .ai-human, .ai-bot { padding: 10px; margin-bottom: 15px; border-radius: 10px; min-height: 80px; }
+.ai-system { color: #b70a12; background: #ffdada; }
+.ai-human { color: #222; background: #f1f1f1; }
+.ai-bot { color: #fff; background: #4d36c1; }
+.ai-chatName { font-size: 14px; font-weight: 700; }
+.ai-ico { width: 64px; border-radius: 50%; float: left; margin-right: 10px; }
+
+/* (C) MESSAGE ANIMATION MAGIC */
+@keyframes ai-zoom-in {
+  from { transform:scale(0); }
+  to { transform:scale(1); }
+}
+.ai-system, .ai-human, .ai-bot { opacity: 0; }
+.ai-show { animation: ai-zoom-in 0.3s; opacity: 1; }
+
+/* (D) QUERY FORM */
+#ai-query { height: 70px; }
