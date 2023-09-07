@@ -14,6 +14,7 @@ TLDR - "Jumpstart your project with a collection of predefined plug-and-play mod
 
 ## :electric_plug: PLENTY OF MODULES
 * `admin` Admin panel.
+* `ai chatbot` Run a local AI Chatbot (Python).
 * `autocomplete` Autocomplete/suggestion.
 * `calendar` Calendar widget.
 * `comments` Add simple comments to your post/video/audio/product/etc...
