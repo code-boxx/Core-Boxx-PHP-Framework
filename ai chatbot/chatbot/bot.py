@@ -72,13 +72,13 @@ app = Flask(__name__)
 def bot():
   # (E1) CORS
   if "HTTP_ORIGIN" in request.environ and request.environ["HTTP_ORIGIN"] in set.http_allow:
-    # (E2-1) ALLOW ONLY REGISTERED USERS
+    # (E1-1) ALLOW ONLY REGISTERED USERS
     """ @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
     if jwtVerify(request.cookies) is False:
       return Response("Not Allowed", status = 405)
     """
 
-    # (E2-2) ANSWER THE QUESTION
+    # (E1-2) ANSWER THE QUESTION
     data = dict(request.form)
     if "query" in data:
       ans = chain(data["query"])
