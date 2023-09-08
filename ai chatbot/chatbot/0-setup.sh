@@ -1,4 +1,4 @@
-php 0-setup.php
+php 0-setup.php $1
 virtualenv venv
 source "venv/bin/activate"
 pip install langchain transformers optimum auto-gptq chromadb sentence_transformers Flask pyjwt

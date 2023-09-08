@@ -12,6 +12,9 @@ if (!copy(PATH_CHATBOT . "settings.py", PATH_CHATBOT . "settings.old")) {
 
 // (D) COPY HOST SETTINGS FROM CORE-CONFIG.PHP TO SETTINGS.PY
 $replace = [
+  "model_name" => isset($argv[1]) && $argv[1]=="GPU"
+    ? '"TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ"'
+    : '"TheBloke/Wizard-Vicuna-7B-Uncensored-GGML"',
   "http_allow" => "[\"http://".HOST_NAME."\", \"https://".HOST_NAME."\"]",
   "http_host" => "\"".HOST_NAME."\"",
   "jwt_algo" => "\"".JWT_ALGO."\"",

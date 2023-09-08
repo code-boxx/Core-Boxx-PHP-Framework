@@ -7,14 +7,11 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 * [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools)
 
 ## INSTALLATION
-This is a "summarized guide". Check out the [official Core Boxx AI ChatBot](https://code-boxx.com/core-boxx-ai-chatbot/) page if you need more details.
-
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Choose a model from [Hugging Face](https://huggingface.co/models?pipeline_tag=text-generation&sort=trending). Edit `chatbot/settings.py`, paste the URL suffix into `model_name`.
-* Put your documents into `chatbot/docs`.
+* Put documents you want the AI to "learn" into `chatbot/docs`.
 * Run setup - *BE WARNED, GIGABYTES WORTH OF DOWNLOAD!*
-  * Windows - Run `chatbot/0-setup.bat` for "CPU only", and `chatbot/0-setup.bat GPU` for "GPU accelerated".
-  * Linux - Run `chatbot/0-setup.sh` for "CPU only", and `chatbot/0-setup.sh GPU` for "GPU accelerated".
+  * Windows - Run `chatbot/0-setup.bat` for "CPU only", and `chatbot/0-setup.bat GPU` if you have an Nvidia graphics card.
+  * Linux - Run `chatbot/0-setup.sh` for "CPU only", and `chatbot/0-setup.sh GPU` if you have an Nvidia graphics card.
 * Access `http://your-site.com/ai/` for the demo.
 
 ## LICENSE
