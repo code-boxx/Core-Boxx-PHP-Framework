@@ -13,7 +13,9 @@ if (!copy(PATH_CHATBOT . "settings.py", PATH_CHATBOT . "settings.old")) {
 // (D) COPY HOST SETTINGS FROM CORE-CONFIG.PHP TO SETTINGS.PY
 $replace = [
   "http_allow" => "[\"http://".HOST_NAME."\", \"https://".HOST_NAME."\"]",
-  "http_host" => "\"".HOST_NAME."\""
+  "http_host" => "\"".HOST_NAME."\"",
+  "jwt_algo" => "\"".JWT_ALGO."\"",
+  "jwt_secret" => "\"".JWT_SECRET."\""
 ];
 $cfg = file(PATH_CHATBOT . "settings.py") or exit("Cannot read". PATH_CHATBOT ."settings.py");
 foreach ($cfg as $j=>$line) { foreach ($replace as $k=>$v) { if (strpos($line, $k) !== false) {

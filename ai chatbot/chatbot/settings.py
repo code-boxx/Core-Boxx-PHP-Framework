@@ -36,3 +36,7 @@ doc_overlap = 30
 http_allow = ["http://localhost"]
 http_host = "localhost"
 http_port = 8008
+
+# (G) JWT
+jwt_algo = ""
+jwt_secret = ""

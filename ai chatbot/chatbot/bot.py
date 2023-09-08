@@ -1,7 +1,7 @@
 # (A) LOAD SETTINGS & MODULES
 import settings as set
 from flask import Flask, Response, request
-import torch
+import torch, jwt
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from langchain import PromptTemplate, HuggingFacePipeline
 from langchain.vectorstores import Chroma
@@ -19,8 +19,6 @@ db = Chroma(
   persist_directory = set.path_db,
   embedding_function = HuggingFaceEmbeddings()
 )
-pipe = ""
-chain = ""
 
 # (C) PIPE + CHAIN
 pipe = pipeline(
@@ -50,24 +48,53 @@ chain = RetrievalQA.from_chain_type(
   verbose = set.chain_verbose
 )
 
-# (D) FLASK
+""" @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
+# (D) VERIFY USER
+def jwtVerify(cookies):
+  try:
+    token = jwt.decode(
+      jwt = cookies.get("cbsess"),
+      key = set.jwt_secret,
+      audience = set.http_host,
+      algorithms = [set.jwt_algo]
+    )
+    # DO WHATEVER YOU WANT WITH THE DECODED USER TOKEN
+    # print(token)
+    return True
+  except Exception as error:
+    # print(error)
+    return False
+"""
+
+# (E) FLASK
 app = Flask(__name__)
-@app.route("/", methods=["POST"])
+@app.route("/", methods = ["POST"])
 def bot():
+  # (E1) CORS
   if "HTTP_ORIGIN" in request.environ and request.environ["HTTP_ORIGIN"] in set.http_allow:
+    # (E2-1) ALLOW ONLY REGISTERED USERS
+    """ @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
+    if jwtVerify(request.cookies) is False:
+      return Response("Not Allowed", status = 405)
+    """
+
+    # (E2-2) ANSWER THE QUESTION
     data = dict(request.form)
     if "query" in data:
       ans = chain(data["query"])
       ans = ans["result"]
     else:
       ans = "Where's the question, yo?"
-    response = Response(ans, status=200)
+    response = Response(ans, status = 200)
     response.headers.add("Access-Control-Allow-Origin", request.environ["HTTP_ORIGIN"] )
     response.headers.add("Access-Control-Allow-Credentials", "true")
+
+  # (E2) ORIGIN NOT ALLOWED
   else:
-    response = Response("Not Allowed", status=405)
+    response = Response("Not Allowed", status = 405)
   return response
 
+# (F) GO!
 if __name__ == "__main__":
   app.run(
     host = set.http_host,
