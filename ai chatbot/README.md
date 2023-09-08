@@ -8,11 +8,15 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 
 ## INSTALLATION
 * Copy/unzip this module into your existing Core Boxx project folder.
-* Put documents you want the AI to "learn" into `chatbot/docs`.
+* Put documents you want the AI to "learn" into `chatbot/docs`, accepted file types - `csv pdf txt epub html md odt doc docx ppt pptx`.
 * Run setup - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
   * Windows - Run `0-setup.bat` for "CPU only", or `0-setup.bat GPU` if you have an Nvidia graphics card.
   * Linux - Run `0-setup.sh` for "CPU only", or `0-setup.sh GPU` if you have an Nvidia graphics card.
 * Access `http://your-site.com/ai/` for the demo.
+
+## NOTES
+* To rebuild the documents database, simply add/remove documents from `chatbot/docs` and run `1-create.bat / 1-create.sh`.
+* To launch the bot, simply run `2-bot.bat / 2-bot.sh`.
 
 ## LICENSE
 Copyright by Code Boxx
