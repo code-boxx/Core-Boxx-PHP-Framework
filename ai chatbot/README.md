@@ -9,9 +9,9 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 ## INSTALLATION
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Put documents you want the AI to "learn" into `chatbot/docs`.
-* Run setup - *BE WARNED, GIGABYTES WORTH OF DOWNLOAD!*
-  * Windows - Run `chatbot/0-setup.bat` for "CPU only", and `chatbot/0-setup.bat GPU` if you have an Nvidia graphics card.
-  * Linux - Run `chatbot/0-setup.sh` for "CPU only", and `chatbot/0-setup.sh GPU` if you have an Nvidia graphics card.
+* Run setup - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
+  * Windows - Run `0-setup.bat` for "CPU only", or `0-setup.bat GPU` if you have an Nvidia graphics card.
+  * Linux - Run `0-setup.sh` for "CPU only", or `0-setup.sh GPU` if you have an Nvidia graphics card.
 * Access `http://your-site.com/ai/` for the demo.
 
 ## LICENSE
