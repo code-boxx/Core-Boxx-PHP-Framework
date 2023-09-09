@@ -1,5 +1,5 @@
 # (A) LOAD SETTINGS & MODULES
-# (A1) SETTINGS & TRANSFORMER
+# (A1) SETTINGS & LANGCHAIN
 import a_settings as set
 import c_oto_rodo as oto
 from langchain import PromptTemplate
