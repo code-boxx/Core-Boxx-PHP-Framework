@@ -1,25 +1,22 @@
 # (A) LOAD SETTINGS & MODULES
 # (A1) SETTINGS & TRANSFORMER
 import a_settings as set
-import c_tf as tf
+import c_oto_rodo as oto
+from langchain import PromptTemplate
+from langchain.vectorstores import Chroma
+from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain.chains import RetrievalQA
 
 # (A2) FLASK
-# @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
-# import jwt 
+# import jwt # @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
 from flask import Flask, Response, request
-
-# (A3) LANGCHAIN
-from langchain import PromptTemplate, HuggingFacePipeline
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQA
 
 # (B) CHAIN
 chain = RetrievalQA.from_chain_type(
-  llm = HuggingFacePipeline(pipeline = tf.pipe),
+  llm = oto.llm,
   retriever = Chroma(
     persist_directory = set.path_db,
-    embedding_function = HuggingFaceEmbeddings()
+    embedding_function = HuggingFaceInstructEmbeddings(**set.embed_args)
   ).as_retriever(),
   chain_type_kwargs = {
     "prompt": PromptTemplate (

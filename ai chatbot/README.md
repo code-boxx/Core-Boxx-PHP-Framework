@@ -5,13 +5,25 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 * [Python](https://www.python.org/) At the time of writing, 3.9~3.10 works fine.
 * [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools)
-* A decent graphics card. Even if you tweak and run with CPU-only, it will be painfully slow...
+* [CMake](https://cmake.org/)
+* [Nvidia CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) - If you have an Nvidia graphics card.
+
+## RECOMMENDED
+* An Nvidia graphics card with at least 8GB VRAM is highly recommended.
+* You CAN run on CPU, but that will be painfully slow.
 
 ## INSTALLATION
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Put documents you want the AI to "learn" into `chatbot/docs`, accepted file types - `csv pdf txt epub html md odt doc docx ppt pptx`.
-* Run `0-setup.bat` (Windows) `0-setup.sh` (Linux) - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
+* Start install - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
+  * GPU - Run `0-setup.bat` (Windows) `0-setup.sh` (Linux).
+  * CPU - Run `0-setup.bat CPU` (Windows) `0-setup.sh CPU` (Linux). You will need to manually download your own model, see "changing models" below.
 * Access `http://your-site.com/ai/` for the demo.
+
+## CHANGING MODELS
+* This module runs on [llama.cpp](https://github.com/ggerganov/llama.cpp).
+* Just put your downloaded `GGML/GGUF`` model into `chatbot/models`.
+* Change `model_name` in `a_settings.py` to the model file name.
 
 ## NOTES
 * To rebuild the documents database, simply add/remove documents from `chatbot/docs` and run `1-create.bat / 1-create.sh`.

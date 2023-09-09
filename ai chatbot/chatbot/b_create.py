@@ -3,7 +3,7 @@ import a_settings as set
 import os, glob
 from pathlib import Path
 from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import (
   CSVLoader,
@@ -55,11 +55,12 @@ if (len(all) == 0):
   exit()
 
 # (D) IMPORT PROCESS
-# (D1) CREATE EMPTY-ISH DATABASE
 print("Creating database")
+
+# (D1) CREATE EMPTY-ISH DATABASE
 db = Chroma.from_texts(
   texts = [""],
-  embedding = HuggingFaceEmbeddings(),
+  embedding = HuggingFaceInstructEmbeddings(**set.embed_args),
   persist_directory = set.path_db
 )
 db.persist()
