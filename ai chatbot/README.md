@@ -5,13 +5,12 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 * [Python](https://www.python.org/) At the time of writing, 3.9~3.10 works fine.
 * [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools)
+* A decent graphics card. Even if you tweak and run with CPU-only, it will be painfully slow...
 
 ## INSTALLATION
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Put documents you want the AI to "learn" into `chatbot/docs`, accepted file types - `csv pdf txt epub html md odt doc docx ppt pptx`.
-* Run setup - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
-  * Windows - Run `0-setup.bat` for "CPU only", or `0-setup.bat GPU` if you have an Nvidia graphics card.
-  * Linux - Run `0-setup.sh` for "CPU only", or `0-setup.sh GPU` if you have an Nvidia graphics card.
+* Run `0-setup.bat` (Windows) `0-setup.sh` (Linux) - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
 * Access `http://your-site.com/ai/` for the demo.
 
 ## NOTES

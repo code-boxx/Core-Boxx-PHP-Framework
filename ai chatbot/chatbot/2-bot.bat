@@ -1,4 +1,4 @@
 @echo off
 call venv\Scripts\activate
-python bot.py
+python d_bot.py
 deactivate

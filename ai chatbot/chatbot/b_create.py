@@ -1,5 +1,5 @@
 # (A) LOAD SETTINGS & MODULES
-import settings as set
+import a_settings as set
 import os, glob
 from pathlib import Path
 from langchain.vectorstores import Chroma
@@ -65,9 +65,7 @@ db = Chroma.from_texts(
 db.persist()
 
 # (D2) ADD DOCUMENTS
-splitter = RecursiveCharacterTextSplitter(
-  chunk_size = set.doc_chunks, chunk_overlap = set.doc_overlap
-)
+splitter = RecursiveCharacterTextSplitter(**set.db_split)
 for doc in all:
   print("Adding - " + doc)
   name, ext = os.path.splitext(doc)

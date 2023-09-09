@@ -1,12 +1,12 @@
-php 0-setup.php $1
+php 0-setup.php
 virtualenv venv
 source "venv/bin/activate"
 pip install langchain transformers optimum auto-gptq chromadb sentence_transformers Flask pyjwt
-if [[ $1 == "GPU" ]]
+if [[ $1 == "CPU" ]]
 then
-  pip3 install torch torchvision torchaudio --force-reinstall
+  pip install torch torchvision torchaudio --force-reinstall --index-url https://download.pytorch.org/whl/cpu
 else
-  pip3 install torch torchvision torchaudio --force-reinstall --index-url https://download.pytorch.org/whl/cpu
+  pip install torch torchvision torchaudio --force-reinstall
 fi
-python create.py
-python bot.py
+python b_create.py
+python d_bot.py

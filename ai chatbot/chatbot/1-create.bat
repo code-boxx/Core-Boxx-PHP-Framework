@@ -1,4 +1,4 @@
 @echo off
 call venv\Scripts\activate
-python create.py
+python b_create.py
 deactivate

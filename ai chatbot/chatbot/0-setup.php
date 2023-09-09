@@ -1,33 +1,30 @@
 <?php
-// (A) KOA SUTATO
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Go.php";
+// (A) RODO KOA KONFIGU
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "CORE-Config.php";
 
 // (B) NEW CHATBOT PATH
 define("PATH_CHATBOT", PATH_BASE . "chatbot" . DIRECTORY_SEPARATOR);
 
-// (C) BACKUP CHATBOT/SETTINGS.PY
-if (!copy(PATH_CHATBOT . "settings.py", PATH_CHATBOT . "settings.old")) {
-  exit("Failed to backup settings file - " . PATH_CHATBOT . "settings.old");
+// (C) BACKUP CHATBOT/A_SETTINGS.PY
+if (!copy(PATH_CHATBOT . "a_settings.py", PATH_CHATBOT . "a_settings.old")) {
+  exit("Failed to backup settings file - " . PATH_CHATBOT . "a_settings.old");
 }
 
-// (D) COPY HOST SETTINGS FROM CORE-CONFIG.PHP TO SETTINGS.PY
+// (D) COPY SETTINGS FROM CORE-CONFIG.PHP TO A_SETTINGS.PY
 $replace = [
-  "model_name" => isset($argv[1]) && $argv[1]=="GPU"
-    ? '"TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ"'
-    : '"TheBloke/Wizard-Vicuna-7B-Uncensored-GGML"',
   "http_allow" => "[\"http://".HOST_NAME."\", \"https://".HOST_NAME."\"]",
   "http_host" => "\"".HOST_NAME."\"",
   "jwt_algo" => "\"".JWT_ALGO."\"",
   "jwt_secret" => "\"".JWT_SECRET."\""
 ];
-$cfg = file(PATH_CHATBOT . "settings.py") or exit("Cannot read". PATH_CHATBOT ."settings.py");
+$cfg = file(PATH_CHATBOT . "a_settings.py") or exit("Cannot read". PATH_CHATBOT ."a_settings.py");
 foreach ($cfg as $j=>$line) { foreach ($replace as $k=>$v) { if (strpos($line, $k) !== false) {
   $cfg[$j] = "$k = $v # CHANGED BY INSTALLER\r\n";
   unset($replace[$k]);
   if (count($replace)==0) { break; }
 }}}
-try { file_put_contents(PATH_CHATBOT . "settings.py", implode("", $cfg)); }
-catch (Exception $ex) { exit("Error writing to ". PATH_CHATBOT . "settings.py"); }
+try { file_put_contents(PATH_CHATBOT . "a_settings.py", implode("", $cfg)); }
+catch (Exception $ex) { exit("Error writing to ". PATH_CHATBOT . "a_settings.py"); }
 
 // (E) ADD AI TO CORE-CONFIG.PHP
 try {
