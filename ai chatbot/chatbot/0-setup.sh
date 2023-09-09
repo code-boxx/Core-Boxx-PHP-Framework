@@ -13,6 +13,6 @@ fi
 python b_create.py
 if [[ $1 == "CPU" ]]
 then
-  echo "Install complete - Please download your own model before running 2-bot.bat"
+  echo "Install complete - Please download your own model before running 2-bot.sh"
 else
   python d_bot.py
