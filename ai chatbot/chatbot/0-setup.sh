@@ -11,8 +11,4 @@ else
   CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install --no-cache-dir --upgrade --force-reinstall llama-cpp-python
 fi
 python b_create.py
-if [[ $1 == "CPU" ]]
-then
-  echo "Install complete - Please download your own model before running 2-bot.sh"
-else
-  python d_bot.py
+echo "Install complete - Please download your own model before running 2-bot.sh"

@@ -1,15 +1,12 @@
 # (A) LOAD SETTINGS & MODULES
-# (A1) SETTINGS & LANGCHAIN
 import a_settings as set
 import c_oto_rodo as oto
 from langchain import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.chains import RetrievalQA
-
-# (A2) FLASK
-# import jwt # @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
 from flask import Flask, Response, request
+# import jwt # @TODO - ENABLE THIS TO OPEN FOR REGISTERED USERS ONLY
 
 # (B) CHAIN
 chain = RetrievalQA.from_chain_type(
@@ -65,7 +62,7 @@ def bot():
     else:
       ans = "Where's the question, yo?"
     response = Response(ans, status = 200)
-    response.headers.add("Access-Control-Allow-Origin", request.environ["HTTP_ORIGIN"] )
+    response.headers.add("Access-Control-Allow-Origin", request.environ["HTTP_ORIGIN"])
     response.headers.add("Access-Control-Allow-Credentials", "true")
 
   # (D2) ORIGIN NOT ALLOWED

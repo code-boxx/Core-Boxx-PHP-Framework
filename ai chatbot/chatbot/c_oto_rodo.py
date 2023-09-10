@@ -44,7 +44,6 @@ else:
 
   # (C3) INIT MODEL PARAMS
   params = {
-    "low_cpu_mem_usage": True,
     "device_map" : "auto"
   }
 

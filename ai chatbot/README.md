@@ -10,24 +10,20 @@ https://code-boxx.com/core-boxx-ai-chatbot/
 
 ## RECOMMENDED
 * An Nvidia graphics card with at least 8GB VRAM is highly recommended.
-* You CAN run on CPU, but that will be painfully slow.
+* You can TRY to run on CPU-only, but it is painfully slow.
 
 ## INSTALLATION
 * Copy/unzip this module into your existing Core Boxx project folder.
 * Put documents you want the AI to "learn" into `chatbot/docs`, accepted file types - `csv pdf txt epub html md odt doc docx ppt pptx`.
 * Start install - *BE WARNED, SEVERAL GIGABYTES WORTH OF DOWNLOAD!*
   * GPU - Run `0-setup.bat` (Windows) `0-setup.sh` (Linux).
-  * CPU - Run `0-setup.bat CPU` (Windows) `0-setup.sh CPU` (Linux). You will need to manually download your own model, see "changing models" below.
-* Access `http://your-site.com/ai/` for the demo.
+  * CPU - Run `0-setup.bat CPU` (Windows) `0-setup.sh CPU` (Linux). 
+* You will need to [choose and download an AI model](https://code-boxx.com/core-boxx-ai-chatbot/#sec-choose).
+* Run `2-bot.bat 2-bot.sh`, access `http://your-site.com/ai/` for the demo.
 
-## CHANGING MODELS
-* This module runs on [llama.cpp](https://github.com/ggerganov/llama.cpp).
-* Just put your downloaded `GGML/GGUF`` model into `chatbot/models`.
-* Change `model_name` in `a_settings.py` to the model file name.
-
-## NOTES
-* To rebuild the documents database, simply add/remove documents from `chatbot/docs` and run `1-create.bat / 1-create.sh`.
-* To launch the bot, simply run `2-bot.bat / 2-bot.sh`.
+## REBUILD THE DATEBASE
+* Simply add/remove documents from `chatbot/docs`.
+* Run `1-create.bat / 1-create.sh`.
 
 ## LICENSE
 Copyright by Code Boxx
