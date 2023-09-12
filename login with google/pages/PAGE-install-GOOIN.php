@@ -10,106 +10,64 @@ if (!file_exists(PATH_LIB . "CRD-Google.json")) {
 }
 
 // (C) MODIFY LOGIN PAGE
-try {
-  // (C1) BACKUP LOGIN PAGE
-  copy(PATH_PAGES . "PAGE-login.php", PATH_PAGES . "PAGE-login.old");
+$_CORE->load("MInstall");
 
-  // (C2) LOAD GOOGLE CLIENT LIBRARY
-  $login = file(PATH_PAGES . "PAGE-login.php");
-  foreach ($login as $j=>$line) {
-    if (strpos($line, "// (B) PAGE META") !== false) {
-      array_splice($login, $j-1, 0, [
-        "\r\n", "// (LOGIN WITH GOOGLE) ADDED BY INSTALLER\r\n",
-        '$_CORE->load("GOOIN");' . "\r\n",
-        'if (isset($_GET["code"])) { $_CORE->GOOIN->go(); }' . "\r\n"
-      ]);
-      break;
-    }
-  }
+// (C1) LOAD GOOGLE CLIENT LIBRARY
+$_CORE->MInstall->insert(
+  PATH_PAGES . "PAGE-login.php", "// (B) PAGE META",
+  "\r\n" . <<<EOF
+  // (LOGIN WITH GOOGLE) ADDED BY INSTALLER
+  \$_CORE->load("GOOIN");
+  if (isset(\$_GET["code"])) { \$_CORE->GOOIN->go(); }
+  EOF . "\r\n", -2
+);
 
-  // (C3) ADD "LOGIN WITH GOOGLE" BUTTON
-  foreach ($login as $j=>$line) {
-    if (strpos($line, "(C2-3) SOCIAL LOGIN") !== false) {
-      // (D3-1) "OR SIGN IN WITH"
-      $pointer = $j+1;
-      if (strpos($login[$pointer], "or sign in with") == false) {
-        array_splice($login, $pointer, 0, [
-          '    <div class="text-secondary my-3">- or sign in with -</div>' . "\r\n"
-        ]);
-      }
-      $pointer++;
+// (C2) "OR SIGN IN WITH"
+$_CORE->MInstall->cinsert(
+  "or sign in", PATH_PAGES . "PAGE-login.php",
+  "SOCIAL LOGIN",
+  '    <div class="text-secondary my-3">- or sign in with -</div>' . "\r\n"
+);
 
-      // (D3-2) "LOGIN WITH GOOGLE"
-      array_splice($login, $pointer, 0, [
-        "    <!-- (LOGIN WITH GOOGLE) ADDED BY INSTALLER -->\r\n",
-        '    <a class="my-1 btn btn-primary d-flex-inline" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
-        '      <i class="ico-sm icon-google"></i> Google' . "\r\n",
-        '    </a>' . "\r\n"
-      ]);
-      break;
-    }
-  }
-
-  // (C4) UPDATE LOGIN PAGE
-  file_put_contents(PATH_PAGES . "PAGE-login.php", implode("", $login));
-  unset($login);
-} catch (Exception $ex) {
-  exit("Unable to update PAGE-login.php - " . $ex->getMessage());
-}
+// (C3) LOGIN WITH GOOGLE BUTTON
+$_CORE->MInstall->insert(
+  PATH_PAGES . "PAGE-login.php",
+  "or sign in", <<<EOD
+      <!-- (LOGIN WITH GOOGLE) ADDED BY INSTALLER -->
+      <a class="my-1 btn btn-primary d-flex-inline" href="<?=\$_CORE->GOOIN->in()?>">
+        <i class="ico-sm icon-google"></i> Google
+      </a>
+  EOD . "\r\n"
+);
 
 // (D) MODIFY REGISTRATION PAGE
-try {
-  // (D1) BACKUP REGISTRATION PAGE
-  copy(PATH_PAGES . "PAGE-register.php", PATH_PAGES . "PAGE-register.old");
+// (D1) LOAD GOOGLE CLIENT LIBRARY
+$_CORE->MInstall->insert(
+  PATH_PAGES . "PAGE-register.php", "// (B) PAGE META",
+  "\r\n" . <<<EOF
+  // (LOGIN WITH GOOGLE) ADDED BY INSTALLER
+  \$_CORE->load("GOOIN");
+  if (isset(\$_GET["code"])) { \$_CORE->GOOIN->go(); }
+  EOF . "\r\n", -2
+);
 
-  // (D2) LOAD GOOGLE CLIENT LIBRARY
-  $reg = file(PATH_PAGES . "PAGE-register.php");
-  foreach ($reg as $j=>$line) {
-    if (strpos($line, "// (B) PAGE META") !== false) {
-      array_splice($reg, $j-1, 0, [
-        "\r\n", "// (REGISTER WITH GOOGLE) ADDED BY INSTALLER\r\n",
-        '$_CORE->load("GOOIN");' . "\r\n",
-        'if (isset($_GET["code"])) { $_CORE->GOOIN->go(); }' . "\r\n"
-      ]);
-      break;
-    }
-  }
+// (D2) "OR REGISTER WITH"
+$_CORE->MInstall->cinsert(
+  "or register with", PATH_PAGES . "PAGE-register.php",
+  "(C3) SOCIAL REGISTER",
+  '    <div class="text-secondary my-3">- or register with -</div>' . "\r\n"
+);
 
-  // (D3) ADD "SIGN UP WITH GOOGLE" BUTTON
-  foreach ($reg as $j=>$line) {
-    if (strpos($line, "(C3) SOCIAL REGISTER") !== false) {
-      // (D3-1) "OR REGISTER WITH"
-      $pointer = $j+1;
-      if (strpos($reg[$pointer], "or register with") == false) {
-        array_splice($reg, $pointer, 0, [
-          '    <div class="text-secondary my-3">- or register with -</div>' . "\r\n"
-        ]);
-      }
-      $pointer++;
+// (D3) REGISTER WITH GOOGLE BUTTON
+$_CORE->MInstall->insert(
+  PATH_PAGES . "PAGE-register.php",
+  "or register with", <<<EOD
+      <!-- (REGISTER WITH GOOGLE) ADDED BY INSTALLER -->
+      <a class="my-1 btn btn-primary d-flex-inline" href="<?=\$_CORE->GOOIN->in()?>">
+        <i class="ico-sm icon-google"></i> Google
+      </a>
+  EOD . "\r\n"
+);
 
-      // (D3-2) "SIGN UP WITH GOOGLE"
-      array_splice($reg, $pointer, 0, [
-        "    <!-- (REGISTER WITH GOOGLE) ADDED BY INSTALLER -->\r\n",
-        '    <a class="my-1 btn btn-primary d-flex-inline" href="<?=$_CORE->GOOIN->in()?>">' . "\r\n",
-        '      <i class="ico-sm icon-google me-1"></i> Google' . "\r\n",
-        '    </a>' . "\r\n"
-      ]);
-      break;
-    }
-  }
-  
-  // (D4) UPDATE REGISTRATION PAGE
-  file_put_contents(PATH_PAGES . "PAGE-register.php", implode("", $reg));
-} catch (Exception $ex) {
-  exit("Unable to update PAGE-register.php - " . $ex->getMessage());
-}
-
-// (E) DELETE THIS SCRIPT
-try {
-  unlink(PATH_PAGES . "PAGE-install-GOOIN.php");
-} catch (Exception $ex) {
-  exit("Unable to delete PAGE-install-GOOIN.php, please do so manually.");
-}
-
-// (F) DONE
-exit("Google Login module successfully installed.");
+// (E) CLEAN UP
+$_CORE->MInstall->clean("GOOIN");

@@ -5,18 +5,8 @@ if (!defined("USR_LVL")) {
 }
 
 // (B) IMPORT SQL
-try {
-  $_CORE->DB->query(file_get_contents(PATH_LIB . "SQL-Reactions.sql"));
-} catch (Exception $ex) {
-  exit("Unable to import SQL - " . $ex->getMessage());
-}
+$_CORE->load("MInstall");
+$_CORE->MInstall->sql("Reactions");
 
-// (C) DELETE THIS SCRIPT
-try {
-  unlink(PATH_PAGES . "PAGE-install-reactions.php");
-} catch (Exception $ex) {
-  exit("Unable to delete PAGE-install-reactions.php, please do so manually.");
-}
-
-// (D) DONE
-exit("Reactions module successfully installed.");
+// (C) CLEAN UP
+$_CORE->MInstall->clean("reactions");

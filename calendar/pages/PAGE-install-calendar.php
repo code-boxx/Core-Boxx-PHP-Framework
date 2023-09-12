@@ -6,12 +6,6 @@ try {
   exit("Unable to import SQL - " . $ex->getMessage());
 }
 
-// (B) DELETE THIS SCRIPT
-try {
-  unlink(PATH_PAGES . "PAGE-install-calendar.php");
-} catch (Exception $ex) {
-  exit("Unable to delete PAGE-install-calendar.php, please do so manually.");
-}
-
-// (C) DONE
-exit("Calendar module successfully installed.");
+// (B) CLEAN UP
+$_CORE->load("MInstall");
+$_CORE->MInstall->clean("calendar");

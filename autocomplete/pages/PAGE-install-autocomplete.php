@@ -9,12 +9,6 @@ try {
   exit("Unable to create new setting.");
 }
 
-// (B) DELETE THIS SCRIPT
-try {
-  unlink(PATH_PAGES . "PAGE-install-autocomplete.php");
-} catch (Exception $ex) {
-  exit("Unable to delete PAGE-install-autocomplete.php, please do so manually.");
-}
-
-// (C) DONE
-exit("Autocomplete module successfully installed.");
+// (B) CLEAN UP
+$_CORE->load("MInstall");
+$_CORE->MInstall->clean("autocomplete");
