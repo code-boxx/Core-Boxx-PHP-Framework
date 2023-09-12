@@ -1,9 +1,10 @@
 <?php
 // (A-B) PROPERTIES, SETTINGS, HELPER
 // (C-D) GET USERS
-// (E-G) SAVE & DELETE USER
-// (H-J) VERIFY, LOGIN, LOGOUT
-// (K-M) REGISTRATION, ACTIVATION
+// (E-H) SAVE & DELETE USER
+// (I-K) VERIFY, LOGIN, LOGOUT
+// (L-N) REGISTRATION, ACTIVATION
+// (O-Q) USER HASH
 class Users extends Core {
   // (A) SETTINGS
   private $hvalid = 900; // validation link good for 15 mins
