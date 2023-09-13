@@ -112,7 +112,17 @@ var cal = {
     celler = day => {
       cell = document.createElement("div");
       cell.className = "calCell";
-      if (day) { cell.innerHTML = day; }
+      if (day) {
+        cell.innerHTML = day;
+        cell.classList.add("calCellDay");
+        cell.onclick = () => {
+          cal.show();
+          let d = +day, m = +cal.hMth.value,
+              s = `${cal.hYear.value}-${String(m<10 ? "0"+m : m)}-${String(d<10 ? "0"+d : d)}T00:00:00`;
+          cal.hfStart.value = s;
+          cal.hfEnd.value = s;
+        };
+      }
       rowB.appendChild(cell);
       cell = document.createElement("div");
       cell.className = "calCell";

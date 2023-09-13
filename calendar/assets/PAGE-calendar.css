@@ -57,6 +57,10 @@
   color: #b5b5b5;
   padding: 5px;
 }
+.calRowHead .calCellDay:hover {
+  color: #ff5b5b;
+  cursor: pointer;
+}
 .calRowBack .calCell { border: 1px solid #eee; }
 .calBlank { background: #f5f5f5; }
 .calToday { background: #feffd3; }

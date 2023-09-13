@@ -65,7 +65,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </div>
 
   <div class="w-100 p-1 form-floating">
-    <input id="evtTxt" class="form-control" type="text" required>
+    <input id="evtTxt" class="form-control" type="text" autocomplete="off" required>
     <label>Event</label>
   </div>
 
