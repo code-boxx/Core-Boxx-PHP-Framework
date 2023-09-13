@@ -94,9 +94,10 @@ var cal = {
         nowDay = cal.sMth==nowMth && cal.sYear==nowYear ? now.getDate() : null ;
 
     // (E2) DRAW CALENDAR ROWS & CELLS
-    // (E2-1) INIT + HELPER FUNCTIONS
-    let rowA, rowB, rowC, rowMap = {}, rowNum = 1,
-        cell, cellNum = 1,
+    // (E2-1) INIT
+    let rowA, rowB, rowC, rowMap = {}, rowNum = 1, cell, cellNum = 1,
+
+    // (E2-2) HELPER - DRAW A NEW ROW
     rower = () => {
       rowA = document.createElement("div");
       rowB = document.createElement("div");
@@ -109,6 +110,8 @@ var cal = {
       rowA.appendChild(rowB);
       rowA.appendChild(rowC);
     },
+
+    // (E2-3) HELPER - DRAW A NEW CELL
     celler = day => {
       cell = document.createElement("div");
       cell.className = "calCell";
@@ -130,9 +133,11 @@ var cal = {
       if (day!==undefined && day==nowDay) { cell.classList.add("calToday"); }
       rowC.appendChild(cell);
     };
+
+    // (E2-4) RESET CALENDAR
     cal.hCB.innerHTML = ""; rower();
 
-    // (E2-2) BLANK CELLS BEFORE START OF MONTH
+    // (E2-5) BLANK CELLS BEFORE START OF MONTH
     if (cal.mon && startDay != 1) {
       let blanks = startDay==0 ? 7 : startDay ;
       for (let i=1; i<blanks; i++) { celler(); cellNum++; }
@@ -141,7 +146,7 @@ var cal = {
       for (let i=0; i<startDay; i++) { celler(); cellNum++; }
     }
 
-    // (E2-3) DAYS OF THE MONTH
+    // (E2-6) DAYS OF THE MONTH
     for (let i=1; i<=daysInMth; i++) {
       rowMap[i] = { r : rowNum, c : cellNum };
       celler(i);
@@ -149,7 +154,7 @@ var cal = {
       cellNum++;
     }
 
-    // (E2-4) BLANK CELLS AFTER END OF MONTH
+    // (E2-7) BLANK CELLS AFTER END OF MONTH
     if (cal.mon && endDay != 0) {
       let blanks = endDay==6 ? 1 : 7-endDay;
       for (let i=0; i<blanks; i++) { celler(); cellNum++; }
