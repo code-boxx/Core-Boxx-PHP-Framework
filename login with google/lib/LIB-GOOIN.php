@@ -54,12 +54,22 @@ class GOOIN extends Core {
 
     // (C4) USER HAS ALREADY TIED GOOGLE TO ACCOUNT - LOGIN
     $user = $this->get($guser["id"]);
-    if (is_array($user)) { $this->login($user); }
+    if (is_array($user)) {
+      if ($user["user_level"]=="S") {
+        $this->error = "Invalid user";
+        return;
+      }
+      $this->login($user);
+    }
 
     // (C5) HAS EXISTING ACCOUNT (EMAIL) - TIE TO ACCOUNT & LOGIN
     $this->Core->load("Users");
     $user = $this->Users->get($guser["email"]);
     if (is_array($user)) {
+      if ($user["user_level"]=="S") {
+        $this->error = "Invalid user";
+        return;
+      }
       $this->Users->hashAdd($user["user_id"], "GOO", $guser["id"]);
       $this->login($user);
     }

@@ -45,7 +45,7 @@ class NFCIN extends Core {
     // (D2) VERIFY TOKEN
     if ($valid) {
       $user = $this->Users->get($token[0], "NFC");
-      $valid = (is_array($user) && password_verify($token[1], $user["hash_code"]));
+      $valid = (is_array($user) && $user["user_level"]!="S" && password_verify($token[1], $user["hash_code"]));
     }
 
     // (D3) SESSION START
