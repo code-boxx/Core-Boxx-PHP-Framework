@@ -65,6 +65,9 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   <a class="my-1 btn btn-danger d-flex-inline" href="https://payhip.com/codeboxx" target="_blank">
     <i class="ico-sm icon-cart"></i> Code Boxx Store
   </a>
+  <a class="my-1 btn btn-danger d-flex-inline" href="https://github.com/sponsors/code-boxx" target="_blank">
+    <i class="ico-sm icon-heart"></i> GitHub Sponsor
+  </a>
 </div>
 
 <!-- (D) OFFICIAL -->
