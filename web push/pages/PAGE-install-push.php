@@ -11,8 +11,8 @@ $_CORE->MInstall->sql("WebPush");
 // (C) GENERATE VAPID KEYS
 require PATH_LIB . "webpush/autoload.php";
 $keys = Minishlink\WebPush\VAPID::createVapidKeys();
-if ($keys == null) {
-  exit("Unabled to create keys, please make sure OpenSSL is properly installed and configured.");
+if ($keys==null || $keys==false || $keys=="") {
+  exit("Unable to create keys, please make sure OpenSSL is properly installed and configured.");
 }
 
 // (D) INSERT KEYS INTO CORE-CONFIG.PHP
