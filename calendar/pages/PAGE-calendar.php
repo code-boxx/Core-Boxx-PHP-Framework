@@ -20,6 +20,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <!-- (B1) PERIOD SELECTOR -->
 <div id="calHead" class="d-flex align-items-stretch p-2">
   <div id="calPeriod" class="d-flex align-items-stretch flex-grow-1">
+    <button type="button" id="calToday" class="p-2 ico icon-pushpin"></button>
     <button type="button" id="calBack" class="p-2 me-2 ico icon-circle-left"></button>
     <select id="calMonth" class="p-2 me-2"><?php foreach ($months as $m=>$mth) {
       printf("<option value='%u'%s>%s</option>",

@@ -29,6 +29,7 @@ var cal = {
     // (B2) ATTACH CONTROLS
     cal.hMth.onchange = cal.load;
     cal.hYear.onchange = cal.load;
+    document.getElementById("calToday").onclick = () => cal.today();
     document.getElementById("calBack").onclick = () => cal.pshift();
     document.getElementById("calNext").onclick = () => cal.pshift(1);
     document.getElementById("calAdd").onclick = () => cal.show();
@@ -64,8 +65,18 @@ var cal = {
     cal.hYear.value = cal.sYear;
     cal.load();
   },
+  
+   // (D) JUMP TO TODAY
+   today : () => {
+    let now = new Date(), ny = now.getFullYear(), nm = now.getMonth()+1;
+    if (ny!=cal.sYear || (ny==cal.sYear && nm!=cal.sMth)) {
+      cal.hMth.value = nm;
+      cal.hYear.value = ny;
+      cal.load();
+    }
+  },
 
-  // (D) LOAD EVENTS
+  // (E) LOAD EVENTS
   load : () => {
     cal.sMth = parseInt(cal.hMth.value);
     cal.sYear = parseInt(cal.hYear.value);
@@ -79,10 +90,10 @@ var cal = {
       }
     });
   },
-  
-  // (E) DRAW CALENDAR
+
+  // (F) DRAW CALENDAR
   draw : () => {
-    // (E1) CALCULATE DAY MONTH YEAR
+    // (F1) CALCULATE DAY MONTH YEAR
     // note - jan is 0 & dec is 11 in js
     // note - sun is 0 & sat is 6 in js
     let daysInMth = new Date(cal.sYear, cal.sMth, 0).getDate(), // number of days in selected month
@@ -93,11 +104,11 @@ var cal = {
         nowYear = parseInt(now.getFullYear()), // current year
         nowDay = cal.sMth==nowMth && cal.sYear==nowYear ? now.getDate() : null ;
 
-    // (E2) DRAW CALENDAR ROWS & CELLS
-    // (E2-1) INIT
+    // (F2) DRAW CALENDAR ROWS & CELLS
+    // (F2-1) INIT
     let rowA, rowB, rowC, rowMap = {}, rowNum = 1, cell, cellNum = 1,
 
-    // (E2-2) HELPER - DRAW A NEW ROW
+    // (F2-2) HELPER - DRAW A NEW ROW
     rower = () => {
       rowA = document.createElement("div");
       rowB = document.createElement("div");
@@ -111,7 +122,7 @@ var cal = {
       rowA.appendChild(rowC);
     },
 
-    // (E2-3) HELPER - DRAW A NEW CELL
+    // (F2-3) HELPER - DRAW A NEW CELL
     celler = day => {
       cell = document.createElement("div");
       cell.className = "calCell";
@@ -134,10 +145,10 @@ var cal = {
       rowC.appendChild(cell);
     };
 
-    // (E2-4) RESET CALENDAR
+    // (F2-4) RESET CALENDAR
     cal.hCB.innerHTML = ""; rower();
 
-    // (E2-5) BLANK CELLS BEFORE START OF MONTH
+    // (F2-5) BLANK CELLS BEFORE START OF MONTH
     if (cal.mon && startDay != 1) {
       let blanks = startDay==0 ? 7 : startDay ;
       for (let i=1; i<blanks; i++) { celler(); cellNum++; }
@@ -146,7 +157,7 @@ var cal = {
       for (let i=0; i<startDay; i++) { celler(); cellNum++; }
     }
 
-    // (E2-6) DAYS OF THE MONTH
+    // (F2-6) DAYS OF THE MONTH
     for (let i=1; i<=daysInMth; i++) {
       rowMap[i] = { r : rowNum, c : cellNum };
       celler(i);
@@ -154,7 +165,7 @@ var cal = {
       cellNum++;
     }
 
-    // (E2-7) BLANK CELLS AFTER END OF MONTH
+    // (F2-7) BLANK CELLS AFTER END OF MONTH
     if (cal.mon && endDay != 0) {
       let blanks = endDay==6 ? 1 : 7-endDay;
       for (let i=0; i<blanks; i++) { celler(); cellNum++; }
@@ -164,16 +175,16 @@ var cal = {
       for (let i=0; i<blanks; i++) { celler(); cellNum++; }
     }
 
-    // (E3) FETCH & DRAW EVENTS
+    // (F3) FETCH & DRAW EVENTS
     if (cal.events !== null) { for (let [id,evt] of Object.entries(cal.events)) {
-      // (E3-1) EVENT START & END DAY
+      // (F3-1) EVENT START & END DAY
       let sd = new Date(evt.s), ed = new Date(evt.e);
       if (sd.getFullYear() != cal.sYear) { sd = 1; }
       else { sd = sd.getMonth()+1 < cal.sMth ? 1 : sd.getDate(); }
       if (ed.getFullYear() != cal.sYear) { ed = daysInMth; }
       else { ed = ed.getMonth()+1 > cal.sMth ? daysInMth : ed.getDate(); }
  
-      // (E3-2) "MAP" ONTO HTML CALENDAR
+      // (F3-2) "MAP" ONTO HTML CALENDAR
       cell = {}; rowNum = 0;
       for (let i=sd; i<=ed; i++) {
         if (rowNum!=rowMap[i]["r"]) {
@@ -183,7 +194,7 @@ var cal = {
         if (cell[rowNum]) { cell[rowNum]["e"] = rowMap[i]["c"]; }
       }
 
-      // (E3-3) DRAW HTML EVENT ROW
+      // (F3-3) DRAW HTML EVENT ROW
       for (let [r,c] of Object.entries(cell)) {
         let o = c.s - 1 - ((r-1) * 7), // event cell offset
             w = c.e - c.s + 1; // event cell width
@@ -201,7 +212,7 @@ var cal = {
     }}
   },
 
-  // (F) SHOW EVENT FORM
+  // (G) SHOW EVENT FORM
   show : id => {
     if (id) {
       cal.hfID.value = id;
@@ -220,9 +231,9 @@ var cal = {
     else { cal.hFormWrap.show(); }
   },
 
-  // (G) SAVE EVENT
+  // (H) SAVE EVENT
   save : () => {
-    // (G1) COLLECT DATA
+    // (H1) COLLECT DATA
     var data = {
       start : cal.hfStart.value,
       end : cal.hfEnd.value,
@@ -232,13 +243,13 @@ var cal = {
     };
     if (cal.hfID.value != "") { data.id = cal.hfID.value; }
 
-    // (G2) DATE CHECK
+    // (H2) DATE CHECK
     if (new Date(data.start) > new Date(data.end)) {
       alert("Start date cannot be later than end date!");
       return false;
     }
 
-    // (G3) AJAX SAVE
+    // (H3) AJAX SAVE
     cb.api({
       mod : "calendar", act : "save",
       data : data,
@@ -251,7 +262,7 @@ var cal = {
     return false;
   },
 
-  // (H) DELETE EVENT
+  // (I) DELETE EVENT
   del : () => cb.modal("Please confirm", "Delete this event?", () => cb.api({
     mod : "calendar", act : "del",
     data : { id : cal.hfID.value },
