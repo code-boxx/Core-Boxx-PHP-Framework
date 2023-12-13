@@ -5,7 +5,7 @@ https://code-boxx.com/core-boxx-calendar-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/calendar`, this will automatically:
   - Import `lib/SQL-Calendar.sql` into your database.
   - Delete `PAGE-install-calendar.php` itself.

@@ -9,7 +9,7 @@ https://code-boxx.com/core-boxx-php-framework/
 * At least PHP 8.0
 
 ## INSTALL
-Copy/unzip into your project folder, and access `http://your-site.com`.
+Copy into your project folder, and access `http://your-site.com`.
 
 ## LICENSE
 Copyright by Code Boxx

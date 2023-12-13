@@ -5,7 +5,7 @@ https://code-boxx.com/core-boxx-dynamic-content-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/content`, this will automatically:
   - Import `lib/SQL-Contents.sql` into your database.
   - Add a new `$wild = [ "post/" => "POST-load.php" ]` route to `HOOK-Routes.php`.

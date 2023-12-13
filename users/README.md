@@ -5,7 +5,7 @@ https://code-boxx.com/core-boxx-users-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/users`, this will automatically:
   - Import `lib/SQL-Users.sql` into your database.
   - Add a new `USR_LVL` definition into `lib/CORE-Config.php`.

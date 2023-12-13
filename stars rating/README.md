@@ -6,7 +6,7 @@ https://code-boxx.com/core-boxx-stars-rating-module/
 * [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/stars`, this will automatically:
   - Import `lib/SQL-Stars.sql` into your database.
   - Delete `PAGE-install-stars.php` itself.

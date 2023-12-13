@@ -6,7 +6,7 @@ https://code-boxx.com/core-boxx-comments-module/
 * [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Acces `http://your-site.com/install/comments`, this will automatically:
   - Import `lib/SQL-Comments.sql` into your database.
   - Delete `PAGE-install-comments.php` itself.

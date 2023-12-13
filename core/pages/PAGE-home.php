@@ -11,23 +11,26 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   <i class="ico-sm icon-power"></i> HOW TO USE CORE BOXX
 </h5>
 <div class="bg-white border p-4 mb-4">
-  <div class="fw-bold mb-2">THE BASICS</div>
+  <div class="fw-bold mb-2">BASICS</div>
   <ul class="mb-4">
     <li><a href="https://code-boxx.com/core-boxx-php-framework/#sec-tut" target="_blank">
       Very Fast Tutorial
     </a></li>
-    <li><a href="<?=HOST_BASE?>demo/html" target="_blank">
-      HTML Interface Demo Page
-    </a></li>
-    <li><a href="<?=HOST_BASE?>demo/transit" target="_blank">
-      Page Transitions Demo Page
-    </a></li>
-    <li><a href="<?=HOST_BASE?>demo/icomoon" target="_blank">
-      IcoMoon Icons List
-    </a></li>
-    <li><a href="<?=HOST_BASE?>demo/php" target="_blank">
-      PHP Demo Page
-    </a></li>
+    <li>
+      Demo Pages - 
+        <a href="<?=HOST_BASE?>demo/html" target="_blank">
+          HTML Interface
+        </a> |
+        <a href="<?=HOST_BASE?>demo/transit" target="_blank">
+          Page Transitions
+        </a> | 
+        <a href="<?=HOST_BASE?>demo/icomoon" target="_blank">
+          Icons List
+        </a> | 
+        <a href="<?=HOST_BASE?>demo/php" target="_blank">
+          PHP Variables
+        </a>
+    </li>
   </ul>
 
   <div class="fw-bold mb-2">DIVE DEEPER</div>
@@ -70,48 +73,39 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
   </a>
 </div>
 
-<!-- (D) OFFICIAL -->
+<!-- (D) ALL OTHER LINKS -->
 <h5 class="text-danger mb-2">
-  <i class="ico-sm icon-sphere"></i> OFFICIAL
+  <i class="ico-sm icon-sphere"></i> ALL THE LINKS
 </h5>
 <div class="bg-white border p-4 mb-4">
-  <ul class="mb-0">
+  <div class="fw-bold mb-2">CORE BOXX OFFICIAL</div>
+  <ul class="mb-4">
     <li><a href="https://code-boxx.com/core-boxx-php-framework/#sec-faq" target="_blank">
       FAQ
     </a></li>
     <li><a href="https://github.com/code-boxx/Core-Boxx-PHP-Framework/issues/new/choose" target="_blank">
       Report a bug
     </a></li>
-    <li><a href="https://github.com/code-boxx/Core-Boxx-PHP-Framework/" target="_blank">
-      Core Boxx GitHub
-    </a></li>
   </ul>
-</div>
 
-<!-- (E) SOCIALS -->
-<h5 class="text-danger mb-2">
-  <i class="ico-sm icon-smile2"></i> SOCIALS
-</h5>
-<div class="bg-white border p-4 mb-4">
-  <ul class="mb-0">
+  <div class="fw-bold mb-2">SOCIALS</div>
+  <ul class="mb-4">
     <li><a href="https://code-boxx.com/" target="_blank">Code Boxx</a></li>
     <li><a href="https://www.youtube.com/c/CodeBoxx" target="_blank">YouTube</a></li>
     <li><a href="https://www.pinterest.com/codeboxx/" target="_blank">Pinterest</a></li>
+    <li><a href="https://rumble.com/c/c-5298498" target="_blank">Rumble</a></li>
     <li><a href="https://github.com/code-boxx/" target="_blank">GitHub</a></li>
     <li><a href="https://codepen.io/code-boxx" target="_blank">CodePen</a></li>
     <li><a href="https://dev.to/codeboxx" target="_blank">DEV</a></li>
+    <li><a href="https://facebook.com/real.code.boxx" target="_blank">Facebook</a></li>
   </ul>
-</div>
 
-<!-- (F) CREDITS -->
-<h5 class="text-danger mb-2">
-  <i class="ico-sm icon-hammer"></i> CREDITS / BUILT WITH
-</h5>
-<div class="bg-white border p-4 mb-4">
+  <div class="fw-bold mb-2">CREDITS (BUILT WITH)</div>
   <ul class="mb-0">
     <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
     <li><a href="https://icomoon.io/" target="_blank">IcoMoon</a></li>
     <li><a href="https://github.com/firebase/php-jwt" target="_blank">PHP JWT</a></li>
   </ul>
 </div>
+
 <?php require PATH_PAGES . "TEMPLATE-bottom.php"; ?>

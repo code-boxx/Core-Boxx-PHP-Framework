@@ -5,7 +5,7 @@ https://code-boxx.com/core-boxx-autocomplete-module/
 * [Core Boxx](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/core)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/autocomplete`, this will automatically:
   - Add a new `SUGGEST_LIMIT` setting in the database.
   - Delete `PAGE-install-autocomplete.php` itself.

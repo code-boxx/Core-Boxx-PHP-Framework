@@ -20,7 +20,7 @@ https://code-boxx.com/core-boxx-google-login-module/
   - On complete, Google will give you the client ID and secret. Download and save it as `lib/CRD-Google.json`.
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/GOOIN`, this will automatically:
   - Add Google login button to `pages/PAGE-login.php`.
   - Add Google sign up button to `pages/PAGE-register.php`.

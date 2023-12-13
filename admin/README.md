@@ -6,7 +6,7 @@ https://code-boxx.com/core-boxx-admin-panel/
 * [Users Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/users)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/admin`, this will automatically:
   - Create a new `HOST_ADMIN` definition in `lib/CORE-config.php`.
   - Add a new `$wild = [ "admin/" => "ADM-check.php" ]` line to `lib/HOOK-Routes.php`.

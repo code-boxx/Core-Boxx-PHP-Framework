@@ -1,7 +1,7 @@
 # (A) LOAD SETTINGS & MODULES
 import a_settings as set
 import c_oto_rodo as oto
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.chains import RetrievalQA

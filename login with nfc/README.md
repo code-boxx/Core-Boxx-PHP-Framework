@@ -7,7 +7,7 @@ https://code-boxx.com/core-boxx-nfc-login-module/
 * [Admin Module](https://github.com/code-boxx/Core-Boxx-PHP-Framework/tree/main/admin)
 
 ## INSTALL
-* Copy/unzip this module into your existing Core Boxx project folder.
+* Copy this module into your existing Core Boxx project folder.
 * Access `http://your-site.com/install/NFCIN`, this will automatically:
   - Modify `pages/ADM-users.php`, load additional JS for NFC.
   - Add "NFC Login" button to `pages/ADM-users-list.php`.
