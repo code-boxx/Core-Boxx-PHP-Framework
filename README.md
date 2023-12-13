@@ -6,7 +6,8 @@ Core Boxx is a PHP framework built with the concept of simplicity and modularity
 1) LAMP/WAMP/MAMP/XAMPP
 2) Apache Mod Rewrite
 3) PHP MYSQL PDO Extension
-4) At least PHP 8.0
+4) PHP OpenSSL Extension
+5) At least PHP 8.0
 <br><br>
 
 ## :floppy_disk: INSTALLATION & NOTES
