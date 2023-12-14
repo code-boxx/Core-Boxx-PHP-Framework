@@ -10,11 +10,11 @@ Core Boxx is a PHP framework built with the concept of simplicity and modularity
 5) At least PHP 8.0
 <br><br>
 
-## :floppy_disk: INSTALLATION & NOTES
+## :floppy_disk: INSTALLATION
 - Copy the contents of `core/` into your HTTP folder.
 - Access `http://your-site.com/` in the browser and walk through the installer.
 
-## :zap: OPTIONAL MODULES
+## :zap: INSTALLING OPTIONAL MODULES
 - The rest of the folders are optional modules.
 - To install the optional modules, check out their respective `README.md` files.
 <br><br>
