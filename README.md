@@ -2,27 +2,6 @@
 Core Boxx is a PHP framework built with the concept of simplicity and modularity. Install and load only what you need, not bloated with unused features.
 <br><br>
 
-## :ballot_box_with_check: REQUIREMENTS
-1) LAMP/WAMP/MAMP/XAMPP
-2) Apache Mod Rewrite
-3) PHP MYSQL PDO Extension
-4) PHP OpenSSL Extension
-5) At least PHP 8.0
-<br><br>
-
-## :floppy_disk: INSTALLATION
-- Copy the contents of `core/` into your HTTP folder.
-- Access `http://your-site.com/` in the browser and walk through the installer.
-
-## :zap: INSTALLING OPTIONAL MODULES
-- The rest of the folders are optional modules.
-- To install the optional modules, check out their respective `README.md` files.
-<br><br>
-
-## :star: SUPPORT
-Like this project? Just give it a star. That will indirectly help grow my blog a little bit. :wink:
-<br><br>
-
 ## :camera: SCREENSHOTS
 <p float="left">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-1.png">
@@ -32,17 +11,24 @@ Like this project? Just give it a star. That will indirectly help grow my blog a
   <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-5.png">
   <img width="250" src="https://github.com/code-boxx/Core-Boxx-PHP-Framework/blob/main/core/assets/core-boxx-6.png">
 </p>
+<br>
+
+## :floppy_disk: INSTALLATION
+- Copy the contents of `core/` into your HTTP folder.
+- Access `http://your-site.com/` in the browser and walk through the installer.
 <br><br>
 
-## :white_check_mark: "OUT OF THE BOX" FEATURES
-1) Pretty URL and routing.
-2) API endpoints with CORS support.
-3) Installable Progressive Web App.
-4) JSON Web Token sessions.
-5) Bootstrap HTML template.
+## :ballot_box_with_check: REQUIREMENTS
+1) LAMP/WAMP/MAMP/XAMPP
+2) Apache Mod Rewrite
+3) PHP MYSQL PDO Extension
+4) PHP OpenSSL Extension
+5) At least PHP 8.0
 <br><br>
 
 ## :electric_plug: MODULES
+The rest of the folders are optional modules. To install the modules, check out their respective `README.md` files.
+
 * `admin` Admin panel.
 * `ai chatbot` Run a local AI Chatbot (Python).
 * `autocomplete` Autocomplete/suggestion.
@@ -58,6 +44,18 @@ Like this project? Just give it a star. That will indirectly help grow my blog a
 * `stars rating` Stars rating.
 * `users` User system. Registration, login, forgot password.
 * `web push` Send push notifications.
+<br><br>
+
+## :white_check_mark: "OUT OF THE BOX" FEATURES
+1) Pretty URL and routing.
+2) API endpoints with CORS support.
+3) Installable Progressive Web App.
+4) JSON Web Token sessions.
+5) Bootstrap HTML template.
+<br><br>
+
+## :star: SUPPORT
+Like this project? Just give it a star. That will indirectly help grow my blog a little bit. :wink:
 <br><br>
 
 ## :bulb: DOCUMENTATION & CREDITS
