@@ -15,12 +15,13 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
 <?php } ?>
 
 <div class="row justify-content-center">
-<div class="col-md-10 bg-white border">
+<div class="col-md-6 bg-white">
 <div class="row">
-  <div class="col-4" style="background:url('<?=HOST_ASSETS?>users.webp') center;background-size:cover"></div>
   <div class="col-8 p-4">
-    <img src="<?=HOST_ASSETS?>favicon.png" class="p-2 rounded-circle" style="width:128px;height:128px;background:#f1f1f1">
-    <h3 class="my-4">REGISTRATION</h3>
+    <h3 class="m-0">REGISTRATION</h3>
+    <div class="mb-4 text-secondary"><small>
+      Create a new account.
+    </small></div>
 
     <!-- (C2) REGISTRATION FORM -->
     <form onsubmit="return register();">
@@ -58,6 +59,7 @@ require PATH_PAGES . "TEMPLATE-top.php"; ?>
       <a href="<?=HOST_BASE?>activate">Resend Activation</a>
     </div>
   </div>
+  <div class="col-4" id="login-r" style="background:url('<?=HOST_ASSETS?>users.webp') center;"></div>
 </div>
 </div>
 </div>
