@@ -30,7 +30,7 @@ Core Boxx is a PHP framework built with the concept of simplicity and modularity
 <br><br>
 
 ## :floppy_disk: INSTALLATION
-1) Manually download or git clone into your `http` folder.
+1) Copy `core` into your `http` folder.
 2) Access `http://your-site.com/` in the browser and walk through the installer.
 <br><br>
 
