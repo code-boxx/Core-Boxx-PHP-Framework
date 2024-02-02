@@ -1,0 +1,8 @@
+* Update reactions module JS
+* New GPS tracking module
+* New admin file manager
+* New login with FB
+* Paypal
+* Stripe
+* Add database column comments - May help AI
+* Add tutorial videos

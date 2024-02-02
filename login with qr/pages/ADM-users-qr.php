@@ -24,7 +24,7 @@ if (!is_array($user)) { exit("Invalid user"); } ?>
 <div class="bg-white border p-4 mb-3">
   <button id="qr-null" class="my-1 btn btn-primary d-flex-inline"
           onclick="uqr.null(<?=$_POST["id"]?>)"<?=$user["hash_code"]==""?" disabled":""?>>
-    <i class="ico-sm icon-blocked"></i> Nullify Login Token
+    <i class="ico-sm icon-blocked"></i> Nullify
   </button>
   <div class="text-secondary mt-2">
     * The user's QR login token will be nullified, but the login email/password remains unaffected.

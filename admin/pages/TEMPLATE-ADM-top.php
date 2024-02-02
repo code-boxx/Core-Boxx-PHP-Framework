@@ -43,7 +43,7 @@
       if ($load[0]=="s") {
         printf("<script src='%s'%s></script>", $load[1], isset($load[2]) ? " ".$load[2] : "");
       } else {
-        printf("<link rel='stylesheet' href='%s'>", $load[1], isset($load[2]) ? " ".$load[2] : "");
+        printf("<link rel='stylesheet' href='%s'>", $load[1]);
       }
     }}
     if (isset($_PMETA)) { unset($_PMETA); } ?>

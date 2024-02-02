@@ -27,22 +27,28 @@ var qrscan = {
 
   // (C) SHOW SCANNER
   show : () => cb.transit(() => {
+    // (C1) SHOW SCANNER WIDGET
     document.getElementById("qr-wrapA").classList.remove("d-none");
     document.body.classList.add("overflow-hidden");
+
+    // (C2) SEEMINGLY NO SMART WAY TO "START SCANNING"
+    let start = document.getElementById("html5-qrcode-button-camera-start");
+    if (start != null) {
+      if (start.style.display!="none") { start.click(); }
+    }
   }),
 
   // (D) HIDE QR SCANNER
   hide : () => {
     // (D1) SEEMINGLY NO SMART WAY TO "STOP SCANNING"
-    let stop = document.getElementById("html5-qrcode-button-camera-stop"),
-        wrap = document.getElementById("qr-wrapA");
+    let stop = document.getElementById("html5-qrcode-button-camera-stop");
     if (stop != null) {
       if (stop.style.display!="none") { stop.click(); }
     }
 
     // (D2) HIDE SCANNER
     cb.transit(() => {
-      wrap.classList.add("d-none");
+      document.getElementById("qr-wrapA").classList.add("d-none");
       document.body.classList.remove("overflow-hidden");
     });
   },

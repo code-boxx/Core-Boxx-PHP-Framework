@@ -15,6 +15,7 @@ $_CORE->MInstall->insert(
   PATH_PAGES . "ADM-users.php",
   "\$_PMETA ", <<<EOD
     // (LOGIN WITH NFC) ADDED BY INSTALLER
+    ["l", HOST_ASSETS."PAGE-nfc.css"],
     ["s", HOST_ASSETS."PAGE-nfc.js", "defer"],
     ["s", HOST_ASSETS."ADM-users-nfc.js", "defer"],
   EOD . "\r\n"
@@ -37,6 +38,7 @@ $_CORE->MInstall->insert(
   PATH_PAGES . "PAGE-login.php",
   "\$_PMETA", <<<EOD
     // (LOGIN WITH NFC) ADDED BY INSTALLER
+    ["l", HOST_ASSETS."PAGE-nfc.css"],
     ["s", HOST_ASSETS."PAGE-nfc.js", "defer"],
     ["s", HOST_ASSETS."PAGE-login-nfc.js", "defer"],
   EOD . "\r\n"
@@ -47,8 +49,8 @@ $_CORE->MInstall->insert(
   PATH_PAGES . "PAGE-login.php",
   "(C2-2) MORE LOGIN", <<<EOD
         <!-- (LOGIN WITH NFC) ADDED BY INSTALLER -->
-        <button type="button" id="nfc-a" onclick="nin.go()" disabled class="my-1 btn btn-primary d-flex-inline">
-          <i class="ico-sm icon-feed"></i> <span id="nfc-b">NFC</span>
+        <button type="button" id="nfc-in" onclick="nfc.scan()" disabled class="my-1 btn btn-primary d-flex-inline">
+          <i class="ico-sm icon-feed"></i> NFC
         </button>
   EOD . "\r\n"
 );
