@@ -6,3 +6,4 @@
 * Stripe
 * Add database column comments - May help AI
 * Add tutorial videos
+* CB-worker.js > Server get all JS/CSS/IMAGES/ASSETS > "Push update"
