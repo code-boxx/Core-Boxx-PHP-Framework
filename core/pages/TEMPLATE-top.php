@@ -27,9 +27,10 @@
 
     <!-- (A4) SERVICE WORKER + HOST -->
     <script>
-    if ("serviceWorker" in navigator) { navigator.serviceWorker.register("<?=HOST_BASE?>CB-worker.js", {scope: "<?=HOST_BASE_PATH?>"}); }
-    var cbhost={base:"<?=HOST_BASE?>",basepath:"<?=HOST_BASE_PATH?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"};
+    const cbhost={base:"<?=HOST_BASE?>",basepath:"<?=HOST_BASE_PATH?>",api:"<?=HOST_API_BASE?>",assets:"<?=HOST_ASSETS?>"},
+    cbcache={n:"CBCACHE",s:<?=CACHE_VER?>,c:localStorage.getItem("CBCACHE") || 0};
     </script>
+    <script src="<?=HOST_ASSETS?>PAGE-cbwork.js"></script>
 
     <!-- (A5) LIBRARIES & SCRIPTS -->
     <!-- https://getbootstrap.com/ -->

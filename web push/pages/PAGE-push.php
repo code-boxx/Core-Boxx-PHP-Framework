@@ -27,7 +27,7 @@
   </div>
 
   <div class="form-floating mb-4">
-    <input type="text" required class="form-control" name="image" value="<?=HOST_ASSETS?>head-core-boxx.webp">
+    <input type="text" required class="form-control" name="image" value="<?=HOST_ASSETS?>banner.webp">
     <label class="form-label">Image</label>
   </div>
 
