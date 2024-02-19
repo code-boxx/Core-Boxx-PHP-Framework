@@ -2,7 +2,8 @@
 * New GPS tracking module
 * New admin file manager
 * New login with FB
+* PHPMailer - SMTP options during install
 * Paypal
 * Stripe
-* Add database column comments - May help AI
+* Add database column comments - May help AI Assistant
 * Add tutorial videos
