@@ -1,3 +1,4 @@
+* Installer > Stop installer if DB exist + cannot update > Prompt user to manual remove or change index.php
 * Update reactions module JS
 * New GPS tracking module
 * New admin file manager
